@@ -51,12 +51,23 @@ record = euring_decode_record("GBB|A0|1234567890|...")
 is_valid = is_valid_type("ABC", TYPE_ALPHABETIC)
 ```
 
-## Reference data
+## EURING Reference Data
 
 This package ships with EURING reference data (species, schemes, places, and code lists) in `src/euring/data`.
+All files here are JSON and are loaded directly by the library.
 End users do not need to fetch data separately.
 
-If you want to refresh the bundled datasets, run:
+### Data sources
+
+- Species codes: <https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv>
+- Place codes: <https://www.euring.org/files/documents/ECPlacePipeDelimited_0.csv>
+- Schemes: <https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE>
+- Circumstances: <https://app.bto.org/euringcodes/circumstances.jsp>
+- All other code tables are derived from [EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. Helsinki, Finland. (PDF v202, 13 Nov 2024)](https://euring.org/data-and-codes/euring-codes)
+
+### Refreshing data
+
+Update species, places, schemes and circumstances via the fetch helper and regenerate the JSON files in this folder:
 
 ```bash
 python -m euring.data.fetch --output-dir src/euring/data
