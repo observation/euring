@@ -1,0 +1,44 @@
+
+# Editors
+.vscode/
+.idea/
+
+# Local development
+.python-version
+.env*
+.venv
+
+# Tox
+.tox/
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+*.cover
+.hypothesis/
+
+# Vagrant
+.vagrant/
+
+# Mac/OSX
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info
+docs/_build/
+dist/
+build/
+build-check-description/
+
+# Example database
+example/db.sqlite3

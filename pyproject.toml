@@ -1,0 +1,131 @@
+[build-system]
+build-backend = "uv_build"
+requires = ["uv_build>=0.9.18,<0.10.0"]
+
+[project]
+authors = [
+  {name = "Dylan Verheul", email = "dylan@dyve.net"},
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Utilities",
+]
+dependencies = [
+  "typer>=0.12.0",
+]
+
+description = "A Python library and CLI for decoding, validating, and working with EURING bird ringing data records."
+keywords = ["euring", "euring2000", "euring2000+", "euring2020", "bird", "ringing", "ornithology"]
+license = "BSD-3-Clause"
+license-files = ["LICENSE", "AUTHORS"]
+name = "euring"
+readme = "README.md"
+requires-python = ">=3.10"
+version = "0.1.0"
+
+[project.scripts]
+euring = "euring.main:main"
+
+[project.urls]
+Changelog = "https://github.com/observation/euring/blob/main/CHANGELOG.md"
+# Documentation = "https://euring.readthedocs.io/"
+Homepage = "https://github.com/observation/euring"
+Issues = "https://github.com/observation/euring/issues"
+Source = "https://github.com/observation/euring"
+
+[tool.ruff]
+fix = false
+line-length = 120
+src = ["src"]
+
+[tool.ruff.lint]
+fixable = [
+  "I001", # isort (sorting)
+  "F", # flake8
+  "D", # docformatter
+  "UP", # pyupgrade
+]
+ignore = [
+  "D1", # D1: Missing docstring error codes (because not every function and class has a docstring)
+  "D203", # D203: 1 blank line required before class docstring (conflicts with D211 and should be disabled, see https://github.com/PyCQA/pydocstyle/pull/91)
+  "D212", # D212: Multi-line docstring summary should start at the first line
+  "D301", # D301: Use r”“” if any backslashes in a docstring (unclear how else to handle backslashes in docstrings)
+]
+select = [
+  "D", # pydocstyle
+  "E", # pycodestyle
+  "F", # flake8
+  "I", # isort
+  "UP", # pyupgrade
+]
+unfixable = [
+  "F8", # names in flake8, such as defined but unused variables
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["euring"]
+
+[tool.coverage.run]
+branch = true
+source = ["src", "tests"]
+
+[tool.coverage.paths]
+package = ["src/euring", "*/euring/src/euring"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.pytest.ini_options]
+python_classes = "Test*"
+python_files = "test_*.py"
+python_functions = "test_*"
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+  {include-group = "test"},
+  {include-group = "docs"},
+]
+docs = [
+  "furo>=2024.8.6",
+  "myst-parser>=3.0.1",
+  "sphinx>=7.1.2",
+]
+test = [
+  "coverage[toml]>=7.6.1",
+  "pytest>=7.0.0",
+]
+
+[tool.uv.build-backend]
+source-exclude = [
+  "**/.DS_Store",
+  "docs/_build",
+  "example/db.sqlite3",
+  "uv.lock",
+]
+source-include = [
+  ".editorconfig",
+  ".readthedocs.yaml",
+  "FUNDING.yml",
+  "example.py",
+  "justfile",
+  "*.md",
+  "example/**",
+  "tests/**",
+  "tox.ini",
+  "docs/**",
+]
+
+[tool.check-manifest]
+ignore = ["uv.lock"]
