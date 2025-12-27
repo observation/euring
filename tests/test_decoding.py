@@ -61,3 +61,13 @@ class TestDecoding:
         decoder.errors = {}
         decoder.parse_field(["GBB"], 0, "Ringing Scheme", type=TYPE_INTEGER, length=3)
         assert "Ringing Scheme" in decoder.errors
+
+    def test_decode_euring2000_too_short(self):
+        record = euring_decode_record("AAC")
+        assert record["format"] == "EURING2000"
+        assert record["errors"]
+
+    def test_decode_euring2000_too_long(self):
+        record = euring_decode_record("AAC1234567890" + "9" * 95)
+        assert record["format"] == "EURING2000"
+        assert record["errors"]
