@@ -20,7 +20,7 @@ python -m euring.data.fetch --output-dir src/euring/data
 ```
 
 - Species/place updates are currently maintained in JSON form:
-  - `species_codes.json` generated from the EURING species CSV.
-  - `place_codes.json` generated from the EURING place code CSV.
+  - `species.json` generated from the EURING species CSV.
+  - `places.json` generated from the EURING place code CSV.
 
 If you refresh those sources, regenerate the JSON tables in this folder.
