@@ -7,7 +7,7 @@
 .python-version
 .env*
 .venv
-local-info
+local
 
 # Tox
 .tox/
