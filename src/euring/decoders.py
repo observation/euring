@@ -3,8 +3,10 @@ from collections import OrderedDict
 from hashlib import md5
 
 from .codes import (
+    LOOKUP_ACCURACY_PULLUS_AGE,
     LOOKUP_CATCHING_LURES,
     LOOKUP_CATCHING_METHOD,
+    LOOKUP_CIRCUMSTANCES,
     LOOKUP_CONDITION,
     LOOKUP_EURING_CODE_IDENTIFIER,
     LOOKUP_MANIPULATED,
@@ -57,7 +59,7 @@ EURING_FIELDS = [
     dict(name="Status", type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_STATUS),
     dict(name="Brood size", type=TYPE_INTEGER, length=2, lookup=lookup_brood_size),
     dict(name="Pullus age", type=TYPE_INTEGER, length=2, lookup=lookup_pullus_age),
-    dict(name="Accuracy of pullus age", type=TYPE_ALPHANUMERIC, length=1),
+    dict(name="Accuracy of pullus age", type=TYPE_ALPHANUMERIC, length=1, lookup=LOOKUP_ACCURACY_PULLUS_AGE),
     dict(name="Date", type=TYPE_INTEGER, length=8, lookup=lookup_date),
     dict(name="Accuracy of date", type=TYPE_INTEGER, length=1),
     dict(name="Time", type=TYPE_ALPHANUMERIC, length=4),
@@ -71,7 +73,7 @@ EURING_FIELDS = [
     ),
     dict(name="Accuracy of co-ordinates", type=TYPE_INTEGER, length=1),
     dict(name="Condition", type=TYPE_INTEGER, length=1, lookup=LOOKUP_CONDITION),
-    dict(name="Circumstances", type=TYPE_INTEGER, length=2),
+    dict(name="Circumstances", type=TYPE_INTEGER, length=2, lookup=LOOKUP_CIRCUMSTANCES),
     dict(name="Circumstances presumed", type=TYPE_INTEGER, length=1),
     dict(name="EURING Code identifier", type=TYPE_INTEGER, length=1, lookup=LOOKUP_EURING_CODE_IDENTIFIER),
     dict(name="Derived data - distance", type=TYPE_INTEGER, min_length=0, max_length=5),

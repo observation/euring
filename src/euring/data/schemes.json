@@ -1,0 +1,1460 @@
+[
+  {
+    "code": "AAC",
+    "country": "Australia",
+    "ringing_centre": "Canberra",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ABT",
+    "country": "Albania",
+    "ringing_centre": "Tirana",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "AJW",
+    "country": "New Zealand",
+    "ringing_centre": "Wellington",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ALL",
+    "country": "Angola",
+    "ringing_centre": "Luanda",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ARR",
+    "country": "Saudi Arabia",
+    "ringing_centre": "Rhyiad",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "AUS",
+    "country": "Austria",
+    "ringing_centre": "Salzburg",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2002-10-15",
+    "notes": ""
+  },
+  {
+    "code": "AUW",
+    "country": "Austria",
+    "ringing_centre": "Wien (Vienna)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2002-10-15",
+    "notes": ""
+  },
+  {
+    "code": "BAB",
+    "country": "Brazil",
+    "ringing_centre": "Brasilia",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "BGS",
+    "country": "Bulgaria",
+    "ringing_centre": "Sofia",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "BHS",
+    "country": "Bosnia&Herzegovina",
+    "ringing_centre": "Sarajevo",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2017-03-20",
+    "notes": "New scheme 2020"
+  },
+  {
+    "code": "BLB",
+    "country": "Belgium",
+    "ringing_centre": "Bruxelles  or  Brussels",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "BLC",
+    "country": "Belgium",
+    "ringing_centre": "Cogels; Ossendrecht",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "BLN",
+    "country": "Belgium",
+    "ringing_centre": "NFBVV",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "BYM",
+    "country": "Belarus",
+    "ringing_centre": "Minsk",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CGH",
+    "country": "Hong Kong",
+    "ringing_centre": "Hong Kong",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CIJ",
+    "country": "Channel Islands",
+    "ringing_centre": "Jersey",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CPB",
+    "country": "China",
+    "ringing_centre": "Beijing",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CSB",
+    "country": "Czech Republic",
+    "ringing_centre": "Brno Akademia Ved.",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CSL",
+    "country": "Czech Republic",
+    "ringing_centre": "Prag Lotos",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CSP",
+    "country": "Czech Republic",
+    "ringing_centre": "Praha  (now CZP)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now CZP or SKB"
+  },
+  {
+    "code": "CXT",
+    "country": "Taiwan",
+    "ringing_centre": "Taipei",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CYC",
+    "country": "Cyprus",
+    "ringing_centre": "Nicosia",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CYK",
+    "country": "Cyprus; North",
+    "ringing_centre": "Kuskor",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2002-10-15",
+    "notes": ""
+  },
+  {
+    "code": "CZB",
+    "country": "Czech Republic",
+    "ringing_centre": "Zoo Praha Bohemia",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "CZP",
+    "country": "Czech Republic",
+    "ringing_centre": "Praha",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DDH",
+    "country": "Germany",
+    "ringing_centre": "Hiddensee",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now DEH"
+  },
+  {
+    "code": "DEH",
+    "country": "Germany",
+    "ringing_centre": "Hiddensee",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DEN",
+    "country": "Germany",
+    "ringing_centre": "Zoo Neurenberg",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DER",
+    "country": "Germany",
+    "ringing_centre": "Radolfzell",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DEW",
+    "country": "Germany",
+    "ringing_centre": "Wilhelmshaven (Helgoland)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DEZ",
+    "country": "Germany",
+    "ringing_centre": "Zoolog. Station Helgoland",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DFH",
+    "country": "Germany",
+    "ringing_centre": "Wilhelmshaven (Helgoland)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "Now DEW"
+  },
+  {
+    "code": "DFR",
+    "country": "Germany",
+    "ringing_centre": "Radolfzell; Rossiten",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "Now DER"
+  },
+  {
+    "code": "DFS",
+    "country": "Germany",
+    "ringing_centre": "Radolfzell Süddeutsche Vogelwarte",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DKC",
+    "country": "Denmark",
+    "ringing_centre": "Copenhagen",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DKF",
+    "country": "Denmark",
+    "ringing_centre": "Frederikssund",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DKH",
+    "country": "Denmark",
+    "ringing_centre": "Hellerup",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DKK",
+    "country": "Denmark",
+    "ringing_centre": "Kalø",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DKM",
+    "country": "Denmark",
+    "ringing_centre": "Viborg Mortensen",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DKO",
+    "country": "Denmark",
+    "ringing_centre": "Odense",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "DKV",
+    "country": "Denmark",
+    "ringing_centre": "Viborg Skovgaard",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "EGC",
+    "country": "Egypt",
+    "ringing_centre": "Cairo",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ESA",
+    "country": "Spain",
+    "ringing_centre": "Aranzadi",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ESC",
+    "country": "Spain",
+    "ringing_centre": "Catalan Ornithological Institute (ICO)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2013-02-20",
+    "notes": ""
+  },
+  {
+    "code": "ESE",
+    "country": "Spain",
+    "ringing_centre": "Sevilla (Biol. Doñana)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ESF",
+    "country": "Spain",
+    "ringing_centre": "Forest Institute",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2017-01-19",
+    "notes": ""
+  },
+  {
+    "code": "ESI",
+    "country": "Spain",
+    "ringing_centre": "Madrid (ICONA)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ESM",
+    "country": "Spain",
+    "ringing_centre": "Madrid (SEO)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ESS",
+    "country": "Spain",
+    "ringing_centre": "SEO/Birdlife",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2023-08-18",
+    "notes": ""
+  },
+  {
+    "code": "ETK",
+    "country": "Estonia",
+    "ringing_centre": "Kielkond-Russia",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ETM",
+    "country": "Estonia",
+    "ringing_centre": "Matsalu",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ETT",
+    "country": "Estonia",
+    "ringing_centre": "Tartu Universitas",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "FPP",
+    "country": "South Africa",
+    "ringing_centre": "Pretoria; Cape Town",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "FRP",
+    "country": "France",
+    "ringing_centre": "Paris",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "FRS",
+    "country": "France",
+    "ringing_centre": "Strasbourg",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "FRV",
+    "country": "France",
+    "ringing_centre": "Versailles",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "FVK",
+    "country": "Malaysia",
+    "ringing_centre": "Kuala Lumpur",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBB",
+    "country": "UK",
+    "ringing_centre": "Aberdeen (Landsborough Thomson)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBD",
+    "country": "UK",
+    "ringing_centre": "Fordingbridge",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBG",
+    "country": "UK",
+    "ringing_centre": "Aberdeen (Grouse study)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBO",
+    "country": "UK",
+    "ringing_centre": "London; National Institute Oceanography",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBR",
+    "country": "UK",
+    "ringing_centre": "Orielton",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBT",
+    "country": "UK  &  Ireland",
+    "ringing_centre": "London (British Museum; Tring; Thetford)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBW",
+    "country": "UK",
+    "ringing_centre": "WAGBI",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GBY",
+    "country": "UK",
+    "ringing_centre": "Witherby",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GET",
+    "country": "Georgia",
+    "ringing_centre": "Tblisi",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2002-10-15",
+    "notes": ""
+  },
+  {
+    "code": "GHL",
+    "country": "Ghana",
+    "ringing_centre": "Legon",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GPN",
+    "country": "Kenya",
+    "ringing_centre": "Nairobi",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "GRA",
+    "country": "Greece",
+    "ringing_centre": "Athens",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "HES",
+    "country": "Switzerland",
+    "ringing_centre": "Sempach",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "HGB",
+    "country": "Hungary",
+    "ringing_centre": "Budapest",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2020-01-09",
+    "notes": "Active from 1951"
+  },
+  {
+    "code": "HGK",
+    "country": "Hungary",
+    "ringing_centre": "Budapest",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2020-01-09",
+    "notes": "Active 1908 - 1950"
+  },
+  {
+    "code": "HGM",
+    "country": "Hungary",
+    "ringing_centre": "Budapest Museum NH",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2020-01-09",
+    "notes": "Active 1950 - 1956"
+  },
+  {
+    "code": "HGX",
+    "country": "Hungary",
+    "ringing_centre": "Budapest",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2020-01-09",
+    "notes": "Private scheme"
+  },
+  {
+    "code": "HRZ",
+    "country": "Croatia",
+    "ringing_centre": "Zagreb (Ornit. Inst.)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAA",
+    "country": "Italy",
+    "ringing_centre": "Bologna Ancona",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAB",
+    "country": "Italy",
+    "ringing_centre": "Bologna  Ozzano (BO)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAF",
+    "country": "Italy",
+    "ringing_centre": "Friuli V.G.",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAG",
+    "country": "Italy",
+    "ringing_centre": "Bologna Genova",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAL",
+    "country": "Italy",
+    "ringing_centre": "Sicilia",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAM",
+    "country": "Italy",
+    "ringing_centre": "Bologna Zool. (Mesola)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAO",
+    "country": "Italy",
+    "ringing_centre": "Bologna Sardo (Sardinia)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAR",
+    "country": "Italy",
+    "ringing_centre": "Roma (Castelfusano)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAV",
+    "country": "Italy",
+    "ringing_centre": "Bologna Univ. (Garda Lake)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IAY",
+    "country": "Italy",
+    "ringing_centre": "Bologna Pisa",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ILJ",
+    "country": "Israel",
+    "ringing_centre": "Hebrew University Jerusalem",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ILT",
+    "country": "Israel",
+    "ringing_centre": "Tel-Aviv University",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2002-10-15",
+    "notes": ""
+  },
+  {
+    "code": "INB",
+    "country": "India",
+    "ringing_centre": "Bombay",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IPT",
+    "country": "Iran",
+    "ringing_centre": "Teheran",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "IQB",
+    "country": "Iraq",
+    "ringing_centre": "Bagdad Univ.",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ISR",
+    "country": "Iceland",
+    "ringing_centre": "Reykjavik",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "JHY",
+    "country": "Japan",
+    "ringing_centre": "Yamashina Inst. O.Z.",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "JOZ",
+    "country": "Jordan",
+    "ringing_centre": "Zarqa",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "JRD",
+    "country": "UAE",
+    "ringing_centre": "Dubai",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2001-05-17",
+    "notes": ""
+  },
+  {
+    "code": "KZA",
+    "country": "Kazakhstan",
+    "ringing_centre": "Almaty",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "LEB",
+    "country": "Lebanon",
+    "ringing_centre": "Beirut",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": "rings marked LIBAN"
+  },
+  {
+    "code": "LID",
+    "country": "Lithuania",
+    "ringing_centre": "Kaunas",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2005-07-16",
+    "notes": "Duplicated rings"
+  },
+  {
+    "code": "LIK",
+    "country": "Lithuania",
+    "ringing_centre": "Kaunas (Zool. Mus.)",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "LIU",
+    "country": "Lithuania",
+    "ringing_centre": "Kaunas (Universite)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "LVR",
+    "country": "Latvia",
+    "ringing_centre": "Riga",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "MAR",
+    "country": "Morocco",
+    "ringing_centre": "Rabat",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2015-07-10",
+    "notes": ""
+  },
+  {
+    "code": "MEC",
+    "country": "Montenegro",
+    "ringing_centre": "Podgorica",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2024-11-21",
+    "notes": "NHM rings"
+  },
+  {
+    "code": "MEP",
+    "country": "Montenegro",
+    "ringing_centre": "Podgorica",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2024-11-21",
+    "notes": "CZIP rings"
+  },
+  {
+    "code": "MKS",
+    "country": "Macedonia",
+    "ringing_centre": "Skopje",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "MLV",
+    "country": "Malta",
+    "ringing_centre": "Valletta",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "NAW",
+    "country": "Canada",
+    "ringing_centre": "Washington",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": "with USA"
+  },
+  {
+    "code": "NAW",
+    "country": "USA",
+    "ringing_centre": "Washington",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": "with Canada"
+  },
+  {
+    "code": "NLA",
+    "country": "Netherlands",
+    "ringing_centre": "Arnhem",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "NLL",
+    "country": "Netherlands",
+    "ringing_centre": "Leiden",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "NMX",
+    "country": "Mauretania",
+    "ringing_centre": "Fégréac",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2011-01-21",
+    "notes": "Rings: WTBIRDS.ORG"
+  },
+  {
+    "code": "NOA",
+    "country": "Norway",
+    "ringing_centre": "Ås",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "NOK",
+    "country": "Norway",
+    "ringing_centre": "Zoolog. Museum Kristiania",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "NOO",
+    "country": "Norway",
+    "ringing_centre": "Zoological Museum (Oslo)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2009-11-09",
+    "notes": ""
+  },
+  {
+    "code": "NOS",
+    "country": "Norway",
+    "ringing_centre": "Stavanger Museum",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2009-11-09",
+    "notes": ""
+  },
+  {
+    "code": "NOT",
+    "country": "Norway",
+    "ringing_centre": "Tromsø Museum",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "NOU",
+    "country": "Norway",
+    "ringing_centre": "Oslo University",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "NVJ",
+    "country": "Nigeria",
+    "ringing_centre": "Jos",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "OE.",
+    "country": "Philippines",
+    "ringing_centre": "…",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "PLG",
+    "country": "Poland",
+    "ringing_centre": "Gdansk; Varsovia",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "PLT",
+    "country": "Poland",
+    "ringing_centre": "Tschammendorf",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "PLW",
+    "country": "Poland",
+    "ringing_centre": "Wolin",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "PNL",
+    "country": "Pakistan",
+    "ringing_centre": "Lahore",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "POL",
+    "country": "Portugal",
+    "ringing_centre": "Lisboa",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "POP",
+    "country": "Portugal",
+    "ringing_centre": "Porto",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "PSJ",
+    "country": "Palestine",
+    "ringing_centre": "Jericho",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "1930-01-12",
+    "notes": ""
+  },
+  {
+    "code": "ROB",
+    "country": "Romania",
+    "ringing_centre": "Bucarest",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ROO",
+    "country": "Romania",
+    "ringing_centre": "Oradea",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ROS",
+    "country": "Romania",
+    "ringing_centre": "Oficiul Vanatorilor Regale Sibiu",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "RSB",
+    "country": "Republic of Serbia",
+    "ringing_centre": "Belgrade",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "RUM",
+    "country": "Russian Federation",
+    "ringing_centre": "Moskwa",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "RUP",
+    "country": "Russian Federation",
+    "ringing_centre": "St. Petersburg",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SFH",
+    "country": "Finland",
+    "ringing_centre": "Helsinki Museum",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SFP",
+    "country": "Finland",
+    "ringing_centre": "Helsingfors",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SFR",
+    "country": "Finland",
+    "ringing_centre": "Helsinki Riista",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SJA",
+    "country": "Venezuela",
+    "ringing_centre": "ARA MACAO VENEZUELA",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "1928-05-21",
+    "notes": ""
+  },
+  {
+    "code": "SJB",
+    "country": "Venezuela",
+    "ringing_centre": "Barquisimeto",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "1928-05-21",
+    "notes": ""
+  },
+  {
+    "code": "SJS",
+    "country": "Venezuela",
+    "ringing_centre": "Soc. Conservacionista Audubon de Venezuela",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "1928-05-21",
+    "notes": ""
+  },
+  {
+    "code": "SKB",
+    "country": "Slovakia",
+    "ringing_centre": "Bratislava",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SLL",
+    "country": "Slovenia",
+    "ringing_centre": "Ljubljana",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SUE",
+    "country": "USSR",
+    "ringing_centre": "Matsalu; Tartu",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now ETM"
+  },
+  {
+    "code": "SUK",
+    "country": "USSR",
+    "ringing_centre": "Kaunas",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now LIK"
+  },
+  {
+    "code": "SUL",
+    "country": "USSR",
+    "ringing_centre": "Leningrad",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SUM",
+    "country": "USSR",
+    "ringing_centre": "Moskwa",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now RUM"
+  },
+  {
+    "code": "SUR",
+    "country": "USSR",
+    "ringing_centre": "Riga",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now LVR"
+  },
+  {
+    "code": "SVG",
+    "country": "Sweden",
+    "ringing_centre": "Göteborg",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SVJ",
+    "country": "Sweden",
+    "ringing_centre": "Stockholm Jager",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SVL",
+    "country": "Sweden",
+    "ringing_centre": "Olov Larsson",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SVN",
+    "country": "Sweden",
+    "ringing_centre": "Stockholm Skansen",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SVO",
+    "country": "Sweden",
+    "ringing_centre": "Stockholm Ornis",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SVR",
+    "country": "Sweden",
+    "ringing_centre": "Stockholm Museum",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "pre-1960"
+  },
+  {
+    "code": "SVS",
+    "country": "Sweden",
+    "ringing_centre": "Stockholm Museum",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "SVX",
+    "country": "Sweden",
+    "ringing_centre": "Stockholm Olov Larsson",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "TOT",
+    "country": "Tunisia",
+    "ringing_centre": "Tunis",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "TUA",
+    "country": "Turkey",
+    "ringing_centre": "Ankara",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "TXS",
+    "country": "South Korea",
+    "ringing_centre": "Korea",
+    "is_euring": false,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "UKC",
+    "country": "Ukraine",
+    "ringing_centre": "Charkov  (Ukraine fishers and hunters union)",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "UKK",
+    "country": "Ukraine",
+    "ringing_centre": "Kiev",
+    "is_euring": true,
+    "is_current": true,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "YUB",
+    "country": "Yugoslavia",
+    "ringing_centre": "Belgrade",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now RSB"
+  },
+  {
+    "code": "YUL",
+    "country": "Yugoslavia",
+    "ringing_centre": "Ljubljana",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now SLL"
+  },
+  {
+    "code": "YUZ",
+    "country": "Yugoslavia",
+    "ringing_centre": "Zagreb",
+    "is_euring": true,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": "now HRZ"
+  },
+  {
+    "code": "ZIC",
+    "country": "Zaire",
+    "ringing_centre": "Congo",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  },
+  {
+    "code": "ZMZ",
+    "country": "Zambia",
+    "ringing_centre": "Zambia",
+    "is_euring": false,
+    "is_current": false,
+    "updated": "2012-03-08",
+    "notes": ""
+  }
+]
