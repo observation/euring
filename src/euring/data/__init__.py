@@ -1,14 +1,15 @@
 from __future__ import annotations
 
 import json
-from functools import lru_cache
+from collections.abc import Callable
+from functools import cache
 from importlib import resources
-from typing import Any, Callable
+from typing import Any
 
 DATA_PACKAGE = __name__
 
 
-@lru_cache(maxsize=None)
+@cache
 def load_json(name: str) -> Any | None:
     try:
         data_path = resources.files(DATA_PACKAGE).joinpath(name)

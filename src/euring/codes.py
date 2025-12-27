@@ -2,7 +2,6 @@ from datetime import date
 
 from .data import (
     load_code_map,
-    load_named_code_map,
     load_other_marks_data,
     load_place_map,
     load_scheme_map,
@@ -10,7 +9,6 @@ from .data import (
 )
 from .exceptions import EuringParseException
 from .utils import euring_dms_to_float
-
 
 LOOKUP_EURING_CODE_IDENTIFIER = {
     "0": "EURING Code Manual (1966). Directly coded (no translation).",
@@ -43,15 +41,9 @@ LOOKUP_PRIMARY_IDENTIFICATION_METHOD = load_code_map("primary_identification_met
 LOOKUP_VERIFICATION_OF_THE_METAL_RING = load_code_map("verification_of_the_metal_ring.json")
 LOOKUP_METAL_RING_INFORMATION = load_code_map("metal_ring_information.json")
 _OTHER_MARKS_DATA = load_other_marks_data()
-LOOKUP_OTHER_MARKS_INFORMATION_SPECIAL_CASES = (
-    _OTHER_MARKS_DATA["special_cases"] if _OTHER_MARKS_DATA else {}
-)
-LOOKUP_OTHER_MARKS_INFORMATION_POSITION_1 = (
-    _OTHER_MARKS_DATA["first_character"] if _OTHER_MARKS_DATA else {}
-)
-LOOKUP_OTHER_MARKS_INFORMATION_POSITION_2 = (
-    _OTHER_MARKS_DATA["second_character"] if _OTHER_MARKS_DATA else {}
-)
+LOOKUP_OTHER_MARKS_INFORMATION_SPECIAL_CASES = _OTHER_MARKS_DATA["special_cases"] if _OTHER_MARKS_DATA else {}
+LOOKUP_OTHER_MARKS_INFORMATION_POSITION_1 = _OTHER_MARKS_DATA["first_character"] if _OTHER_MARKS_DATA else {}
+LOOKUP_OTHER_MARKS_INFORMATION_POSITION_2 = _OTHER_MARKS_DATA["second_character"] if _OTHER_MARKS_DATA else {}
 
 LOOKUP_MANIPULATED = load_code_map("manipulated.json")
 LOOKUP_MOVED_BEFORE_ENCOUNTER = load_code_map("moved_before_the_encounter.json")
@@ -117,6 +109,7 @@ def lookup_other_marks(value):
 def lookup_species(value):
     """
     Species lookup - uses packaged reference data when available.
+
     :param value:
     :return:
     """
@@ -149,6 +142,7 @@ def lookup_geographical_coordinates(value):
 def lookup_place_code(value):
     """
     Place code lookup - uses packaged reference data when available.
+
     :param value:
     :return:
     """
@@ -172,6 +166,7 @@ def lookup_date(value):
 def lookup_ringing_scheme(value):
     """
     Ringing scheme lookup - uses packaged reference data when available.
+
     :param value:
     :return:
     """

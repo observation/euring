@@ -3,9 +3,9 @@ from collections import OrderedDict
 from hashlib import md5
 
 from .codes import (
+    LOOKUP_ACCURACY_PULLUS_AGE,
     LOOKUP_CATCHING_LURES,
     LOOKUP_CATCHING_METHOD,
-    LOOKUP_ACCURACY_PULLUS_AGE,
     LOOKUP_CIRCUMSTANCES,
     LOOKUP_CONDITION,
     LOOKUP_EURING_CODE_IDENTIFIER,

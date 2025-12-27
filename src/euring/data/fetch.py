@@ -4,7 +4,7 @@ import argparse
 import datetime
 import json
 import os
-from typing import Iterable
+from collections.abc import Iterable
 
 URLS = {
     "schemes": "https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE",
