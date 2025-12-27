@@ -3,10 +3,10 @@
 import pytest
 
 from euring import EuringDecoder, euring_decode_record
+from euring.codes import lookup_date
 from euring.decoders import euring_decode_value
 from euring.exceptions import EuringParseException
 from euring.types import TYPE_INTEGER
-from euring.codes import lookup_date
 
 
 class TestDecoding:
