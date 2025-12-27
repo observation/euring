@@ -1,14 +1,22 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import datetime
 import json
 import os
 from collections.abc import Iterable
 
+SPECIES_CSV_URL = "https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv"
+SPECIES_CSV_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+    )
+}
+
 URLS = {
     "schemes": "https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE",
-    "species": "https://app.bto.org/euringcodes/species.jsp",
     "countries": "https://app.bto.org/euringcodes/place.jsp?inactive=on",
     "circumstances": "https://app.bto.org/euringcodes/circumstances.jsp",
 }
@@ -75,6 +83,12 @@ def _record(cells, fields):
     return data
 
 
+def _parse_species_csv_date(value: str | None) -> datetime.date | None:
+    if not value:
+        return None
+    return datetime.datetime.strptime(value, "%d.%m.%Y").date()
+
+
 def _fetch(url: str, fields: list[list[str]]) -> list[dict[str, object]]:
     import requests
     from bs4 import BeautifulSoup
@@ -91,10 +105,30 @@ def _fetch(url: str, fields: list[list[str]]) -> list[dict[str, object]]:
     return result
 
 
+def _fetch_species_csv(url: str) -> list[dict[str, object]]:
+    import requests
+
+    response = requests.get(url, timeout=30, headers=SPECIES_CSV_HEADERS)
+    response.raise_for_status()
+    text = response.content.decode("utf-8-sig")
+    reader = csv.DictReader(text.splitlines())
+    result = []
+    for row in reader:
+        result.append(
+            {
+                "code": row.get("EURING_Code", ""),
+                "name": row.get("Current_Name", ""),
+                "updated": _parse_species_csv_date(row.get("Date_Updated")),
+                "notes": row.get("Notes", ""),
+            }
+        )
+    return result
+
+
 def fetch_all() -> dict[str, list[dict[str, object]]]:
     return {
         "schemes.json": _fetch(URLS["schemes"], SCHEME_FIELDS),
-        "species.json": _fetch(URLS["species"], SPECIES_FIELDS),
+        "species.json": _fetch_species_csv(SPECIES_CSV_URL),
         "countries.json": _fetch(URLS["countries"], COUNTRY_FIELDS),
         "circumstances.json": _fetch(URLS["circumstances"], CIRCUMSTANCES_FIELDS),
     }
