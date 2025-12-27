@@ -7,5 +7,6 @@ Contents:
    :maxdepth: 2
 
    readme
+   cli
    contributing
    changelog
