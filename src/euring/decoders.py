@@ -114,6 +114,7 @@ EURING_FIELDS = [
 def euring_decode_value(
     value, type, required=True, length=None, min_length=None, max_length=None, parser=None, lookup=None
 ):
+    """Decode a single EURING field value with type checks, parsing, and lookup."""
     # A minimum length of 0 is the same as not required
     if min_length == 0:
         required = False
@@ -165,6 +166,8 @@ def euring_decode_record(value):
 
 
 class EuringDecoder:
+    """Decode a EURING record into structured data and errors."""
+
     value_to_decode = None
     results = None
     errors = None

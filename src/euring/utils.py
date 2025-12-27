@@ -4,6 +4,7 @@ from .exceptions import EuringParseException
 
 
 def euring_dms_to_float(value):
+    """Convert EURING DMS coordinate text into decimal degrees."""
     try:
         seconds = value[-2:]
         minutes = value[-4:-2]
@@ -43,6 +44,7 @@ def euring_float_to_dms(value, round_seconds=False):
 
 
 def euring_coord_to_dms(value, degrees_pos):
+    """Format a decimal coordinate into EURING DMS text with fixed degree width."""
     dms = euring_float_to_dms(value, round_seconds=True)
     return "{quadrant}{degrees}{minutes}{seconds}".format(
         quadrant=dms["quadrant"],
@@ -53,10 +55,12 @@ def euring_coord_to_dms(value, degrees_pos):
 
 
 def euring_lat_to_dms(value):
+    """Convert a latitude in decimal degrees into EURING DMS text."""
     return euring_coord_to_dms(value, degrees_pos=2)
 
 
 def euring_lng_to_dms(value):
+    """Convert a longitude in decimal degrees into EURING DMS text."""
     return euring_coord_to_dms(value, degrees_pos=3)
 
 
