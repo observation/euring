@@ -3,7 +3,7 @@
 This folder contains packaged EURING reference data used at runtime. All files here are JSON and are loaded
 directly by the library.
 
-### Data sources
+## Data sources
 
 - Species codes: https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv
 - Place codes: https://www.euring.org/files/documents/ECPlacePipeDelimited_0.csv
