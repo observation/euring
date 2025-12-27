@@ -93,6 +93,7 @@ def is_text(value):
 
 
 def is_valid_type(value, type):
+    """Return True if a value matches the specified EURING field type."""
     if type == TYPE_ALPHABETIC:
         return is_alphabetic(value)
     if type == TYPE_ALPHANUMERIC:

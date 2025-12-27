@@ -138,6 +138,7 @@ def load_place_map() -> dict[str, str]:
 
 
 def load_place_details() -> dict[str, dict[str, Any]]:
+    """Load place code details keyed by place code."""
     data = load_table("places.json")
     if not data:
         data = load_json("places.json")
@@ -153,6 +154,7 @@ def load_place_details() -> dict[str, dict[str, Any]]:
 
 
 def load_species_details() -> dict[str, dict[str, Any]]:
+    """Load species details keyed by species code."""
     data = load_table("species.json")
     if not data:
         data = load_json("species.json")
@@ -168,6 +170,7 @@ def load_species_details() -> dict[str, dict[str, Any]]:
 
 
 def load_scheme_details() -> dict[str, dict[str, Any]]:
+    """Load ringing scheme details keyed by scheme code."""
     data = load_table("schemes.json")
     if not data:
         data = load_json("schemes.json")

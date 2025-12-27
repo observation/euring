@@ -171,6 +171,7 @@ def _fetch_places_csv(url: str) -> list[dict[str, object]]:
 
 
 def fetch_all() -> dict[str, list[dict[str, object]]]:
+    """Fetch EURING reference datasets and return them keyed by filename."""
     return {
         "schemes.json": _fetch(URLS["schemes"], SCHEME_FIELDS),
         "species.json": _fetch_species_csv(SPECIES_CSV_URL),
@@ -180,6 +181,7 @@ def fetch_all() -> dict[str, list[dict[str, object]]]:
 
 
 def write_json_files(output_dir: str, datasets: dict[str, Iterable[dict[str, object]]]) -> None:
+    """Write reference datasets to JSON files in the target directory."""
     os.makedirs(output_dir, exist_ok=True)
     for filename, data in datasets.items():
         path = os.path.join(output_dir, filename)
@@ -194,6 +196,7 @@ def _json_formatter(value):
 
 
 def main() -> None:
+    """CLI entry point for fetching reference datasets."""
     parser = argparse.ArgumentParser(description="Fetch EURING reference data from euringcodes.")
     parser.add_argument(
         "--output-dir",

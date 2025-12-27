@@ -68,6 +68,7 @@ _PLACE_DETAILS = load_place_details()
 
 
 def lookup_description(value, lookup):
+    """Resolve a code value to its description using a mapping or callable."""
     if lookup is None:
         return None
     if callable(lookup):
@@ -131,6 +132,7 @@ def lookup_species(value):
 
 
 def lookup_species_details(value):
+    """Return the full species record for a EURING species code."""
     value_str = f"{value}"
     result = _SPECIES_DETAILS.get(value_str)
     if result:
@@ -143,6 +145,7 @@ def lookup_species_details(value):
 
 
 def parse_geographical_coordinates(value):
+    """Parse EURING coordinate text into latitude/longitude decimal values."""
     # +420500-0044500
     try:
         lat = value[:7]
@@ -154,6 +157,7 @@ def parse_geographical_coordinates(value):
 
 
 def lookup_geographical_coordinates(value):
+    """Format parsed coordinates into a human-readable string."""
     return "lat: {lat} lng: {lng}".format(**value)
 
 
@@ -172,6 +176,7 @@ def lookup_place_code(value):
 
 
 def lookup_place_details(value):
+    """Return the full place record for a EURING place code."""
     value_str = f"{value}"
     result = _PLACE_DETAILS.get(value_str)
     if result:
@@ -180,6 +185,7 @@ def lookup_place_details(value):
 
 
 def lookup_date(value):
+    """Parse a EURING date string into a datetime.date."""
     try:
         day = int(value[0:2])
         month = int(value[2:4])
@@ -204,6 +210,7 @@ def lookup_ringing_scheme(value):
 
 
 def lookup_ringing_scheme_details(value):
+    """Return the full scheme record for a EURING ringing scheme code."""
     value_str = f"{value}"
     result = _SCHEME_DETAILS.get(value_str)
     if result:
@@ -212,15 +219,18 @@ def lookup_ringing_scheme_details(value):
 
 
 def lookup_age(value):
+    """Look up the EURING age description for a code."""
     v = f"{value}"
     return lookup_description(v, LOOKUP_AGE)
 
 
 def lookup_brood_size(value):
+    """Look up the EURING brood size description for a code."""
     v = f"{value}"
     return lookup_description(v, LOOKUP_BROOD_SIZE)
 
 
 def lookup_pullus_age(value):
+    """Look up the EURING pullus age description for a code."""
     v = f"{value}"
     return lookup_description(v, LOOKUP_PULLUS_AGE)
