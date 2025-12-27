@@ -167,6 +167,7 @@ def euring_decode_record(value):
 
 class EuringDecoder:
     """Decode a EURING record into structured data and errors."""
+
     value_to_decode = None
     results = None
     errors = None
