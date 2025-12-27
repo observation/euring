@@ -1,0 +1,104 @@
+{
+  "first_character": [
+    {
+      "code": "B",
+      "description": "Coloured or numbered leg-ring(s) or flags.",
+      "temporary": false
+    },
+    {
+      "code": "C",
+      "description": "Coloured or numbered neck-ring(s).",
+      "temporary": false
+    },
+    {
+      "code": "D",
+      "description": "Coloured or numbered wing tag(s).",
+      "temporary": false
+    },
+    {
+      "code": "E",
+      "description": "Radio-tracking device.",
+      "temporary": false
+    },
+    {
+      "code": "F",
+      "description": "Satellite-tracking device.",
+      "temporary": false
+    },
+    {
+      "code": "G",
+      "description": "Transponder.",
+      "temporary": false
+    },
+    {
+      "code": "H",
+      "description": "Nasal mark(s).",
+      "temporary": false
+    },
+    {
+      "code": "K",
+      "description": "GPS logger.",
+      "temporary": false
+    },
+    {
+      "code": "L",
+      "description": "Geolocator logger (recording daylight).",
+      "temporary": false
+    },
+    {
+      "code": "R",
+      "description": "Flight feathers stamped with the ring number.",
+      "temporary": true
+    },
+    {
+      "code": "S",
+      "description": "Tape on the ring.",
+      "temporary": true
+    },
+    {
+      "code": "T",
+      "description": "Dye mark (some part of plumage dyed, painted or bleached).",
+      "temporary": true
+    }
+  ],
+  "second_character": [
+    {
+      "code": "B",
+      "description": "Mark added."
+    },
+    {
+      "code": "C",
+      "description": "Mark already present."
+    },
+    {
+      "code": "D",
+      "description": "Mark removed."
+    },
+    {
+      "code": "E",
+      "description": "Mark changed."
+    }
+  ],
+  "special_cases": [
+    {
+      "code": "MM",
+      "description": "More than one mark present."
+    },
+    {
+      "code": "OM",
+      "description": "Other mark(s) present."
+    },
+    {
+      "code": "OP",
+      "description": "Other permanent mark(s) present."
+    },
+    {
+      "code": "OT",
+      "description": "Other temporary mark(s) present."
+    },
+    {
+      "code": "ZZ",
+      "description": "No other marks present or not known to be present."
+    }
+  ]
+}

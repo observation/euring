@@ -100,3 +100,7 @@ install:
         exit 1; \
     fi
     echo "Working directory is clean.";
+
+[private]
+@fetch-data:
+    uv run -m euring.data.fetch --output-dir src/euring/data

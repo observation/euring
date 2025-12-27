@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Ringing Scheme",
+    "type": "alphabetic",
+    "length": 3,
+    "slug": "ringing_scheme",
+    "codes": "ringing_scheme.json",
+    "index": 1
+  },
+  {
+    "name": "Primary Identification Method",
+    "type": "alphanumeric",
+    "length": 2,
+    "slug": "primary_identification_method",
+    "codes": "primary_identification_method.json",
+    "index": 2
+  },
+  {
+    "name": "Identification Number (ring)",
+    "type": "alphanumeric",
+    "length": 10,
+    "slug": "identification_number",
+    "codes": "",
+    "index": 3
+  },
+  {
+    "name": "Verification of the Metal Ring",
+    "type": "integer",
+    "length": 1,
+    "slug": "verification_of_the_metal_ring",
+    "codes": "verification_of_the_metal_ring.json",
+    "index": 4
+  },
+  {
+    "name": "Metal Ring Information",
+    "type": "integer",
+    "length": 1,
+    "slug": "metal_ring_information",
+    "codes": "metal_ring_information.json",
+    "index": 5
+  },
+  {
+    "name": "Other Marks Information (not a conventional metal ring)",
+    "type": "alphabetic",
+    "length": 2,
+    "slug": "other_marks_information",
+    "codes": "other_marks_information.json",
+    "index": 6
+  },
+  {
+    "name": "Species Mentioned",
+    "type": "integer",
+    "length": 5,
+    "slug": "species_mentioned",
+    "codes": "species.json",
+    "index": 7
+  },
+  {
+    "name": "Species Concluded",
+    "type": "integer",
+    "length": 5,
+    "slug": "species_concluded",
+    "codes": "species.json",
+    "index": 8
+  },
+  {
+    "name": "Manipulated",
+    "type": "alphabetic",
+    "length": 1,
+    "slug": "manipulated",
+    "codes": "manipulated.json",
+    "index": 9
+  },
+  {
+    "name": "Moved Before the Encounter",
+    "type": "integer",
+    "length": 1,
+    "slug": "moved_before_the_encounter",
+    "codes": "moved_before_the_encounter.json",
+    "index": 10
+  },
+  {
+    "name": "Catching Method",
+    "type": "alphabetic",
+    "length": 1,
+    "slug": "catching_method",
+    "codes": "catching_method.json",
+    "index": 11
+  },
+  {
+    "name": "Catching Lures",
+    "type": "alphabetic",
+    "length": 1,
+    "slug": "catching_lures",
+    "codes": "catching_lures.json",
+    "index": 12
+  },
+  {
+    "name": "Sex Mentioned",
+    "type": "alphabetic",
+    "length": 1,
+    "slug": "sex_mentioned",
+    "codes": "sex.json",
+    "index": 13
+  },
+  {
+    "name": "Sex Concluded",
+    "type": "alphabetic",
+    "length": 1,
+    "slug": "sex_concluded",
+    "codes": "sex.json",
+    "index": 14
+  },
+  {
+    "name": "Age Mentioned",
+    "type": "alphanumeric",
+    "length": 1,
+    "slug": "age_mentioned",
+    "codes": "age.json",
+    "index": 15
+  },
+  {
+    "name": "Age Concluded",
+    "type": "alphanumeric",
+    "length": 1,
+    "slug": "age_concluded",
+    "codes": "age.json",
+    "index": 16
+  },
+  {
+    "name": "Status",
+    "type": "alphabetic",
+    "length": 1,
+    "slug": "status",
+    "codes": "status.json",
+    "index": 17
+  },
+  {
+    "name": "Brood Size",
+    "type": "integer",
+    "length": 2,
+    "slug": "brood_size",
+    "codes": "brood_size.json",
+    "index": 18
+  },
+  {
+    "name": "Pullus Age",
+    "type": "integer",
+    "length": 2,
+    "slug": "pullus_age",
+    "codes": "pullus_age.json",
+    "index": 19
+  }
+]

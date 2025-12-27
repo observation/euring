@@ -123,6 +123,7 @@ source-include = [
   "justfile",
   "*.md",
   "example/**",
+  "src/euring/data/**",
   "tests/**",
   "tox.ini",
   "docs/**",

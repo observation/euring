@@ -28,14 +28,14 @@ pip install euring
 
 ```bash
 # Decode a EURING record
-euring decode "GBB|A0|1234567890|0|1|ZZ|00001|00001|N|0|M|U|U|U|2|2|U|01012024|0|0000|----|+0000000+0000000|1|9|99|0|4"
+euring decode "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0|4"
 
 # Validate a value
 euring validate ABC alphabetic
 
 # Look up codes
 euring lookup scheme GBB
-euring lookup species 00001
+euring lookup species 00010
 ```
 
 ### Python Library
@@ -49,6 +49,28 @@ record = euring_decode_record("GBB|A0|1234567890|...")
 # Validate a value
 is_valid = is_valid_type("ABC", TYPE_ALPHABETIC)
 ```
+
+## Reference data
+
+This package ships with EURING reference data (species, schemes, places, and code lists) in `src/euring/data`.
+End users do not need to fetch data separately.
+
+If you want to refresh the bundled datasets, run:
+
+```bash
+python -m euring.data.fetch --output-dir src/euring/data
+```
+
+Fetching requires `requests` and `beautifulsoup4`.
+
+### Data sources
+
+- Species codes: https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv
+- Place codes: https://www.euring.org/files/documents/ECPlacePipeDelimited_0.csv
+- Schemes: https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE
+- Circumstances: https://app.bto.org/euringcodes/circumstances.jsp
+- All other code tables are derived from the EURING Exchange Code 2020 PDF (v202). Download: https://euring.org/data-and-codes/euring-codes
+- Citation: EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. Helsinki, Finland. (PDF v202, 13 Nov 2024).
 
 ## Attribution
 

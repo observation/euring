@@ -1,0 +1,14 @@
+[
+  {
+    "code": "U",
+    "description": "Unknown."
+  },
+  {
+    "code": "M",
+    "description": "Male."
+  },
+  {
+    "code": "F",
+    "description": "Female."
+  }
+]
