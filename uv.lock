@@ -283,7 +283,7 @@ wheels = [
 
 [[package]]
 name = "euring"
-version = "25.1"
+version = "26.1.dev0"
 source = { editable = "." }
 dependencies = [
     { name = "typer" },
