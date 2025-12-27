@@ -94,6 +94,8 @@ testpaths = ["tests"]
 
 [dependency-groups]
 dev = [
+  "beautifulsoup4>=4.0.0",
+  "requests>=2.0.0",
   {include-group = "test"},
   {include-group = "docs"},
 ]
