@@ -8,12 +8,6 @@ import os
 from collections.abc import Iterable
 
 SPECIES_CSV_URL = "https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv"
-SPECIES_CSV_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-        "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
-    )
-}
 
 URLS = {
     "schemes": "https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE",
@@ -108,7 +102,7 @@ def _fetch(url: str, fields: list[list[str]]) -> list[dict[str, object]]:
 def _fetch_species_csv(url: str) -> list[dict[str, object]]:
     import requests
 
-    response = requests.get(url, timeout=30, headers=SPECIES_CSV_HEADERS)
+    response = requests.get(url, timeout=30)
     response.raise_for_status()
     text = response.content.decode("utf-8-sig")
     reader = csv.DictReader(text.splitlines())
