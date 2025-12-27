@@ -137,6 +137,51 @@ def load_place_map() -> dict[str, str]:
     return result
 
 
+def load_place_details() -> dict[str, dict[str, Any]]:
+    data = load_table("places.json")
+    if not data:
+        data = load_json("places.json")
+        if not isinstance(data, list):
+            return {}
+    result: dict[str, dict[str, Any]] = {}
+    for item in data:
+        place_code = normalize_code(item.get("place_code"))
+        if not place_code:
+            continue
+        result[place_code] = {**item, "place_code": place_code}
+    return result
+
+
+def load_species_details() -> dict[str, dict[str, Any]]:
+    data = load_table("species.json")
+    if not data:
+        data = load_json("species.json")
+        if not isinstance(data, list):
+            return {}
+    result: dict[str, dict[str, Any]] = {}
+    for item in data:
+        code = normalize_code(item.get("code"))
+        if not code:
+            continue
+        result[code] = {**item, "code": code}
+    return result
+
+
+def load_scheme_details() -> dict[str, dict[str, Any]]:
+    data = load_table("schemes.json")
+    if not data:
+        data = load_json("schemes.json")
+        if not isinstance(data, list):
+            return {}
+    result: dict[str, dict[str, Any]] = {}
+    for item in data:
+        code = normalize_code(item.get("code"))
+        if not code:
+            continue
+        result[code] = {**item, "code": code}
+    return result
+
+
 def load_species_map() -> dict[str, str]:
     return load_named_code_map("species.json", name_key="name")
 

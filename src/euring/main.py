@@ -2,7 +2,14 @@
 
 import typer
 
-from .codes import lookup_place_code, lookup_ringing_scheme, lookup_species
+from .codes import (
+    lookup_place_code,
+    lookup_place_details,
+    lookup_ringing_scheme,
+    lookup_ringing_scheme_details,
+    lookup_species,
+    lookup_species_details,
+)
 from .decoders import EuringParseException, euring_decode_record
 from .types import TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_INTEGER, TYPE_NUMERIC, TYPE_TEXT, is_valid_type
 
@@ -64,18 +71,45 @@ def validate(
 def lookup(
     code_type: str = typer.Argument(..., help="Type of code to lookup"),
     code: str = typer.Argument(..., help="Code value to lookup"),
+    short: bool = typer.Option(False, "--short", help="Show concise output"),
 ):
     """Look up EURING codes (scheme, species, place)."""
     try:
         if code_type.lower() == "scheme":
-            result = lookup_ringing_scheme(code)
-            typer.echo(f"Scheme {code}: {result}")
+            if short:
+                result = lookup_ringing_scheme(code)
+                typer.echo(f"Scheme {code}: {result}")
+            else:
+                details = lookup_ringing_scheme_details(code)
+                typer.echo(f"Scheme {code}")
+                _emit_detail("Ringing centre", details.get("ringing_centre"))
+                _emit_detail("Country", details.get("country"))
+                _emit_detail_bool("Current", details.get("is_current"))
+                _emit_detail_bool("EURING", details.get("is_euring"))
+                _emit_detail("Updated", details.get("updated"))
+                _emit_detail("Notes", details.get("notes"))
         elif code_type.lower() == "species":
-            result = lookup_species(code)
-            typer.echo(f"Species {code}: {result}")
+            if short:
+                result = lookup_species(code)
+                typer.echo(f"Species {code}: {result}")
+            else:
+                details = lookup_species_details(code)
+                typer.echo(f"Species {code}")
+                _emit_detail("Name", details.get("name"))
+                _emit_detail("Updated", details.get("updated"))
+                _emit_detail("Notes", details.get("notes"))
         elif code_type.lower() == "place":
-            result = lookup_place_code(code)
-            typer.echo(f"Place {code}: {result}")
+            if short:
+                result = lookup_place_code(code)
+                typer.echo(f"Place {code}: {result}")
+            else:
+                details = lookup_place_details(code)
+                typer.echo(f"Place {code}")
+                _emit_detail("Name", details.get("code"))
+                _emit_detail("Region", details.get("region"))
+                _emit_detail_bool("Current", details.get("is_current"))
+                _emit_detail("Updated", details.get("updated"))
+                _emit_detail("Notes", details.get("notes"))
         else:
             typer.echo(f"Unknown lookup type: {code_type}", err=True)
             typer.echo("Available types: scheme, species, place", err=True)
@@ -92,3 +126,18 @@ if __name__ == "__main__":
 def main():
     """Entry point for the CLI."""
     app()
+
+
+def _emit_detail(label: str, value) -> None:
+    if value is None:
+        return
+    text = str(value).strip()
+    if not text:
+        return
+    typer.echo(f"  {label}: {text}")
+
+
+def _emit_detail_bool(label: str, value) -> None:
+    if value is None:
+        return
+    typer.echo(f"  {label}: {'yes' if value else 'no'}")

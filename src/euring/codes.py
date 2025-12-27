@@ -4,8 +4,11 @@ from .data import (
     load_code_map,
     load_other_marks_data,
     load_place_map,
+    load_place_details,
     load_scheme_map,
+    load_scheme_details,
     load_species_map,
+    load_species_details,
 )
 from .exceptions import EuringParseException
 from .utils import euring_dms_to_float
@@ -59,6 +62,9 @@ LOOKUP_CIRCUMSTANCES = load_code_map("circumstances.json")
 _SPECIES_LOOKUP = load_species_map()
 _SCHEME_LOOKUP = load_scheme_map()
 _PLACE_LOOKUP = load_place_map()
+_SPECIES_DETAILS = load_species_details()
+_SCHEME_DETAILS = load_scheme_details()
+_PLACE_DETAILS = load_place_details()
 
 
 def lookup_description(value, lookup):
@@ -124,6 +130,18 @@ def lookup_species(value):
     raise EuringParseException(f'Value "{value}" is not a valid EURING species code.')
 
 
+def lookup_species_details(value):
+    value_str = f"{value}"
+    result = _SPECIES_DETAILS.get(value_str)
+    if result:
+        return result
+    try:
+        int(value_str)
+    except ValueError:
+        raise EuringParseException(f'Value "{value}" is not a valid EURING species code.')
+    raise EuringParseException(f'Value "{value}" is not a valid EURING species code.')
+
+
 def parse_geographical_coordinates(value):
     # +420500-0044500
     try:
@@ -153,6 +171,14 @@ def lookup_place_code(value):
     raise EuringParseException(f'Value "{value}" is not a valid EURING place code.')
 
 
+def lookup_place_details(value):
+    value_str = f"{value}"
+    result = _PLACE_DETAILS.get(value_str)
+    if result:
+        return result
+    raise EuringParseException(f'Value "{value}" is not a valid EURING place code.')
+
+
 def lookup_date(value):
     try:
         day = int(value[0:2])
@@ -172,6 +198,14 @@ def lookup_ringing_scheme(value):
     """
     value_str = f"{value}"
     result = _SCHEME_LOOKUP.get(value_str)
+    if result:
+        return result
+    raise EuringParseException(f'Value "{value}" is not a valid EURING ringing scheme code.')
+
+
+def lookup_ringing_scheme_details(value):
+    value_str = f"{value}"
+    result = _SCHEME_DETAILS.get(value_str)
     if result:
         return result
     raise EuringParseException(f'Value "{value}" is not a valid EURING ringing scheme code.')
