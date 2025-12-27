@@ -1,7 +1,5 @@
 """Tests for data loader helpers."""
 
-
-
 from euring.data import loader as loader_module
 
 
