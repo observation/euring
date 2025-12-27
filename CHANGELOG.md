@@ -1,5 +1,5 @@
 # Changelog
 
-## In development
+## 25.1 (2025-12-27)
 
-- Not meant for public release.
+- First release for developer audience.
