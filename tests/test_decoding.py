@@ -33,3 +33,18 @@ class TestDecoding:
         decoder = EuringDecoder(None)
         results = decoder.get_results()
         assert results["errors"]
+
+    def test_decode_euring2000_format(self):
+        record = euring_decode_record("AAC1234567890" + "-" * 81)
+        assert record["format"] == "EURING2000"
+        assert record["data"]["Ringing Scheme"]["value"] == "AAC"
+
+    def test_decode_euring2000_invalid_extra_data(self):
+        record = euring_decode_record("AAB1234567890" + "9" * 90)
+        assert record["errors"]
+
+    def test_decode_missing_required_field(self):
+        record = euring_decode_record(
+            "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0"
+        )
+        assert record["errors"]
