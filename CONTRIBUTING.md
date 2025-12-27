@@ -42,7 +42,7 @@ If you are proposing a feature:
 
 Ready to contribute? Here\'s how to set up `euring` for local development.
 
-You will need some knowledge of git, github, and Python/Django development. Using a Python virtual environment is advised.
+You will need some knowledge of Python development and uv, git, and GitHub.
 
 ### Local installation
 
@@ -64,7 +64,7 @@ To run the tests:
 just test
 ```
 
-To run the tests on all supported Python/Django combinations:
+To run the tests on all supported Python combinations:
 
 ```console
 just tests

@@ -38,7 +38,7 @@ euring = "euring.main:main"
 
 [project.urls]
 Changelog = "https://github.com/observation/euring/blob/main/CHANGELOG.md"
-# Documentation = "https://euring.readthedocs.io/"
+Documentation = "https://euring.readthedocs.io/"
 Homepage = "https://github.com/observation/euring"
 Issues = "https://github.com/observation/euring/issues"
 Source = "https://github.com/observation/euring"
