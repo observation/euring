@@ -5,13 +5,16 @@ import pytest
 from euring.codes import (
     lookup_date,
     lookup_description,
+    lookup_geographical_coordinates,
     lookup_other_marks,
     lookup_place_code,
     lookup_place_details,
+    lookup_ring_number,
     lookup_ringing_scheme,
     lookup_ringing_scheme_details,
     lookup_species,
     lookup_species_details,
+    parse_geographical_coordinates,
 )
 from euring.exceptions import EuringParseException
 
@@ -77,3 +80,26 @@ def test_lookup_date_invalid():
 def test_lookup_other_marks_invalid():
     with pytest.raises(EuringParseException):
         lookup_other_marks("$$")
+
+
+def test_lookup_other_marks_special_case():
+    assert lookup_other_marks("MM") == "More than one mark present."
+
+
+def test_lookup_other_marks_hyphen_second_char():
+    description = lookup_other_marks("B-")
+    assert "unknown if it was already present" in description
+
+
+def test_lookup_ring_number_strips_dots():
+    assert lookup_ring_number("AB.12.3") == "AB123"
+
+
+def test_lookup_geographical_coordinates_round_trip():
+    coords = parse_geographical_coordinates("+420500-0044500")
+    assert lookup_geographical_coordinates(coords) == "lat: 42.083333333333336 lng: -4.75"
+
+
+def test_parse_geographical_coordinates_invalid():
+    with pytest.raises(EuringParseException):
+        parse_geographical_coordinates(None)
