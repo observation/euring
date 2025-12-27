@@ -109,7 +109,7 @@ def load_place_map() -> dict[str, str]:
             place_code = normalize_code(row.get("place_code"))
             if not place_code:
                 continue
-            name = (row.get("country") or "").strip()
+            name = (row.get("country") or row.get("code") or "").strip()
             region = (row.get("region") or "").strip()
             if name and region:
                 value = f"{name} ({region})"
@@ -118,7 +118,7 @@ def load_place_map() -> dict[str, str]:
             if value:
                 result[place_code] = value
         return result
-    data = load_json("countries.json")
+    data = load_json("place_codes.json")
     if not data:
         return {}
     result: dict[str, str] = {}

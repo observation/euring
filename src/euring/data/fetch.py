@@ -8,10 +8,9 @@ import os
 from collections.abc import Iterable
 
 SPECIES_CSV_URL = "https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv"
-
+PLACES_CSV_URL = "https://www.euring.org/files/documents/ECPlacePipeDelimited_0.csv"
 URLS = {
     "schemes": "https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE",
-    "countries": "https://app.bto.org/euringcodes/place.jsp?inactive=on",
     "circumstances": "https://app.bto.org/euringcodes/circumstances.jsp",
 }
 
@@ -83,6 +82,15 @@ def _parse_species_csv_date(value: str | None) -> datetime.date | None:
     return datetime.datetime.strptime(value, "%d.%m.%Y").date()
 
 
+def _parse_place_csv_date(value: str | None) -> datetime.date | None:
+    if not value:
+        return None
+    try:
+        return datetime.datetime.strptime(value, "%d/%m/%y").date()
+    except ValueError:
+        return None
+
+
 def _fetch(url: str, fields: list[list[str]]) -> list[dict[str, object]]:
     import requests
     from bs4 import BeautifulSoup
@@ -104,7 +112,8 @@ def _fetch_species_csv(url: str) -> list[dict[str, object]]:
 
     response = requests.get(url, timeout=30)
     response.raise_for_status()
-    text = response.content.decode("utf-8-sig")
+    # EURING place CSV has no charset in headers and uses ISO-8859-1 (latin-1).
+    text = response.content.decode("latin-1")
     reader = csv.DictReader(text.splitlines())
     result = []
     for row in reader:
@@ -119,11 +128,53 @@ def _fetch_species_csv(url: str) -> list[dict[str, object]]:
     return result
 
 
+def _fetch_places_csv(url: str) -> list[dict[str, object]]:
+    import requests
+
+    response = requests.get(url, timeout=30)
+    response.raise_for_status()
+    try:
+        text = response.content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = response.content.decode("latin-1")
+    reader = csv.reader(text.splitlines(), delimiter="|")
+    rows = list(reader)
+    if not rows:
+        return []
+    result = []
+    for row in rows:
+        if row and row[0] == "Country":
+            continue
+        if not row:
+            continue
+        trimmed = list(row)
+        while trimmed and trimmed[-1] == "":
+            trimmed.pop()
+        core = (trimmed + ["", "", "", "", "", ""])[:6]
+        country = core[0]
+        region = core[1]
+        place_code = core[2]
+        is_current = core[3] == "Y"
+        notes = core[4].strip()
+        updated = core[5]
+        result.append(
+            {
+                "code": country,
+                "region": region,
+                "place_code": place_code,
+                "is_current": is_current,
+                "notes": notes,
+                "updated": _parse_place_csv_date(updated),
+            }
+        )
+    return result
+
+
 def fetch_all() -> dict[str, list[dict[str, object]]]:
     return {
         "schemes.json": _fetch(URLS["schemes"], SCHEME_FIELDS),
         "species.json": _fetch_species_csv(SPECIES_CSV_URL),
-        "countries.json": _fetch(URLS["countries"], COUNTRY_FIELDS),
+        "place_codes.json": _fetch_places_csv(PLACES_CSV_URL),
         "circumstances.json": _fetch(URLS["circumstances"], CIRCUMSTANCES_FIELDS),
     }
 
