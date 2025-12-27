@@ -58,15 +58,55 @@ def _field_value(cell, field_type: str):
     if field_type == "date":
         parts = content.strip()
         if parts:
-            parts = parts.split("/")
-            day = int(parts[2])
-            month = int(parts[1])
-            year = int(parts[0]) + 2000
-            if year > datetime.date.today().year:
-                year -= 100
+            day, month, year = _parse_table_date_parts(parts)
             return datetime.date(year, month, day)
         return None
     raise ValueError('Parameter `field_type` should be "string", "date", or "bool".')
+
+
+def _parse_table_date_parts(value: str) -> tuple[int, int, int]:
+    if "/" in value:
+        parts = value.split("/")
+    elif "." in value:
+        parts = value.split(".")
+    else:
+        raise ValueError(f'Invalid date format "{value}".')
+    if len(parts) != 3:
+        raise ValueError(f'Invalid date format "{value}".')
+    part_a, part_b, part_c = parts
+    if len(part_a) == 4:
+        year = int(part_a)
+        month = int(part_b)
+        day = int(part_c)
+    elif len(part_c) == 4:
+        day = int(part_a)
+        month = int(part_b)
+        year = int(part_c)
+    elif len(part_a) == 2 and len(part_c) == 2:
+        day = int(part_a)
+        month = int(part_b)
+        year = _normalize_two_digit_year(int(part_c))
+    elif int(part_a) > 31:
+        year = int(part_a)
+        month = int(part_b)
+        day = int(part_c)
+    elif int(part_c) > 31:
+        day = int(part_a)
+        month = int(part_b)
+        year = int(part_c)
+    else:
+        year = _normalize_two_digit_year(int(part_a))
+        month = int(part_b)
+        day = int(part_c)
+    return day, month, year
+
+
+def _normalize_two_digit_year(year: int) -> int:
+    if year < 100:
+        year += 2000
+        if year > datetime.date.today().year:
+            year -= 100
+    return year
 
 
 def _record(cells, fields):
@@ -77,18 +117,27 @@ def _record(cells, fields):
 
 
 def _parse_species_csv_date(value: str | None) -> datetime.date | None:
-    if not value:
-        return None
-    return datetime.datetime.strptime(value, "%d.%m.%Y").date()
+    return _parse_csv_date(value)
 
 
 def _parse_place_csv_date(value: str | None) -> datetime.date | None:
+    return _parse_csv_date(value)
+
+
+def _parse_csv_date(value: str | None) -> datetime.date | None:
     if not value:
         return None
-    try:
-        return datetime.datetime.strptime(value, "%d/%m/%y").date()
-    except ValueError:
+    text = value.strip()
+    if not text:
         return None
+    if "." in text:
+        return datetime.datetime.strptime(text, "%d.%m.%Y").date()
+    if "/" in text:
+        try:
+            return datetime.datetime.strptime(text, "%d/%m/%Y").date()
+        except ValueError:
+            return datetime.datetime.strptime(text, "%d/%m/%y").date()
+    raise ValueError(f'Invalid date format "{value}".')
 
 
 def _fetch(url: str, fields: list[list[str]]) -> list[dict[str, object]]:
