@@ -3,7 +3,9 @@
 import pytest
 
 from euring import (
+    EuringParseException,
     euring_dms_to_float,
+    euring_float_to_dms,
     euring_identification_display_format,
     euring_identification_export_format,
     euring_lat_to_dms,
@@ -24,6 +26,15 @@ class TestUtils:
         # Test float to DMS (round trip)
         assert euring_lat_to_dms(lat_decimal) == "+420500"
         assert euring_lng_to_dms(lng_decimal) == "-0100203"
+        dms = euring_float_to_dms(12.25)
+        assert dms["quadrant"] == "+"
+        assert dms["degrees"] == 12
+        assert dms["minutes"] == 15
+        assert dms["seconds"] == 0.0
+
+    def test_dms_conversion_invalid(self):
+        with pytest.raises(EuringParseException):
+            euring_dms_to_float("bogus")
 
     def test_identification_format(self):
         assert euring_identification_display_format("ab.12-3") == "AB123"

@@ -36,7 +36,7 @@ install:
 
 # Run test with coverage
 @test-cov *ARGS:
-    uv run --no-sync coverage run manage.py test {{ARGS}}
+    uv run --no-sync pytest --cov=euring --cov-report=xml {{ARGS}}
     uv run --no-sync coverage report
 
 # Run test

@@ -56,7 +56,7 @@ jobs:
           uv run --no-sync python --version
 
       - name: Run tests with coverage
-        run: uv run pytest --cov=euring --cov-report=xml
+        run: uv run --no-sync pytest --cov=euring --cov-report=xml
 
       - name: Upload coverage to Coveralls
         env:

@@ -77,7 +77,7 @@ known-first-party = ["euring"]
 
 [tool.coverage.run]
 branch = true
-source = ["src", "tests"]
+source = ["euring"]
 
 [tool.coverage.paths]
 package = ["src/euring", "*/euring/src/euring"]

@@ -1,6 +1,12 @@
 """Tests for EURING record decoding."""
 
-from euring import euring_decode_record
+import pytest
+
+from euring import EuringDecoder, euring_decode_record
+from euring.decoders import euring_decode_value
+from euring.exceptions import EuringParseException
+from euring.types import TYPE_INTEGER
+from euring.codes import lookup_date
 
 
 class TestDecoding:
@@ -13,3 +19,17 @@ class TestDecoding:
         assert record["scheme"] == "GBB"
         assert "data" in record
         assert "Ringing Scheme" in record["data"]
+
+    def test_decode_value_with_lookup(self):
+        result = euring_decode_value("01012024", TYPE_INTEGER, length=8, lookup=lookup_date)
+        assert result["value"] == "01012024"
+        assert result["description"].isoformat() == "2024-01-01"
+
+    def test_decode_value_invalid_type(self):
+        with pytest.raises(EuringParseException):
+            euring_decode_value("ABC", TYPE_INTEGER, length=3)
+
+    def test_decoder_handles_non_string(self):
+        decoder = EuringDecoder(None)
+        results = decoder.get_results()
+        assert results["errors"]
