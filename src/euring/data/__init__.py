@@ -1,209 +1,29 @@
-from __future__ import annotations
+from .loader import (
+    load_code_map,
+    load_json,
+    load_named_code_map,
+    load_other_marks_data,
+    load_place_details,
+    load_place_map,
+    load_scheme_details,
+    load_scheme_map,
+    load_species_details,
+    load_species_map,
+    load_table,
+    normalize_code,
+)
 
-import json
-from collections.abc import Callable
-from functools import cache
-from importlib import resources
-from typing import Any
-
-DATA_PACKAGE = __name__
-
-
-@cache
-def load_json(name: str) -> Any | None:
-    try:
-        data_path = resources.files(DATA_PACKAGE).joinpath(name)
-    except (AttributeError, ModuleNotFoundError):
-        return None
-    try:
-        return json.loads(data_path.read_text(encoding="utf-8"))
-    except FileNotFoundError:
-        return None
-
-
-def load_table(name: str) -> list[dict[str, Any]] | None:
-    data = load_json(name)
-    if not data:
-        return None
-    if isinstance(data, list):
-        return data
-    return None
-
-
-def normalize_code(code: Any) -> str | None:
-    if code is None:
-        return None
-    if isinstance(code, bool):
-        return str(int(code))
-    if isinstance(code, (int, float)):
-        return str(int(code))
-    code_str = str(code).strip()
-    if code_str in {"—", "–"}:
-        return "--"
-    return code_str
-
-
-def load_code_map(
-    filename: str,
-    *,
-    code_key: str = "code",
-    value_key: str = "description",
-    code_filter: Callable[[str], bool] | None = None,
-) -> dict[str, str]:
-    data = load_json(filename)
-    if not data:
-        return {}
-    result: dict[str, str] = {}
-    for item in data:
-        code = normalize_code(item.get(code_key))
-        if not code:
-            continue
-        if code_filter and not code_filter(code):
-            continue
-        value = item.get(value_key)
-        if value is None:
-            continue
-        result[code] = value
-    return result
-
-
-def load_other_marks_data() -> dict[str, dict[str, str]] | None:
-    data = load_json("other_marks_information.json")
-    if not data:
-        return None
-    special_cases = {normalize_code(item["code"]): item["description"] for item in data.get("special_cases", [])}
-    first_character = {normalize_code(item["code"]): item["description"] for item in data.get("first_character", [])}
-    second_character = {normalize_code(item["code"]): item["description"] for item in data.get("second_character", [])}
-    return {
-        "special_cases": {k: v for k, v in special_cases.items() if k},
-        "first_character": {k: v for k, v in first_character.items() if k},
-        "second_character": {k: v for k, v in second_character.items() if k},
-    }
-
-
-def load_named_code_map(
-    filename: str,
-    *,
-    name_key: str = "name",
-) -> dict[str, str]:
-    data = load_json(filename)
-    if not data:
-        return {}
-    result: dict[str, str] = {}
-    for item in data:
-        code = normalize_code(item.get("code"))
-        if not code:
-            continue
-        name = item.get(name_key) or item.get("description")
-        if not name:
-            continue
-        result[code] = name
-    return result
-
-
-def load_place_map() -> dict[str, str]:
-    data = load_table("places.json")
-    if data:
-        result: dict[str, str] = {}
-        for row in data:
-            place_code = normalize_code(row.get("place_code"))
-            if not place_code:
-                continue
-            name = (row.get("country") or row.get("code") or "").strip()
-            region = (row.get("region") or "").strip()
-            if name and region:
-                value = f"{name} ({region})"
-            else:
-                value = name or region
-            if value:
-                result[place_code] = value
-        return result
-    data = load_json("places.json")
-    if not data:
-        return {}
-    result: dict[str, str] = {}
-    for item in data:
-        place_code = normalize_code(item.get("place_code"))
-        if not place_code:
-            continue
-        name = item.get("code") or ""
-        region = item.get("region") or ""
-        if name and region and region != "not specified":
-            value = f"{name} ({region})"
-        else:
-            value = name or region
-        if value:
-            result[place_code] = value
-    return result
-
-
-def load_place_details() -> dict[str, dict[str, Any]]:
-    """Load place code details keyed by place code."""
-    data = load_table("places.json")
-    if not data:
-        data = load_json("places.json")
-        if not isinstance(data, list):
-            return {}
-    result: dict[str, dict[str, Any]] = {}
-    for item in data:
-        place_code = normalize_code(item.get("place_code"))
-        if not place_code:
-            continue
-        result[place_code] = {**item, "place_code": place_code}
-    return result
-
-
-def load_species_details() -> dict[str, dict[str, Any]]:
-    """Load species details keyed by species code."""
-    data = load_table("species.json")
-    if not data:
-        data = load_json("species.json")
-        if not isinstance(data, list):
-            return {}
-    result: dict[str, dict[str, Any]] = {}
-    for item in data:
-        code = normalize_code(item.get("code"))
-        if not code:
-            continue
-        result[code] = {**item, "code": code}
-    return result
-
-
-def load_scheme_details() -> dict[str, dict[str, Any]]:
-    """Load ringing scheme details keyed by scheme code."""
-    data = load_table("schemes.json")
-    if not data:
-        data = load_json("schemes.json")
-        if not isinstance(data, list):
-            return {}
-    result: dict[str, dict[str, Any]] = {}
-    for item in data:
-        code = normalize_code(item.get("code"))
-        if not code:
-            continue
-        result[code] = {**item, "code": code}
-    return result
-
-
-def load_species_map() -> dict[str, str]:
-    return load_named_code_map("species.json", name_key="name")
-
-
-def load_scheme_map() -> dict[str, str]:
-    data = load_json("schemes.json")
-    if not data:
-        return {}
-    result: dict[str, str] = {}
-    for item in data:
-        code = normalize_code(item.get("code"))
-        if not code:
-            continue
-        country = item.get("country") or ""
-        centre = item.get("ringing_centre") or ""
-        if centre and country:
-            value = f"{centre}, {country}"
-        else:
-            value = centre or country
-        if value:
-            result[code] = value
-    return result
+__all__ = [
+    "load_code_map",
+    "load_json",
+    "load_named_code_map",
+    "load_other_marks_data",
+    "load_place_details",
+    "load_place_map",
+    "load_scheme_details",
+    "load_scheme_map",
+    "load_species_details",
+    "load_species_map",
+    "load_table",
+    "normalize_code",
+]
