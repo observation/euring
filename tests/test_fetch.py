@@ -50,6 +50,36 @@ def test_field_value_date_dot_format():
     assert fetch_module._field_value(cell, "date") == datetime.date(2024, 2, 1)
 
 
+def test_field_value_date_empty():
+    cell = type("Cell", (), {"find": lambda *_args, **_kwargs: None, "string": "   "})()
+    assert fetch_module._field_value(cell, "date") is None
+
+
+def test_parse_table_date_parts_invalid_format():
+    with pytest.raises(ValueError):
+        fetch_module._parse_table_date_parts("2024-01-01")
+
+
+def test_parse_table_date_parts_ddmmyyyy():
+    day, month, year = fetch_module._parse_table_date_parts("31/12/2024")
+    assert (day, month, year) == (31, 12, 2024)
+
+
+def test_parse_table_date_parts_mmddyyyy():
+    day, month, year = fetch_module._parse_table_date_parts("2024/12/31")
+    assert (day, month, year) == (31, 12, 2024)
+
+
+def test_parse_table_date_parts_ddmmyy():
+    day, month, year = fetch_module._parse_table_date_parts("31/12/24")
+    assert (day, month, year) == (31, 12, 2024)
+
+
+def test_parse_table_date_parts_dots():
+    day, month, year = fetch_module._parse_table_date_parts("31.12.2024")
+    assert (day, month, year) == (31, 12, 2024)
+
+
 def test_field_value_invalid_type():
     cell = type("Cell", (), {"find": lambda *_args, **_kwargs: None, "string": "01/02/24"})()
     with pytest.raises(ValueError):

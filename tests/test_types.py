@@ -52,3 +52,4 @@ class TestTypes:
         assert is_valid_type("ABC", TYPE_ALPHABETIC)
         assert is_valid_type("123", TYPE_INTEGER)
         assert not is_valid_type("abc", TYPE_ALPHABETIC)
+        assert is_valid_type("ABC", "Unknown") is False

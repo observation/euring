@@ -48,3 +48,16 @@ class TestDecoding:
             "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0"
         )
         assert record["errors"]
+
+    def test_decode_invalid_coordinates(self):
+        record = euring_decode_record(
+            "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|invalidcoords|1|9|99|0|4"
+        )
+        assert "Geographical co-ordinates" in record["errors"]
+
+    def test_decode_duplicate_field_name(self):
+        decoder = EuringDecoder("GBB")
+        decoder.results = {"data": {"Ringing Scheme": {"value": "GBB"}}}
+        decoder.errors = {}
+        decoder.parse_field(["GBB"], 0, "Ringing Scheme", type=TYPE_INTEGER, length=3)
+        assert "Ringing Scheme" in decoder.errors

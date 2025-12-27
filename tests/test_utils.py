@@ -49,3 +49,5 @@ class TestUtils:
         assert euring_species_export_format("12345") == "12345"
         with pytest.raises(ValueError):
             euring_species_export_format("123456")
+        with pytest.raises(ValueError):
+            euring_species_export_format("not-a-number")

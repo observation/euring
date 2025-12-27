@@ -38,6 +38,18 @@ def test_load_code_map_filters_and_defaults():
     assert result == {"A": "Alpha"}
 
 
+def test_load_code_map_empty_data():
+    def _fake_load_json(_name):
+        return []
+
+    original = loader_module.load_json
+    loader_module.load_json = _fake_load_json
+    try:
+        assert loader_module.load_code_map("ignored.json") == {}
+    finally:
+        loader_module.load_json = original
+
+
 def test_load_table_non_list():
     def _fake_load_json(_name):
         return {"code": "A"}
@@ -102,3 +114,34 @@ def test_load_scheme_map_formats_label():
         loader_module.load_json = original
     assert result["AAA"] == "Centre, Country"
     assert result["BBB"] == "Centre"
+
+
+def test_load_named_code_map_uses_description():
+    def _fake_load_json(_name):
+        return [{"code": "1", "description": "One"}]
+
+    original = loader_module.load_json
+    loader_module.load_json = _fake_load_json
+    try:
+        assert loader_module.load_named_code_map("ignored.json") == {"1": "One"}
+    finally:
+        loader_module.load_json = original
+
+
+def test_load_place_details_fallback_to_json():
+    def _fake_load_table(_name):
+        return None
+
+    def _fake_load_json(_name):
+        return [{"place_code": "CC00", "code": "Name"}]
+
+    original_table = loader_module.load_table
+    original_json = loader_module.load_json
+    loader_module.load_table = _fake_load_table
+    loader_module.load_json = _fake_load_json
+    try:
+        result = loader_module.load_place_details()
+    finally:
+        loader_module.load_table = original_table
+        loader_module.load_json = original_json
+    assert "CC00" in result
