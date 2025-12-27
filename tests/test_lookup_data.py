@@ -3,7 +3,9 @@
 import pytest
 
 from euring.codes import (
+    lookup_date,
     lookup_description,
+    lookup_other_marks,
     lookup_place_code,
     lookup_place_details,
     lookup_ringing_scheme,
@@ -50,3 +52,28 @@ def test_lookup_description_callable():
 def test_lookup_description_invalid():
     with pytest.raises(EuringParseException):
         lookup_description("bad", {"good": "value"})
+
+
+def test_lookup_place_code_invalid():
+    with pytest.raises(EuringParseException):
+        lookup_place_code("ZZZZ")
+
+
+def test_lookup_ringing_scheme_invalid():
+    with pytest.raises(EuringParseException):
+        lookup_ringing_scheme("ZZZ")
+
+
+def test_lookup_species_invalid():
+    with pytest.raises(EuringParseException):
+        lookup_species("not-a-code")
+
+
+def test_lookup_date_invalid():
+    with pytest.raises(EuringParseException):
+        lookup_date("32132024")
+
+
+def test_lookup_other_marks_invalid():
+    with pytest.raises(EuringParseException):
+        lookup_other_marks("$$")
