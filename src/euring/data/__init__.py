@@ -102,7 +102,7 @@ def load_named_code_map(
 
 
 def load_place_map() -> dict[str, str]:
-    data = load_table("place_codes.json")
+    data = load_table("places.json")
     if data:
         result: dict[str, str] = {}
         for row in data:
@@ -118,7 +118,7 @@ def load_place_map() -> dict[str, str]:
             if value:
                 result[place_code] = value
         return result
-    data = load_json("place_codes.json")
+    data = load_json("places.json")
     if not data:
         return {}
     result: dict[str, str] = {}
@@ -138,18 +138,6 @@ def load_place_map() -> dict[str, str]:
 
 
 def load_species_map() -> dict[str, str]:
-    data = load_table("species_codes.json")
-    if data:
-        result: dict[str, str] = {}
-        for row in data:
-            code = normalize_code(row.get("code"))
-            if not code:
-                continue
-            name = row.get("name") or row.get("old_name") or row.get("english_name")
-            if not name:
-                continue
-            result[code] = name
-        return result
     return load_named_code_map("species.json", name_key="name")
 
 

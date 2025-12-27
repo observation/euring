@@ -174,7 +174,7 @@ def fetch_all() -> dict[str, list[dict[str, object]]]:
     return {
         "schemes.json": _fetch(URLS["schemes"], SCHEME_FIELDS),
         "species.json": _fetch_species_csv(SPECIES_CSV_URL),
-        "place_codes.json": _fetch_places_csv(PLACES_CSV_URL),
+        "places.json": _fetch_places_csv(PLACES_CSV_URL),
         "circumstances.json": _fetch(URLS["circumstances"], CIRCUMSTANCES_FIELDS),
     }
 
