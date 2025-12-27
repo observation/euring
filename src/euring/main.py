@@ -1,5 +1,7 @@
 """Command-line interface for the EURING library."""
 
+from pathlib import Path
+
 import typer
 
 from .codes import (
@@ -116,6 +118,7 @@ def lookup(
             raise typer.Exit(1)
     except Exception as e:
         typer.echo(f"Lookup error: {e}", err=True)
+        _emit_glob_hint(code)
         raise typer.Exit(1)
 
 
@@ -141,3 +144,10 @@ def _emit_detail_bool(label: str, value) -> None:
     if value is None:
         return
     typer.echo(f"  {label}: {'yes' if value else 'no'}")
+
+
+def _emit_glob_hint(value: str) -> None:
+    if any(char in value for char in "*?[]"):
+        return
+    if Path(value).exists():
+        typer.echo("Hint: your shell may have expanded a wildcard. Quote patterns like 'CH*'.", err=True)
