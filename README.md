@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/observation/euring/actions/workflows/ci.yml/badge.svg)](https://github.com/observation/euring/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/observation/euring/badge.svg?branch=main)](https://coveralls.io/github/observation/euring?branch=main)
+[![Latest PyPI version](https://img.shields.io/pypi/v/euring.svg)](https://pypi.python.org/pypi/euring)
 
 A Python library and CLI for decoding, validating, and working with EURING bird ringing data records.
 
