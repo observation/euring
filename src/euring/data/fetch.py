@@ -204,7 +204,7 @@ def _fetch_places_csv(url: str) -> list[dict[str, object]]:
             place_code = trimmed[2]
             is_current = trimmed[3] == "Y"
             updated = trimmed[-1]
-            notes = "|".join(trimmed[4:-1]).strip()
+            notes = "|".join(trimmed[4:-1]).strip().replace("|", ", ").replace("  ", " ")
         else:
             core = (trimmed + ["", "", "", "", "", ""])[:6]
             country = core[0]
