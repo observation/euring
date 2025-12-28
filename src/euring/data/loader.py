@@ -5,40 +5,26 @@ from collections.abc import Callable
 from functools import cache
 from typing import Any
 
-from .code_tables import EURING_CODE_TABLES
-
-DATA_PACKAGE = "euring.data"
-
 
 @cache
 def load_data(name: str) -> Any | None:
-    if name in EURING_CODE_TABLES:
-        return EURING_CODE_TABLES[name]
-    module_data = _load_code_table_module(name)
-    if module_data is not None:
-        return module_data
-    return None
+    return _load_code_table_module(name)
 
 
-def _load_code_table_module(name: str) -> list[dict[str, Any]] | None:
-    module_name = f"{DATA_PACKAGE}.code_table_{name}"
+def _load_code_table_module(name: str) -> Any | None:
+    module_name = f"euring.data.code_table_{name}"
     try:
         module = importlib.import_module(module_name)
     except ModuleNotFoundError:
         return None
-    table = getattr(module, "TABLE", None)
-    if isinstance(table, list):
-        return table
-    return None
+    return getattr(module, "TABLE", None)
 
 
 def load_table(name: str) -> list[dict[str, Any]] | None:
     data = load_data(name)
     if not data:
         return None
-    if isinstance(data, list):
-        return data
-    return None
+    return data if isinstance(data, list) else None
 
 
 def normalize_code(code: Any) -> str | None:
