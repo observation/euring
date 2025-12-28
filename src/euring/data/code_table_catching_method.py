@@ -4,9 +4,11 @@ from __future__ import annotations
 TABLE = [
     {
         "code": "-",
-        "description": "(one ‘hyphen’) not applicable, because there was no catching at all (for example ‘found’ or ‘found "
-        "dead’ or ‘shot’). Field sightings of colour-marked birds or metal rings should be coded with the "
-        "hyphen but given Circumstances code 28 or 80 – 89.",
+        "description": (
+            "(one ‘hyphen’) not applicable, because there was no catching at all (for example ‘found’ or ‘found "
+            "dead’ or ‘shot’). Field sightings of colour-marked birds or metal rings should be coded with the "
+            "hyphen but given Circumstances code 28 or 80 – 89."
+        ),
     },
     {"code": "A", "description": "Actively triggered trap (by ringer)."},
     {"code": "B", "description": "trap automatically triggered by Bird."},
@@ -15,9 +17,8 @@ TABLE = [
     {"code": "F", "description": "Caught in Flight by anything other than a static mist net (e.g. flicked)."},
     {
         "code": "G",
-        "description": "Nets put just under the water’s surface and lifed up as waterfowl (ducks, Grebes, divers) swim",
+        "description": "Nets put just under the water’s surface and lifed up as waterfowl (ducks, Grebes, divers) swim over it.",
     },
-    {"code": "over it.", "description": ""},
     {"code": "H", "description": "By Hand (with or without hook, noose etc.)."},
     {"code": "L", "description": "cLap net."},
     {"code": "M", "description": "Mist net."},

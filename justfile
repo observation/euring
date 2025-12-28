@@ -100,8 +100,3 @@ install:
         exit 1; \
     fi
     echo "Working directory is clean.";
-
-[private]
-[confirm("This will fetch and override EURING codes. Continue?")]
-@fetch-data:
-    uv run --group dev -m euring.data.fetch --output-dir src/euring/data

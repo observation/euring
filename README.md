@@ -67,9 +67,10 @@ field. These keys are an implementation convenience and are not part of the EURI
 ## EURING Reference Data
 
 This package ships with EURING reference data in `src/euring/data`.
-All EURING code tables follow the manual.
-Updates for species, schemes, places, and circumstances (as published by EURING) are fetched by a script and checked into the package.
-End users do not need to fetch data separately.
+
+- All EURING code tables follow the EURING Manual.
+- EURING-published updates for species, schemes, places, and circumstances are curated and checked into the package.
+- End users do not need to refresh data separately.
 
 ### Data definition
 
@@ -88,7 +89,7 @@ EURING vocabulary (as used in the manuals):
 
 ### Code tables
 
-- Fetched tables: schemes, species codes, place codes, and circumstances (via `python -m euring.data.fetch`).
+- Reference tables: schemes, species codes, place codes, and circumstances.
 - Manual code tables: everything else defined in the manual (stored as Python modules).
 
 ### Data sources
@@ -101,13 +102,7 @@ EURING vocabulary (as used in the manuals):
 
 ### Refreshing data
 
-Update species, places, schemes and circumstances via the fetch helper and regenerate the Python code tables in this folder:
-
-```bash
-python -m euring.data.fetch --output-dir src/euring/data
-```
-
-Fetching requires `requests` and `beautifulsoup4`.
+Update species, places, schemes and circumstances by editing the source data and regenerating the Python code tables in this folder.
 
 ## References
 

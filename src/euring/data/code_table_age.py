@@ -8,14 +8,12 @@ TABLE = [
     {"code": 3, "description": "First-year: full-grown bird hatched in the breeding season of this calendar year."},
     {
         "code": 4,
-        "description": "After first-year: full-grown bird hatched before this calendar year; year of hatching otherwise "
-        "unknown.",
+        "description": "After first-year: full-grown bird hatched before this calendar year; year of hatching otherwise unknown.",
     },
     {"code": 5, "description": "2nd year: a bird hatched last calendar year and now in its second calendar year."},
     {
         "code": 6,
-        "description": "After 2nd year: full-grown bird hatched before last calendar year; year of hatching otherwise "
-        "unknown.",
+        "description": "After 2nd year: full-grown bird hatched before last calendar year; year of hatching otherwise unknown.",
     },
     {
         "code": 7,
@@ -23,8 +21,7 @@ TABLE = [
     },
     {
         "code": 8,
-        "description": "After 3rd year: a full-grown bird hatched more than three calendar years ago (including present year "
-        "as one); year if bird otherwise unknown.",
+        "description": "After 3rd year: a full-grown bird hatched more than three calendar years ago (including present year as one); year if bird otherwise unknown.",
     },
     {
         "code": 9,
