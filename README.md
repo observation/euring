@@ -66,9 +66,30 @@ field. These keys are an implementation convenience and are not part of the EURI
 
 ## EURING Reference Data
 
-This package ships with EURING reference data (species, schemes, places, and code lists) in `src/euring/data`.
-All files here are JSON and are loaded directly by the library.
+This package ships with EURING reference data in `src/euring/data`.
+All EURING code tables follow the manual.
+Updates for species, schemes, places, and circumstances (as published by EURING) are fetched by a script and checked into the package.
 End users do not need to fetch data separately.
+
+### Data definition
+
+EURING uses a record-based format: each record contains a fixed sequence of fields.
+The manuals define official field names (with spaces/hyphens), which we preserve for display.
+For programmatic use, each field also has a stable ASCII snake_case `key`.
+
+EURING vocabulary (as used in the manuals):
+
+- Record: one encounter record.
+- Field: a single data element within a record.
+- Field name: the official EURING name for a field.
+- Code: the coded value stored in a field.
+- Code table: the reference table that maps codes to descriptions.
+- Column: fixed-width position in EURING2000 records.
+
+### Code tables
+
+- Fetched tables: schemes, species codes, place codes, and circumstances (via `python -m euring.data.fetch`).
+- Manual code tables: everything else defined in the manual (stored as Python modules).
 
 ### Data sources
 
@@ -80,7 +101,7 @@ End users do not need to fetch data separately.
 
 ### Refreshing data
 
-Update species, places, schemes and circumstances via the fetch helper and regenerate the JSON files in this folder:
+Update species, places, schemes and circumstances via the fetch helper and regenerate the Python code tables in this folder:
 
 ```bash
 python -m euring.data.fetch --output-dir src/euring/data

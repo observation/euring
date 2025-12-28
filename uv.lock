@@ -308,9 +308,11 @@ docs = [
     { name = "sphinx", version = "8.2.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
 ]
 test = [
+    { name = "beautifulsoup4" },
     { name = "coverage", extra = ["toml"] },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "requests" },
 ]
 
 [package.metadata]
@@ -333,9 +335,11 @@ docs = [
     { name = "sphinx", specifier = ">=7.1.2" },
 ]
 test = [
+    { name = "beautifulsoup4", specifier = ">=4.0.0" },
     { name = "coverage", extras = ["toml"], specifier = ">=7.6.1" },
     { name = "pytest", specifier = ">=7.0.0" },
     { name = "pytest-cov" },
+    { name = "requests", specifier = ">=2.0.0" },
 ]
 
 [[package]]
