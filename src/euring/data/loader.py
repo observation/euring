@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from collections.abc import Callable
 from functools import cache
+import importlib
 from importlib import resources
 from typing import Any
 
@@ -16,6 +17,9 @@ def load_json(name: str) -> Any | None:
     base_name = name[:-5] if name.endswith(".json") else name
     if base_name in EURING_CODE_TABLES:
         return EURING_CODE_TABLES[base_name]
+    module_data = _load_code_table_module(base_name)
+    if module_data is not None:
+        return module_data
     try:
         filename = name if name.endswith(".json") else f"{name}.json"
         data_path = resources.files(DATA_PACKAGE).joinpath(filename)
@@ -25,6 +29,18 @@ def load_json(name: str) -> Any | None:
         return json.loads(data_path.read_text(encoding="utf-8"))
     except FileNotFoundError:
         return None
+
+
+def _load_code_table_module(name: str) -> list[dict[str, Any]] | None:
+    module_name = f"{DATA_PACKAGE}.code_table_{name}"
+    try:
+        module = importlib.import_module(module_name)
+    except ModuleNotFoundError:
+        return None
+    table = getattr(module, "TABLE", None)
+    if isinstance(table, list):
+        return table
+    return None
 
 
 def load_table(name: str) -> list[dict[str, Any]] | None:

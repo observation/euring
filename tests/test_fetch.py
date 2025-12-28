@@ -1,7 +1,6 @@
 """Tests for fetch helpers (mocked network)."""
 
 import datetime
-import json
 
 import pytest
 import requests
@@ -180,6 +179,29 @@ def test_fetch_places_csv(monkeypatch):
     ]
 
 
+def test_fetch_places_csv_with_pipe_in_notes(monkeypatch):
+    csv_bytes = (
+        b"Country|Region|PlaceCode|Current|Notes|Updated\n"
+        b"Greece|Makedonia|GR83|Y|Note with pipe|but has been used historically|16/06/08\n"
+    )
+
+    def _fake_get(*_args, **_kwargs):
+        return _FakeResponse(csv_bytes)
+
+    monkeypatch.setattr(requests, "get", _fake_get)
+    result = fetch_module._fetch_places_csv("https://example.invalid")
+    assert result == [
+        {
+            "code": "Greece",
+            "region": "Makedonia",
+            "place_code": "GR83",
+            "is_current": True,
+            "notes": "Note with pipe|but has been used historically",
+            "updated": datetime.date(2008, 6, 16),
+        }
+    ]
+
+
 def test_fetch_places_csv_invalid_date(monkeypatch):
     csv_bytes = b"Country|Region|PlaceCode|Current|Notes|Updated\nGreece|Makedonia|GR83|Y|Note|2020-01-01\n"
 
@@ -211,13 +233,10 @@ def test_fetch_all_uses_fetchers(monkeypatch):
     assert data["places.json"] == [{"code": "Z"}]
 
 
-def test_write_json_files(tmp_path):
+def test_write_code_table_files(tmp_path):
     datasets = {"sample.json": [{"updated": datetime.date(2020, 1, 1)}]}
-    fetch_module.write_json_files(str(tmp_path), datasets)
-    data = json.loads((tmp_path / "sample.json").read_text())
-    assert data == [{"updated": "2020-01-01"}]
-
-
-def test_json_formatter_invalid_type():
-    with pytest.raises(TypeError):
-        fetch_module._json_formatter(object())
+    fetch_module.write_code_table_files(str(tmp_path), datasets)
+    path = tmp_path / "code_table_sample.py"
+    content = path.read_text()
+    assert "TABLE" in content
+    assert "2020-01-01" in content

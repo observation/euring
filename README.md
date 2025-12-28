@@ -101,7 +101,7 @@ EURING vocabulary (as used in the manuals):
 
 ### Refreshing data
 
-Update species, places, schemes and circumstances via the fetch helper and regenerate the JSON files in this folder:
+Update species, places, schemes and circumstances via the fetch helper and regenerate the Python code tables in this folder:
 
 ```bash
 python -m euring.data.fetch --output-dir src/euring/data
