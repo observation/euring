@@ -1,6 +1,8 @@
 """Command-line interface for the EURING library."""
 
+import json
 from pathlib import Path
+from typing import Any
 
 import typer
 
@@ -12,6 +14,7 @@ from .codes import (
     lookup_species,
     lookup_species_details,
 )
+from .data.loader import load_data
 from .decoders import EuringParseException, euring_decode_record
 from .types import TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_INTEGER, TYPE_NUMERIC, TYPE_TEXT, is_valid_type
 
@@ -120,6 +123,28 @@ def lookup(
         typer.echo(f"Lookup error: {e}", err=True)
         _emit_glob_hint(code)
         raise typer.Exit(1)
+
+
+@app.command()
+def dump(
+    table: list[str] = typer.Argument(..., help="Code table name(s) to dump"),
+    output: Path | None = typer.Option(None, "--output", "-o", help="Write JSON to file"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON"),
+):
+    """Dump one or more code tables as JSON."""
+    data_map: dict[str, Any] = {}
+    for name in table:
+        data = load_data(name)
+        if data is None:
+            typer.echo(f"Unknown code table: {name}", err=True)
+            raise typer.Exit(1)
+        data_map[name] = data
+    payload: Any = data_map[table[0]] if len(table) == 1 else data_map
+    text = json.dumps(payload, indent=2 if pretty else None)
+    if output:
+        output.write_text(text, encoding="utf-8")
+    else:
+        typer.echo(text)
 
 
 if __name__ == "__main__":
