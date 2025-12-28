@@ -18,7 +18,9 @@ class TestDecoding:
         assert record["format"] == "EURING2000+"
         assert record["scheme"] == "GBB"
         assert "data" in record
+        assert "data_by_key" in record
         assert "Ringing Scheme" in record["data"]
+        assert record["data_by_key"]["ringing_scheme"]["value"] == "GBB"
 
     def test_decode_value_with_lookup(self):
         result = euring_decode_value("01012024", TYPE_INTEGER, length=8, lookup=lookup_date)
