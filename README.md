@@ -88,6 +88,11 @@ python -m euring.data.fetch --output-dir src/euring/data
 
 Fetching requires `requests` and `beautifulsoup4`.
 
+## References
+
+- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020 (v202, 13 Nov 2024).
+  <https://euring.org/data-and-codes/euring-codes>
+
 ## Attribution
 
 This library is maintained and open-sourced by [Observation.org](https://observation.org). It originated as part of the RingBase project at [Zostera](https://zostera.nl). Many thanks to Zostera for the original development work.
