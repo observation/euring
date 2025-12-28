@@ -51,6 +51,19 @@ record = euring_decode_record("GBB|A0|1234567890|...")
 is_valid = is_valid_type("ABC", TYPE_ALPHABETIC)
 ```
 
+Decoded records expose two field mappings:
+
+- `data`: keyed by the official EURING field name (as in the manual)
+- `data_by_key`: keyed by a stable ASCII snake_case `key` for programmatic use
+
+Each field entry includes the raw `value`, a human-readable `description` (when available), and the `key`.
+
+#### Field keys
+
+The EURING manuals define field names with spaces, hyphens, and mixed casing. To make the decoded output
+easy to use in Python/JSON/R and other tools, we also expose a normalized ASCII snake_case `key` for each
+field. These keys are an implementation convenience and are not part of the EURING specification.
+
 ## EURING Reference Data
 
 This package ships with EURING reference data (species, schemes, places, and code lists) in `src/euring/data`.
