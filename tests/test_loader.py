@@ -15,7 +15,7 @@ def test_normalize_code_variants():
 
 
 def test_load_json_missing_file():
-    assert loader_module.load_json("does_not_exist.json") is None
+    assert loader_module.load_json("does_not_exist") is None
 
 
 def test_load_code_map_filters_and_defaults():
@@ -30,7 +30,7 @@ def test_load_code_map_filters_and_defaults():
     original = loader_module.load_json
     loader_module.load_json = _fake_load_json
     try:
-        result = loader_module.load_code_map("ignored.json", code_filter=lambda code: code != "B")
+        result = loader_module.load_code_map("ignored", code_filter=lambda code: code != "B")
     finally:
         loader_module.load_json = original
     assert result == {"A": "Alpha"}
@@ -43,7 +43,7 @@ def test_load_code_map_empty_data():
     original = loader_module.load_json
     loader_module.load_json = _fake_load_json
     try:
-        assert loader_module.load_code_map("ignored.json") == {}
+        assert loader_module.load_code_map("ignored") == {}
     finally:
         loader_module.load_json = original
 
@@ -55,7 +55,7 @@ def test_load_table_non_list():
     original = loader_module.load_json
     loader_module.load_json = _fake_load_json
     try:
-        assert loader_module.load_table("ignored.json") is None
+        assert loader_module.load_table("ignored") is None
     finally:
         loader_module.load_json = original
 
@@ -121,7 +121,7 @@ def test_load_named_code_map_uses_description():
     original = loader_module.load_json
     loader_module.load_json = _fake_load_json
     try:
-        assert loader_module.load_named_code_map("ignored.json") == {"1": "One"}
+        assert loader_module.load_named_code_map("ignored") == {"1": "One"}
     finally:
         loader_module.load_json = original
 

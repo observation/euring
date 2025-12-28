@@ -40,25 +40,25 @@ def _catching_method_code_filter(code: str) -> bool:
     return code == "-" or len(code) == 1
 
 
-LOOKUP_PRIMARY_IDENTIFICATION_METHOD = load_code_map("primary_identification_method.json")
-LOOKUP_VERIFICATION_OF_THE_METAL_RING = load_code_map("verification_of_the_metal_ring.json")
-LOOKUP_METAL_RING_INFORMATION = load_code_map("metal_ring_information.json")
+LOOKUP_PRIMARY_IDENTIFICATION_METHOD = load_code_map("primary_identification_method")
+LOOKUP_VERIFICATION_OF_THE_METAL_RING = load_code_map("verification_of_the_metal_ring")
+LOOKUP_METAL_RING_INFORMATION = load_code_map("metal_ring_information")
 _OTHER_MARKS_DATA = load_other_marks_data()
 LOOKUP_OTHER_MARKS_INFORMATION_SPECIAL_CASES = _OTHER_MARKS_DATA["special_cases"] if _OTHER_MARKS_DATA else {}
 LOOKUP_OTHER_MARKS_INFORMATION_POSITION_1 = _OTHER_MARKS_DATA["first_character"] if _OTHER_MARKS_DATA else {}
 LOOKUP_OTHER_MARKS_INFORMATION_POSITION_2 = _OTHER_MARKS_DATA["second_character"] if _OTHER_MARKS_DATA else {}
 
-LOOKUP_MANIPULATED = load_code_map("manipulated.json")
-LOOKUP_MOVED_BEFORE_ENCOUNTER = load_code_map("moved_before_the_encounter.json")
-LOOKUP_CATCHING_METHOD = load_code_map("catching_method.json", code_filter=_catching_method_code_filter)
-LOOKUP_CATCHING_LURES = load_code_map("catching_lures.json")
-LOOKUP_SEX = load_code_map("sex.json")
-LOOKUP_AGE = load_code_map("age.json")
-LOOKUP_STATUS = load_code_map("status.json")
-LOOKUP_BROOD_SIZE = load_code_map("brood_size.json")
-LOOKUP_PULLUS_AGE = load_code_map("pullus_age.json")
-LOOKUP_ACCURACY_PULLUS_AGE = load_code_map("accuracy_of_pullus_age.json")
-LOOKUP_CIRCUMSTANCES = load_code_map("circumstances.json")
+LOOKUP_MANIPULATED = load_code_map("manipulated")
+LOOKUP_MOVED_BEFORE_ENCOUNTER = load_code_map("moved_before_the_encounter")
+LOOKUP_CATCHING_METHOD = load_code_map("catching_method", code_filter=_catching_method_code_filter)
+LOOKUP_CATCHING_LURES = load_code_map("catching_lures")
+LOOKUP_SEX = load_code_map("sex")
+LOOKUP_AGE = load_code_map("age")
+LOOKUP_STATUS = load_code_map("status")
+LOOKUP_BROOD_SIZE = load_code_map("brood_size")
+LOOKUP_PULLUS_AGE = load_code_map("pullus_age")
+LOOKUP_ACCURACY_PULLUS_AGE = load_code_map("accuracy_of_pullus_age")
+LOOKUP_CIRCUMSTANCES = load_code_map("circumstances")
 _SPECIES_LOOKUP = load_species_map()
 _SCHEME_LOOKUP = load_scheme_map()
 _PLACE_LOOKUP = load_place_map()
