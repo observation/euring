@@ -28,6 +28,8 @@ from .codes import (
 )
 from .types import TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_INTEGER, TYPE_NUMERIC, TYPE_TEXT
 
+SPEC_MANUAL = "EURING Exchange Code 2020 v202 (13 Nov 2024)"
+
 EURING_FIELDS = [
     dict(name="Ringing Scheme", key="ringing_scheme", type=TYPE_ALPHABETIC, length=3, lookup=lookup_ringing_scheme),
     dict(
@@ -123,8 +125,7 @@ EURING_FIELDS = [
         min_length=0,
         max_length=5,
     ),
-    # Starting with Wing Length, fields are no longer required
-    # EURING 2000+ Manual, page 4
+    # Starting with Wing Length, fields are no longer required. Source: EURING Exchange Code 2020 v202 (13 Nov 2024).
     dict(name="Wing length", key="wing_length", type=TYPE_NUMERIC, required=False),
     dict(name="Third primary", key="third_primary", type=TYPE_NUMERIC, required=False),
     dict(name="State of wing point", key="state_of_wing_point", type=TYPE_ALPHABETIC, length=1, required=False),
