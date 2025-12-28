@@ -1,6 +1,6 @@
 from .loader import (
     load_code_map,
-    load_json,
+    load_data,
     load_named_code_map,
     load_other_marks_data,
     load_place_details,
@@ -15,7 +15,7 @@ from .loader import (
 
 __all__ = [
     "load_code_map",
-    "load_json",
+    "load_data",
     "load_named_code_map",
     "load_other_marks_data",
     "load_place_details",

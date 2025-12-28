@@ -229,12 +229,12 @@ def _fetch_places_csv(url: str) -> list[dict[str, object]]:
 
 
 def fetch_all() -> dict[str, list[dict[str, object]]]:
-    """Fetch EURING reference datasets and return them keyed by filename."""
+    """Fetch EURING reference datasets and return them keyed by table name."""
     return {
-        "schemes.json": _fetch(URLS["schemes"], SCHEME_FIELDS),
-        "species.json": _fetch_species_csv(SPECIES_CSV_URL),
-        "places.json": _fetch_places_csv(PLACES_CSV_URL),
-        "circumstances.json": _fetch(URLS["circumstances"], CIRCUMSTANCES_FIELDS),
+        "schemes": _fetch(URLS["schemes"], SCHEME_FIELDS),
+        "species": _fetch_species_csv(SPECIES_CSV_URL),
+        "places": _fetch_places_csv(PLACES_CSV_URL),
+        "circumstances": _fetch(URLS["circumstances"], CIRCUMSTANCES_FIELDS),
     }
 
 
@@ -285,7 +285,7 @@ def main() -> None:
     parser.add_argument(
         "--output-dir",
         default=".",
-        help="Directory to write JSON files (default: current directory).",
+        help="Directory to write code table modules (default: current directory).",
     )
     args = parser.parse_args()
     datasets = fetch_all()

@@ -1,10 +1,8 @@
 from __future__ import annotations
 
 import importlib
-import json
 from collections.abc import Callable
 from functools import cache
-from importlib import resources
 from typing import Any
 
 from .code_tables import EURING_CODE_TABLES
@@ -13,22 +11,13 @@ DATA_PACKAGE = "euring.data"
 
 
 @cache
-def load_json(name: str) -> Any | None:
-    base_name = name[:-5] if name.endswith(".json") else name
-    if base_name in EURING_CODE_TABLES:
-        return EURING_CODE_TABLES[base_name]
-    module_data = _load_code_table_module(base_name)
+def load_data(name: str) -> Any | None:
+    if name in EURING_CODE_TABLES:
+        return EURING_CODE_TABLES[name]
+    module_data = _load_code_table_module(name)
     if module_data is not None:
         return module_data
-    try:
-        filename = name if name.endswith(".json") else f"{name}.json"
-        data_path = resources.files(DATA_PACKAGE).joinpath(filename)
-    except (AttributeError, ModuleNotFoundError):
-        return None
-    try:
-        return json.loads(data_path.read_text(encoding="utf-8"))
-    except FileNotFoundError:
-        return None
+    return None
 
 
 def _load_code_table_module(name: str) -> list[dict[str, Any]] | None:
@@ -44,7 +33,7 @@ def _load_code_table_module(name: str) -> list[dict[str, Any]] | None:
 
 
 def load_table(name: str) -> list[dict[str, Any]] | None:
-    data = load_json(name)
+    data = load_data(name)
     if not data:
         return None
     if isinstance(data, list):
@@ -72,7 +61,7 @@ def load_code_map(
     value_key: str = "description",
     code_filter: Callable[[str], bool] | None = None,
 ) -> dict[str, str]:
-    data = load_json(filename)
+    data = load_data(filename)
     if not data:
         return {}
     result: dict[str, str] = {}
@@ -90,7 +79,7 @@ def load_code_map(
 
 
 def load_other_marks_data() -> dict[str, dict[str, str]] | None:
-    data = load_json("other_marks_information")
+    data = load_data("other_marks_information")
     if not data:
         return None
     special_cases = {normalize_code(item["code"]): item["description"] for item in data.get("special_cases", [])}
@@ -108,7 +97,7 @@ def load_named_code_map(
     *,
     name_key: str = "name",
 ) -> dict[str, str]:
-    data = load_json(filename)
+    data = load_data(filename)
     if not data:
         return {}
     result: dict[str, str] = {}
@@ -125,32 +114,16 @@ def load_named_code_map(
 
 def load_place_map() -> dict[str, str]:
     data = load_table("places")
-    if data:
-        result: dict[str, str] = {}
-        for row in data:
-            place_code = normalize_code(row.get("place_code"))
-            if not place_code:
-                continue
-            name = (row.get("country") or row.get("code") or "").strip()
-            region = (row.get("region") or "").strip()
-            if name and region:
-                value = f"{name} ({region})"
-            else:
-                value = name or region
-            if value:
-                result[place_code] = value
-        return result
-    data = load_json("places")
     if not data:
         return {}
     result: dict[str, str] = {}
-    for item in data:
-        place_code = normalize_code(item.get("place_code"))
+    for row in data:
+        place_code = normalize_code(row.get("place_code"))
         if not place_code:
             continue
-        name = item.get("code") or ""
-        region = item.get("region") or ""
-        if name and region and region != "not specified":
+        name = (row.get("country") or row.get("code") or "").strip()
+        region = (row.get("region") or "").strip()
+        if name and region:
             value = f"{name} ({region})"
         else:
             value = name or region
@@ -163,9 +136,7 @@ def load_place_details() -> dict[str, dict[str, Any]]:
     """Load place code details keyed by place code."""
     data = load_table("places")
     if not data:
-        data = load_json("places")
-        if not isinstance(data, list):
-            return {}
+        return {}
     result: dict[str, dict[str, Any]] = {}
     for item in data:
         place_code = normalize_code(item.get("place_code"))
@@ -179,9 +150,7 @@ def load_species_details() -> dict[str, dict[str, Any]]:
     """Load species details keyed by species code."""
     data = load_table("species")
     if not data:
-        data = load_json("species")
-        if not isinstance(data, list):
-            return {}
+        return {}
     result: dict[str, dict[str, Any]] = {}
     for item in data:
         code = normalize_code(item.get("code"))
@@ -195,9 +164,7 @@ def load_scheme_details() -> dict[str, dict[str, Any]]:
     """Load ringing scheme details keyed by scheme code."""
     data = load_table("schemes")
     if not data:
-        data = load_json("schemes")
-        if not isinstance(data, list):
-            return {}
+        return {}
     result: dict[str, dict[str, Any]] = {}
     for item in data:
         code = normalize_code(item.get("code"))
@@ -212,7 +179,7 @@ def load_species_map() -> dict[str, str]:
 
 
 def load_scheme_map() -> dict[str, str]:
-    data = load_json("schemes")
+    data = load_table("schemes")
     if not data:
         return {}
     result: dict[str, str] = {}

@@ -227,14 +227,14 @@ def test_fetch_all_uses_fetchers(monkeypatch):
     monkeypatch.setattr(fetch_module, "_fetch_species_csv", _fake_species)
     monkeypatch.setattr(fetch_module, "_fetch_places_csv", _fake_places)
     data = fetch_module.fetch_all()
-    assert data["schemes.json"] == [{"code": "X"}]
-    assert data["circumstances.json"] == [{"code": "X"}]
-    assert data["species.json"] == [{"code": "Y"}]
-    assert data["places.json"] == [{"code": "Z"}]
+    assert data["schemes"] == [{"code": "X"}]
+    assert data["circumstances"] == [{"code": "X"}]
+    assert data["species"] == [{"code": "Y"}]
+    assert data["places"] == [{"code": "Z"}]
 
 
 def test_write_code_table_files(tmp_path):
-    datasets = {"sample.json": [{"updated": datetime.date(2020, 1, 1)}]}
+    datasets = {"sample": [{"updated": datetime.date(2020, 1, 1)}]}
     fetch_module.write_code_table_files(str(tmp_path), datasets)
     path = tmp_path / "code_table_sample.py"
     content = path.read_text()

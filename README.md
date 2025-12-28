@@ -67,8 +67,8 @@ field. These keys are an implementation convenience and are not part of the EURI
 ## EURING Reference Data
 
 This package ships with EURING reference data in `src/euring/data`.
-Fetched tables (species, schemes, places, circumstances) are stored as JSON and loaded by the library.
-Manual code tables are hardcoded in Python for faster, dependency-free access.
+All EURING code tables follow the manual.
+Updates for species, schemes, places, and circumstances (as published by EURING) are fetched by a script and checked into the package.
 End users do not need to fetch data separately.
 
 ### Data definition
@@ -89,7 +89,7 @@ EURING vocabulary (as used in the manuals):
 ### Code tables
 
 - Fetched tables: schemes, species codes, place codes, and circumstances (via `python -m euring.data.fetch`).
-- Manual code tables: everything else defined in the manuals (hardcoded in Python).
+- Manual code tables: everything else defined in the manual (stored as Python modules).
 
 ### Data sources
 
