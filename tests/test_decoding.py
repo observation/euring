@@ -61,3 +61,29 @@ class TestDecoding:
         decoder.errors = {}
         decoder.parse_field(["GBB"], 0, "Ringing Scheme", type=TYPE_INTEGER, length=3)
         assert "Ringing Scheme" in decoder.errors
+
+    def test_decode_euring2000_fixture_records(self):
+        from pathlib import Path
+
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2000_fixture.txt"
+        lines = [
+            line.rstrip("\n")
+            for line in fixture_path.read_text(encoding="utf-8", errors="replace").splitlines()
+            if line.strip()
+        ]
+        for line in lines:
+            record = euring_decode_record(line)
+            assert record["format"] == "EURING2000"
+
+    def test_decode_euring2000plus_fixture_records(self):
+        from pathlib import Path
+
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2000plus_fixture.psv"
+        lines = [
+            line.rstrip("\n")
+            for line in fixture_path.read_text(encoding="utf-8", errors="replace").splitlines()
+            if line.strip()
+        ]
+        for line in lines:
+            record = euring_decode_record(line)
+            assert record["format"] == "EURING2000+"
