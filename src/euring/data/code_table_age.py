@@ -1,0 +1,59 @@
+from __future__ import annotations
+
+# Manual EURING code table.
+TABLE = [
+    {"code": 0, "description": "Age unknown, i.e. not recorded."},
+    {"code": 1, "description": "Pullus: nestling or chick, unable to fly freely, still able to be caught by hand."},
+    {"code": 2, "description": "Full-grown: able to fly freely but age otherwise unknown."},
+    {"code": 3, "description": "First-year: full-grown bird hatched in the breeding season of this calendar year."},
+    {
+        "code": 4,
+        "description": "After first-year: full-grown bird hatched before this calendar year; year of hatching otherwise "
+        "unknown.",
+    },
+    {"code": 5, "description": "2nd year: a bird hatched last calendar year and now in its second calendar year."},
+    {
+        "code": 6,
+        "description": "After 2nd year: full-grown bird hatched before last calendar year; year of hatching otherwise "
+        "unknown.",
+    },
+    {
+        "code": 7,
+        "description": "3rd year: a bird hatched two calendar years before, and now in its third calendar year.",
+    },
+    {
+        "code": 8,
+        "description": "After 3rd year: a full-grown bird hatched more than three calendar years ago (including present year "
+        "as one); year if bird otherwise unknown.",
+    },
+    {
+        "code": 9,
+        "description": "4th year: a bird hatched three calendar years before, and now in its fourth calendar year.",
+    },
+    {"code": "A", "description": "After 4th year: a bird older than category 9 – age otherwise unknown."},
+    {"code": "B", "description": "5th year: one year older than category 9 – age known exactly to the year."},
+    {"code": "C", "description": "6th year: 2 years older than category 9 – age known exactly to the year."},
+    {"code": "D", "description": "7th year: 3 years older than category 9 – age known exactly to the year."},
+    {"code": "E", "description": "8th year: 4 years older than category 9 – age known exactly to the year."},
+    {"code": "F", "description": "9th year: 5 years older than category 9 – age known exactly to the year."},
+    {"code": "G", "description": "10th year: 6 years older than category 9 – age known exactly to the year."},
+    {"code": "H", "description": "11th year: 7 years older than category 9 – age known exactly to the year."},
+    {"code": "I", "description": "12th year: 8 years older than category 9 – age known exactly to the year."},
+    {"code": "J", "description": "13th year: 9 years older than category 9 – age known exactly to the year."},
+    {"code": "K", "description": "14th year: 10 years older than category 9 – age known exactly to the year."},
+    {"code": "L", "description": "15th year: 11 years older than category 9 – age known exactly to the year."},
+    {"code": "M", "description": "16th year: 12 years older than category 9 – age known exactly to the year."},
+    {"code": "N", "description": "17th year: 13 years older than category 9 – age known exactly to the year."},
+    {"code": "O", "description": "18th year: 14 years older than category 9 – age known exactly to the year."},
+    {"code": "P", "description": "19th year: 15 years older than category 9 – age known exactly to the year."},
+    {"code": "Q", "description": "20th year: 16 years older than category 9 – age known exactly to the year."},
+    {"code": "R", "description": "21st year: 17 years older than category 9 – age known exactly to the year."},
+    {"code": "S", "description": "22nd year: 18 years older than category 9 – age known exactly to the year."},
+    {"code": "T", "description": "23rd year: 19 years older than category 9 – age known exactly to the year."},
+    {"code": "U", "description": "24th year: 20 years older than category 9 – age known exactly to the year."},
+    {"code": "V", "description": "25th year: 21 years older than category 9 – age known exactly to the year."},
+    {"code": "W", "description": "26th year: 22 years older than category 9 – age known exactly to the year."},
+    {"code": "X", "description": "27th year: 23 years older than category 9 – age known exactly to the year."},
+    {"code": "Y", "description": "28th year: 24 years older than category 9 – age known exactly to the year."},
+    {"code": "Z", "description": "29th year: 25 years older than category 9 – age known exactly to the year."},
+]
