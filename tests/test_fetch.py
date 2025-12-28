@@ -196,7 +196,7 @@ def test_fetch_places_csv_with_pipe_in_notes(monkeypatch):
             "region": "Makedonia",
             "place_code": "GR83",
             "is_current": True,
-            "notes": "Note with pipe; but has been used historically",
+            "notes": "Note with pipe, but has been used historically",
             "updated": datetime.date(2008, 6, 16),
         }
     ]

@@ -1,9 +1,9 @@
 from __future__ import annotations
 
+import importlib
 import json
 from collections.abc import Callable
 from functools import cache
-import importlib
 from importlib import resources
 from typing import Any
 
