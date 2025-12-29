@@ -122,3 +122,33 @@ def test_lookup_cli_species_short():
     result = runner.invoke(app, ["lookup", "species", "00010", "--short"])
     assert result.exit_code == 0
     assert result.output.strip() == "Species 00010: Struthio camelus"
+
+
+def test_dump_cli_single_table(monkeypatch):
+    def _fake_load_data(name):
+        if name == "age":
+            return [{"code": 0, "description": "Unknown"}]
+        return None
+
+    monkeypatch.setattr(main_module, "load_data", _fake_load_data)
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "age"])
+    assert result.exit_code == 0
+    assert result.output.strip() == '[{"code": 0, "description": "Unknown"}]'
+
+
+def test_dump_cli_multiple_tables(monkeypatch):
+    def _fake_load_data(name):
+        if name == "age":
+            return [{"code": 0}]
+        if name == "sex":
+            return [{"code": "M"}]
+        return None
+
+    monkeypatch.setattr(main_module, "load_data", _fake_load_data)
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "age", "sex"])
+    assert result.exit_code == 0
+    payload = result.output.strip()
+    assert '"age"' in payload
+    assert '"sex"' in payload
