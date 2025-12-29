@@ -6,6 +6,7 @@ from typing import Any
 
 import typer
 
+from . import __version__
 from .codes import (
     lookup_place_code,
     lookup_place_details,
@@ -22,10 +23,18 @@ app = typer.Typer(help="EURING data processing CLI")
 
 
 @app.command()
-def decode(euring_string: str = typer.Argument(..., help="EURING record string to decode")):
+def decode(
+    euring_string: str = typer.Argument(..., help="EURING record string to decode"),
+    as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
+):
     """Decode a EURING record string."""
     try:
         record = euring_decode_record(euring_string)
+        if as_json:
+            payload = _with_meta(record)
+            typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+            return
         typer.echo("Decoded EURING record:")
         typer.echo(f"Format: {record.get('format', 'Unknown')}")
         typer.echo(f"Scheme: {record.get('scheme', 'Unknown')}")
@@ -77,15 +86,25 @@ def lookup(
     code_type: str = typer.Argument(..., help="Type of code to lookup"),
     code: str = typer.Argument(..., help="Code value to lookup"),
     short: bool = typer.Option(False, "--short", help="Show concise output"),
+    as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
 ):
     """Look up EURING codes (scheme, species, place)."""
     try:
         if code_type.lower() == "scheme":
             if short:
                 result = lookup_ringing_scheme(code)
+                if as_json:
+                    payload = _with_meta({"type": "scheme", "code": code, "description": result})
+                    typer.echo(json.dumps(payload, indent=2 if pretty else None))
+                    return
                 typer.echo(f"Scheme {code}: {result}")
             else:
                 details = lookup_ringing_scheme_details(code)
+                if as_json:
+                    payload = _with_meta({"type": "scheme", "code": code, **details})
+                    typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+                    return
                 typer.echo(f"Scheme {code}")
                 _emit_detail("Ringing centre", details.get("ringing_centre"))
                 _emit_detail("Country", details.get("country"))
@@ -96,9 +115,17 @@ def lookup(
         elif code_type.lower() == "species":
             if short:
                 result = lookup_species(code)
+                if as_json:
+                    payload = _with_meta({"type": "species", "code": code, "name": result})
+                    typer.echo(json.dumps(payload, indent=2 if pretty else None))
+                    return
                 typer.echo(f"Species {code}: {result}")
             else:
                 details = lookup_species_details(code)
+                if as_json:
+                    payload = _with_meta({"type": "species", "code": code, **details})
+                    typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+                    return
                 typer.echo(f"Species {code}")
                 _emit_detail("Name", details.get("name"))
                 _emit_detail("Updated", details.get("updated"))
@@ -106,9 +133,17 @@ def lookup(
         elif code_type.lower() == "place":
             if short:
                 result = lookup_place_code(code)
+                if as_json:
+                    payload = _with_meta({"type": "place", "code": code, "name": result})
+                    typer.echo(json.dumps(payload, indent=2 if pretty else None))
+                    return
                 typer.echo(f"Place {code}: {result}")
             else:
                 details = lookup_place_details(code)
+                if as_json:
+                    payload = _with_meta({"type": "place", "place_code": code, **details})
+                    typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+                    return
                 typer.echo(f"Place {code}")
                 _emit_detail("Name", details.get("code"))
                 _emit_detail("Region", details.get("region"))
@@ -176,3 +211,16 @@ def _emit_glob_hint(value: str) -> None:
         return
     if Path(value).exists():
         typer.echo("Hint: your shell may have expanded a wildcard. Quote patterns like 'CH*'.", err=True)
+
+
+def _with_meta(payload: dict[str, Any]) -> dict[str, Any]:
+    meta = {
+        "generator": {
+            "name": "euring",
+            "version": __version__,
+            "url": "https://github.com/observation/euring",
+        }
+    }
+    combined = dict(payload)
+    combined["_meta"] = meta
+    return combined

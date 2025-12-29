@@ -53,6 +53,32 @@ def test_decode_cli_success():
     assert "Scheme: GBB" in result.output
 
 
+def test_decode_cli_json_output():
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        [
+            "decode",
+            "--json",
+            "--pretty",
+            "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739",
+        ],
+    )
+    assert result.exit_code == 0
+    assert result.output.strip().startswith("{")
+    assert '"generator"' in result.output
+    assert '"format": "EURING2000"' in result.output
+
+
+def test_lookup_cli_json_output():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "place", "GR83", "--json", "--pretty"])
+    assert result.exit_code == 0
+    assert result.output.strip().startswith("{")
+    assert '"generator"' in result.output
+    assert '"type": "place"' in result.output
+
+
 def test_decode_cli_non_euring_string():
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "not-a-record"])
