@@ -26,7 +26,14 @@ from .codes import (
     lookup_species,
     parse_geographical_coordinates,
 )
-from .types import TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_INTEGER, TYPE_NUMERIC, TYPE_TEXT
+from .types import (
+    TYPE_ALPHABETIC,
+    TYPE_ALPHANUMERIC,
+    TYPE_INTEGER,
+    TYPE_NUMERIC,
+    TYPE_NUMERIC_SIGNED,
+    TYPE_TEXT,
+)
 
 SPEC_MANUAL = "EURING Exchange Code 2020 v202 (13 Nov 2024)"
 
@@ -153,8 +160,8 @@ EURING_FIELDS = [
     dict(name="Place name", key="place_name", type=TYPE_TEXT, required=False),
     dict(name="Remarks", key="remarks", type=TYPE_TEXT, required=False),
     dict(name="Reference", key="reference", type=TYPE_TEXT, required=False),
-    dict(name="Latitude", key="latitude", type=TYPE_NUMERIC, required=False),
-    dict(name="Longitude", key="longitude", type=TYPE_NUMERIC, required=False),
+    dict(name="Latitude", key="latitude", type=TYPE_NUMERIC_SIGNED, required=False),
+    dict(name="Longitude", key="longitude", type=TYPE_NUMERIC_SIGNED, required=False),
     dict(
         name="Current Place Code",
         key="current_place_code",

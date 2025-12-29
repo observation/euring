@@ -82,24 +82,28 @@ Each field entry includes the raw `value`, a human-readable `description` (when 
 
 ## Data definition
 
-EURING uses a record-based format: each record contains a fixed sequence of fields.
-The manuals define official field names (with spaces/hyphens), which we preserve for display.
-For programmatic use, each field also has a stable ASCII snake_case `key`.
-
-EURING vocabulary (as used in the manuals):
+EURING vocabulary (as per the manuals):
 
 - Record: one encounter record.
 - Field: a single data element within a record.
 - Field name: the official EURING name for a field.
+- Type: the data type assigned to a field (Alphabetic, Alphanumeric, Integer, Numeric, Text).
 - Code: the coded value stored in a field.
 - Code table: the reference table that maps codes to descriptions.
 - Column: fixed-width position in EURING2000 records.
 
+EURING uses a record-based format: each record contains a fixed sequence of fields.
+The manuals define official field names (with spaces/hyphens), which we preserve for display.
+
+This package introduses a signed numeric type (NumericSigned) for the EURING2020 field Latitude and Longitue. NumericSigned behaves like Numeric, but allows a leading minus sign and explicitly disallows -0. NumericSigned is a small, intentional clarification of the generic numeric types. The manuals clearly permit negative Latitude and Longitude in EURING2020, but the generic Numeric definition does not describe signed numbers. Making this explicit in the code helps prevent invalid values while staying faithful to the manuals and real-world usage. If a future revision of the specification formally defines signed numeric fields, this implementation can align with it without breaking compatibility.
+
 ### Field keys
 
-The EURING manuals define field names with spaces, hyphens, and mixed casing. To make the decoded output
-easy to use in Python/JSON/R and other tools, we also expose a normalized ASCII snake_case `key` for each
-field. These keys are an implementation convenience and are not part of the EURING specification.
+For programmatic use, each field also has a stable ASCII [snake_case](https://en.wikipedia.org/wiki/Snake_case) `key`.
+
+The EURING manuals use field names that may include spaces, hyphens, and mixed case. In many programming environments these are awkward to work with (for example when used as object attributes, column names, or identifiers in code). To make decoded output easier to use in Python, JSON, R, and similar tools, the library exposes a normalized ASCII snake_case `key` for every field.
+
+These keys are provided as a practical convenience for developers. They are not part of the formal EURING specification, and consuming systems are free to map them to their own conventions where needed.
 
 ## EURING Reference Data
 

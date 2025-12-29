@@ -147,6 +147,8 @@ def lookup_species_details(value):
 def parse_geographical_coordinates(value):
     """Parse EURING coordinate text into latitude/longitude decimal values."""
     # +420500-0044500
+    if value == "." * 15:
+        return None
     try:
         lat = value[:7]
         lng = value[7:]
@@ -158,6 +160,8 @@ def parse_geographical_coordinates(value):
 
 def lookup_geographical_coordinates(value):
     """Format parsed coordinates into a human-readable string."""
+    if value is None:
+        return None
     return "lat: {lat} lng: {lng}".format(**value)
 
 

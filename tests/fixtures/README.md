@@ -8,4 +8,7 @@ These fixtures are for test-only use and are not part of the distributed referen
 EURING2000 example records with provenance and citation.
 
 **euring2000plus_examples.py**
-EURING2000 example records with provenance and citation.
+EURING2000+ example records with provenance and citation.
+
+**euring2020_examples.py**
+EURING2020 example records derived from EURING2000/EURING2000+ fixtures.
