@@ -88,6 +88,8 @@ For programmatic use, each field also has a stable ASCII snake_case `key`.
 Latitude and Longitude in EURING2020 use a signed numeric type (`NumericSigned`) because
 the manuals allow negative values for those fields. `NumericSigned` behaves like `Numeric`,
 but allows a leading minus sign and explicitly disallows `-0`.
+The EURING2020 manual also specifies that if Longitude/Latitude are provided, the
+Geographical Co-ordinates field should be filled with 15 dots (`...............`).
 
 EURING vocabulary (as used in the manuals):
 

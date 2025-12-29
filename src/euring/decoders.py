@@ -181,6 +181,24 @@ class EuringDecoder:
                 "Accuracy of co-ordinates",
                 "Alphabetic accuracy codes are only valid in EURING2020.",
             )
+        if self.results["format"] == "EURING2020":
+            data_by_key = self.results.get("data_by_key") or {}
+            geo = data_by_key.get("geographical_coordinates")
+            lat = data_by_key.get("latitude")
+            lng = data_by_key.get("longitude")
+            geo_value = geo.get("value") if geo else None
+            lat_value = lat.get("value") if lat else None
+            lng_value = lng.get("value") if lng else None
+            if lat_value or lng_value:
+                if geo_value and geo_value != "." * 15:
+                    self.add_error(
+                        "Geographical co-ordinates",
+                        "When Latitude/Longitude are provided, Geographical co-ordinates must be 15 dots.",
+                    )
+            if lat_value and not lng_value:
+                self.add_error("Longitude", "Longitude is required when Latitude is provided.")
+            if lng_value and not lat_value:
+                self.add_error("Latitude", "Latitude is required when Longitude is provided.")
 
         # Some post processing
         try:
