@@ -4,7 +4,29 @@ from typer.testing import CliRunner
 
 import euring.main as main_module
 from euring import exceptions as euring_exceptions
+from euring.fields import EURING_FIELDS
 from euring.main import app
+from euring.utils import euring_lat_to_dms, euring_lng_to_dms
+
+
+def _make_euring2020_record_with_coords() -> str:
+    values = [""] * len(EURING_FIELDS)
+
+    def set_value(key: str, value: str) -> None:
+        for index, field in enumerate(EURING_FIELDS):
+            if field["key"] == key:
+                values[index] = value
+                return
+        raise ValueError(f"Unknown key: {key}")
+
+    set_value("ringing_scheme", "GBB")
+    set_value("primary_identification_method", "A0")
+    set_value("identification_number", "1234567890")
+    set_value("place_code", "AB00")
+    set_value("accuracy_of_coordinates", "A")
+    set_value("latitude", "52.3760")
+    set_value("longitude", "4.9000")
+    return "|".join(values)
 
 
 def test_lookup_place_verbose_includes_details():
@@ -178,3 +200,38 @@ def test_dump_cli_multiple_tables(monkeypatch):
     payload = result.output.strip()
     assert '"age"' in payload
     assert '"sex"' in payload
+
+
+def test_convert_cli_success():
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        [
+            "convert",
+            "DERA0CD...5206501ZZ1877018770N0ZUFF22U-----081019710----DECK+502400+00742000820030000000000000",
+        ],
+    )
+    assert result.exit_code == 0
+    assert result.output.count("|") > 10
+
+
+def test_convert_cli_downgrade_with_coords():
+    runner = CliRunner()
+    lat = euring_lat_to_dms(52.3760)
+    lng = euring_lng_to_dms(4.9000)
+    result = runner.invoke(
+        app,
+        [
+            "convert",
+            "--from",
+            "EURING2020",
+            "--to",
+            "EURING2000PLUS",
+            "--force",
+            _make_euring2020_record_with_coords(),
+        ],
+    )
+    assert result.exit_code == 0
+    fields = result.output.strip().split("|")
+    geo_index = next(i for i, f in enumerate(EURING_FIELDS) if f["key"] == "geographical_coordinates")
+    assert fields[geo_index] == f"{lat}{lng}"
