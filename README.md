@@ -124,7 +124,7 @@ This package ships with EURING reference data in `src/euring/data`.
 ## References
 
 - EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. Helsinki, Finland ISBN 978-952-94-4399-4
-- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. On-line Code Tables. Thetford, U.K. URL httpp://www.euring.org/data-and-codes/euring-codes
+- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. On-line Code Tables. Thetford, U.K. URL https://www.euring.org/data-and-codes/euring-codes
 
 ## Attribution
 
