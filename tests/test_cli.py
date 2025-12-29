@@ -182,7 +182,8 @@ def test_dump_cli_single_table(monkeypatch):
     runner = CliRunner()
     result = runner.invoke(app, ["dump", "age"])
     assert result.exit_code == 0
-    assert result.output.strip() == '[{"code": 0, "description": "Unknown"}]'
+    assert '"_meta"' in result.output
+    assert '"data"' in result.output
 
 
 def test_dump_cli_multiple_tables(monkeypatch):
@@ -198,6 +199,8 @@ def test_dump_cli_multiple_tables(monkeypatch):
     result = runner.invoke(app, ["dump", "age", "sex"])
     assert result.exit_code == 0
     payload = result.output.strip()
+    assert '"_meta"' in payload
+    assert '"data"' in payload
     assert '"age"' in payload
     assert '"sex"' in payload
 

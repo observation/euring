@@ -181,7 +181,8 @@ def dump(
             raise typer.Exit(1)
         data_map[name] = data
     payload: Any = data_map[table[0]] if len(table) == 1 else data_map
-    text = json.dumps(payload, indent=2 if pretty else None)
+    payload = _with_meta({"data": payload})
+    text = json.dumps(payload, indent=2 if pretty else None, default=str)
     if output:
         output.write_text(text, encoding="utf-8")
     else:
