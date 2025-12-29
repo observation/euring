@@ -108,7 +108,7 @@ def test_validate_cli_unknown_type():
 
 
 def test_decode_cli_parse_exception(monkeypatch):
-    def _raise_parse(_value):
+    def _raise_parse(_value, **_kwargs):
         raise euring_exceptions.EuringParseException("bad")
 
     monkeypatch.setattr(main_module, "euring_decode_record", _raise_parse)
@@ -119,7 +119,7 @@ def test_decode_cli_parse_exception(monkeypatch):
 
 
 def test_decode_cli_unexpected_exception(monkeypatch):
-    def _raise_error(_value):
+    def _raise_error(_value, **_kwargs):
         raise RuntimeError("boom")
 
     monkeypatch.setattr(main_module, "euring_decode_record", _raise_error)

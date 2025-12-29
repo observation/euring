@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/observation/euring/badge.svg?branch=main)](https://coveralls.io/github/observation/euring?branch=main)
 [![Latest PyPI version](https://img.shields.io/pypi/v/euring.svg)](https://pypi.python.org/pypi/euring)
 
-A Python library and CLI for decoding, validating, and working with EURING bird ringing data records.
+A Python library and CLI for decoding, validating, and working with EURING bird ringing data records (EURING2000, EURING2000+, EURING2020).
 
 ## What are EURING Codes?
 
@@ -33,6 +33,10 @@ euring decode "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+5842
 
 # Decode a EURING record as JSON (includes a _meta.generator block)
 euring decode --json --pretty "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
+
+# Decode with an explicit format hint
+euring decode --format 2020 "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
+euring decode --format 2000plus "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 
 # Validate a value
 euring validate ABC alphabetic

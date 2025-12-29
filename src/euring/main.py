@@ -27,10 +27,11 @@ def decode(
     euring_string: str = typer.Argument(..., help="EURING record string to decode"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
+    format_hint: str | None = typer.Option(None, "--format", help="Force format: 2000, 2000+, or 2020"),
 ):
     """Decode a EURING record string."""
     try:
-        record = euring_decode_record(euring_string)
+        record = euring_decode_record(euring_string, format_hint=format_hint)
         if as_json:
             payload = _with_meta(record)
             typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
