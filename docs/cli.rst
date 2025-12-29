@@ -8,7 +8,7 @@ Examples:
 .. code-block:: bash
 
    # Decode a EURING record
-   euring decode "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0|4"
+   euring decode "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 
    # Validate a value
    euring validate ABC alphabetic

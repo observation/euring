@@ -29,7 +29,7 @@ pip install euring
 
 ```bash
 # Decode a EURING record
-euring decode "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0|4"
+euring decode "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 
 # Validate a value
 euring validate ABC alphabetic
@@ -45,7 +45,9 @@ euring lookup species 00010
 from euring import euring_decode_record, is_valid_type, TYPE_ALPHABETIC
 
 # Decode a record
-record = euring_decode_record("GBB|A0|1234567890|...")
+record = euring_decode_record(
+    "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
+)
 
 # Validate a value
 is_valid = is_valid_type("ABC", TYPE_ALPHABETIC)
@@ -97,8 +99,8 @@ This package ships with EURING reference data in `src/euring/data`.
 
 ## References
 
-- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020 (v202, 13 Nov 2024).
-  <https://euring.org/data-and-codes/euring-codes>
+- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. Helsinki, Finland ISBN 978-952-94-4399-4
+- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. On-line Code Tables. Thetford, U.K. URL httpp://www.euring.org/data-and-codes/euring-codes
 
 ## Attribution
 

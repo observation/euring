@@ -37,9 +37,18 @@ class TestDecoding:
         assert results["errors"]
 
     def test_decode_euring2000_format(self):
-        record = euring_decode_record("AAC1234567890" + "-" * 81)
+        from importlib.util import module_from_spec, spec_from_file_location
+        from pathlib import Path
+
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2000_examples.py"
+        spec = spec_from_file_location("euring2000_examples", fixture_path)
+        assert spec and spec.loader
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        record = euring_decode_record(module.EURING2000_EXAMPLES[1])
         assert record["format"] == "EURING2000"
-        assert record["data"]["Ringing Scheme"]["value"] == "AAC"
+        assert record["data"]["Ringing Scheme"]["value"] == "DER"
 
     def test_decode_euring2000_invalid_extra_data(self):
         record = euring_decode_record("AAB1234567890" + "9" * 90)
@@ -65,27 +74,31 @@ class TestDecoding:
         assert "Ringing Scheme" in decoder.errors
 
     def test_decode_euring2000_fixture_records(self):
+        from importlib.util import module_from_spec, spec_from_file_location
         from pathlib import Path
 
-        fixture_path = Path(__file__).parent / "fixtures" / "euring2000_fixture.txt"
-        lines = [
-            line.rstrip("\n")
-            for line in fixture_path.read_text(encoding="utf-8", errors="replace").splitlines()
-            if line.strip()
-        ]
-        for line in lines:
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2000_examples.py"
+        spec = spec_from_file_location("euring2000_examples", fixture_path)
+        assert spec and spec.loader
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        for line in module.EURING2000_EXAMPLES:
             record = euring_decode_record(line)
             assert record["format"] == "EURING2000"
+            assert not record["errors"]
 
     def test_decode_euring2000plus_fixture_records(self):
+        from importlib.util import module_from_spec, spec_from_file_location
         from pathlib import Path
 
-        fixture_path = Path(__file__).parent / "fixtures" / "euring2000plus_fixture.psv"
-        lines = [
-            line.rstrip("\n")
-            for line in fixture_path.read_text(encoding="utf-8", errors="replace").splitlines()
-            if line.strip()
-        ]
-        for line in lines:
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2000plus_examples.py"
+        spec = spec_from_file_location("euring2000plus_examples", fixture_path)
+        assert spec and spec.loader
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        for line in module.EURING2000PLUS_EXAMPLES:
             record = euring_decode_record(line)
             assert record["format"] == "EURING2000+"
+            assert not record["errors"]
