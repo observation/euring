@@ -150,3 +150,18 @@ class TestDecoding:
             record = euring_decode_record(line)
             assert record["format"] == "EURING2000+"
             assert not record["errors"]
+
+    def test_decode_euring2020_fixture_records(self):
+        from importlib.util import module_from_spec, spec_from_file_location
+        from pathlib import Path
+
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2020_examples.py"
+        spec = spec_from_file_location("euring2020_examples", fixture_path)
+        assert spec and spec.loader
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        for line in module.EURING2020_EXAMPLES:
+            record = euring_decode_record(line)
+            assert record["format"] == "EURING2020"
+            assert not record["errors"]
