@@ -1,7 +1,7 @@
 Command Line Interface
 ======================
 
-The ``euring`` CLI exposes decoding, validation, and lookup helpers.
+The ``euring`` CLI exposes decoding, validation, and lookup helpers for EURING2000, EURING2000+, and EURING2020.
 
 Examples:
 
@@ -30,6 +30,7 @@ Options:
 ``decode``
   ``--json``  Output JSON instead of text.
   ``--pretty``  Pretty-print JSON output (use with ``--json``).
+  ``--format``  Force format: 2000, 2000+, 2020, or the aliases ``2000plus``/``2000p``.
 
 ``lookup``
   ``--short``  Show concise output.
