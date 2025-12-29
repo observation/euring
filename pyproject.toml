@@ -3,9 +3,7 @@ build-backend = "uv_build"
 requires = ["uv_build>=0.9.18,<0.10.0"]
 
 [project]
-authors = [
-  {name = "Dylan Verheul", email = "dylan@dyve.net"},
-]
+authors = [{ name = "Dylan Verheul", email = "dylan@dyve.net" }]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
@@ -20,11 +18,17 @@ classifiers = [
   "Topic :: Software Development :: Libraries",
   "Topic :: Utilities",
 ]
-dependencies = [
-  "typer>=0.12.0",
-]
+dependencies = ["typer>=0.12.0"]
 description = "A Python library and CLI for decoding, validating, and working with EURING bird ringing data records."
-keywords = ["euring", "euring2000", "euring2000+", "euring2020", "bird", "ringing", "ornithology"]
+keywords = [
+  "euring",
+  "euring2000",
+  "euring2000+",
+  "euring2020",
+  "bird",
+  "ringing",
+  "ornithology",
+]
 license = "BSD-3-Clause"
 license-files = ["LICENSE", "AUTHORS"]
 name = "euring"
@@ -50,21 +54,21 @@ src = ["src"]
 [tool.ruff.lint]
 fixable = [
   "I001", # isort (sorting)
-  "F", # flake8
-  "D", # docformatter
-  "UP", # pyupgrade
+  "F",    # flake8
+  "D",    # docformatter
+  "UP",   # pyupgrade
 ]
 ignore = [
-  "D1", # D1: Missing docstring error codes (because not every function and class has a docstring)
+  "D1",   # D1: Missing docstring error codes (because not every function and class has a docstring)
   "D203", # D203: 1 blank line required before class docstring (conflicts with D211 and should be disabled, see https://github.com/PyCQA/pydocstyle/pull/91)
   "D212", # D212: Multi-line docstring summary should start at the first line
   "D301", # D301: Use r”“” if any backslashes in a docstring (unclear how else to handle backslashes in docstrings)
 ]
 select = [
-  "D", # pydocstyle
-  "E", # pycodestyle
-  "F", # flake8
-  "I", # isort
+  "D",  # pydocstyle
+  "E",  # pycodestyle
+  "F",  # flake8
+  "I",  # isort
   "UP", # pyupgrade
 ]
 unfixable = [
@@ -95,20 +99,9 @@ python_functions = "test_*"
 testpaths = ["tests"]
 
 [dependency-groups]
-dev = [
-  {include-group = "test"},
-  {include-group = "docs"},
-]
-docs = [
-  "furo>=2024.8.6",
-  "myst-parser>=3.0.1",
-  "sphinx>=7.1.2",
-]
-test = [
-  "coverage[toml]>=7.6.1",
-  "pytest>=7.0.0",
-  "pytest-cov",
-]
+dev = [{ include-group = "test" }, { include-group = "docs" }]
+docs = ["furo>=2024.8.6", "myst-parser>=3.0.1", "sphinx>=7.1.2"]
+test = ["coverage[toml]>=7.6.1", "pytest>=7.0.0", "pytest-cov"]
 
 [tool.uv.build-backend]
 source-exclude = [
