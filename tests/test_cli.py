@@ -16,8 +16,7 @@ def test_lookup_place_verbose_includes_details():
     assert "Region: Makedonia" in result.output
     assert (
         "Notes: Corresponds to the new divisions of Dytiki Makedonia, "
-        "Kentriki Makedonia and Anatoliki Makedonia kai Thraki, west of the River Nestos."
-        in result.output
+        "Kentriki Makedonia and Anatoliki Makedonia kai Thraki, west of the River Nestos." in result.output
     )
 
 
