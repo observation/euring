@@ -2247,13 +2247,13 @@ TABLE = [
     {
         "code": "12681",
         "name": "Obsolete code",
-        "notes": "Subspecies not recognised ? use 12680",
+        "notes": "Subspecies not recognised – use 12680",
         "updated": "2024-10-18",
     },
     {
         "code": "12682",
         "name": "Obsolete code",
-        "notes": "Subspecies not recognised ? use 12680",
+        "notes": "Subspecies not recognised – use 12680",
         "updated": "2024-10-18",
     },
     {"code": "12690", "name": "Curruca ruppeli", "notes": "", "updated": "2008-06-02"},
