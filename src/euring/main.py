@@ -193,7 +193,7 @@ def dump(
 def convert(
     euring_string: str = typer.Argument(..., help="EURING record string to convert"),
     source_format: str | None = typer.Option(
-        None, "--from", help="Source format (optional): EURING2000, EURING2000PLUS, or EURING2020"
+        None, "--from", help="Source format (optional): euring2000, euring2000plus, or euring2020"
     ),
     target_format: str = typer.Option(
         "euring2000plus",
@@ -206,7 +206,7 @@ def convert(
         help="Allow lossy mappings (e.g., alphabetic accuracy when downgrading from EURING2020).",
     ),
 ):
-    """Convert EURING2000, EURING2000PLUS, and EURING2020 records."""
+    """Convert EURING2000, EURING2000+, and EURING2020 records."""
     try:
         typer.echo(convert_euring_record(euring_string, source_format, target_format, force=force))
     except ValueError as exc:
