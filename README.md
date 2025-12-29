@@ -58,20 +58,7 @@ Decoded records expose two field mappings:
 
 Each field entry includes the raw `value`, a human-readable `description` (when available), and the `key`.
 
-#### Field keys
-
-The EURING manuals define field names with spaces, hyphens, and mixed casing. To make the decoded output
-easy to use in Python/JSON/R and other tools, we also expose a normalized ASCII snake_case `key` for each
-field. These keys are an implementation convenience and are not part of the EURING specification.
-
-## EURING Reference Data
-
-This package ships with EURING reference data in `src/euring/data`.
-All EURING code tables follow the manual.
-Updates for species, schemes, places, and circumstances (as published by EURING) are fetched by a script and checked into the package.
-End users do not need to fetch data separately.
-
-### Data definition
+## Data definition
 
 EURING uses a record-based format: each record contains a fixed sequence of fields.
 The manuals define official field names (with spaces/hyphens), which we preserve for display.
@@ -86,10 +73,19 @@ EURING vocabulary (as used in the manuals):
 - Code table: the reference table that maps codes to descriptions.
 - Column: fixed-width position in EURING2000 records.
 
-### Code tables
+### Field keys
 
-- Fetched tables: schemes, species codes, place codes, and circumstances (via `python -m euring.data.fetch`).
-- Manual code tables: everything else defined in the manual (stored as Python modules).
+The EURING manuals define field names with spaces, hyphens, and mixed casing. To make the decoded output
+easy to use in Python/JSON/R and other tools, we also expose a normalized ASCII snake_case `key` for each
+field. These keys are an implementation convenience and are not part of the EURING specification.
+
+## EURING Reference Data
+
+This package ships with EURING reference data in `src/euring/data`.
+
+- All EURING Code tables follow the EURING Manual.
+- EURING-published updates for species, schemes, places, and circumstances are curated and checked into the package.
+- End users do not need to refresh data separately.
 
 ### Data sources
 
@@ -98,16 +94,6 @@ EURING vocabulary (as used in the manuals):
 - Schemes: <https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE>
 - Circumstances: <https://app.bto.org/euringcodes/circumstances.jsp>
 - All other code tables are derived from [EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. Helsinki, Finland. (PDF v202, 13 Nov 2024)](https://euring.org/data-and-codes/euring-codes)
-
-### Refreshing data
-
-Update species, places, schemes and circumstances via the fetch helper and regenerate the Python code tables in this folder:
-
-```bash
-python -m euring.data.fetch --output-dir src/euring/data
-```
-
-Fetching requires `requests` and `beautifulsoup4`.
 
 ## References
 

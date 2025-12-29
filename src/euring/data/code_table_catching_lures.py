@@ -4,8 +4,7 @@ from __future__ import annotations
 TABLE = [
     {
         "code": "-",
-        "description": "Not applicable, because there was no catching lure at all (for example ‘found’ or ‘found dead’ or "
-        "‘shot’).",
+        "description": "Not applicable, because there was no catching lure at all (for example ‘found’ or ‘found dead’ or ‘shot’).",
     },
     {"code": "U", "description": "Unknown or not coded."},
     {"code": "A", "description": "Food."},

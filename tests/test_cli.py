@@ -14,7 +14,10 @@ def test_lookup_place_verbose_includes_details():
     assert "Place GR83" in result.output
     assert "Name: Greece" in result.output
     assert "Region: Makedonia" in result.output
-    assert "Notes: Corresponds to the new divisions of Dytiki Makedonia?" in result.output
+    assert (
+        "Notes: Corresponds to the new divisions of Dytiki Makedonia, "
+        "Kentriki Makedonia and Anatoliki Makedonia kai Thraki, west of the River Nestos." in result.output
+    )
 
 
 def test_lookup_place_short_is_concise():
