@@ -31,12 +31,18 @@ pip install euring
 # Decode a EURING record
 euring decode "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 
+# Decode a EURING record as JSON (includes a _meta.generator block)
+euring decode --json --pretty "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
+
 # Validate a value
 euring validate ABC alphabetic
 
 # Look up codes
 euring lookup scheme GBB
 euring lookup species 00010
+
+# Look up a code as JSON (includes a _meta.generator block)
+euring lookup --json --pretty scheme GBB
 ```
 
 ### Python Library
