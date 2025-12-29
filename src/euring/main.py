@@ -15,6 +15,7 @@ from .codes import (
     lookup_species,
     lookup_species_details,
 )
+from .converters import convert_euring_record
 from .data.loader import load_data
 from .decoders import EuringParseException, euring_decode_record
 from .types import TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_INTEGER, TYPE_NUMERIC, TYPE_TEXT, is_valid_type
@@ -27,7 +28,11 @@ def decode(
     euring_string: str = typer.Argument(..., help="EURING record string to decode"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
-    format_hint: str | None = typer.Option(None, "--format", help="Force format: 2000, 2000+, or 2020"),
+    format_hint: str | None = typer.Option(
+        None,
+        "--format",
+        help="Force format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+    ),
 ):
     """Decode a EURING record string."""
     try:
@@ -181,6 +186,31 @@ def dump(
         output.write_text(text, encoding="utf-8")
     else:
         typer.echo(text)
+
+
+@app.command()
+def convert(
+    euring_string: str = typer.Argument(..., help="EURING record string to convert"),
+    source_format: str | None = typer.Option(
+        None, "--from", help="Source format (optional): EURING2000, EURING2000PLUS, or EURING2020"
+    ),
+    target_format: str = typer.Option(
+        "euring2000plus",
+        "--to",
+        help="Target format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+    ),
+    force: bool = typer.Option(
+        False,
+        "--force",
+        help="Allow lossy mappings (e.g., alphabetic accuracy when downgrading from EURING2020).",
+    ),
+):
+    """Convert EURING2000, EURING2000PLUS, and EURING2020 records."""
+    try:
+        typer.echo(convert_euring_record(euring_string, source_format, target_format, force=force))
+    except ValueError as exc:
+        typer.echo(f"Convert error: {exc}", err=True)
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":

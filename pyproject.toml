@@ -23,7 +23,6 @@ classifiers = [
 dependencies = [
   "typer>=0.12.0",
 ]
-
 description = "A Python library and CLI for decoding, validating, and working with EURING bird ringing data records."
 keywords = ["euring", "euring2000", "euring2000+", "euring2020", "bird", "ringing", "ornithology"]
 license = "BSD-3-Clause"

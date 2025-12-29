@@ -231,11 +231,30 @@ class EuringDecoder:
     def _normalize_format_hint(format_hint: str | None) -> str | None:
         if not format_hint:
             return None
-        normalized = format_hint.strip().upper().replace("EURING", "")
-        if normalized in {"2000", "2000+", "2020", "2000PLUS", "2000P"}:
+        raw = format_hint.strip()
+        normalized = raw.upper()
+        if normalized.startswith("EURING"):
+            normalized = normalized.replace("EURING", "")
+        else:
+            hint = _format_hint_suggestion(normalized)
+            message = (
+                f'Unknown format hint "{format_hint}". Use euring2000, euring2000plus, or euring2020.'
+            )
+            if hint:
+                message = f"{message} Did you mean {hint}?"
+            raise EuringParseException(message)
+        if normalized in {"2000", "2000+", "2000PLUS", "2000P", "2020"}:
             if normalized in {"2000PLUS", "2000P"}:
                 normalized = "2000+"
             return f"EURING{normalized}"
-        if normalized in {"EURING2000", "EURING2000+", "EURING2020"}:
-            return normalized
-        raise EuringParseException(f'Unknown format hint "{format_hint}".')
+        raise EuringParseException(
+            f'Unknown format hint "{format_hint}". Use euring2000, euring2000plus, or euring2020.'
+        )
+
+
+def _format_hint_suggestion(normalized: str) -> str | None:
+    if normalized in {"2000", "2000+", "2000PLUS", "2000P"}:
+        return "euring2000plus"
+    if normalized == "2020":
+        return "euring2020"
+    return None
