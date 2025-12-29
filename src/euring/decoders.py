@@ -237,9 +237,7 @@ class EuringDecoder:
             normalized = normalized.replace("EURING", "")
         else:
             hint = _format_hint_suggestion(normalized)
-            message = (
-                f'Unknown format hint "{format_hint}". Use euring2000, euring2000plus, or euring2020.'
-            )
+            message = f'Unknown format hint "{format_hint}". Use euring2000, euring2000plus, or euring2020.'
             if hint:
                 message = f"{message} Did you mean {hint}?"
             raise EuringParseException(message)

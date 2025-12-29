@@ -171,18 +171,14 @@ def _normalize_target_format(target_format: str) -> str:
     if normalized.startswith("EURING"):
         normalized = normalized.replace("EURING", "")
     else:
-        raise ValueError(
-            f'Unknown target format "{target_format}". Use euring2000, euring2000plus, or euring2020.'
-        )
+        raise ValueError(f'Unknown target format "{target_format}". Use euring2000, euring2000plus, or euring2020.')
     if normalized in {"2000", "2000+", "2000PLUS", "2000P"}:
         if normalized == "2000":
             return "EURING2000"
         return "EURING2000+"
     if normalized == "2020":
         return "EURING2020"
-    raise ValueError(
-        f'Unknown target format "{target_format}". Use euring2000, euring2000plus, or euring2020.'
-    )
+    raise ValueError(f'Unknown target format "{target_format}". Use euring2000, euring2000plus, or euring2020.')
 
 
 def _normalize_source_format(source_format: str | None, value: str) -> str:
@@ -200,9 +196,7 @@ def _normalize_source_format(source_format: str | None, value: str) -> str:
 
     normalized = source_format.strip().upper()
     if not normalized.startswith("EURING"):
-        raise ValueError(
-            f'Unknown source format "{source_format}". Use euring2000, euring2000plus, or euring2020.'
-        )
+        raise ValueError(f'Unknown source format "{source_format}". Use euring2000, euring2000plus, or euring2020.')
     normalized = normalized.replace("EURING", "")
     if normalized in {"2000", "2000+", "2000PLUS", "2000P", "2020"}:
         if normalized == "2000":
