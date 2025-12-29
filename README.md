@@ -85,6 +85,9 @@ Each field entry includes the raw `value`, a human-readable `description` (when 
 EURING uses a record-based format: each record contains a fixed sequence of fields.
 The manuals define official field names (with spaces/hyphens), which we preserve for display.
 For programmatic use, each field also has a stable ASCII snake_case `key`.
+Latitude and Longitude in EURING2020 use a signed numeric type (`NumericSigned`) because
+the manuals allow negative values for those fields. `NumericSigned` behaves like `Numeric`,
+but allows a leading minus sign and explicitly disallows `-0`.
 
 EURING vocabulary (as used in the manuals):
 

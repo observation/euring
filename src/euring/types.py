@@ -4,6 +4,7 @@ TYPE_ALPHABETIC = "Alphabetic"
 TYPE_ALPHANUMERIC = "Alphanumeric"
 TYPE_INTEGER = "Integer"
 TYPE_NUMERIC = "Numeric"
+TYPE_NUMERIC_SIGNED = "NumericSigned"
 TYPE_TEXT = "Text"
 
 # Only capital letters
@@ -23,6 +24,7 @@ RE_INTEGER = r"^[0-9]+$|^\-+$"
 # Allow anything that consists of digits
 # Allow one period somewhere in the string, but not at the beginning or at the end
 RE_NUMERIC = r"^[0-9]+(\.[0-9]+)?$"
+RE_NUMERIC_SIGNED = r"^(?!-0(?:$|\.))\-?[0-9]+(\.[0-9]+)?$"
 
 # RE_TEXT = r'^[a-zA-Z0-9\+\-\/\*]*$'
 # A text field consisting of any combination of characters except the following:
@@ -81,6 +83,17 @@ def is_numeric(value):
     return _matches(value, RE_NUMERIC)
 
 
+def is_numeric_signed(value):
+    """
+    Numeric signed.
+
+    Like Numeric, but allows a leading minus sign. The value -0 is not permitted.
+    :param value: Value to test
+    :return: Result
+    """
+    return _matches(value, RE_NUMERIC_SIGNED)
+
+
 def is_text(value):
     """
     Text.
@@ -102,6 +115,8 @@ def is_valid_type(value, type):
         return is_integer(value)
     if type == TYPE_NUMERIC:
         return is_numeric(value)
+    if type == TYPE_NUMERIC_SIGNED:
+        return is_numeric_signed(value)
     if type == TYPE_TEXT:
         return is_text(value)
     return False
