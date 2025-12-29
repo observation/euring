@@ -65,15 +65,16 @@ class TestDecoding:
         assert "Ringing Scheme" in decoder.errors
 
     def test_decode_euring2000_fixture_records(self):
+        from importlib.util import module_from_spec, spec_from_file_location
         from pathlib import Path
 
-        fixture_path = Path(__file__).parent / "fixtures" / "euring2000_fixture.txt"
-        lines = [
-            line.rstrip("\n")
-            for line in fixture_path.read_text(encoding="utf-8", errors="replace").splitlines()
-            if line.strip()
-        ]
-        for line in lines:
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2000_examples.py"
+        spec = spec_from_file_location("euring2000_examples", fixture_path)
+        assert spec and spec.loader
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        for line in module.EURING2000_EXAMPLES:
             record = euring_decode_record(line)
             assert record["format"] == "EURING2000"
 
