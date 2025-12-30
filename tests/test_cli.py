@@ -139,8 +139,8 @@ def test_decode_cli_invalid_species_format_reports_errors():
     assert result.exit_code == 0
     payload = json.loads(result.output)
     assert "errors" in payload
-    assert "Species mentioned" in payload["errors"]
-    assert "Species concluded" in payload["errors"]
+    assert "Species Mentioned" in payload["errors"]
+    assert "Species Concluded" in payload["errors"]
 
 
 def test_lookup_cli_json_output():
