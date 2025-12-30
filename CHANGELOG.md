@@ -2,7 +2,16 @@
 
 ## Unreleased
 
-- CLI lookup shows verbose details by default and supports `--short` for concise output.
+- CLI lookup shows verbose details by default and supports `--short` for concise output (#9).
+- Add EURING2020 support and fixtures (#21).
+- Add EURING format conversion utilities and CLI (#22).
+- Add `_meta` to JSON outputs for decode/lookup/dump (#19, #23).
+- Add NumericSigned and coordinate validation for EURING2020 lat/long fields (#26, #27, #30).
+- Add cross-field validation for EURING2020 coordinates (#27, #30).
+- Update manual-backed code tables to match EURING Code 2020 v202 (#29, #32).
+- Standardize EURING field name capitalization per manual (#30).
+- Add Python Reference docs and update CLI docs (#25, #28).
+- Move Condition and EURING Code Identifier into data code tables (#29).
 
 ## 25.1 (2025-12-27)
 
