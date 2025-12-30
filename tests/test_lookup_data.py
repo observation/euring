@@ -15,6 +15,8 @@ from euring.codes import (
     lookup_species,
     lookup_species_details,
     parse_geographical_coordinates,
+    parse_latitude,
+    parse_longitude,
 )
 from euring.exceptions import EuringParseException
 
@@ -35,6 +37,11 @@ def test_lookup_place_details_uses_packaged_data():
     details = lookup_place_details("GR83")
     assert details["code"] == "Greece"
     assert details["region"] == "Makedonia"
+
+
+def test_lookup_place_details_invalid():
+    with pytest.raises(EuringParseException):
+        lookup_place_details("XXXX")
 
 
 def test_lookup_ringing_scheme_details_uses_packaged_data():
@@ -82,6 +89,11 @@ def test_lookup_species_not_found():
         lookup_species("12345")
 
 
+def test_lookup_species_details_invalid_format():
+    with pytest.raises(EuringParseException):
+        lookup_species_details("not-a-code")
+
+
 def test_lookup_date_invalid():
     with pytest.raises(EuringParseException):
         lookup_date("32132024")
@@ -90,6 +102,15 @@ def test_lookup_date_invalid():
 def test_lookup_other_marks_invalid():
     with pytest.raises(EuringParseException):
         lookup_other_marks("$$")
+
+
+def test_lookup_other_marks_missing_reference_data(monkeypatch):
+    import euring.codes as codes
+
+    monkeypatch.setattr(codes, "LOOKUP_OTHER_MARKS_INFORMATION_POSITION_1", {})
+    monkeypatch.setattr(codes, "LOOKUP_OTHER_MARKS_INFORMATION_POSITION_2", {})
+    with pytest.raises(EuringParseException):
+        codes.lookup_other_marks("BB")
 
 
 def test_lookup_other_marks_special_case():
@@ -123,3 +144,18 @@ def test_parse_geographical_coordinates_invalid():
 def test_parse_geographical_coordinates_invalid_range():
     with pytest.raises(EuringParseException):
         parse_geographical_coordinates("+420560-0044500")
+
+
+def test_parse_latitude_invalid_value():
+    with pytest.raises(EuringParseException):
+        parse_latitude("bad")
+
+
+def test_parse_latitude_too_many_decimals():
+    with pytest.raises(EuringParseException):
+        parse_latitude("1.00000")
+
+
+def test_parse_longitude_out_of_range():
+    with pytest.raises(EuringParseException):
+        parse_longitude("181")
