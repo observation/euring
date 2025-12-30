@@ -72,6 +72,16 @@ def test_lookup_species_invalid():
         lookup_species("not-a-code")
 
 
+def test_lookup_species_invalid_length():
+    with pytest.raises(EuringParseException):
+        lookup_species("1234")
+
+
+def test_lookup_species_not_found():
+    with pytest.raises(EuringParseException):
+        lookup_species("12345")
+
+
 def test_lookup_date_invalid():
     with pytest.raises(EuringParseException):
         lookup_date("32132024")
@@ -93,6 +103,11 @@ def test_lookup_other_marks_hyphen_second_char():
 
 def test_lookup_ring_number_strips_dots():
     assert lookup_ring_number("AB.12.3") == "AB123"
+
+
+def test_lookup_ring_number_rejects_trailing_dot():
+    with pytest.raises(EuringParseException):
+        lookup_ring_number("AB1234567.")
 
 
 def test_lookup_geographical_coordinates_round_trip():

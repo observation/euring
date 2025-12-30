@@ -29,6 +29,45 @@ def _make_euring2020_record_with_coords() -> str:
     return "|".join(values)
 
 
+def _make_euring2000_plus_record_with_invalid_species() -> str:
+    values = [
+        "GBB",
+        "A0",
+        "1234567890",
+        "0",
+        "1",
+        "ZZ",
+        "12ABC",
+        "12ABC",
+        "N",
+        "0",
+        "M",
+        "U",
+        "U",
+        "U",
+        "2",
+        "2",
+        "U",
+        "99",
+        "99",
+        "0",
+        "01012024",
+        "0",
+        "0000",
+        "AB00",
+        "+0000000+0000000",
+        "1",
+        "9",
+        "99",
+        "0",
+        "4",
+        "00000",
+        "000",
+        "00000",
+    ]
+    return "|".join(values)
+
+
 def test_lookup_place_verbose_includes_details():
     runner = CliRunner()
     result = runner.invoke(app, ["lookup", "place", "GR83"])
@@ -90,6 +129,18 @@ def test_decode_cli_json_output():
     assert result.output.strip().startswith("{")
     assert '"generator"' in result.output
     assert '"format": "EURING2000"' in result.output
+
+
+def test_decode_cli_invalid_species_format_reports_errors():
+    import json
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--json", _make_euring2000_plus_record_with_invalid_species()])
+    assert result.exit_code == 0
+    payload = json.loads(result.output)
+    assert "errors" in payload
+    assert "Species mentioned" in payload["errors"]
+    assert "Species concluded" in payload["errors"]
 
 
 def test_lookup_cli_json_output():

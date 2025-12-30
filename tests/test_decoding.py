@@ -49,6 +49,13 @@ def _make_euring2000_plus_record(*, accuracy: str) -> str:
     return "|".join(values)
 
 
+def _make_euring2000_plus_record_with_invalid_species(*, accuracy: str) -> str:
+    values = _make_euring2000_plus_record(accuracy=accuracy).split("|")
+    values[6] = "12ABC"
+    values[7] = "12ABC"
+    return "|".join(values)
+
+
 def _make_euring2020_record_for_coords(
     *,
     geo_value: str,
@@ -137,6 +144,11 @@ class TestDecoding:
             "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|invalidcoords|1|9|99|0|4"
         )
         assert "Geographical co-ordinates" in record["errors"]
+
+    def test_decode_invalid_species_format(self):
+        record = euring_decode_record(_make_euring2000_plus_record_with_invalid_species(accuracy="1"))
+        assert "Species mentioned" in record["errors"]
+        assert "Species concluded" in record["errors"]
 
     def test_decode_euring2020_rejects_geo_with_lat_long(self):
         record = euring_decode_record(
