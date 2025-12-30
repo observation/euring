@@ -36,6 +36,9 @@ Examples:
    # Dump code tables as JSON (includes a _meta.generator block)
    euring dump --pretty age
 
+   # Dump all code tables to a directory
+   euring dump --all --output-dir ./code_tables
+
    # Convert records between EURING2000, EURING2000+, and EURING2020
    euring convert "DERA0CD...5206501ZZ1877018770N0ZUFF22U-----081019710----DECK+502400+00742000820030000000000000"
    euring convert --to euring2020 "DERA0CD...5206501ZZ1877018770N0ZUFF22U-----081019710----DECK+502400+00742000820030000000000000"
@@ -57,3 +60,9 @@ Options:
   ``--from``  Source format (optional): ``euring2000``, ``euring2000plus``, or ``euring2020``.
   ``--to``  Target format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
   ``--force``  Allow lossy mappings when downgrading from ``euring2020``.
+
+``dump``
+  ``--output-dir``  Directory to write JSON code tables.
+  ``--pretty``  Pretty-print JSON output.
+  ``--force``  Overwrite existing files.
+  ``--all``  Dump all code tables (requires ``--output-dir``).

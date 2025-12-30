@@ -13,6 +13,7 @@
 - Add Python Reference docs and update CLI docs (#25, #28).
 - Move Condition and EURING Code Identifier into data code tables (#29).
 - Add EURING record builder helper for creating records in code (#33).
+- Add `dump --all` to export all code tables to a directory (#41).
 
 ## 25.1 (2025-12-27)
 

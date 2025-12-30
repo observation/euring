@@ -16,6 +16,7 @@ from .codes import (
     lookup_species_details,
 )
 from .converters import convert_euring_record
+from .data.code_tables import EURING_CODE_TABLES
 from .data.loader import load_data
 from .decoders import EuringParseException, euring_decode_record
 from .types import TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_INTEGER, TYPE_NUMERIC, TYPE_TEXT, is_valid_type
@@ -168,11 +169,37 @@ def lookup(
 
 @app.command()
 def dump(
-    table: list[str] = typer.Argument(..., help="Code table name(s) to dump"),
+    table: list[str] = typer.Argument(None, help="Code table name(s) to dump"),
     output: Path | None = typer.Option(None, "--output", "-o", help="Write JSON to file"),
+    output_dir: Path | None = typer.Option(None, "--output-dir", help="Write JSON files to a directory"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON"),
+    force: bool = typer.Option(False, "--force", help="Overwrite existing files"),
+    all: bool = typer.Option(False, "--all", help="Dump all code tables (requires --output-dir)"),
 ):
     """Dump one or more code tables as JSON."""
+    if all:
+        if table:
+            typer.echo("Do not specify table names when using --all.", err=True)
+            raise typer.Exit(1)
+        if output_dir is None:
+            typer.echo("--output-dir is required when using --all.", err=True)
+            raise typer.Exit(1)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        for name in sorted(EURING_CODE_TABLES.keys()):
+            data = load_data(name)
+            if data is None:
+                continue
+            payload = _with_meta({"data": data})
+            text = json.dumps(payload, indent=2 if pretty else None, default=str)
+            output_path = output_dir / f"code_table_{name}.json"
+            if output_path.exists() and not force:
+                typer.echo(f"File exists: {output_path} (use --force to overwrite)", err=True)
+                raise typer.Exit(1)
+            output_path.write_text(text, encoding="utf-8")
+        return
+    if not table:
+        typer.echo("Specify one or more code tables, or use --all.", err=True)
+        raise typer.Exit(1)
     data_map: dict[str, Any] = {}
     for name in table:
         data = load_data(name)
@@ -183,6 +210,17 @@ def dump(
     payload: Any = data_map[table[0]] if len(table) == 1 else data_map
     payload = _with_meta({"data": payload})
     text = json.dumps(payload, indent=2 if pretty else None, default=str)
+    if output_dir:
+        output_dir.mkdir(parents=True, exist_ok=True)
+        for name, data in data_map.items():
+            output_path = output_dir / f"code_table_{name}.json"
+            if output_path.exists() and not force:
+                typer.echo(f"File exists: {output_path} (use --force to overwrite)", err=True)
+                raise typer.Exit(1)
+            file_payload = _with_meta({"data": data})
+            file_text = json.dumps(file_payload, indent=2 if pretty else None, default=str)
+            output_path.write_text(file_text, encoding="utf-8")
+        return
     if output:
         output.write_text(text, encoding="utf-8")
     else:
