@@ -19,4 +19,8 @@ TABLE = [
         "agreement that ringers must not add a metal ring when one is already present (except in "
         "circumstances where the existing ring needs to be replaced because of wear).",
     },
+    {
+        "code": 9,
+        "description": "No information provided (e.g., colour ring read without metal ring information, or colour ring found without the bird).",
+    },
 ]
