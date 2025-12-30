@@ -62,6 +62,8 @@ def lookup_description(value, lookup):
 
 def lookup_ring_number(value):
     """Lookup a ring number Just strip the dots from the EURING codes."""
+    if value and value.endswith("."):
+        raise EuringParseException("Identification number (ring) cannot end with a dot.")
     return value.replace(".", "")
 
 
@@ -108,8 +110,10 @@ def lookup_species(value):
     try:
         int(value_str)
     except ValueError:
-        raise EuringParseException(f'Value "{value}" is not a valid EURING species code.')
-    raise EuringParseException(f'Value "{value}" is not a valid EURING species code.')
+        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
+    if len(value_str) != 5:
+        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
+    raise EuringParseException(f'Value "{value}" is a valid EURING species code format but was not found.')
 
 
 def lookup_species_details(value):
@@ -121,8 +125,10 @@ def lookup_species_details(value):
     try:
         int(value_str)
     except ValueError:
-        raise EuringParseException(f'Value "{value}" is not a valid EURING species code.')
-    raise EuringParseException(f'Value "{value}" is not a valid EURING species code.')
+        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
+    if len(value_str) != 5:
+        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
+    raise EuringParseException(f'Value "{value}" is a valid EURING species code format but was not found.')
 
 
 def parse_geographical_coordinates(value):
