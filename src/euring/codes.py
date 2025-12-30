@@ -13,27 +13,8 @@ from .data import (
 from .exceptions import EuringParseException
 from .utils import euring_dms_to_float
 
-LOOKUP_EURING_CODE_IDENTIFIER = {
-    "0": "EURING Code Manual (1966). Directly coded (no translation).",
-    "1": "Code Manual New EURING (1979), but translated from EURING Code Manual (1966).",
-    "2": "Code Manual New EURING (1979). Directly coded (no translation of older codes).",
-    "3": "Translated from earlier code but exact route uncertain",
-    "4": "EURING exchange-code 2000 or 2000+, Directly coded (no translation of older codes)",
-}
-
-
-LOOKUP_CONDITION = {
-    "0": "Condition completely unknown.",
-    "1": "Dead but no information on how recently the bird had died (or been killed).",
-    "2": "Freshly dead - within about a week.",
-    "3": "Not freshly dead - information available that it had been dead for more than about a week.",
-    "4": "Found sick, wounded, unhealthy etc. and known to have been released.",
-    "5": "Found sick, wounded, unhealthy etc. and not released or not known if released.",
-    "6": "Alive and probably healthy but taken into captivity.",
-    "7": "Alive and probably healthy and certainly released.",
-    "8": "Alive and probably healthy and released by a ringer.",
-    "9": "Alive and probably healthy but ultimate fate of bird is not known.",
-}
+LOOKUP_EURING_CODE_IDENTIFIER = load_code_map("euring_code_identifier")
+LOOKUP_CONDITION = load_code_map("condition")
 
 
 def _catching_method_code_filter(code: str) -> bool:
