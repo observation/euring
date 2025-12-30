@@ -6,7 +6,7 @@ The ``euring`` CLI exposes decode/validate/lookup helpers plus JSON dumps and fo
 Commands:
 
 - ``decode``     Decode a EURING record string.
-- ``validate``   Validate a value against EURING field types.
+- ``validate``   Validate a EURING record and return errors only.
 - ``lookup``     Look up EURING codes (scheme, species, place).
 - ``dump``       Dump one or more code tables as JSON.
 - ``convert``    Convert EURING2000, EURING2000+, and EURING2020 records.
@@ -21,8 +21,11 @@ Examples:
    # Decode a EURING record as JSON (includes a _meta.generator block)
    euring decode --json --pretty "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 
-   # Validate a value
-   euring validate ABC alphabetic
+   # Validate a EURING record (errors only)
+   euring validate "ESA|A0|Z.....6408|1|4|ZZ|12430|12430|N|0|Z|U|U|U|0|0|U|--|--|-|11082006|0|----|ES14|+420500-0044500|0|0|99|0|4|00280|241|00097|63.5||U|10|U|U|||||||||3|E||0|||||||||"
+
+   # Validate a file of EURING records
+   euring validate --file euring_records.psv
 
    # Look up codes (verbose by default)
    euring lookup place GR83
@@ -51,6 +54,12 @@ Options:
   ``--pretty``  Pretty-print JSON output (use with ``--json``).
   ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
 
+``validate``
+  ``--json``  Output JSON instead of text.
+  ``--pretty``  Pretty-print JSON output (use with ``--json``).
+  ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
+  ``--file``  Read records from a text file.
+
 ``lookup``
   ``--short``  Show concise output.
   ``--json``  Output JSON instead of text.
@@ -62,6 +71,7 @@ Options:
   ``--force``  Allow lossy mappings when downgrading from ``euring2020``.
 
 ``dump``
+  ``--output``  Write JSON to a file.
   ``--output-dir``  Directory to write JSON code tables.
   ``--pretty``  Pretty-print JSON output.
   ``--force``  Overwrite existing files.

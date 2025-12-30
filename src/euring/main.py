@@ -19,7 +19,6 @@ from .converters import convert_euring_record
 from .data.code_tables import EURING_CODE_TABLES
 from .data.loader import load_data
 from .decoders import EuringParseException, euring_decode_record
-from .types import TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_INTEGER, TYPE_NUMERIC, TYPE_TEXT, is_valid_type
 
 app = typer.Typer(help="EURING data processing CLI")
 
@@ -57,34 +56,81 @@ def decode(
         raise typer.Exit(1)
 
 
-@app.command()
-def validate(
-    value: str = typer.Argument(..., help="Value to validate"),
-    field_type: str = typer.Argument(
-        "alphabetic", help="Field type to validate against (alphabetic, alphanumeric, integer, numeric, text)"
+@app.command(name="validate")
+def validate_record(
+    euring_string: str | None = typer.Argument(None, help="EURING record string to validate"),
+    file: Path | None = typer.Option(None, "--file", "-f", help="Read records from a text file"),
+    as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
+    format_hint: str | None = typer.Option(
+        None,
+        "--format",
+        help="Force format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
     ),
 ):
-    """Validate a value against EURING field types."""
-    type_map = {
-        "alphabetic": TYPE_ALPHABETIC,
-        "alphanumeric": TYPE_ALPHANUMERIC,
-        "integer": TYPE_INTEGER,
-        "numeric": TYPE_NUMERIC,
-        "text": TYPE_TEXT,
-    }
+    """Validate a EURING record and return errors only."""
+    try:
+        if file and euring_string:
+            typer.echo("Use either a record string or --file, not both.", err=True)
+            raise typer.Exit(1)
+        if not file and not euring_string:
+            typer.echo("Provide a record string or use --file.", err=True)
+            raise typer.Exit(1)
 
-    if field_type.lower() not in type_map:
-        typer.echo(f"Unknown field type: {field_type}", err=True)
-        typer.echo(f"Available types: {', '.join(type_map.keys())}", err=True)
+        if file:
+            lines = file.read_text(encoding="utf-8").splitlines()
+            results: list[dict[str, object]] = []
+            total = 0
+            invalid = 0
+            for index, line in enumerate(lines, start=1):
+                record_line = line.strip()
+                if not record_line:
+                    continue
+                total += 1
+                record = euring_decode_record(record_line, format_hint=format_hint)
+                errors = record.get("errors", {})
+                if errors:
+                    invalid += 1
+                    results.append({"line": index, "record": record_line, "errors": errors})
+            if as_json:
+                payload = _with_meta({"total": total, "invalid": invalid, "errors": results})
+                typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+                if invalid:
+                    raise typer.Exit(1)
+                return
+            if invalid:
+                typer.echo(f"{invalid} of {total} records have errors:")
+                for item in results:
+                    typer.echo(f"  Line {item['line']}:")
+                    for field, messages in item["errors"].items():
+                        for message in messages:
+                            typer.echo(f"    {field}: {message}")
+                raise typer.Exit(1)
+            typer.echo(f"All {total} records are valid.")
+            return
+
+        record = euring_decode_record(euring_string, format_hint=format_hint)
+        errors = record.get("errors", {})
+        if as_json:
+            payload = _with_meta({"format": record.get("format"), "errors": errors})
+            typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+            if errors:
+                raise typer.Exit(1)
+            return
+        if errors:
+            typer.echo("Record has errors:")
+            for field, messages in errors.items():
+                for message in messages:
+                    typer.echo(f"  {field}: {message}")
+            raise typer.Exit(1)
+        typer.echo("Record is valid.")
+    except typer.Exit:
+        raise
+    except EuringParseException as e:
+        typer.echo(f"Validation error: {e}", err=True)
         raise typer.Exit(1)
-
-    eur_type = type_map[field_type.lower()]
-    is_valid = is_valid_type(value, eur_type)
-
-    if is_valid:
-        typer.echo(f"✓ '{value}' is valid {field_type}")
-    else:
-        typer.echo(f"✗ '{value}' is not valid {field_type}")
+    except Exception as e:
+        typer.echo(f"Unexpected error: {e}", err=True)
         raise typer.Exit(1)
 
 
