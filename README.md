@@ -126,13 +126,13 @@ These keys are provided as a practical convenience for developers. They are not 
 This package ships with EURING reference data in `src/euring/data`.
 
 - All EURING Code tables follow the EURING Manual.
-- EURING-published updates for species, Ringing Schemes, Place Codes, and circumstances are curated and checked into the package.
+- EURING-published updates for Species, Ringing Schemes, Place Codes, and Circumstances are curated and checked into the package.
 - End users do not need to refresh data separately.
 
 ### Data sources
 
-- Species codes: <https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv>
-- Place codes: <https://www.euring.org/files/documents/ECPlacePipeDelimited_0.csv>
+- Species: <https://www.euring.org/files/documents/EURING_SpeciesCodes_IOC15_1.csv>
+- Place Codes: <https://www.euring.org/files/documents/ECPlacePipeDelimited_0.csv>
 - Ringing Schemes: <https://app.bto.org/euringcodes/schemes.jsp?check1=Y&check2=Y&check3=Y&check4=Y&orderBy=SCHEME_CODE>
 - Circumstances: <https://app.bto.org/euringcodes/circumstances.jsp>
 - All other code tables are derived from the EURING Exchange Code 2020.
