@@ -410,6 +410,36 @@ def test_dump_cli_output_dir_single_table(tmp_path):
     assert outputs
 
 
+def test_convert_cli_file_success(tmp_path):
+    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
+    file_path = tmp_path / "euring2000_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["convert", "--file", str(file_path), "--to", "euring2000plus"])
+    assert result.exit_code == 0
+    lines = [line for line in result.output.splitlines() if line.strip()]
+    assert len(lines) == len(records)
+    assert all("|" in line for line in lines)
+
+
+def test_convert_cli_file_output(tmp_path):
+    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
+    file_path = tmp_path / "euring2000_examples.txt"
+    output_path = tmp_path / "converted.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        ["convert", "--file", str(file_path), "--to", "euring2000plus", "--output", str(output_path)],
+    )
+    assert result.exit_code == 0
+    assert result.output.strip() == ""
+    output_lines = [line for line in output_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    assert len(output_lines) == len(records)
+
+
 def test_convert_cli_success():
     runner = CliRunner()
     result = runner.invoke(
