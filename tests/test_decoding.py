@@ -168,6 +168,36 @@ class TestDecoding:
         )
         assert "Latitude" in record["errors"]
 
+    def test_decode_euring2020_latitude_out_of_range(self):
+        record = euring_decode_record(
+            _make_euring2020_record_for_coords(
+                geo_value="...............",
+                lat_value="90.0001",
+                lng_value="2.0000",
+            )
+        )
+        assert "Latitude" in record["errors"]
+
+    def test_decode_euring2020_longitude_out_of_range(self):
+        record = euring_decode_record(
+            _make_euring2020_record_for_coords(
+                geo_value="...............",
+                lat_value="10.0000",
+                lng_value="180.0001",
+            )
+        )
+        assert "Longitude" in record["errors"]
+
+    def test_decode_euring2020_latitude_too_many_decimals(self):
+        record = euring_decode_record(
+            _make_euring2020_record_for_coords(
+                geo_value="...............",
+                lat_value="10.00001",
+                lng_value="2.0000",
+            )
+        )
+        assert "Latitude" in record["errors"]
+
     def test_decode_duplicate_field_name(self):
         decoder = EuringDecoder("GBB")
         decoder.results = {"data": {"Ringing Scheme": {"value": "GBB"}}}

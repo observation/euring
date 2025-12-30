@@ -103,3 +103,8 @@ def test_lookup_geographical_coordinates_round_trip():
 def test_parse_geographical_coordinates_invalid():
     with pytest.raises(EuringParseException):
         parse_geographical_coordinates(None)
+
+
+def test_parse_geographical_coordinates_invalid_range():
+    with pytest.raises(EuringParseException):
+        parse_geographical_coordinates("+420560-0044500")
