@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 25.2 (2025-12-30)
 
 - CLI lookup shows verbose details by default and supports `--short` for concise output (#9).
 - Add EURING2020 support and fixtures (#21).
