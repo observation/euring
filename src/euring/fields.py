@@ -24,9 +24,9 @@ from .codes import (
     lookup_ring_number,
     lookup_ringing_scheme,
     lookup_species,
+    parse_geographical_coordinates,
     parse_latitude,
     parse_longitude,
-    parse_geographical_coordinates,
 )
 from .types import (
     TYPE_ALPHABETIC,
