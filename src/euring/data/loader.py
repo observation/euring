@@ -99,7 +99,7 @@ def load_named_code_map(
 
 
 def load_place_map() -> dict[str, str]:
-    data = load_table("places")
+    data = load_table("place_codes")
     if not data:
         return {}
     result: dict[str, str] = {}
@@ -120,7 +120,7 @@ def load_place_map() -> dict[str, str]:
 
 def load_place_details() -> dict[str, dict[str, Any]]:
     """Load place code details keyed by place code."""
-    data = load_table("places")
+    data = load_table("place_codes")
     if not data:
         return {}
     result: dict[str, dict[str, Any]] = {}
@@ -148,7 +148,7 @@ def load_species_details() -> dict[str, dict[str, Any]]:
 
 def load_scheme_details() -> dict[str, dict[str, Any]]:
     """Load ringing scheme details keyed by scheme code."""
-    data = load_table("schemes")
+    data = load_table("ringing_scheme")
     if not data:
         return {}
     result: dict[str, dict[str, Any]] = {}
@@ -165,7 +165,7 @@ def load_species_map() -> dict[str, str]:
 
 
 def load_scheme_map() -> dict[str, str]:
-    data = load_table("schemes")
+    data = load_table("ringing_scheme")
     if not data:
         return {}
     result: dict[str, str] = {}

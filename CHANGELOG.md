@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Align field names with the EURING manual (#46).
+
 ## 25.2 (2025-12-30)
 
 - CLI lookup shows verbose details by default and supports `--short` for concise output (#9).

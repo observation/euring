@@ -151,7 +151,7 @@ EURING_FIELDS = [
     dict(name="Tail Difference", key="tail_difference", type=TYPE_NUMERIC, required=False),
     dict(name="Fat Score", key="fat_score", type=TYPE_INTEGER, length=1, required=False),
     dict(name="Fat Score Method", key="fat_score_method", type=TYPE_ALPHABETIC, length=1, required=False),
-    dict(name="Pectoral Muscle", key="pectoral_muscle", type=TYPE_INTEGER, length=1, required=False),
+    dict(name="Pectoral Muscle Score", key="pectoral_muscle", type=TYPE_INTEGER, length=1, required=False),
     dict(name="Brood Patch", key="brood_patch", type=TYPE_ALPHANUMERIC, length=1, required=False),
     dict(name="Primary Score", key="primary_score", type=TYPE_INTEGER, max_length=2, required=False),
     dict(name="Primary Moult", key="primary_moult", type=TYPE_ALPHANUMERIC, length=10, required=False),
