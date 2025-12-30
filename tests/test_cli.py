@@ -138,17 +138,20 @@ def test_decode_cli_json_output():
     assert '"format": "EURING2000"' in result.output
 
 
-def test_validate_cli_success():
+def _load_fixture_records(module_filename: str, list_name: str) -> list[str]:
     from importlib.util import module_from_spec, spec_from_file_location
     from pathlib import Path
 
-    fixture_path = Path(__file__).parent / "fixtures" / "euring2000plus_examples.py"
-    spec = spec_from_file_location("euring2000plus_examples", fixture_path)
+    fixture_path = Path(__file__).parent / "fixtures" / module_filename
+    spec = spec_from_file_location(module_filename.replace(".py", ""), fixture_path)
     assert spec and spec.loader
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
+    return getattr(module, list_name)
 
-    record = module.EURING2000PLUS_EXAMPLES[0]
+
+def test_validate_cli_success():
+    record = _load_fixture_records("euring2000plus_examples.py", "EURING2000PLUS_EXAMPLES")[0]
     runner = CliRunner()
     result = runner.invoke(app, ["validate", record])
     assert result.exit_code == 0
@@ -173,16 +176,7 @@ def test_validate_cli_json():
 
 
 def test_validate_cli_file_success(tmp_path):
-    from importlib.util import module_from_spec, spec_from_file_location
-    from pathlib import Path
-
-    fixture_path = Path(__file__).parent / "fixtures" / "euring2000plus_examples.py"
-    spec = spec_from_file_location("euring2000plus_examples", fixture_path)
-    assert spec and spec.loader
-    module = module_from_spec(spec)
-    spec.loader.exec_module(module)
-
-    record = module.EURING2000PLUS_EXAMPLES[0]
+    record = _load_fixture_records("euring2000plus_examples.py", "EURING2000PLUS_EXAMPLES")[0]
     file_path = tmp_path / "records.psv"
     file_path.write_text(record, encoding="utf-8")
 
@@ -190,6 +184,39 @@ def test_validate_cli_file_success(tmp_path):
     result = runner.invoke(app, ["validate", "--file", str(file_path)])
     assert result.exit_code == 0
     assert "All 1 records are valid." in result.output
+
+
+def test_validate_cli_file_euring2000_examples(tmp_path):
+    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
+    file_path = tmp_path / "euring2000_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 0
+    assert f"All {len(records)} records are valid." in result.output
+
+
+def test_validate_cli_file_euring2000plus_examples(tmp_path):
+    records = _load_fixture_records("euring2000plus_examples.py", "EURING2000PLUS_EXAMPLES")
+    file_path = tmp_path / "euring2000plus_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 0
+    assert f"All {len(records)} records are valid." in result.output
+
+
+def test_validate_cli_file_euring2020_examples(tmp_path):
+    records = _load_fixture_records("euring2020_examples.py", "EURING2020_EXAMPLES")
+    file_path = tmp_path / "euring2020_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 0
+    assert f"All {len(records)} records are valid." in result.output
 
 
 def test_validate_cli_file_errors(tmp_path):
