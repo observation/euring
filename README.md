@@ -136,6 +136,6 @@ This package ships with EURING reference data in `src/euring/data`.
 - EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. Helsinki, Finland ISBN 978-952-94-4399-4
 - EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. On-line Code Tables. Thetford, U.K. URL https://www.euring.org/data-and-codes/euring-codes
 
-## Attribution
+## Acknowledgements
 
-This library is maintained and open-sourced by [Observation.org](https://observation.org). It originated as part of the RingBase project at [Zostera](https://zostera.nl). Many thanks to Zostera for the original development work.
+This library is maintained and open-sourced by [Observation.org](https://observation.org). It was originally developed as part of the RingBase project at [Zostera](https://zostera.nl). Many thanks to Zostera for the original development work.
