@@ -24,6 +24,8 @@ from .codes import (
     lookup_ring_number,
     lookup_ringing_scheme,
     lookup_species,
+    parse_latitude,
+    parse_longitude,
     parse_geographical_coordinates,
 )
 from .types import (
@@ -160,8 +162,8 @@ EURING_FIELDS = [
     dict(name="Place name", key="place_name", type=TYPE_TEXT, required=False),
     dict(name="Remarks", key="remarks", type=TYPE_TEXT, required=False),
     dict(name="Reference", key="reference", type=TYPE_TEXT, required=False),
-    dict(name="Latitude", key="latitude", type=TYPE_NUMERIC_SIGNED, required=False),
-    dict(name="Longitude", key="longitude", type=TYPE_NUMERIC_SIGNED, required=False),
+    dict(name="Latitude", key="latitude", type=TYPE_NUMERIC_SIGNED, required=False, parser=parse_latitude),
+    dict(name="Longitude", key="longitude", type=TYPE_NUMERIC_SIGNED, required=False, parser=parse_longitude),
     dict(
         name="Current Place Code",
         key="current_place_code",

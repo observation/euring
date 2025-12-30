@@ -147,8 +147,12 @@ def lookup_species_details(value):
 def parse_geographical_coordinates(value):
     """Parse EURING coordinate text into latitude/longitude decimal values."""
     # +420500-0044500
+    if value is None:
+        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
     if value == "." * 15:
         return None
+    _validate_dms_component(value[:7], degrees_digits=2, max_degrees=90)
+    _validate_dms_component(value[7:], degrees_digits=3, max_degrees=180)
     try:
         lat = value[:7]
         lng = value[7:]
@@ -163,6 +167,48 @@ def lookup_geographical_coordinates(value):
     if value is None:
         return None
     return "lat: {lat} lng: {lng}".format(**value)
+
+
+def parse_latitude(value):
+    """Parse a decimal latitude with manual range/precision limits."""
+    return _parse_decimal_coordinate(value, max_abs=90, max_decimals=4, field_name="Latitude")
+
+
+def parse_longitude(value):
+    """Parse a decimal longitude with manual range/precision limits."""
+    return _parse_decimal_coordinate(value, max_abs=180, max_decimals=4, field_name="Longitude")
+
+
+def _parse_decimal_coordinate(value, *, max_abs, max_decimals, field_name):
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        raise EuringParseException(f'Value "{value}" is not a valid {field_name}.')
+    if abs(parsed) > max_abs:
+        raise EuringParseException(f"{field_name} must be between -{max_abs} and {max_abs}.")
+    if "." in value:
+        decimal_part = value.split(".", 1)[1]
+        if len(decimal_part) > max_decimals:
+            raise EuringParseException(f"{field_name} must have at most {max_decimals} decimal places.")
+    return parsed
+
+
+def _validate_dms_component(value, *, degrees_digits, max_degrees):
+    if value is None:
+        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+    expected_length = 1 + degrees_digits + 2 + 2
+    if len(value) != expected_length:
+        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+    sign = value[0]
+    if sign not in {"+", "-"}:
+        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+    degrees = value[1 : 1 + degrees_digits]
+    minutes = value[1 + degrees_digits : 1 + degrees_digits + 2]
+    seconds = value[1 + degrees_digits + 2 :]
+    if not (degrees.isdigit() and minutes.isdigit() and seconds.isdigit()):
+        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+    if int(degrees) > max_degrees or int(minutes) > 59 or int(seconds) > 59:
+        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
 
 
 def lookup_place_code(value):
