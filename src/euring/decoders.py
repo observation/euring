@@ -168,7 +168,7 @@ class EuringDecoder:
             if is_2020 and self.results["format"] == "EURING2000+":
                 if self.format_hint:
                     self.add_error(
-                        "Accuracy of co-ordinates",
+                        "Accuracy of Co-ordinates",
                         "Alphabetic accuracy codes or 2020-only fields require EURING2020 format.",
                     )
                 else:
@@ -178,7 +178,7 @@ class EuringDecoder:
                 pass
         if self.results["format"] == "EURING2000" and self._accuracy_is_alpha():
             self.add_error(
-                "Accuracy of co-ordinates",
+                "Accuracy of Co-ordinates",
                 "Alphabetic accuracy codes are only valid in EURING2020.",
             )
         if self.results["format"] == "EURING2020":
@@ -192,8 +192,8 @@ class EuringDecoder:
             if lat_value or lng_value:
                 if geo_value and geo_value != "." * 15:
                     self.add_error(
-                        "Geographical co-ordinates",
-                        "When Latitude/Longitude are provided, Geographical co-ordinates must be 15 dots.",
+                        "Geographical Co-ordinates",
+                        "When Latitude/Longitude are provided, Geographical Co-ordinates must be 15 dots.",
                     )
             if lat_value and not lng_value:
                 self.add_error("Longitude", "Longitude is required when Latitude is provided.")
