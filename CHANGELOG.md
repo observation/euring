@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Align field names with the EURING manual (#).
+- Align field names with the EURING manual (#46).
 
 ## 25.2 (2025-12-30)
 
