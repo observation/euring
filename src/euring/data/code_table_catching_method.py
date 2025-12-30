@@ -22,7 +22,10 @@ TABLE = [
     {"code": "H", "description": "By Hand (with or without hook, noose etc.)."},
     {"code": "L", "description": "Clap net."},
     {"code": "M", "description": "Mist net."},
-    {"code": "N", "description": "On Nest (any method). Not applicable to nestlings which are still in the nest. Use – for these."},
+    {
+        "code": "N",
+        "description": "On Nest (any method). Not applicable to nestlings which are still in the nest. Use – for these.",
+    },
     {"code": "O", "description": "Any Other system (the alphabetic character O)."},
     {"code": "P", "description": "Phut net."},
     {"code": "R", "description": "Round up whilst flightless."},
