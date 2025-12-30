@@ -105,7 +105,7 @@ EURING vocabulary (as per the manuals):
 EURING uses a record-based format: each record contains a fixed sequence of fields.
 The manuals define official field names (with spaces/hyphens), which we preserve for display.
 
-This package introduses a signed numeric type (NumericSigned) for the EURING2020 field Latitude and Longitue. NumericSigned behaves like Numeric, but allows a leading minus sign and explicitly disallows -0. NumericSigned is a small, intentional clarification of the generic numeric types. The manuals clearly permit negative Latitude and Longitude in EURING2020, but the generic Numeric definition does not describe signed numbers. Making this explicit in the code helps prevent invalid values while staying faithful to the manuals and real-world usage. If a future revision of the specification formally defines signed numeric fields, this implementation can align with it without breaking compatibility.
+This package introduces a signed numeric type (`NumericSigned`) for the EURING2020 fields Latitude and Longitue. `NumericSigned` behaves like `Numeric`, but allows a leading minus sign and explicitly disallows -0. `NumericSigned` is a small, intentional clarification of the generic numeric types. The manuals clearly permit negative Latitude and Longitude in EURING2020, but the generic `Numeric` definition does not describe signed numbers. Making this explicit in the code helps prevent invalid values while staying faithful to the manuals and real-world usage. If a future revision of the specification formally defines signed numeric fields, this implementation can align with it without breaking compatibility.
 
 ### Field keys
 
