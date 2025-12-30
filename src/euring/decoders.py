@@ -214,7 +214,7 @@ class EuringDecoder:
         except KeyError:
             date = None
         self.results["ring"] = ring
-        self.results["scheme"] = scheme
+        self.results["ringing_scheme"] = scheme
         self.results["animal"] = f"{scheme}#{ring}"
         self.results["date"] = date
         # Unique hash for this euring code

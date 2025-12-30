@@ -43,7 +43,7 @@ def decode(
             return
         typer.echo("Decoded EURING record:")
         typer.echo(f"Format: {record.get('format', 'Unknown')}")
-        typer.echo(f"Scheme: {record.get('scheme', 'Unknown')}")
+        typer.echo(f"Ringing Scheme: {record.get('ringing_scheme', 'Unknown')}")
         if "data" in record:
             typer.echo("Data fields:")
             for key, value in record["data"].items():
@@ -142,23 +142,23 @@ def lookup(
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
 ):
-    """Look up EURING codes (scheme, species, place)."""
+    """Look up EURING codes (ringing_scheme, species, place)."""
     try:
-        if code_type.lower() == "scheme":
+        if code_type.lower() in {"ringing_scheme", "scheme"}:
             if short:
                 result = lookup_ringing_scheme(code)
                 if as_json:
-                    payload = _with_meta({"type": "scheme", "code": code, "description": result})
+                    payload = _with_meta({"type": "ringing_scheme", "code": code, "description": result})
                     typer.echo(json.dumps(payload, indent=2 if pretty else None))
                     return
-                typer.echo(f"Scheme {code}: {result}")
+                typer.echo(f"Ringing Scheme {code}: {result}")
             else:
                 details = lookup_ringing_scheme_details(code)
                 if as_json:
-                    payload = _with_meta({"type": "scheme", "code": code, **details})
+                    payload = _with_meta({"type": "ringing_scheme", "code": code, **details})
                     typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
                     return
-                typer.echo(f"Scheme {code}")
+                typer.echo(f"Ringing Scheme {code}")
                 _emit_detail("Ringing centre", details.get("ringing_centre"))
                 _emit_detail("Country", details.get("country"))
                 _emit_detail_bool("Current", details.get("is_current"))
@@ -205,7 +205,7 @@ def lookup(
                 _emit_detail("Notes", details.get("notes"))
         else:
             typer.echo(f"Unknown lookup type: {code_type}", err=True)
-            typer.echo("Available types: scheme, species, place", err=True)
+            typer.echo("Available types: ringing_scheme, species, place", err=True)
             raise typer.Exit(1)
     except Exception as e:
         typer.echo(f"Lookup error: {e}", err=True)

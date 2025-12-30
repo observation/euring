@@ -86,7 +86,7 @@ class TestDecoding:
         # Very minimal EURING record for testing
         record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"))
         assert record["format"] == "EURING2000+"
-        assert record["scheme"] == "GBB"
+        assert record["ringing_scheme"] == "GBB"
         assert "data" in record
         assert "data_by_key" in record
         assert "Ringing Scheme" in record["data"]

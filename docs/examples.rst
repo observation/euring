@@ -18,7 +18,7 @@ and write each record as a line in a pipe-delimited file.
            for row in records:
                builder.update(
                    {
-                       "ringing_scheme": row["scheme_code"],
+                       "ringing_scheme": row["ringing_scheme_code"],
                        "primary_identification_method": row["primary_id_method"],
                        "identification_number": row["ring_number"],
                        "place_code": row["place_code"],

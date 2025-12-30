@@ -93,7 +93,7 @@ def test_lookup_glob_hint_when_shell_expands_to_file():
     with runner.isolated_filesystem():
         with open("example.txt", "w", encoding="utf-8") as handle:
             handle.write("data")
-        result = runner.invoke(app, ["lookup", "scheme", "example.txt"])
+        result = runner.invoke(app, ["lookup", "ringing_scheme", "example.txt"])
     assert result.exit_code == 1
     assert "Lookup error:" in result.output
     assert "Hint: your shell may have expanded a wildcard." in result.output
@@ -111,7 +111,7 @@ def test_decode_cli_success():
     assert result.exit_code == 0
     assert "Decoded EURING record:" in result.output
     assert "Format: EURING2000+" in result.output
-    assert "Scheme: GBB" in result.output
+    assert "Ringing Scheme: GBB" in result.output
 
 
 def test_decode_cli_invalid_format_hint():
@@ -263,19 +263,19 @@ def test_lookup_cli_json_output():
     assert '"type": "place"' in result.output
 
 
-def test_lookup_cli_scheme_json_short():
+def test_lookup_cli_ringing_scheme_json_short():
     runner = CliRunner()
-    result = runner.invoke(app, ["lookup", "scheme", "AAC", "--short", "--json"])
+    result = runner.invoke(app, ["lookup", "ringing_scheme", "AAC", "--short", "--json"])
     assert result.exit_code == 0
-    assert '"type": "scheme"' in result.output
+    assert '"type": "ringing_scheme"' in result.output
     assert '"description"' in result.output
 
 
-def test_lookup_cli_scheme_json_verbose():
+def test_lookup_cli_ringing_scheme_json_verbose():
     runner = CliRunner()
-    result = runner.invoke(app, ["lookup", "scheme", "AAC", "--json"])
+    result = runner.invoke(app, ["lookup", "ringing_scheme", "AAC", "--json"])
     assert result.exit_code == 0
-    assert '"type": "scheme"' in result.output
+    assert '"type": "ringing_scheme"' in result.output
     assert '"ringing_centre"' in result.output
 
 
@@ -339,11 +339,11 @@ def test_lookup_cli_unknown_type():
     assert "Unknown lookup type: unknown" in result.output
 
 
-def test_lookup_cli_scheme_short():
+def test_lookup_cli_ringing_scheme_short():
     runner = CliRunner()
-    result = runner.invoke(app, ["lookup", "scheme", "AAC", "--short"])
+    result = runner.invoke(app, ["lookup", "ringing_scheme", "AAC", "--short"])
     assert result.exit_code == 0
-    assert result.output.strip() == "Scheme AAC: Canberra, Australia"
+    assert result.output.strip() == "Ringing Scheme AAC: Canberra, Australia"
 
 
 def test_lookup_cli_species_short():

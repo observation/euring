@@ -7,7 +7,7 @@ Commands:
 
 - ``decode``     Decode a EURING record string.
 - ``validate``   Validate a EURING record and return errors only.
-- ``lookup``     Look up EURING codes (scheme, species, place).
+- ``lookup``     Look up EURING codes (ringing_scheme, species, place).
 - ``dump``       Dump one or more code tables as JSON.
 - ``convert``    Convert EURING2000, EURING2000+, and EURING2020 records.
 
