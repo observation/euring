@@ -5,8 +5,8 @@ from .code_table_age import TABLE as age
 from .code_table_brood_size import TABLE as brood_size
 from .code_table_catching_lures import TABLE as catching_lures
 from .code_table_catching_method import TABLE as catching_method
-from .code_table_condition import TABLE as condition
 from .code_table_circumstances import TABLE as circumstances
+from .code_table_condition import TABLE as condition
 from .code_table_euring_code_identifier import TABLE as euring_code_identifier
 from .code_table_manipulated import TABLE as manipulated
 from .code_table_metal_ring_information import TABLE as metal_ring_information
