@@ -440,6 +440,24 @@ def test_convert_cli_file_output(tmp_path):
     assert len(output_lines) == len(records)
 
 
+def test_convert_cli_file_json_output(tmp_path):
+    import json
+
+    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
+    file_path = tmp_path / "euring2000_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        ["convert", "--file", str(file_path), "--to", "euring2000plus", "--format", "json"],
+    )
+    assert result.exit_code == 0
+    payload = json.loads(result.output)
+    assert payload["_meta"]["format"] == "EURING2000+"
+    assert len(payload["records"]) == len(records)
+
+
 def test_convert_cli_success():
     runner = CliRunner()
     result = runner.invoke(

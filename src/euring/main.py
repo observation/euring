@@ -15,10 +15,11 @@ from .codes import (
     lookup_species,
     lookup_species_details,
 )
-from .converters import convert_euring_record
+from .converters import convert_euring_record, convert_euring_record_data
 from .data.code_tables import EURING_CODE_TABLES
 from .data.loader import load_data
 from .decoders import EuringParseException, euring_decode_record
+from .fields import EURING_FIELDS
 
 app = typer.Typer(help="EURING data processing CLI")
 
@@ -216,9 +217,9 @@ def lookup(
 @app.command()
 def dump(
     table: list[str] = typer.Argument(None, help="Code table name(s) to dump"),
-    output: Path | None = typer.Option(None, "--output", "-o", help="Write JSON to file"),
+    output: Path | None = typer.Option(None, "--output", "-o", help="Write JSON to a file"),
     output_dir: Path | None = typer.Option(None, "--output-dir", help="Write JSON files to a directory"),
-    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
     force: bool = typer.Option(False, "--force", help="Overwrite existing files"),
     all: bool = typer.Option(False, "--all", help="Dump all code tables (requires --output-dir)"),
 ):
@@ -254,8 +255,6 @@ def dump(
             raise typer.Exit(1)
         data_map[name] = data
     payload: Any = data_map[table[0]] if len(table) == 1 else data_map
-    payload = _with_meta({"data": payload})
-    text = json.dumps(payload, indent=2 if pretty else None, default=str)
     if output_dir:
         output_dir.mkdir(parents=True, exist_ok=True)
         for name, data in data_map.items():
@@ -267,6 +266,8 @@ def dump(
             file_text = json.dumps(file_payload, indent=2 if pretty else None, default=str)
             output_path.write_text(file_text, encoding="utf-8")
         return
+    payload = _with_meta({"data": payload})
+    text = json.dumps(payload, indent=2 if pretty else None, default=str)
     if output:
         output.write_text(text, encoding="utf-8")
     else:
@@ -278,6 +279,7 @@ def convert(
     euring_string: str | None = typer.Argument(None, help="EURING record to convert"),
     file: Path | None = typer.Option(None, "--file", "-f", help="Read records from a text file"),
     output: Path | None = typer.Option(None, "--output", "-o", help="Write output to a file"),
+    format: str = typer.Option("text", "--format", help="Output format: text or json"),
     source_format: str | None = typer.Option(
         None, "--from", help="Source format (optional): euring2000, euring2000plus, or euring2020"
     ),
@@ -294,6 +296,10 @@ def convert(
 ):
     """Convert EURING2000, EURING2000+, and EURING2020 records."""
     try:
+        output_format = format.strip().lower()
+        if output_format not in {"text", "json"}:
+            typer.echo(f'Unknown output format "{format}". Use text or json.', err=True)
+            raise typer.Exit(1)
         if file and euring_string:
             typer.echo("Use either a record or --file, not both.", err=True)
             raise typer.Exit(1)
@@ -303,13 +309,22 @@ def convert(
         if file:
             lines = file.read_text(encoding="utf-8").splitlines()
             outputs: list[str] = []
+            records: list[dict[str, str]] = []
+            target_format_label: str | None = None
             errors: list[tuple[int, str]] = []
             for index, line in enumerate(lines, start=1):
                 record_line = line.strip()
                 if not record_line:
                     continue
                 try:
-                    outputs.append(convert_euring_record(record_line, source_format, target_format, force=force))
+                    if output_format == "text":
+                        outputs.append(convert_euring_record(record_line, source_format, target_format, force=force))
+                    else:
+                        normalized_target, values_by_key, target_fields = convert_euring_record_data(
+                            record_line, source_format=source_format, target_format=target_format, force=force
+                        )
+                        target_format_label = normalized_target
+                        records.append(_record_values_by_key(values_by_key, target_fields))
                 except ValueError as exc:
                     errors.append((index, str(exc)))
             if errors:
@@ -317,13 +332,34 @@ def convert(
                 for line_number, message in errors:
                     typer.echo(f"  Line {line_number}: {message}", err=True)
                 raise typer.Exit(1)
-            output_text = "\n".join(outputs)
+            if output_format == "text":
+                output_text = "\n".join(outputs)
+                if output:
+                    output.write_text(output_text, encoding="utf-8")
+                    return
+                typer.echo(output_text)
+                return
+            output_text = _format_converted_records(
+                records,
+                target_format_label or _normalize_format_label(target_format),
+            )
             if output:
                 output.write_text(output_text, encoding="utf-8")
                 return
             typer.echo(output_text)
             return
-        typer.echo(convert_euring_record(euring_string, source_format, target_format, force=force))
+        if output_format == "text":
+            typer.echo(convert_euring_record(euring_string, source_format, target_format, force=force))
+            return
+        normalized_target, values_by_key, target_fields = convert_euring_record_data(
+            euring_string, source_format=source_format, target_format=target_format, force=force
+        )
+        record = _record_values_by_key(values_by_key, target_fields)
+        output_text = _format_converted_records([record], normalized_target)
+        if output:
+            output.write_text(output_text, encoding="utf-8")
+            return
+        typer.echo(output_text)
     except ValueError as exc:
         typer.echo(f"Convert error: {exc}", err=True)
         raise typer.Exit(1)
@@ -371,3 +407,45 @@ def _with_meta(payload: dict[str, Any]) -> dict[str, Any]:
     combined = dict(payload)
     combined["_meta"] = meta
     return combined
+
+
+def _generator_meta() -> dict[str, str]:
+    return {
+        "name": "euring",
+        "version": __version__,
+        "url": "https://github.com/observation/euring",
+    }
+
+
+def _record_values_by_key(values_by_key: dict[str, str], target_fields: list[dict[str, object]]) -> dict[str, str]:
+    return {field["key"]: values_by_key.get(field["key"], "") for field in target_fields}
+
+
+def _normalize_format_label(format_hint: str) -> str:
+    raw = format_hint.strip().upper()
+    if raw.startswith("EURING"):
+        raw = raw.replace("EURING", "")
+    if raw == "2000":
+        return "EURING2000"
+    if raw in {"2000+", "2000PLUS", "2000P"}:
+        return "EURING2000+"
+    if raw == "2020":
+        return "EURING2020"
+    return format_hint
+
+
+def _format_converted_records(records: list[dict[str, str]], target_format: str) -> str:
+    name_map = {field["key"]: field["name"] for field in EURING_FIELDS}
+    column_keys = list(records[0].keys()) if records else []
+    columns = {key: name_map.get(key, _titleize_key(key)) for key in column_keys}
+    meta = {
+        "generator": _generator_meta(),
+        "format": target_format,
+        "columns": columns,
+    }
+    payload = {"_meta": meta, "records": records}
+    return json.dumps(payload, indent=2, default=str)
+
+
+def _titleize_key(key: str) -> str:
+    return " ".join(part.capitalize() for part in key.split("_"))

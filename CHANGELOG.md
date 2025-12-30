@@ -4,6 +4,7 @@
 
 - Align field names with the EURING manual (#46).
 - Add `convert --file` support for converting record files.
+- Add JSON output for `convert`.
 
 ## 25.2 (2025-12-30)
 

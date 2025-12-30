@@ -16,6 +16,23 @@ def convert_euring_record(
     force: bool = False,
 ) -> str:
     """Convert EURING records between EURING2000, EURING2000PLUS, and EURING2020."""
+    normalized_target, values_by_key, target_fields = convert_euring_record_data(
+        value, source_format=source_format, target_format=target_format, force=force
+    )
+    if normalized_target == "EURING2000":
+        return _format_fixed_width(values_by_key, target_fields)
+    output_values = [values_by_key.get(field["key"], "") for field in target_fields]
+    return "|".join(output_values)
+
+
+def convert_euring_record_data(
+    value: str,
+    *,
+    source_format: str | None = None,
+    target_format: str = "EURING2000PLUS",
+    force: bool = False,
+) -> tuple[str, dict[str, str], list[dict[str, object]]]:
+    """Convert and return the normalized target format plus field values by key."""
     normalized_target = _normalize_target_format(target_format)
     normalized_source = _normalize_source_format(source_format, value)
 
@@ -37,11 +54,10 @@ def convert_euring_record(
 
     if normalized_target == "EURING2000":
         target_fields = _fixed_width_fields()
-        return _format_fixed_width(values_by_key, target_fields)
+    else:
+        target_fields = _target_fields(normalized_target)
 
-    target_fields = _target_fields(normalized_target)
-    output_values = [values_by_key.get(field["key"], "") for field in target_fields]
-    return "|".join(output_values)
+    return normalized_target, values_by_key, target_fields
 
 
 def _split_fixed_width(value: str) -> list[str]:
