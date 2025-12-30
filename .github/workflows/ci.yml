@@ -56,18 +56,23 @@ jobs:
           uv run --no-sync python --version
 
       - name: Run tests with coverage
+        if: ${{ matrix.python-version == '3.14' }}
         run: uv run --no-sync pytest --cov=euring --cov-report=xml
 
-      - name: Upload coverage to Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_PARALLEL: true
-        run: |
-          uvx coveralls --service=github
+      - name: Upload coverage artifact
+        if: ${{ matrix.python-version == '3.14' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: coverage.xml
+
+      - name: Run tests
+        if: ${{ matrix.python-version != '3.14' }}
+        run: uv run --no-sync pytest
 
   build:
     runs-on: ubuntu-latest
-    needs: [python_matrix]
+    needs: [lint]
     steps:
       - uses: actions/checkout@v6
 
@@ -104,17 +109,27 @@ jobs:
       - name: Build documentation
         run: just docs
 
-  tests:
-    if: always()
+  coveralls:
+    needs: [python_matrix]
     runs-on: ubuntu-latest
-    needs: [python_matrix, lint, docs, build]
     steps:
-      - name: Check tests matrix status
-        if: needs.python_matrix.result != 'success'
-        run: exit 1
+      - uses: actions/checkout@v6
 
-      - name: Finish Coveralls parallel build
-        uses: coverallsapp/github-action@v2
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
         with:
-          parallel-finished: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.14
+
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-xml
+
+      - name: Upload coverage to Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          uvx coveralls --service=github
