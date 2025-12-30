@@ -12,6 +12,7 @@
 - Standardize EURING field name capitalization per manual (#30).
 - Add Python Reference docs and update CLI docs (#25, #28).
 - Move Condition and EURING Code Identifier into data code tables (#29).
+- Add EURING record builder helper for creating records in code (#33).
 
 ## 25.1 (2025-12-27)
 
