@@ -5,8 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from euring.converters import convert_euring_record
-from euring.converters import convert_euring2000_record, _field_index
+from euring.converters import _field_index, convert_euring2000_record, convert_euring_record
 from euring.fields import EURING_FIELDS
 from euring.utils import euring_lat_to_dms, euring_lng_to_dms
 

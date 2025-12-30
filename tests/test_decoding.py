@@ -1,7 +1,8 @@
 """Tests for EURING record decoding."""
 
-import pytest
 from collections import OrderedDict
+
+import pytest
 
 from euring import EuringDecoder, euring_decode_record
 from euring.codes import lookup_date, lookup_geographical_coordinates, parse_geographical_coordinates
