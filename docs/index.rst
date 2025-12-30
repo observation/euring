@@ -8,6 +8,7 @@ Contents:
 
    readme
    python_reference
+   examples
    cli
    contributing
    changelog
