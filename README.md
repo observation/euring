@@ -51,6 +51,9 @@ euring lookup --json --pretty scheme GBB
 # Dump code tables as JSON (includes a _meta.generator block)
 euring dump --pretty age
 
+# Dump all code tables to a directory
+euring dump --all --output-dir ./code_tables
+
 # Convert records between EURING2000, EURING2000+, and EURING2020
 euring convert "DERA0CD...5206501ZZ1877018770N0ZUFF22U-----081019710----DECK+502400+00742000820030000000000000"
 euring convert --to euring2020 "DERA0CD...5206501ZZ1877018770N0ZUFF22U-----081019710----DECK+502400+00742000820030000000000000"

@@ -319,6 +319,14 @@ def test_dump_cli_output_file(tmp_path):
     assert '"_meta"' in output_path.read_text(encoding="utf-8")
 
 
+def test_dump_cli_output_dir_single_table(tmp_path):
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "sex", "--output-dir", str(tmp_path)])
+    assert result.exit_code == 0
+    outputs = list(tmp_path.glob("code_table_sex.json"))
+    assert outputs
+
+
 def test_convert_cli_success():
     runner = CliRunner()
     result = runner.invoke(
