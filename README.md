@@ -126,7 +126,7 @@ These keys are provided as a practical convenience for developers. They are not 
 This package ships with EURING reference data in `src/euring/data`.
 
 - All EURING Code tables follow the EURING Manual.
-- EURING-published updates for species, Ringing Schemes, places, and circumstances are curated and checked into the package.
+- EURING-published updates for species, Ringing Schemes, Place Codes, and circumstances are curated and checked into the package.
 - End users do not need to refresh data separately.
 
 ### Data sources
