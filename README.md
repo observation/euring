@@ -144,4 +144,4 @@ This package ships with EURING reference data in `src/euring/data`.
 
 ## Acknowledgements
 
-This library is maintained and open-sourced by [Observation.org](https://observation.org). It was originally developed as part of the RingBase project at [Zostera](https://zostera.nl). Many thanks to Zostera for the original development work.
+This library is maintained by [Observation.org](https://observation.org). It was originally developed as part of the RingBase project at [Zostera](https://zostera.nl). Many thanks to Zostera for the original development work.
