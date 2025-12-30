@@ -38,8 +38,11 @@ euring decode --json --pretty "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719
 euring decode --format euring2020 "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 euring decode --format euring2000plus "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 
-# Validate a value
-euring validate ABC alphabetic
+# Validate a EURING record (errors only)
+euring validate "ESA|A0|Z.....6408|1|4|ZZ|12430|12430|N|0|Z|U|U|U|0|0|U|--|--|-|11082006|0|----|ES14|+420500-0044500|0|0|99|0|4|00280|241|00097|63.5||U|10|U|U|||||||||3|E||0|||||||||"
+
+# Validate a file of EURING records
+euring validate --file euring_records.psv
 
 # Look up codes
 euring lookup scheme GBB

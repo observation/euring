@@ -138,6 +138,110 @@ def test_decode_cli_json_output():
     assert '"format": "EURING2000"' in result.output
 
 
+def _load_fixture_records(module_filename: str, list_name: str) -> list[str]:
+    from importlib.util import module_from_spec, spec_from_file_location
+    from pathlib import Path
+
+    fixture_path = Path(__file__).parent / "fixtures" / module_filename
+    spec = spec_from_file_location(module_filename.replace(".py", ""), fixture_path)
+    assert spec and spec.loader
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return getattr(module, list_name)
+
+
+def test_validate_cli_success():
+    record = _load_fixture_records("euring2000plus_examples.py", "EURING2000PLUS_EXAMPLES")[0]
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", record])
+    assert result.exit_code == 0
+    assert "Record is valid." in result.output
+
+
+def test_validate_cli_errors():
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "not-a-record"])
+    assert result.exit_code == 1
+    assert "Record has errors:" in result.output
+
+
+def test_validate_cli_json():
+    import json
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--json", "not-a-record"])
+    assert result.exit_code == 1
+    payload = json.loads(result.output)
+    assert payload["errors"]
+
+
+def test_validate_cli_file_success(tmp_path):
+    record = _load_fixture_records("euring2000plus_examples.py", "EURING2000PLUS_EXAMPLES")[0]
+    file_path = tmp_path / "records.psv"
+    file_path.write_text(record, encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 0
+    assert "All 1 records are valid." in result.output
+
+
+def test_validate_cli_file_euring2000_examples(tmp_path):
+    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
+    file_path = tmp_path / "euring2000_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 0
+    assert f"All {len(records)} records are valid." in result.output
+
+
+def test_validate_cli_file_euring2000plus_examples(tmp_path):
+    records = _load_fixture_records("euring2000plus_examples.py", "EURING2000PLUS_EXAMPLES")
+    file_path = tmp_path / "euring2000plus_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 0
+    assert f"All {len(records)} records are valid." in result.output
+
+
+def test_validate_cli_file_euring2020_examples(tmp_path):
+    records = _load_fixture_records("euring2020_examples.py", "EURING2020_EXAMPLES")
+    file_path = tmp_path / "euring2020_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 0
+    assert f"All {len(records)} records are valid." in result.output
+
+
+def test_validate_cli_file_errors(tmp_path):
+    file_path = tmp_path / "records.psv"
+    file_path.write_text("not-a-record", encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 1
+    assert "records have errors" in result.output
+
+
+def test_validate_cli_file_json(tmp_path):
+    import json
+
+    file_path = tmp_path / "records.psv"
+    file_path.write_text("not-a-record", encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path), "--json"])
+    assert result.exit_code == 1
+    payload = json.loads(result.output)
+    assert payload["invalid"] == 1
+
+
 def test_decode_cli_invalid_species_format_reports_errors():
     import json
 
@@ -204,27 +308,6 @@ def test_decode_cli_non_euring_string():
     result = runner.invoke(app, ["decode", "not-a-record"])
     assert result.exit_code == 0
     assert "Decoded EURING record:" in result.output
-
-
-def test_validate_cli_success():
-    runner = CliRunner()
-    result = runner.invoke(app, ["validate", "ABC", "alphabetic"])
-    assert result.exit_code == 0
-    assert "is valid alphabetic" in result.output
-
-
-def test_validate_cli_invalid_type():
-    runner = CliRunner()
-    result = runner.invoke(app, ["validate", "ABC", "integer"])
-    assert result.exit_code == 1
-    assert "is not valid integer" in result.output
-
-
-def test_validate_cli_unknown_type():
-    runner = CliRunner()
-    result = runner.invoke(app, ["validate", "ABC", "bogus"])
-    assert result.exit_code == 1
-    assert "Unknown field type: bogus" in result.output
 
 
 def test_decode_cli_parse_exception(monkeypatch):
