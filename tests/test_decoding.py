@@ -1,13 +1,14 @@
 """Tests for EURING record decoding."""
 
 import pytest
+from collections import OrderedDict
 
 from euring import EuringDecoder, euring_decode_record
-from euring.codes import lookup_date
+from euring.codes import lookup_date, lookup_geographical_coordinates, parse_geographical_coordinates
 from euring.decoders import euring_decode_value
 from euring.exceptions import EuringParseException
 from euring.fields import EURING_FIELDS
-from euring.types import TYPE_INTEGER
+from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
 
 
 def _make_euring2000_plus_record(*, accuracy: str) -> str:
@@ -110,10 +111,50 @@ class TestDecoding:
         with pytest.raises(EuringParseException):
             euring_decode_value("ABC", TYPE_INTEGER, length=3)
 
+    def test_decode_value_optional_empty(self):
+        result = euring_decode_value("", TYPE_INTEGER, min_length=0)
+        assert result is None
+
+    def test_decode_value_length_mismatch(self):
+        with pytest.raises(EuringParseException):
+            euring_decode_value("123", TYPE_INTEGER, length=2)
+
+    def test_decode_value_min_length_error(self):
+        with pytest.raises(EuringParseException):
+            euring_decode_value("1", TYPE_INTEGER, min_length=2)
+
+    def test_decode_value_max_length_error(self):
+        with pytest.raises(EuringParseException):
+            euring_decode_value("123", TYPE_INTEGER, max_length=2)
+
+    def test_decode_value_with_parser(self):
+        result = euring_decode_value(
+            "+420500-0044500",
+            TYPE_ALPHANUMERIC,
+            length=15,
+            parser=parse_geographical_coordinates,
+            lookup=lookup_geographical_coordinates,
+        )
+        assert "parsed_value" in result
+
     def test_decoder_handles_non_string(self):
         decoder = EuringDecoder(None)
         results = decoder.get_results()
         assert results["errors"]
+
+    def test_parse_field_missing_optional_does_not_error(self):
+        decoder = EuringDecoder("GBB")
+        decoder.results = {"data": OrderedDict(), "data_by_key": OrderedDict()}
+        decoder.errors = OrderedDict()
+        decoder.parse_field([], 1, "Optional", key="optional", type=TYPE_INTEGER, required=False)
+        assert decoder.errors == OrderedDict()
+
+    def test_parse_field_sets_none_for_optional_empty(self):
+        decoder = EuringDecoder("GBB")
+        decoder.results = {"data": OrderedDict(), "data_by_key": OrderedDict()}
+        decoder.errors = OrderedDict()
+        decoder.parse_field([""], 0, "Optional", key="optional", type=TYPE_INTEGER, required=False)
+        assert decoder.results["data_by_key"]["optional"] is None
 
     def test_decode_euring2000_format(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -144,6 +185,27 @@ class TestDecoding:
             "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|invalidcoords|1|9|99|0|4"
         )
         assert "Geographical Co-ordinates" in record["errors"]
+
+    def test_decode_format_hint_unknown(self):
+        with pytest.raises(EuringParseException):
+            EuringDecoder("GBB", format_hint="2000")
+
+    def test_decode_format_hint_conflict_pipe(self):
+        record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"), format_hint="EURING2000")
+        assert record["errors"]
+
+    def test_decode_format_hint_conflict_fixed_width(self):
+        from importlib.util import module_from_spec, spec_from_file_location
+        from pathlib import Path
+
+        fixture_path = Path(__file__).parent / "fixtures" / "euring2000_examples.py"
+        spec = spec_from_file_location("euring2000_examples", fixture_path)
+        assert spec and spec.loader
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        record = euring_decode_record(module.EURING2000_EXAMPLES[0], format_hint="EURING2000+")
+        assert record["errors"]
 
     def test_decode_invalid_species_format(self):
         record = euring_decode_record(_make_euring2000_plus_record_with_invalid_species(accuracy="1"))

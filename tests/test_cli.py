@@ -114,6 +114,13 @@ def test_decode_cli_success():
     assert "Scheme: GBB" in result.output
 
 
+def test_decode_cli_invalid_format_hint():
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--format", "2000", "GBB"])
+    assert result.exit_code == 1
+    assert "Parse error" in result.output
+
+
 def test_decode_cli_json_output():
     runner = CliRunner()
     result = runner.invoke(
@@ -150,6 +157,46 @@ def test_lookup_cli_json_output():
     assert result.output.strip().startswith("{")
     assert '"generator"' in result.output
     assert '"type": "place"' in result.output
+
+
+def test_lookup_cli_scheme_json_short():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "scheme", "AAC", "--short", "--json"])
+    assert result.exit_code == 0
+    assert '"type": "scheme"' in result.output
+    assert '"description"' in result.output
+
+
+def test_lookup_cli_scheme_json_verbose():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "scheme", "AAC", "--json"])
+    assert result.exit_code == 0
+    assert '"type": "scheme"' in result.output
+    assert '"ringing_centre"' in result.output
+
+
+def test_lookup_cli_species_json_short():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "species", "00010", "--short", "--json"])
+    assert result.exit_code == 0
+    assert '"type": "species"' in result.output
+    assert '"name"' in result.output
+
+
+def test_lookup_cli_species_json_verbose():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "species", "00010", "--json"])
+    assert result.exit_code == 0
+    assert '"type": "species"' in result.output
+    assert '"updated"' in result.output
+
+
+def test_lookup_cli_place_json_short():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "place", "AB00", "--short", "--json"])
+    assert result.exit_code == 0
+    assert '"type": "place"' in result.output
+    assert '"name"' in result.output
 
 
 def test_decode_cli_non_euring_string():
@@ -256,6 +303,22 @@ def test_dump_cli_multiple_tables(monkeypatch):
     assert '"sex"' in payload
 
 
+def test_dump_cli_unknown_table():
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "unknown"])
+    assert result.exit_code == 1
+    assert "Unknown code table" in result.output
+
+
+def test_dump_cli_output_file(tmp_path):
+    output_path = tmp_path / "dump.json"
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "sex", "--output", str(output_path)])
+    assert result.exit_code == 0
+    assert output_path.exists()
+    assert '"_meta"' in output_path.read_text(encoding="utf-8")
+
+
 def test_convert_cli_success():
     runner = CliRunner()
     result = runner.invoke(
@@ -267,6 +330,13 @@ def test_convert_cli_success():
     )
     assert result.exit_code == 0
     assert result.output.count("|") > 10
+
+
+def test_convert_cli_invalid_format():
+    runner = CliRunner()
+    result = runner.invoke(app, ["convert", "--to", "bad", "GBB"])
+    assert result.exit_code == 1
+    assert "Convert error" in result.output
 
 
 def test_convert_cli_downgrade_with_coords():
