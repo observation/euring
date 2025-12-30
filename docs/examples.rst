@@ -33,11 +33,8 @@ and write each record as a line in a pipe-delimited file.
                    errors.append((row["id"], str(exc)))
        return errors
 
-Manual submission notes (EURING Exchange Code 2020 v202)
--------------------------------------------------------
+This approach satisfies the technical submission notes from the EURING Manual:
 
 - EURING data files must use UTF-8 or ASCII encoding; UTF-8 is preferred.
 - EURING2000+ or EURING2020 formats are preferred for submission.
 - One record per line; a single file containing all records is preferred.
-- The EDB applies additional validation (e.g., code validity and coordinate consistency).
-  Consider validating records locally before submission.
