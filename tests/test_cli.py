@@ -138,6 +138,20 @@ def test_decode_cli_json_output():
     assert '"format": "EURING2000"' in result.output
 
 
+def test_decode_cli_file_json(tmp_path):
+    import json
+
+    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
+    file_path = tmp_path / "euring2000_examples.txt"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--file", str(file_path), "--json"])
+    assert result.exit_code == 0
+    payload = json.loads(result.output)
+    assert len(payload["records"]) == len(records)
+
+
 def _load_fixture_records(module_filename: str, list_name: str) -> list[str]:
     from importlib.util import module_from_spec, spec_from_file_location
     from pathlib import Path
@@ -172,6 +186,17 @@ def test_validate_cli_json():
     result = runner.invoke(app, ["validate", "--json", "not-a-record"])
     assert result.exit_code == 1
     payload = json.loads(result.output)
+    assert payload["errors"]
+
+
+def test_validate_cli_json_output_file(tmp_path):
+    import json
+
+    output_path = tmp_path / "validate.json"
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--json", "--output", str(output_path), "not-a-record"])
+    assert result.exit_code == 1
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
     assert payload["errors"]
 
 
@@ -438,24 +463,6 @@ def test_convert_cli_file_output(tmp_path):
     assert result.output.strip() == ""
     output_lines = [line for line in output_path.read_text(encoding="utf-8").splitlines() if line.strip()]
     assert len(output_lines) == len(records)
-
-
-def test_convert_cli_file_json_output(tmp_path):
-    import json
-
-    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
-    file_path = tmp_path / "euring2000_examples.txt"
-    file_path.write_text("\n".join(records), encoding="utf-8")
-
-    runner = CliRunner()
-    result = runner.invoke(
-        app,
-        ["convert", "--file", str(file_path), "--to", "euring2000plus", "--format", "json"],
-    )
-    assert result.exit_code == 0
-    payload = json.loads(result.output)
-    assert payload["_meta"]["format"] == "EURING2000+"
-    assert len(payload["records"]) == len(records)
 
 
 def test_convert_cli_success():

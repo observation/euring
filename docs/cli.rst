@@ -47,7 +47,9 @@ Examples:
    euring convert --to euring2020 "DERA0CD...5206501ZZ1877018770N0ZUFF22U-----081019710----DECK+502400+00742000820030000000000000"
    euring convert --from euring2020 --to euring2000plus --force "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00||A|9|99|0|4|00000|000|00000|||||52.3760|4.9000||"
    euring convert --file euring_records.txt --to euring2020 --output converted_records.txt
-   euring convert --file euring_records.txt --to euring2020 --format json --output converted_records.json
+
+   # Decode a file of EURING records to JSON (enriched output)
+   euring decode --file euring_records.txt --json --output decoded_records.json
 
 Options:
 
@@ -55,12 +57,15 @@ Options:
   ``--json``  Output JSON instead of text.
   ``--pretty``  Pretty-print JSON output (use with ``--json``).
   ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
+  ``--file``  Read records from a text file.
+  ``--output``  Write output to a file.
 
 ``validate``
   ``--json``  Output JSON instead of text.
   ``--pretty``  Pretty-print JSON output (use with ``--json``).
   ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
   ``--file``  Read records from a text file.
+  ``--output``  Write output to a file.
 
 ``lookup``
   ``--short``  Show concise output.
@@ -73,7 +78,6 @@ Options:
   ``--force``  Allow lossy mappings when downgrading from ``euring2020``.
   ``--file``  Read records from a text file.
   ``--output``  Write converted output to a file.
-  ``--format``  Output format: ``text`` or ``json``.
 
 ``dump``
   ``--output``  Write JSON to a file.
