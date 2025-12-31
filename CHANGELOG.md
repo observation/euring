@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 25.3 (2025-12-31)
 
 - Align field names with the EURING manual (#46).
 - Add `convert --file` support for converting record files (#47).
