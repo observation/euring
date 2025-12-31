@@ -5,7 +5,12 @@ from collections import OrderedDict
 import pytest
 
 from euring import EuringDecoder, euring_decode_record
-from euring.codes import lookup_date, lookup_geographical_coordinates, parse_geographical_coordinates
+from euring.codes import (
+    lookup_date,
+    lookup_geographical_coordinates,
+    parse_geographical_coordinates,
+    parse_old_greater_coverts,
+)
 from euring.decoders import euring_decode_value
 from euring.exceptions import EuringParseException
 from euring.fields import EURING_FIELDS
@@ -137,6 +142,15 @@ class TestDecoding:
             lookup=lookup_geographical_coordinates,
         )
         assert "parsed_value" in result
+
+    def test_parse_old_greater_coverts_valid(self):
+        assert parse_old_greater_coverts("0") == "0"
+        assert parse_old_greater_coverts("9") == "9"
+        assert parse_old_greater_coverts("A") == "A"
+
+    def test_parse_old_greater_coverts_invalid(self):
+        with pytest.raises(EuringParseException):
+            parse_old_greater_coverts("B")
 
     def test_decoder_handles_non_string(self):
         decoder = EuringDecoder(None)

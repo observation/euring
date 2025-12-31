@@ -33,6 +33,16 @@ LOOKUP_MANIPULATED = load_code_map("manipulated")
 LOOKUP_MOVED_BEFORE_ENCOUNTER = load_code_map("moved_before_the_encounter")
 LOOKUP_CATCHING_METHOD = load_code_map("catching_method", code_filter=_catching_method_code_filter)
 LOOKUP_CATCHING_LURES = load_code_map("catching_lures")
+LOOKUP_STATE_OF_WING_POINT = load_code_map("state_of_wing_point")
+LOOKUP_MOULT = load_code_map("moult")
+LOOKUP_PLUMAGE_CODE = load_code_map("plumage_code")
+LOOKUP_BILL_METHOD = load_code_map("bill_method")
+LOOKUP_TARSUS_METHOD = load_code_map("tarsus_method")
+LOOKUP_FAT_SCORE_METHOD = load_code_map("fat_score_method")
+LOOKUP_PECTORAL_MUSCLE_SCORE = load_code_map("pectoral_muscle_score")
+LOOKUP_BROOD_PATCH = load_code_map("brood_patch")
+LOOKUP_CARPAL_COVERT = load_code_map("carpal_covert")
+LOOKUP_SEXING_METHOD = load_code_map("sexing_method")
 LOOKUP_SEX = load_code_map("sex")
 LOOKUP_AGE = load_code_map("age")
 LOOKUP_STATUS = load_code_map("status")
@@ -40,6 +50,9 @@ LOOKUP_BROOD_SIZE = load_code_map("brood_size")
 LOOKUP_PULLUS_AGE = load_code_map("pullus_age")
 LOOKUP_ACCURACY_PULLUS_AGE = load_code_map("accuracy_of_pullus_age")
 LOOKUP_CIRCUMSTANCES = load_code_map("circumstances")
+LOOKUP_ACCURACY_OF_COORDINATES = load_code_map("accuracy_of_coordinates")
+LOOKUP_ACCURACY_OF_DATE = load_code_map("accuracy_of_date")
+LOOKUP_CIRCUMSTANCES_PRESUMED = load_code_map("circumstances_presumed")
 _SPECIES_LOOKUP = load_species_map()
 _SCHEME_LOOKUP = load_scheme_map()
 _PLACE_LOOKUP = load_place_map()
@@ -196,6 +209,13 @@ def _validate_dms_component(value, *, degrees_digits, max_degrees):
         raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
     if int(degrees) > max_degrees or int(minutes) > 59 or int(seconds) > 59:
         raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+
+
+def parse_old_greater_coverts(value: str) -> str:
+    """Validate Old Greater Coverts codes (0-9 or A)."""
+    if value not in {str(num) for num in range(10)} | {"A"}:
+        raise EuringParseException(f'Value "{value}" is not a valid Old Greater Coverts code.')
+    return value
 
 
 def lookup_place_code(value):
