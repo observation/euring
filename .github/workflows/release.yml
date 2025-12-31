@@ -1,9 +1,8 @@
-name: "Publish"
+name: "Publish release to PyPI"
 
 on:
   push:
     tags:
-      # Publish on any tag starting with a `v`, e.g., v0.1.0
       - v*
 
 jobs:
@@ -17,21 +16,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+
       - name: Install uv
         uses: astral-sh/setup-uv@v7
+
       - name: Install Python 3.13
         run: uv python install 3.13
-      - name: Build with sanity checks
+
+      - name: Build
         run: uv build
+
+      - name: List dist artefacts
+        run: ls -lah dist
+
+      - name: Check distribution metadata (twine)
+        run: uvx twine check dist/*
+
+      - name: Check sdist file list (check-manifest)
+        run: uvx check-manifest
+
+      - name: Check wheel contents
+        run: uvx check-wheel-contents dist/*.whl
+
       - name: Smoke test (wheel)
         run: uv run --isolated --no-project --with dist/*.whl tests/smoke_test.py
+
       - name: Smoke test (source distribution)
         run: uv run --isolated --no-project --with dist/*.tar.gz tests/smoke_test.py
+
       - name: Publish
         run: uv publish
-
-
-        uvx twine check dist/*
-    uvx check-manifest
-    uvx pyroma .
-    uvx check-wheel-contents dist/*.whl
