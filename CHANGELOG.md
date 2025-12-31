@@ -3,7 +3,7 @@
 ## Unreleased
 
 - Align field names with the EURING manual (#46).
-- Add `convert --file` support for converting record files.
+- Add `convert --file` support for converting record files (#47).
 - Refactor CLI and add JSON output (#48).
 - Add missing code tables (#51).
 
