@@ -47,14 +47,6 @@ install:
 @tests *ARGS:
     uvx --with tox-uv tox {{ARGS}}
 
-# Build the package and test the build
-@build: clean-build install
-    uv build
-    uvx twine check dist/*
-    uvx check-manifest
-    uvx pyroma .
-    uvx check-wheel-contents dist/*.whl
-
 # Build the documentation
 @docs: clean-docs install
     uv run -m sphinx -T -b html -d docs/_build/doctrees -D language=en docs docs/_build/html
@@ -63,11 +55,26 @@ install:
 @example:
     uv run --no-sync example.py
 
-# Publish package on PyPI
-@publish: porcelain branch docs build
-    uvx uv-publish
-    git tag -a v${VERSION} -m "Release {{ VERSION }}"
-    git push origin --tags
+# Build artefacts + packaging checks (local preflight)
+@build: clean-build install
+    uv build
+    uvx twine check dist/*
+    uvx check-manifest
+    uvx pyroma .
+    uvx check-wheel-contents dist/*.whl
+    uv run --isolated --no-project --with dist/*.whl tests/smoke_test.py
+    uv run --isolated --no-project --with dist/*.tar.gz tests/smoke_test.py
+
+# Create and push a release tag (publishing happens in GitHub Actions)
+@release-tag: porcelain branch build
+    git tag -a v{{ VERSION }} -m "Release v{{ VERSION }}"
+    git push origin v{{ VERSION }}
+
+# Backwards-compatible alias (kept so muscle memory doesn't publish locally)
+@publish:
+    echo "Local publishing is disabled."
+    echo "Use: just release-tag"
+    exit 1
 
 # Show package version number
 @version:
