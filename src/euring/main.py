@@ -85,6 +85,8 @@ def decode(
     except EuringParseException as e:
         typer.echo(f"Parse error: {e}", err=True)
         raise typer.Exit(1)
+    except typer.Exit:
+        raise
     except Exception as e:
         typer.echo(f"Unexpected error: {e}", err=True)
         raise typer.Exit(1)
