@@ -4,7 +4,9 @@
 
 - Align field names with the EURING manual (#46).
 - Add `convert --file` support for converting record files.
-- Refcator CLI and add JSON output (#48).
+- Refactor CLI and add JSON output (#48).
+- Add missing v202 code tables for biometrics and circumstances fields (State of Wing Point, Moult, Plumage Code, Bill Method, Tarsus Method, Fat Score Method, Pectoral Muscle Score, Brood Patch, Primary Moult, Alula, Carpal Covert, Accuracy of Co-ordinates, Accuracy of Date, Circumstances Presumed).
+- Validate Old Greater Coverts (0–9, A).
 
 ## 25.2 (2025-12-30)
 
