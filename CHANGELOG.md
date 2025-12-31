@@ -6,6 +6,7 @@
 - Add `convert --file` support for converting record files (#47).
 - Refactor CLI and add JSON output (#48).
 - Add missing code tables (#51).
+- Add GitHub release workflow and smoke test coverage (#53).
 
 ## 25.2 (2025-12-30)
 
