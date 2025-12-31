@@ -25,21 +25,55 @@ app = typer.Typer(help="EURING data processing CLI")
 
 @app.command()
 def decode(
-    euring_string: str = typer.Argument(..., help="EURING record to decode"),
+    euring_string: str | None = typer.Argument(None, help="EURING record to decode"),
+    file: Path | None = typer.Option(None, "--file", "-f", help="Read records from a text file (one per line)"),
+    output: Path | None = typer.Option(None, "--output", "-o", help="Write output to a file"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
-    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
     format_hint: str | None = typer.Option(
         None,
         "--format",
-        help="Force format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+        help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p).",
     ),
 ):
-    """Decode a EURING record string."""
+    """Decode EURING records (single record or --file)."""
     try:
+        if pretty and not as_json:
+            typer.echo("Use --pretty with --json.", err=True)
+            raise typer.Exit(1)
+        output_format = "json" if as_json else "text"
+        if file and euring_string:
+            typer.echo("Use either a record or --file, not both.", err=True)
+            raise typer.Exit(1)
+        if not file and not euring_string:
+            typer.echo("Provide a record or use --file.", err=True)
+            raise typer.Exit(1)
+        if file:
+            if output_format != "json":
+                typer.echo("Use --json when decoding files.", err=True)
+                raise typer.Exit(1)
+            lines = file.read_text(encoding="utf-8").splitlines()
+            records = []
+            for line in lines:
+                record_line = line.strip()
+                if not record_line:
+                    continue
+                records.append(euring_decode_record(record_line, format_hint=format_hint))
+            payload = _with_meta({"records": records})
+            text = json.dumps(payload, default=str, indent=2 if pretty else None)
+            if output:
+                output.write_text(text, encoding="utf-8")
+                return
+            typer.echo(text)
+            return
         record = euring_decode_record(euring_string, format_hint=format_hint)
-        if as_json:
+        if output_format == "json":
             payload = _with_meta(record)
-            typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+            text = json.dumps(payload, default=str, indent=2 if pretty else None)
+            if output:
+                output.write_text(text, encoding="utf-8")
+                return
+            typer.echo(text)
             return
         typer.echo("Decoded EURING record:")
         typer.echo(f"Format: {record.get('format', 'Unknown')}")
@@ -51,6 +85,8 @@ def decode(
     except EuringParseException as e:
         typer.echo(f"Parse error: {e}", err=True)
         raise typer.Exit(1)
+    except typer.Exit:
+        raise
     except Exception as e:
         typer.echo(f"Unexpected error: {e}", err=True)
         raise typer.Exit(1)
@@ -59,17 +95,21 @@ def decode(
 @app.command(name="validate")
 def validate_record(
     euring_string: str | None = typer.Argument(None, help="EURING record to validate"),
-    file: Path | None = typer.Option(None, "--file", "-f", help="Read records from a text file"),
+    file: Path | None = typer.Option(None, "--file", "-f", help="Read records from a text file (one per line)"),
+    output: Path | None = typer.Option(None, "--output", "-o", help="Write output to a file"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
-    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
     format_hint: str | None = typer.Option(
         None,
         "--format",
-        help="Force format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+        help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
     ),
 ):
-    """Validate a EURING record and return errors only."""
+    """Validate EURING records and return errors only."""
     try:
+        if pretty and not as_json:
+            typer.echo("Use --pretty with --json.", err=True)
+            raise typer.Exit(1)
         if file and euring_string:
             typer.echo("Use either a record or --file, not both.", err=True)
             raise typer.Exit(1)
@@ -94,7 +134,11 @@ def validate_record(
                     results.append({"line": index, "record": record_line, "errors": errors})
             if as_json:
                 payload = _with_meta({"total": total, "invalid": invalid, "errors": results})
-                typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+                text = json.dumps(payload, default=str, indent=2 if pretty else None)
+                if output:
+                    output.write_text(text, encoding="utf-8")
+                else:
+                    typer.echo(text)
                 if invalid:
                     raise typer.Exit(1)
                 return
@@ -106,14 +150,22 @@ def validate_record(
                         for message in messages:
                             typer.echo(f"    {field}: {message}")
                 raise typer.Exit(1)
-            typer.echo(f"All {total} records are valid.")
+            text = f"All {total} records are valid."
+            if output:
+                output.write_text(text, encoding="utf-8")
+            else:
+                typer.echo(text)
             return
 
         record = euring_decode_record(euring_string, format_hint=format_hint)
         errors = record.get("errors", {})
         if as_json:
             payload = _with_meta({"format": record.get("format"), "errors": errors})
-            typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+            text = json.dumps(payload, default=str, indent=2 if pretty else None)
+            if output:
+                output.write_text(text, encoding="utf-8")
+            else:
+                typer.echo(text)
             if errors:
                 raise typer.Exit(1)
             return
@@ -123,7 +175,11 @@ def validate_record(
                 for message in messages:
                     typer.echo(f"  {field}: {message}")
             raise typer.Exit(1)
-        typer.echo("Record is valid.")
+        text = "Record is valid."
+        if output:
+            output.write_text(text, encoding="utf-8")
+        else:
+            typer.echo(text)
     except typer.Exit:
         raise
     except EuringParseException as e:
@@ -135,15 +191,79 @@ def validate_record(
 
 
 @app.command()
+def convert(
+    euring_string: str | None = typer.Argument(None, help="EURING record to convert"),
+    file: Path | None = typer.Option(None, "--file", "-f", help="Read records from a text file (one per line)"),
+    output: Path | None = typer.Option(None, "--output", "-o", help="Write output to a file"),
+    source_format: str | None = typer.Option(
+        None, "--from", help="Source format (optional): euring2000, euring2000plus, or euring2020"
+    ),
+    target_format: str = typer.Option(
+        "euring2000plus",
+        "--to",
+        help="Target format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+    ),
+    force: bool = typer.Option(
+        False,
+        "--force",
+        help="Allow lossy mappings (e.g., alphabetic accuracy when downgrading from EURING2020).",
+    ),
+):
+    """Convert EURING2000, EURING2000+, and EURING2020 records."""
+    try:
+        if file and euring_string:
+            typer.echo("Use either a record or --file, not both.", err=True)
+            raise typer.Exit(1)
+        if not file and not euring_string:
+            typer.echo("Provide a record or use --file.", err=True)
+            raise typer.Exit(1)
+        if file:
+            lines = file.read_text(encoding="utf-8").splitlines()
+            outputs: list[str] = []
+            errors: list[tuple[int, str]] = []
+            for index, line in enumerate(lines, start=1):
+                record_line = line.strip()
+                if not record_line:
+                    continue
+                try:
+                    outputs.append(convert_euring_record(record_line, source_format, target_format, force=force))
+                except ValueError as exc:
+                    errors.append((index, str(exc)))
+            if errors:
+                typer.echo("Conversion errors:", err=True)
+                for line_number, message in errors:
+                    typer.echo(f"  Line {line_number}: {message}", err=True)
+                raise typer.Exit(1)
+            output_text = "\n".join(outputs)
+            if output:
+                output.write_text(output_text, encoding="utf-8")
+                return
+            typer.echo(output_text)
+            return
+        if output:
+            output.write_text(
+                convert_euring_record(euring_string, source_format, target_format, force=force), encoding="utf-8"
+            )
+            return
+        typer.echo(convert_euring_record(euring_string, source_format, target_format, force=force))
+    except ValueError as exc:
+        typer.echo(f"Convert error: {exc}", err=True)
+        raise typer.Exit(1)
+
+
+@app.command()
 def lookup(
-    code_type: str = typer.Argument(..., help="Type of code to lookup"),
-    code: str = typer.Argument(..., help="Code value to lookup"),
+    code_type: str = typer.Argument(..., help="Type of code to look up (ringing_scheme, species, place)"),
+    code: str = typer.Argument(..., help="Code value to look up"),
     short: bool = typer.Option(False, "--short", help="Show concise output"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
-    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
 ):
     """Look up EURING codes (ringing_scheme, species, place)."""
     try:
+        if pretty and not as_json:
+            typer.echo("Use --pretty with --json.", err=True)
+            raise typer.Exit(1)
         if code_type.lower() in {"ringing_scheme", "scheme"}:
             if short:
                 result = lookup_ringing_scheme(code)
@@ -216,13 +336,13 @@ def lookup(
 @app.command()
 def dump(
     table: list[str] = typer.Argument(None, help="Code table name(s) to dump"),
-    output: Path | None = typer.Option(None, "--output", "-o", help="Write JSON to file"),
+    output: Path | None = typer.Option(None, "--output", "-o", help="Write JSON to a file"),
     output_dir: Path | None = typer.Option(None, "--output-dir", help="Write JSON files to a directory"),
-    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
     force: bool = typer.Option(False, "--force", help="Overwrite existing files"),
     all: bool = typer.Option(False, "--all", help="Dump all code tables (requires --output-dir)"),
 ):
-    """Dump one or more code tables as JSON."""
+    """Dump code tables as JSON."""
     if all:
         if table:
             typer.echo("Do not specify table names when using --all.", err=True)
@@ -254,8 +374,6 @@ def dump(
             raise typer.Exit(1)
         data_map[name] = data
     payload: Any = data_map[table[0]] if len(table) == 1 else data_map
-    payload = _with_meta({"data": payload})
-    text = json.dumps(payload, indent=2 if pretty else None, default=str)
     if output_dir:
         output_dir.mkdir(parents=True, exist_ok=True)
         for name, data in data_map.items():
@@ -267,66 +385,12 @@ def dump(
             file_text = json.dumps(file_payload, indent=2 if pretty else None, default=str)
             output_path.write_text(file_text, encoding="utf-8")
         return
+    payload = _with_meta({"data": payload})
+    text = json.dumps(payload, indent=2 if pretty else None, default=str)
     if output:
         output.write_text(text, encoding="utf-8")
     else:
         typer.echo(text)
-
-
-@app.command()
-def convert(
-    euring_string: str | None = typer.Argument(None, help="EURING record to convert"),
-    file: Path | None = typer.Option(None, "--file", "-f", help="Read records from a text file"),
-    output: Path | None = typer.Option(None, "--output", "-o", help="Write output to a file"),
-    source_format: str | None = typer.Option(
-        None, "--from", help="Source format (optional): euring2000, euring2000plus, or euring2020"
-    ),
-    target_format: str = typer.Option(
-        "euring2000plus",
-        "--to",
-        help="Target format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
-    ),
-    force: bool = typer.Option(
-        False,
-        "--force",
-        help="Allow lossy mappings (e.g., alphabetic accuracy when downgrading from EURING2020).",
-    ),
-):
-    """Convert EURING2000, EURING2000+, and EURING2020 records."""
-    try:
-        if file and euring_string:
-            typer.echo("Use either a record or --file, not both.", err=True)
-            raise typer.Exit(1)
-        if not file and not euring_string:
-            typer.echo("Provide a record or use --file.", err=True)
-            raise typer.Exit(1)
-        if file:
-            lines = file.read_text(encoding="utf-8").splitlines()
-            outputs: list[str] = []
-            errors: list[tuple[int, str]] = []
-            for index, line in enumerate(lines, start=1):
-                record_line = line.strip()
-                if not record_line:
-                    continue
-                try:
-                    outputs.append(convert_euring_record(record_line, source_format, target_format, force=force))
-                except ValueError as exc:
-                    errors.append((index, str(exc)))
-            if errors:
-                typer.echo("Conversion errors:", err=True)
-                for line_number, message in errors:
-                    typer.echo(f"  Line {line_number}: {message}", err=True)
-                raise typer.Exit(1)
-            output_text = "\n".join(outputs)
-            if output:
-                output.write_text(output_text, encoding="utf-8")
-                return
-            typer.echo(output_text)
-            return
-        typer.echo(convert_euring_record(euring_string, source_format, target_format, force=force))
-    except ValueError as exc:
-        typer.echo(f"Convert error: {exc}", err=True)
-        raise typer.Exit(1)
 
 
 if __name__ == "__main__":
