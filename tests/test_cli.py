@@ -138,6 +138,38 @@ def test_decode_cli_json_output():
     assert '"format": "EURING2000"' in result.output
 
 
+def test_decode_cli_pretty_requires_json():
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--pretty", "GBB"])
+    assert result.exit_code == 1
+    assert "Use --pretty with --json." in result.output
+
+
+def test_decode_cli_file_requires_json(tmp_path):
+    file_path = tmp_path / "records.psv"
+    file_path.write_text("GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0|4", encoding="utf-8")
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--file", str(file_path)])
+    assert result.exit_code == 1
+    assert "Use --json when decoding files." in result.output
+
+
+def test_decode_cli_file_and_record_error(tmp_path):
+    file_path = tmp_path / "records.psv"
+    file_path.write_text("GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0|4", encoding="utf-8")
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--file", str(file_path), "GBB"])
+    assert result.exit_code == 1
+    assert "Use either a record or --file, not both." in result.output
+
+
+def test_decode_cli_missing_args():
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode"])
+    assert result.exit_code == 1
+    assert "Provide a record or use --file." in result.output
+
+
 def test_decode_cli_file_json(tmp_path):
     import json
 
@@ -149,6 +181,21 @@ def test_decode_cli_file_json(tmp_path):
     result = runner.invoke(app, ["decode", "--file", str(file_path), "--json"])
     assert result.exit_code == 0
     payload = json.loads(result.output)
+    assert len(payload["records"]) == len(records)
+
+
+def test_decode_cli_file_json_output_file(tmp_path):
+    import json
+
+    records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
+    file_path = tmp_path / "euring2000_examples.txt"
+    output_path = tmp_path / "decoded.json"
+    file_path.write_text("\n".join(records), encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--file", str(file_path), "--json", "--output", str(output_path)])
+    assert result.exit_code == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
     assert len(payload["records"]) == len(records)
 
 
@@ -187,6 +234,29 @@ def test_validate_cli_json():
     assert result.exit_code == 1
     payload = json.loads(result.output)
     assert payload["errors"]
+
+
+def test_validate_cli_pretty_requires_json():
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--pretty", "not-a-record"])
+    assert result.exit_code == 1
+    assert "Use --pretty with --json." in result.output
+
+
+def test_validate_cli_file_and_record_error(tmp_path):
+    file_path = tmp_path / "records.psv"
+    file_path.write_text("not-a-record", encoding="utf-8")
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path), "GBB"])
+    assert result.exit_code == 1
+    assert "Use either a record or --file, not both." in result.output
+
+
+def test_validate_cli_missing_args():
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate"])
+    assert result.exit_code == 1
+    assert "Provide a record or use --file." in result.output
 
 
 def test_validate_cli_json_output_file(tmp_path):
@@ -267,6 +337,42 @@ def test_validate_cli_file_json(tmp_path):
     assert payload["invalid"] == 1
 
 
+def test_validate_cli_file_json_output_file(tmp_path):
+    import json
+
+    file_path = tmp_path / "records.psv"
+    output_path = tmp_path / "validate.json"
+    file_path.write_text("not-a-record", encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path), "--json", "--output", str(output_path)])
+    assert result.exit_code == 1
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["invalid"] == 1
+
+
+def test_validate_cli_parse_exception(monkeypatch):
+    def _raise_parse(_value, **_kwargs):
+        raise euring_exceptions.EuringParseException("bad")
+
+    monkeypatch.setattr(main_module, "euring_decode_record", _raise_parse)
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "GBB"])
+    assert result.exit_code == 1
+    assert "Validation error: bad" in result.output
+
+
+def test_validate_cli_unexpected_exception(monkeypatch):
+    def _raise_error(_value, **_kwargs):
+        raise RuntimeError("boom")
+
+    monkeypatch.setattr(main_module, "euring_decode_record", _raise_error)
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "GBB"])
+    assert result.exit_code == 1
+    assert "Unexpected error: boom" in result.output
+
+
 def test_decode_cli_invalid_species_format_reports_errors():
     import json
 
@@ -286,6 +392,13 @@ def test_lookup_cli_json_output():
     assert result.output.strip().startswith("{")
     assert '"generator"' in result.output
     assert '"type": "place"' in result.output
+
+
+def test_lookup_cli_pretty_requires_json():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "place", "GR83", "--pretty"])
+    assert result.exit_code == 1
+    assert "Use --pretty with --json." in result.output
 
 
 def test_lookup_cli_ringing_scheme_json_short():
@@ -371,6 +484,22 @@ def test_lookup_cli_ringing_scheme_short():
     assert result.output.strip() == "Ringing Scheme AAC: Canberra, Australia"
 
 
+def test_lookup_cli_ringing_scheme_verbose_text():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "ringing_scheme", "AAC"])
+    assert result.exit_code == 0
+    assert "Ringing Scheme AAC" in result.output
+    assert "Ringing centre:" in result.output
+
+
+def test_lookup_cli_species_verbose_text():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "species", "00010"])
+    assert result.exit_code == 0
+    assert "Species 00010" in result.output
+    assert "Name:" in result.output
+
+
 def test_lookup_cli_species_short():
     runner = CliRunner()
     result = runner.invoke(app, ["lookup", "species", "00010", "--short"])
@@ -435,6 +564,46 @@ def test_dump_cli_output_dir_single_table(tmp_path):
     assert outputs
 
 
+def test_dump_cli_requires_table():
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump"])
+    assert result.exit_code == 1
+    assert "Specify one or more code tables" in result.output
+
+
+def test_dump_cli_all_requires_output_dir():
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "--all"])
+    assert result.exit_code == 1
+    assert "--output-dir is required" in result.output
+
+
+def test_dump_cli_all_with_table_error(tmp_path):
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "sex", "--all", "--output-dir", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "Do not specify table names when using --all." in result.output
+
+
+def test_dump_cli_output_dir_overwrite_refused(tmp_path):
+    output_path = tmp_path / "code_table_sex.json"
+    output_path.write_text("{}", encoding="utf-8")
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "sex", "--output-dir", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "use --force to overwrite" in result.output
+
+
+def test_dump_cli_all_skips_missing_data(tmp_path, monkeypatch):
+    def _fake_load_data(_name):
+        return None
+
+    monkeypatch.setattr(main_module, "load_data", _fake_load_data)
+    runner = CliRunner()
+    result = runner.invoke(app, ["dump", "--all", "--output-dir", str(tmp_path)])
+    assert result.exit_code == 0
+
+
 def test_convert_cli_file_success(tmp_path):
     records = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")
     file_path = tmp_path / "euring2000_examples.txt"
@@ -463,6 +632,47 @@ def test_convert_cli_file_output(tmp_path):
     assert result.output.strip() == ""
     output_lines = [line for line in output_path.read_text(encoding="utf-8").splitlines() if line.strip()]
     assert len(output_lines) == len(records)
+
+
+def test_convert_cli_file_and_record_error(tmp_path):
+    file_path = tmp_path / "euring2000_examples.txt"
+    file_path.write_text("GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0|4", encoding="utf-8")
+    runner = CliRunner()
+    result = runner.invoke(app, ["convert", "--file", str(file_path), "GBB"])
+    assert result.exit_code == 1
+    assert "Use either a record or --file, not both." in result.output
+
+
+def test_convert_cli_missing_args():
+    runner = CliRunner()
+    result = runner.invoke(app, ["convert"])
+    assert result.exit_code == 1
+    assert "Provide a record or use --file." in result.output
+
+
+def test_convert_cli_file_errors(tmp_path):
+    file_path = tmp_path / "records.psv"
+    file_path.write_text("not-a-record", encoding="utf-8")
+    runner = CliRunner()
+    result = runner.invoke(app, ["convert", "--file", str(file_path), "--to", "euring2000plus"])
+    assert result.exit_code == 1
+    assert "Conversion errors:" in result.output
+
+
+def test_convert_cli_output_file(tmp_path):
+    output_path = tmp_path / "converted.txt"
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        [
+            "convert",
+            "--output",
+            str(output_path),
+            "DERA0CD...5206501ZZ1877018770N0ZUFF22U-----081019710----DECK+502400+00742000820030000000000000",
+        ],
+    )
+    assert result.exit_code == 0
+    assert output_path.exists()
 
 
 def test_convert_cli_success():

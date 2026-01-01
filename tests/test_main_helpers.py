@@ -33,3 +33,14 @@ def test_emit_glob_hint_ignores_patterns(capsys):
 def test_with_meta_includes_generator():
     payload = main_module._with_meta({"type": "test"})
     assert payload["_meta"]["generator"]["name"] == "euring"
+
+
+def test_main_entrypoint_invokes_app(monkeypatch):
+    calls = {"count": 0}
+
+    def _fake_app():
+        calls["count"] += 1
+
+    monkeypatch.setattr(main_module, "app", _fake_app)
+    main_module.main()
+    assert calls["count"] == 1
