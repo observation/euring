@@ -1,5 +1,9 @@
 # Changelog
 
+## 26.1 (2026-01-02)
+
+- Use singular naming for place code table (#60).
+
 ## 25.3 (2025-12-31)
 
 - Align field names with the EURING manual (#46).
