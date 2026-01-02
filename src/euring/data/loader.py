@@ -99,7 +99,7 @@ def load_named_code_map(
 
 
 def load_place_map() -> dict[str, str]:
-    data = load_table("place_codes")
+    data = load_table("place_code")
     if not data:
         return {}
     result: dict[str, str] = {}
@@ -120,7 +120,7 @@ def load_place_map() -> dict[str, str]:
 
 def load_place_details() -> dict[str, dict[str, Any]]:
     """Load place code details keyed by place code."""
-    data = load_table("place_codes")
+    data = load_table("place_code")
     if not data:
         return {}
     result: dict[str, dict[str, Any]] = {}

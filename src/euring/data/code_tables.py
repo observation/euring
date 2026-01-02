@@ -22,7 +22,7 @@ from .code_table_moult import TABLE as moult
 from .code_table_moved_before_the_encounter import TABLE as moved_before_the_encounter
 from .code_table_other_marks_information import TABLE as other_marks_information
 from .code_table_pectoral_muscle_score import TABLE as pectoral_muscle_score
-from .code_table_place_codes import TABLE as place_codes
+from .code_table_place_code import TABLE as place_code
 from .code_table_plumage_code import TABLE as plumage_code
 from .code_table_primary_identification_method import TABLE as primary_identification_method
 from .code_table_primary_moult import TABLE as primary_moult
@@ -58,7 +58,7 @@ EURING_CODE_TABLES = {
     "moved_before_the_encounter": moved_before_the_encounter,
     "moult": moult,
     "other_marks_information": other_marks_information,
-    "place_codes": place_codes,
+    "place_code": place_code,
     "plumage_code": plumage_code,
     "pectoral_muscle_score": pectoral_muscle_score,
     "primary_identification_method": primary_identification_method,
