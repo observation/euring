@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/observation/euring/badge.svg?branch=main)](https://coveralls.io/github/observation/euring?branch=main)
 [![Latest PyPI version](https://img.shields.io/pypi/v/euring.svg)](https://pypi.org/project/euring/)
 
-A Python library and CLI for decoding, validating, and converting EURING bird ringing data records (EURING2000, EURING2000+, EURING2020).
+A Python library and CLI for decoding, validating, and converting EURING ringing and recovery records (EURING2000, EURING2000+, EURING2020).
 
 ## What are EURING Codes?
 
