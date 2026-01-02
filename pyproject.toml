@@ -117,6 +117,7 @@ source-include = [
   "example.py",
   "justfile",
   "*.md",
+  "CITATION.cff",
   "example/**",
   "src/euring/data/**",
   "tests/**",
