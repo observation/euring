@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it."
+title: "euring"
+version: "25.3"
+abstract: "A Python library and CLI for decoding, validating, and converting EURING ringing and recovery records."
+license: "BSD-3-Clause"
+repository-code: "https://github.com/observation/euring"
+homepage: "https://github.com/observation/euring"
+documentation: "https://euring.readthedocs.io/"
+keywords:
+  - "euring"
+  - "euring2000"
+  - "euring2000+"
+  - "euring2020"
+  - "bird"
+  - "ringing"
+  - "ornithology"
+authors:
+  - family-names: "Verheul"
+    given-names: "Dylan"
+    email: "dylan@dyve.net"
+    orcid: "https://orcid.org/0000-0001-7817-0200"
