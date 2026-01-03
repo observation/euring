@@ -27,3 +27,7 @@ Build a EURING record:
    builder.set("geographical_coordinates", "+0000000+0000000")
    builder.set("accuracy_of_coordinates", "1")
    record = builder.build()
+
+``build()`` raises ``ValueError`` if required fields are missing or a value
+fails validation. Use ``EuringRecordBuilder("euring2000plus", strict=False)``
+to allow missing optional values and keep placeholders in the output.
