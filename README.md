@@ -6,6 +6,10 @@
 
 A Python library and CLI for decoding, validating, and converting EURING ringing and recovery records (EURING2000, EURING2000+, EURING2020).
 
+The full documentation is at <https://euring.readthedocs.org>.
+
+Issues can be reported at <https://github.com/observation/euring/issues>.
+
 ## What are EURING Codes?
 
 [EURING](https://www.euring.org) is the European Union for Bird Ringing.
