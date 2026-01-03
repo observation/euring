@@ -1,6 +1,28 @@
 Examples
 ========
 
+Building records
+----------------
+
+Use ``EuringRecordBuilder`` to assemble a valid EURING record from field values.
+
+.. code-block:: python
+
+   from euring import EuringRecordBuilder
+
+   builder = EuringRecordBuilder("euring2000plus")
+   builder.set("ringing_scheme", "GBB")
+   builder.set("primary_identification_method", "A0")
+   builder.set("identification_number", "1234567890")
+   builder.set("place_code", "AB00")
+   builder.set("geographical_coordinates", "+0000000+0000000")
+   builder.set("accuracy_of_coordinates", "1")
+   record = builder.build()
+
+If you want to allow missing optional values and keep placeholders, pass
+``strict=False`` to the builder. ``build()`` raises ``ValueError`` when a field
+fails validation.
+
 Exporting records
 -----------------
 
