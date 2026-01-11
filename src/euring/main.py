@@ -61,18 +61,18 @@ def decode(
                 if not record_line:
                     continue
                 record = euring_decode_record(record_line, format=format)
-                if format and _has_errors(record.get("errors", {})):
+                if _has_errors(record.get("errors", {})):
                     has_errors = True
                 records.append(record)
             payload = _with_meta({"records": records})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
-                if format and has_errors:
+                if has_errors:
                     raise typer.Exit(1)
                 return
             typer.echo(text)
-            if format and has_errors:
+            if has_errors:
                 raise typer.Exit(1)
             return
         record = euring_decode_record(euring_string, format=format)
@@ -82,18 +82,13 @@ def decode(
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
-                if format and _has_errors(errors):
+                if _has_errors(errors):
                     raise typer.Exit(1)
                 return
             typer.echo(text)
-            if format and _has_errors(errors):
+            if _has_errors(errors):
                 raise typer.Exit(1)
             return
-        if format and _has_errors(errors):
-            typer.echo("Record has errors:", err=True)
-            for line in _format_error_lines(errors, indent="  "):
-                typer.echo(line, err=True)
-            raise typer.Exit(1)
         typer.echo("Decoded EURING record:")
         typer.echo(f"Format: {record.get('format', 'Unknown')}")
         typer.echo(f"Ringing Scheme: {record.get('ringing_scheme', 'Unknown')}")
@@ -101,6 +96,11 @@ def decode(
             typer.echo("Data fields:")
             for key, value in record["data"].items():
                 typer.echo(f"  {key}: {value}")
+        if _has_errors(errors):
+            typer.echo("Record has errors:", err=True)
+            for line in _format_error_lines(errors, indent="  "):
+                typer.echo(line, err=True)
+            raise typer.Exit(1)
     except EuringParseException as e:
         typer.echo(f"Parse error: {e}", err=True)
         raise typer.Exit(1)

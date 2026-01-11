@@ -1,6 +1,4 @@
-import uuid
 from collections import OrderedDict
-from hashlib import md5
 
 from .codes import lookup_description
 from .exceptions import EuringParseException
@@ -299,10 +297,6 @@ class EuringDecoder:
         self.results["ringing_scheme"] = scheme
         self.results["animal"] = f"{scheme}#{ring}"
         self.results["date"] = date
-        # Unique hash for this euring code
-        self.results["hash"] = md5(f"{self.value_to_decode}".encode()).hexdigest()
-        # Unique id for this record
-        self.results["id"] = uuid.uuid4()
 
     def get_results(self):
         if self.results is None:

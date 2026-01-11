@@ -306,7 +306,7 @@ def test_decode_cli_invalid_species_format_reports_errors():
 
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "--json", _make_euring2000_plus_record_with_invalid_species()])
-    assert result.exit_code == 0
+    assert result.exit_code == 1
     payload = json.loads(result.output)
     assert "errors" in payload
     fields = [error["field"] for error in payload["errors"]["fields"]]
@@ -366,8 +366,9 @@ def test_lookup_cli_place_json_short():
 def test_decode_cli_non_euring_string():
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "not-a-record"])
-    assert result.exit_code == 0
+    assert result.exit_code == 1
     assert "Decoded EURING record:" in result.output
+    assert "Record has errors:" in result.output
 
 
 def test_decode_cli_parse_exception(monkeypatch):
