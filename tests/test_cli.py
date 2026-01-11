@@ -114,11 +114,26 @@ def test_decode_cli_success():
     assert "Ringing Scheme: GBB" in result.output
 
 
+def test_decode_cli_format_mismatch_fails():
+    runner = CliRunner()
+    record = _make_euring2020_record_with_coords()
+    result = runner.invoke(app, ["decode", "--format", "euring2000", record])
+    assert result.exit_code == 1
+    assert 'Format "EURING2000" conflicts with pipe-delimited data.' in result.output
+
+
 def test_decode_cli_invalid_format():
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "--format", "2000", "GBB"])
     assert result.exit_code == 1
     assert "Parse error" in result.output
+
+
+def test_decode_cli_invalid_format_hint():
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--format", "2000", "GBB"])
+    assert result.exit_code == 1
+    assert "Did you mean euring2000plus?" in result.output
 
 
 def test_decode_cli_json_output():
@@ -187,6 +202,25 @@ def test_validate_cli_json():
     assert result.exit_code == 1
     payload = json.loads(result.output)
     assert payload["errors"]
+
+
+def test_validate_cli_invalid_format_hint():
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--format", "2020", "GBB"])
+    assert result.exit_code == 1
+    assert "Did you mean euring2020?" in result.output
+
+
+def test_validate_cli_forced_euring2000_rejects_pipe_record():
+    import json
+
+    record = _make_euring2020_record_with_coords()
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--json", "--format", "euring2000", record])
+    assert result.exit_code == 1
+    payload = json.loads(result.output)
+    messages = [message for values in payload["errors"].values() for message in values]
+    assert 'Format "EURING2000" conflicts with pipe-delimited data.' in messages
 
 
 def test_validate_cli_json_output_file(tmp_path):

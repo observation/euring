@@ -54,27 +54,46 @@ def decode(
                 raise typer.Exit(1)
             lines = file.read_text(encoding="utf-8").splitlines()
             records = []
+            has_errors = False
             for line in lines:
                 record_line = line.strip()
                 if not record_line:
                     continue
-                records.append(euring_decode_record(record_line, format=format))
+                record = euring_decode_record(record_line, format=format)
+                if format and record.get("errors"):
+                    has_errors = True
+                records.append(record)
             payload = _with_meta({"records": records})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
+                if format and has_errors:
+                    raise typer.Exit(1)
                 return
             typer.echo(text)
+            if format and has_errors:
+                raise typer.Exit(1)
             return
         record = euring_decode_record(euring_string, format=format)
+        errors = record.get("errors", {})
         if output_format == "json":
             payload = _with_meta(record)
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
+                if format and errors:
+                    raise typer.Exit(1)
                 return
             typer.echo(text)
+            if format and errors:
+                raise typer.Exit(1)
             return
+        if format and errors:
+            typer.echo("Record has errors:", err=True)
+            for field, messages in errors.items():
+                for message in messages:
+                    typer.echo(f"  {field}: {message}", err=True)
+            raise typer.Exit(1)
         typer.echo("Decoded EURING record:")
         typer.echo(f"Format: {record.get('format', 'Unknown')}")
         typer.echo(f"Ringing Scheme: {record.get('ringing_scheme', 'Unknown')}")
