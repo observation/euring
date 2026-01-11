@@ -56,14 +56,14 @@ Options:
 ``decode``
   ``--json``  Output JSON instead of text.
   ``--pretty``  Pretty-print JSON output (use with ``--json``).
-  ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
+  ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020``.
   ``--file``  Read records from a text file.
   ``--output``  Write output to a file.
 
 ``validate``
   ``--json``  Output JSON instead of text.
   ``--pretty``  Pretty-print JSON output (use with ``--json``).
-  ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
+  ``--format``  Force format: ``euring2000``, ``euring2000plus``, or ``euring2020``.
   ``--file``  Read records from a text file.
   ``--output``  Write output to a file.
 
@@ -74,7 +74,7 @@ Options:
 
 ``convert``
   ``--from``  Source format (optional): ``euring2000``, ``euring2000plus``, or ``euring2020``.
-  ``--to``  Target format: ``euring2000``, ``euring2000plus``, or ``euring2020`` (aliases: ``euring2000+``, ``euring2000p``).
+  ``--to``  Target format: ``euring2000``, ``euring2000plus``, or ``euring2020``.
   ``--force``  Allow lossy mappings when downgrading from ``euring2020``.
   ``--file``  Read records from a text file.
   ``--output``  Write converted output to a file.
