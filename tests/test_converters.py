@@ -51,17 +51,17 @@ def test_convert_unknown_source_format():
 
 def test_convert_fixed_width_rejects_pipe():
     with pytest.raises(ValueError):
-        convert_euring_record("A|B", source_format="EURING2000", target_format="euring2000plus")
+        convert_euring_record("A|B", source_format="euring2000", target_format="euring2000plus")
 
 
 def test_convert_fixed_width_too_short():
     with pytest.raises(ValueError):
-        convert_euring_record("A" * 10, source_format="EURING2000", target_format="euring2000plus")
+        convert_euring_record("A" * 10, source_format="euring2000", target_format="euring2000plus")
 
 
 def test_convert_fixed_width_extra_data():
     with pytest.raises(ValueError):
-        convert_euring_record("A" * 94 + "X", source_format="EURING2000", target_format="euring2000plus")
+        convert_euring_record("A" * 94 + "X", source_format="euring2000", target_format="euring2000plus")
 
 
 def test_convert_euring2000_record_helper():
@@ -73,7 +73,7 @@ def test_convert_euring2000_record_helper():
 def test_convert_extra_fields_rejected():
     record = _load_fixture("euring2000plus_examples", "EURING2000PLUS_EXAMPLES")
     with pytest.raises(ValueError):
-        convert_euring_record(record + "|EXTRA", source_format="EURING2000+", target_format="euring2020")
+        convert_euring_record(record + "|EXTRA", source_format="euring2000plus", target_format="euring2020")
 
 
 def test_convert_requires_force_for_2020_fields():
@@ -133,9 +133,9 @@ def test_convert_auto_detects_fixed_width():
     assert "|" in converted
 
 
-def test_convert_source_format_alias():
+def test_convert_source_format_plus_name():
     record = _load_fixture("euring2000plus_examples", "EURING2000PLUS_EXAMPLES")
-    converted = convert_euring_record(record, source_format="EURING2000P", target_format="euring2020")
+    converted = convert_euring_record(record, source_format="euring2000plus", target_format="euring2020")
     assert converted.count("|") >= record.count("|")
 
 

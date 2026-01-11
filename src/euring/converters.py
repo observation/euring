@@ -1,25 +1,32 @@
 from __future__ import annotations
 
 from .fields import EURING_FIELDS
+from .formats import (
+    FORMAT_EURING2000,
+    FORMAT_EURING2000PLUS,
+    FORMAT_EURING2020,
+    format_error,
+    normalize_format,
+)
 from .utils import euring_lat_to_dms, euring_lng_to_dms
 
 
-def convert_euring2000_record(value: str, target_format: str = "EURING2000PLUS") -> str:
-    """Convert a fixed-width EURING2000 record to EURING2000PLUS or EURING2020."""
-    return convert_euring_record(value, source_format="EURING2000", target_format=target_format)
+def convert_euring2000_record(value: str, target_format: str = FORMAT_EURING2020) -> str:
+    """Convert a fixed-width euring2000 record to euring2000plus or euring2020."""
+    return convert_euring_record(value, source_format=FORMAT_EURING2000, target_format=target_format)
 
 
 def convert_euring_record(
     value: str,
     source_format: str | None = None,
-    target_format: str = "EURING2000PLUS",
+    target_format: str = FORMAT_EURING2020,
     force: bool = False,
 ) -> str:
-    """Convert EURING records between EURING2000, EURING2000PLUS, and EURING2020."""
+    """Convert EURING records between euring2000, euring2000plus, and euring2020."""
     normalized_target, values_by_key, target_fields = convert_euring_record_data(
         value, source_format=source_format, target_format=target_format, force=force
     )
-    if normalized_target == "EURING2000":
+    if normalized_target == FORMAT_EURING2000:
         return _format_fixed_width(values_by_key, target_fields)
     output_values = [values_by_key.get(field["key"], "") for field in target_fields]
     return "|".join(output_values)
@@ -29,14 +36,14 @@ def convert_euring_record_data(
     value: str,
     *,
     source_format: str | None = None,
-    target_format: str = "EURING2000PLUS",
+    target_format: str,
     force: bool = False,
 ) -> tuple[str, dict[str, str], list[dict[str, object]]]:
     """Convert and return the normalized target format plus field values by key."""
     normalized_target = _normalize_target_format(target_format)
     normalized_source = _normalize_source_format(source_format, value)
 
-    if normalized_source == "EURING2000":
+    if normalized_source == FORMAT_EURING2000:
         fields = _split_fixed_width(value)
         source_fields = _fixed_width_fields()
     else:
@@ -45,14 +52,14 @@ def convert_euring_record_data(
         if len(fields) > len(source_fields) and any(part.strip() for part in fields[len(source_fields) :]):
             raise ValueError(
                 "Input has more fields than expected for the declared format. "
-                "Use EURING2020 when 2020-only fields are present."
+                f"Use {FORMAT_EURING2020} when 2020-only fields are present."
             )
 
     values_by_key = _map_fields_to_values(source_fields, fields)
     _require_force_on_loss(values_by_key, normalized_source, normalized_target, force)
     _apply_coordinate_downgrade(values_by_key, normalized_source, normalized_target, force)
 
-    if normalized_target == "EURING2000":
+    if normalized_target == FORMAT_EURING2000:
         target_fields = _fixed_width_fields()
     else:
         target_fields = _target_fields(normalized_target)
@@ -62,11 +69,11 @@ def convert_euring_record_data(
 
 def _split_fixed_width(value: str) -> list[str]:
     if "|" in value:
-        raise ValueError("Input appears to be pipe-delimited, not fixed-width EURING2000.")
+        raise ValueError(f"Input appears to be pipe-delimited, not fixed-width {FORMAT_EURING2000}.")
     if len(value) < 94:
-        raise ValueError("EURING2000 record must be 94 characters long.")
+        raise ValueError(f"{FORMAT_EURING2000} record must be 94 characters long.")
     if len(value) > 94 and value[94:].strip():
-        raise ValueError("EURING2000 record contains extra data beyond position 94.")
+        raise ValueError(f"{FORMAT_EURING2000} record contains extra data beyond position 94.")
     fields: list[str] = []
     start = 0
     for field in _fixed_width_fields():
@@ -94,14 +101,14 @@ def _map_fields_to_values(fields: list[dict[str, object]], values: list[str]) ->
 
 def _require_force_on_loss(values_by_key: dict[str, str], source_format: str, target_format: str, force: bool) -> None:
     reasons: list[str] = []
-    if target_format in {"EURING2000", "EURING2000+"}:
+    if target_format in {FORMAT_EURING2000, FORMAT_EURING2000PLUS}:
         for key in ("latitude", "longitude", "current_place_code", "more_other_marks"):
             if values_by_key.get(key):
                 reasons.append(f"drop {key}")
         accuracy = values_by_key.get("accuracy_of_coordinates", "")
         if accuracy.isalpha():
             reasons.append("alphabetic coordinate accuracy")
-    if target_format == "EURING2000":
+    if target_format == FORMAT_EURING2000:
         fixed_keys = {field["key"] for field in _fixed_width_fields()}
         for key, value in values_by_key.items():
             if key not in fixed_keys and value:
@@ -114,13 +121,13 @@ def _require_force_on_loss(values_by_key: dict[str, str], source_format: str, ta
 def _apply_coordinate_downgrade(
     values_by_key: dict[str, str], source_format: str, target_format: str, force: bool
 ) -> None:
-    if target_format not in {"EURING2000", "EURING2000+"}:
+    if target_format not in {FORMAT_EURING2000, FORMAT_EURING2000PLUS}:
         return
     accuracy = values_by_key.get("accuracy_of_coordinates", "")
     if accuracy.isalpha():
         if not force:
             raise ValueError(
-                "Alphabetic accuracy codes are only valid in EURING2020. Use --force to apply lossy mapping."
+                f"Alphabetic accuracy codes are only valid in {FORMAT_EURING2020}. Use --force to apply lossy mapping."
             )
         mapped = _map_alpha_accuracy_to_numeric(accuracy)
         if mapped is None:
@@ -174,7 +181,7 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
 
 
 def _target_fields(target_format: str) -> list[dict[str, object]]:
-    if target_format == "EURING2000+":
+    if target_format == FORMAT_EURING2000PLUS:
         for index, field in enumerate(EURING_FIELDS):
             if field.get("key") == "reference":
                 return EURING_FIELDS[: index + 1]
@@ -182,45 +189,29 @@ def _target_fields(target_format: str) -> list[dict[str, object]]:
 
 
 def _normalize_target_format(target_format: str) -> str:
-    raw = target_format.strip()
-    normalized = raw.upper()
-    if normalized.startswith("EURING"):
-        normalized = normalized.replace("EURING", "")
-    else:
-        raise ValueError(f'Unknown target format "{target_format}". Use euring2000, euring2000plus, or euring2020.')
-    if normalized in {"2000", "2000+", "2000PLUS", "2000P"}:
-        if normalized == "2000":
-            return "EURING2000"
-        return "EURING2000+"
-    if normalized == "2020":
-        return "EURING2020"
-    raise ValueError(f'Unknown target format "{target_format}". Use euring2000, euring2000plus, or euring2020.')
+    try:
+        return normalize_format(target_format)
+    except ValueError:
+        raise ValueError(format_error(target_format, "target format"))
 
 
 def _normalize_source_format(source_format: str | None, value: str) -> str:
     if source_format is None:
         if "|" not in value:
-            return "EURING2000"
+            return FORMAT_EURING2000
         values = value.split("|")
         reference_index = _field_index("reference")
         accuracy_index = _field_index("accuracy_of_coordinates")
         accuracy_value = values[accuracy_index] if accuracy_index < len(values) else ""
         has_2020_fields = len(values) > reference_index + 1
         if (accuracy_value and accuracy_value.isalpha()) or has_2020_fields:
-            return "EURING2020"
-        return "EURING2000+"
+            return FORMAT_EURING2020
+        return FORMAT_EURING2000PLUS
 
-    normalized = source_format.strip().upper()
-    if not normalized.startswith("EURING"):
-        raise ValueError(f'Unknown source format "{source_format}". Use euring2000, euring2000plus, or euring2020.')
-    normalized = normalized.replace("EURING", "")
-    if normalized in {"2000", "2000+", "2000PLUS", "2000P", "2020"}:
-        if normalized == "2000":
-            return "EURING2000"
-        if normalized in {"2000PLUS", "2000P"}:
-            normalized = "2000+"
-        return f"EURING{normalized}"
-    raise ValueError(f'Unknown source format "{source_format}". Use euring2000, euring2000plus, or euring2020.')
+    try:
+        return normalize_format(source_format)
+    except ValueError:
+        raise ValueError(format_error(source_format, "source format"))
 
 
 def _field_index(key: str) -> int:

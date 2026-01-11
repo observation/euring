@@ -133,7 +133,7 @@ def test_decode_cli_invalid_format_hint():
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "--format", "2000", "GBB"])
     assert result.exit_code == 1
-    assert "Did you mean euring2000plus?" in result.output
+    assert "Did you mean euring2000?" in result.output
 
 
 def test_decode_cli_json_output():
@@ -528,9 +528,9 @@ def test_convert_cli_downgrade_with_coords():
         [
             "convert",
             "--from",
-            "EURING2020",
+            "euring2020",
             "--to",
-            "EURING2000PLUS",
+            "euring2000plus",
             "--force",
             _make_euring2020_record_with_coords(),
         ],

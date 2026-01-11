@@ -19,6 +19,7 @@ from .converters import convert_euring_record
 from .data.code_tables import EURING_CODE_TABLES
 from .data.loader import load_data
 from .decoders import EuringParseException, euring_decode_record
+from .formats import FORMAT_EURING2020
 
 app = typer.Typer(help="EURING data processing CLI")
 
@@ -33,7 +34,7 @@ def decode(
     format: str | None = typer.Option(
         None,
         "--format",
-        help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p).",
+        help="Force EURING format: euring2000, euring2000plus, or euring2020.",
     ),
 ):
     """Decode EURING records (single record or --file)."""
@@ -121,7 +122,7 @@ def validate_record(
     format: str | None = typer.Option(
         None,
         "--format",
-        help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+        help="Force EURING format: euring2000, euring2000plus, or euring2020",
     ),
 ):
     """Validate EURING records and return errors only."""
@@ -218,9 +219,9 @@ def convert(
         None, "--from", help="Source format (optional): euring2000, euring2000plus, or euring2020"
     ),
     target_format: str = typer.Option(
-        "euring2000plus",
+        FORMAT_EURING2020,
         "--to",
-        help="Target format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+        help="Target format: euring2000, euring2000plus, or euring2020",
     ),
     force: bool = typer.Option(
         False,

@@ -104,7 +104,7 @@ class TestDecoding:
     def test_decode_euring2020_format_rejects_2000_plus(self):
         record = euring_decode_record(
             _make_euring2000_plus_record(accuracy="A"),
-            format="EURING2000+",
+            format="euring2000plus",
         )
         assert record["errors"]
 
@@ -206,7 +206,7 @@ class TestDecoding:
             EuringDecoder("GBB", format="2000")
 
     def test_decode_format_conflict_pipe(self):
-        record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"), format="EURING2000")
+        record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"), format="euring2000")
         assert record["errors"]
 
     def test_decode_format_conflict_fixed_width(self):
@@ -219,7 +219,7 @@ class TestDecoding:
         module = module_from_spec(spec)
         spec.loader.exec_module(module)
 
-        record = euring_decode_record(module.EURING2000_EXAMPLES[0], format="EURING2000+")
+        record = euring_decode_record(module.EURING2000_EXAMPLES[0], format="euring2000plus")
         assert record["errors"]
 
     def test_decode_invalid_species_format(self):

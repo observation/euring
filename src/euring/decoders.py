@@ -5,6 +5,14 @@ from hashlib import md5
 from .codes import lookup_description
 from .exceptions import EuringParseException
 from .fields import EURING_FIELDS
+from .formats import (
+    FORMAT_EURING2000,
+    FORMAT_EURING2000PLUS,
+    FORMAT_EURING2020,
+    format_display_name,
+    format_error,
+    normalize_format,
+)
 from .types import is_valid_type
 
 
@@ -56,7 +64,7 @@ def euring_decode_record(value, format: str | None = None):
     Decode a EURING record.
 
     :param value: EURING text
-    :param format: Optional format declaration ("EURING2000", "EURING2000+", "EURING2020")
+    :param format: Optional format declaration ("euring2000", "euring2000plus", "euring2020")
     :return: OrderedDict with results
     """
     decoder = EuringDecoder(value, format=format)
@@ -128,8 +136,11 @@ class EuringDecoder:
 
         # Just one field? Then we have EURING2000
         if len(fields) <= 1:
-            if self.format and self.format != "EURING2000":
-                self.add_error(0, f'Format "{self.format}" conflicts with fixed-width EURING2000 data.')
+            if self.format and self.format != FORMAT_EURING2000:
+                self.add_error(
+                    0,
+                    f'Format "{format_display_name(self.format)}" conflicts with fixed-width EURING2000 data.',
+                )
             fields = []
             start = 0
             done = False
@@ -154,34 +165,34 @@ class EuringDecoder:
                 else:
                     # No length, so we don't expect any more valid fields
                     done = True
-            self.results["format"] = "EURING2000"
+            current_format = FORMAT_EURING2000
         else:
-            if self.format == "EURING2000":
-                self.add_error(0, 'Format "EURING2000" conflicts with pipe-delimited data.')
-            self.results["format"] = self.format or "EURING2000+"
+            if self.format == FORMAT_EURING2000:
+                self.add_error(0, f'Format "{format_display_name(self.format)}" conflicts with pipe-delimited data.')
+            current_format = self.format or FORMAT_EURING2000PLUS
 
         # Parse the fields
         for index, field_kwargs in enumerate(EURING_FIELDS):
             self.parse_field(fields, index, **field_kwargs)
-        if self.results["format"] in {"EURING2000+", "EURING2020"}:
+        if current_format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020}:
             is_2020 = self._is_euring2020()
-            if is_2020 and self.results["format"] == "EURING2000+":
+            if is_2020 and current_format == FORMAT_EURING2000PLUS:
                 if self.format:
                     self.add_error(
                         "Accuracy of Co-ordinates",
                         "Alphabetic accuracy codes or 2020-only fields require EURING2020 format.",
                     )
                 else:
-                    self.results["format"] = "EURING2020"
-            elif self.results["format"] == "EURING2020" and self.format is None and not is_2020:
+                    current_format = FORMAT_EURING2020
+            elif current_format == FORMAT_EURING2020 and self.format is None and not is_2020:
                 # Format was explicitly set to EURING2020 elsewhere; keep it as-is.
                 pass
-        if self.results["format"] == "EURING2000" and self._accuracy_is_alpha():
+        if current_format == FORMAT_EURING2000 and self._accuracy_is_alpha():
             self.add_error(
                 "Accuracy of Co-ordinates",
                 "Alphabetic accuracy codes are only valid in EURING2020.",
             )
-        if self.results["format"] == "EURING2020":
+        if current_format == FORMAT_EURING2020:
             data_by_key = self.results.get("data_by_key") or {}
             geo = data_by_key.get("geographical_coordinates")
             lat = data_by_key.get("latitude")
@@ -199,6 +210,8 @@ class EuringDecoder:
                 self.add_error("Longitude", "Longitude is required when Latitude is provided.")
             if lng_value and not lat_value:
                 self.add_error("Latitude", "Latitude is required when Longitude is provided.")
+
+        self.results["format"] = format_display_name(current_format)
 
         # Some post processing
         try:
@@ -249,26 +262,7 @@ class EuringDecoder:
     def _normalize_format(format: str | None) -> str | None:
         if not format:
             return None
-        raw = format.strip()
-        normalized = raw.upper()
-        if normalized.startswith("EURING"):
-            normalized = normalized.replace("EURING", "")
-        else:
-            format = _format_suggestion(normalized)
-            message = f'Unknown format "{format}". Use euring2000, euring2000plus, or euring2020.'
-            if format:
-                message = f"{message} Did you mean {format}?"
-            raise EuringParseException(message)
-        if normalized in {"2000", "2000+", "2000PLUS", "2000P", "2020"}:
-            if normalized in {"2000PLUS", "2000P"}:
-                normalized = "2000+"
-            return f"EURING{normalized}"
-        raise EuringParseException(f'Unknown format "{format}". Use euring2000, euring2000plus, or euring2020.')
-
-
-def _format_suggestion(normalized: str) -> str | None:
-    if normalized in {"2000", "2000+", "2000PLUS", "2000P"}:
-        return "euring2000plus"
-    if normalized == "2020":
-        return "euring2020"
-    return None
+        try:
+            return normalize_format(format)
+        except ValueError:
+            raise EuringParseException(format_error(format))

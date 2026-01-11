@@ -19,7 +19,7 @@ Build a EURING record:
 
    from euring import EuringRecordBuilder
 
-   builder = EuringRecordBuilder()
+   builder = EuringRecordBuilder("euring2000plus")
    builder.set("ringing_scheme", "GBB")
    builder.set("primary_identification_method", "A0")
    builder.set("identification_number", "1234567890")
