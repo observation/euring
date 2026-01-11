@@ -12,6 +12,7 @@ from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
+    normalize_format,
 )
 from .types import is_valid_type
 
