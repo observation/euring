@@ -26,18 +26,18 @@ def test_builder_normalizes_aliases():
     assert EuringRecordBuilder("2020", strict=False).format == "euring2020"
 
 
-def test_decode_format_hint_accepts_aliases():
+def test_decode_format_accepts_aliases():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    decoded = euring_decode_record(record, format_hint="EURING2000P")
+    decoded = euring_decode_record(record, format="EURING2000P")
     assert decoded["format"] == "EURING2000+"
 
 
-def test_decode_format_hint_rejects_missing_prefix():
+def test_decode_format_rejects_missing_prefix():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    with pytest.raises(EuringParseException, match="Unknown format hint"):
-        euring_decode_record(record, format_hint="2000plus")
+    with pytest.raises(EuringParseException, match="Unknown format"):
+        euring_decode_record(record, format="2000plus")
 
 
 def test_convert_target_format_accepts_aliases():

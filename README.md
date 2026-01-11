@@ -38,7 +38,7 @@ euring decode "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+5842
 # Decode a EURING record as JSON (includes a _meta.generator block)
 euring decode --json --pretty "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 
-# Decode with an explicit format hint (aliases: EURING2000+ / EURING2000P)
+# Decode with an explicit format (aliases: EURING2000+ / EURING2000P)
 euring decode --format euring2020 "DER|A0|CD...52065|0|1|ZZ|18770|18770|N|0|Z|U|F|F|2|2|U|--|--|-|08101971|0|----|DECK|...............|G|8|20|0|3|00000|000|00000||||||||||||||||||||||||||||50.4000|7.7000||"
 euring decode --format euring2000plus "ESA|A0|Z.....6408|1|4|ZZ|12430|12430|N|0|Z|U|U|U|0|0|U|--|--|-|11082006|0|----|ES14|+420500-0044500|0|0|99|0|4|00280|241|00097|63.5||U|10|U|U|||||||||3|E||0|||||||||"
 

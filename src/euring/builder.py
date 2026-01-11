@@ -57,7 +57,7 @@ class EuringRecordBuilder:
 
         if self.strict:
             hint = _format_hint(self.format)
-            result = euring_decode_record(record, format_hint=hint)
+            result = euring_decode_record(record, format=hint)
             if result.get("errors"):
                 raise ValueError(f"Record validation failed: {result['errors']}")
 

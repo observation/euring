@@ -114,7 +114,7 @@ def test_decode_cli_success():
     assert "Ringing Scheme: GBB" in result.output
 
 
-def test_decode_cli_invalid_format_hint():
+def test_decode_cli_invalid_format():
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "--format", "2000", "GBB"])
     assert result.exit_code == 1

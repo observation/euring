@@ -51,15 +51,15 @@ def euring_decode_value(
     return results
 
 
-def euring_decode_record(value, format_hint: str | None = None):
+def euring_decode_record(value, format: str | None = None):
     """
     Decode a EURING record.
 
     :param value: EURING text
-    :param format_hint: Optional format hint ("EURING2000", "EURING2000+", "EURING2020")
+    :param format: Optional format declaration ("EURING2000", "EURING2000+", "EURING2020")
     :return: OrderedDict with results
     """
-    decoder = EuringDecoder(value, format_hint=format_hint)
+    decoder = EuringDecoder(value, format=format)
     return decoder.get_results()
 
 
@@ -70,9 +70,9 @@ class EuringDecoder:
     results = None
     errors = None
 
-    def __init__(self, value_to_decode, format_hint: str | None = None):
+    def __init__(self, value_to_decode, format: str | None = None):
         self.value_to_decode = value_to_decode
-        self.format_hint = self._normalize_format_hint(format_hint)
+        self.format = self._normalize_format(format)
         super().__init__()
 
     def add_error(self, field, message):
@@ -128,8 +128,8 @@ class EuringDecoder:
 
         # Just one field? Then we have EURING2000
         if len(fields) <= 1:
-            if self.format_hint and self.format_hint != "EURING2000":
-                self.add_error(0, f'Format hint "{self.format_hint}" conflicts with fixed-width EURING2000 data.')
+            if self.format and self.format != "EURING2000":
+                self.add_error(0, f'Format "{self.format}" conflicts with fixed-width EURING2000 data.')
             fields = []
             start = 0
             done = False
@@ -156,9 +156,9 @@ class EuringDecoder:
                     done = True
             self.results["format"] = "EURING2000"
         else:
-            if self.format_hint == "EURING2000":
-                self.add_error(0, 'Format hint "EURING2000" conflicts with pipe-delimited data.')
-            self.results["format"] = self.format_hint or "EURING2000+"
+            if self.format == "EURING2000":
+                self.add_error(0, 'Format "EURING2000" conflicts with pipe-delimited data.')
+            self.results["format"] = self.format or "EURING2000+"
 
         # Parse the fields
         for index, field_kwargs in enumerate(EURING_FIELDS):
@@ -166,14 +166,14 @@ class EuringDecoder:
         if self.results["format"] in {"EURING2000+", "EURING2020"}:
             is_2020 = self._is_euring2020()
             if is_2020 and self.results["format"] == "EURING2000+":
-                if self.format_hint:
+                if self.format:
                     self.add_error(
                         "Accuracy of Co-ordinates",
                         "Alphabetic accuracy codes or 2020-only fields require EURING2020 format.",
                     )
                 else:
                     self.results["format"] = "EURING2020"
-            elif self.results["format"] == "EURING2020" and self.format_hint is None and not is_2020:
+            elif self.results["format"] == "EURING2020" and self.format is None and not is_2020:
                 # Format was explicitly set to EURING2020 elsewhere; keep it as-is.
                 pass
         if self.results["format"] == "EURING2000" and self._accuracy_is_alpha():
@@ -246,16 +246,16 @@ class EuringDecoder:
         return bool(value) and value.isalpha()
 
     @staticmethod
-    def _normalize_format_hint(format_hint: str | None) -> str | None:
-        if not format_hint:
+    def _normalize_format(format: str | None) -> str | None:
+        if not format:
             return None
-        raw = format_hint.strip()
+        raw = format.strip()
         normalized = raw.upper()
         if normalized.startswith("EURING"):
             normalized = normalized.replace("EURING", "")
         else:
             hint = _format_hint_suggestion(normalized)
-            message = f'Unknown format hint "{format_hint}". Use euring2000, euring2000plus, or euring2020.'
+            message = f'Unknown format "{format}". Use euring2000, euring2000plus, or euring2020.'
             if hint:
                 message = f"{message} Did you mean {hint}?"
             raise EuringParseException(message)
@@ -263,9 +263,7 @@ class EuringDecoder:
             if normalized in {"2000PLUS", "2000P"}:
                 normalized = "2000+"
             return f"EURING{normalized}"
-        raise EuringParseException(
-            f'Unknown format hint "{format_hint}". Use euring2000, euring2000plus, or euring2020.'
-        )
+        raise EuringParseException(f'Unknown format "{format}". Use euring2000, euring2000plus, or euring2020.')
 
 
 def _format_hint_suggestion(normalized: str) -> str | None:
