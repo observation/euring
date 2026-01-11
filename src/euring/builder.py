@@ -3,14 +3,14 @@ from __future__ import annotations
 from .decoders import euring_decode_record, euring_decode_value
 from .exceptions import EuringParseException
 from .fields import EURING_FIELDS
-from .formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, FORMAT_EURING2020
+from .formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, normalize_format
 
 
 class EuringRecordBuilder:
     """Build EURING record strings from field values."""
 
     def __init__(self, format: str, *, strict: bool = True) -> None:
-        self.format = _normalize_format(format)
+        self.format = normalize_format(format)
         self.strict = strict
         self._values: dict[str, str] = {}
 
@@ -57,7 +57,7 @@ class EuringRecordBuilder:
             record = "|".join(values_by_key.get(field["key"], "") for field in fields)
 
         if self.strict:
-            format = _normalize_format(self.format)
+            format = normalize_format(self.format)
             result = euring_decode_record(record, format=format)
             if result.get("errors"):
                 raise ValueError(f"Record validation failed: {result['errors']}")
@@ -73,21 +73,6 @@ def _fields_for_format(format: str) -> list[dict[str, object]]:
             if field.get("key") == "reference":
                 return EURING_FIELDS[: index + 1]
     return EURING_FIELDS
-
-
-def _normalize_format(format: str) -> str:
-    raw = format.strip().lower()
-    if raw.startswith("euring"):
-        raw = raw.replace("euring", "", 1)
-    if raw in {"2000", "2000+", "2000plus", "2000p"}:
-        return FORMAT_EURING2000 if raw == "2000" else FORMAT_EURING2000PLUS
-    if raw == "2020":
-        return FORMAT_EURING2020
-    if raw in {FORMAT_EURING2000, FORMAT_EURING2000PLUS, FORMAT_EURING2020}:
-        return raw
-    raise ValueError(
-        f'Unknown format "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}.'
-    )
 
 
 def _fixed_width_fields() -> list[dict[str, object]]:
