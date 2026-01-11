@@ -106,7 +106,7 @@ class TestDecoding:
             _make_euring2000_plus_record(accuracy="A"),
             format="euring2000plus",
         )
-        assert record["errors"]
+        assert record["errors"]["record"] or record["errors"]["fields"]
 
     def test_decode_value_with_lookup(self):
         result = euring_decode_value("01012024", TYPE_INTEGER, length=8, lookup=lookup_date)
@@ -155,19 +155,19 @@ class TestDecoding:
     def test_decoder_handles_non_string(self):
         decoder = EuringDecoder(None)
         results = decoder.get_results()
-        assert results["errors"]
+        assert results["errors"]["record"] or results["errors"]["fields"]
 
     def test_parse_field_missing_optional_does_not_error(self):
         decoder = EuringDecoder("GBB")
         decoder.results = {"data": OrderedDict(), "data_by_key": OrderedDict()}
-        decoder.errors = OrderedDict()
+        decoder.errors = {"record": [], "fields": []}
         decoder.parse_field([], 1, "Optional", key="optional", type=TYPE_INTEGER, required=False)
-        assert decoder.errors == OrderedDict()
+        assert decoder.errors == {"record": [], "fields": []}
 
     def test_parse_field_sets_none_for_optional_empty(self):
         decoder = EuringDecoder("GBB")
         decoder.results = {"data": OrderedDict(), "data_by_key": OrderedDict()}
-        decoder.errors = OrderedDict()
+        decoder.errors = {"record": [], "fields": []}
         decoder.parse_field([""], 0, "Optional", key="optional", type=TYPE_INTEGER, required=False)
         assert decoder.results["data_by_key"]["optional"] is None
 
@@ -187,19 +187,19 @@ class TestDecoding:
 
     def test_decode_euring2000_invalid_extra_data(self):
         record = euring_decode_record("AAB1234567890" + "9" * 90)
-        assert record["errors"]
+        assert record["errors"]["record"] or record["errors"]["fields"]
 
     def test_decode_missing_required_field(self):
         record = euring_decode_record(
             "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0"
         )
-        assert record["errors"]
+        assert record["errors"]["record"] or record["errors"]["fields"]
 
     def test_decode_invalid_coordinates(self):
         record = euring_decode_record(
             "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|invalidcoords|1|9|99|0|4"
         )
-        assert "Geographical Co-ordinates" in record["errors"]
+        assert any(error["field"] == "Geographical Co-ordinates" for error in record["errors"]["fields"])
 
     def test_decode_format_unknown(self):
         with pytest.raises(EuringParseException, match="Unknown format"):
@@ -207,7 +207,7 @@ class TestDecoding:
 
     def test_decode_format_conflict_pipe(self):
         record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"), format="euring2000")
-        assert record["errors"]
+        assert record["errors"]["record"] or record["errors"]["fields"]
 
     def test_decode_format_conflict_fixed_width(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -220,12 +220,13 @@ class TestDecoding:
         spec.loader.exec_module(module)
 
         record = euring_decode_record(module.EURING2000_EXAMPLES[0], format="euring2000plus")
-        assert record["errors"]
+        assert record["errors"]["record"] or record["errors"]["fields"]
 
     def test_decode_invalid_species_format(self):
         record = euring_decode_record(_make_euring2000_plus_record_with_invalid_species(accuracy="1"))
-        assert "Species Mentioned" in record["errors"]
-        assert "Species Concluded" in record["errors"]
+        fields = [error["field"] for error in record["errors"]["fields"]]
+        assert "Species Mentioned" in fields
+        assert "Species Concluded" in fields
 
     def test_decode_euring2020_rejects_geo_with_lat_long(self):
         record = euring_decode_record(
@@ -235,7 +236,7 @@ class TestDecoding:
                 lng_value="2.0000",
             )
         )
-        assert "Geographical Co-ordinates" in record["errors"]
+        assert any(error["field"] == "Geographical Co-ordinates" for error in record["errors"]["fields"])
 
     def test_decode_euring2020_requires_longitude_with_latitude(self):
         record = euring_decode_record(
@@ -245,7 +246,7 @@ class TestDecoding:
                 lng_value="",
             )
         )
-        assert "Longitude" in record["errors"]
+        assert any(error["field"] == "Longitude" for error in record["errors"]["fields"])
 
     def test_decode_euring2020_requires_latitude_with_longitude(self):
         record = euring_decode_record(
@@ -255,7 +256,7 @@ class TestDecoding:
                 lng_value="2.0000",
             )
         )
-        assert "Latitude" in record["errors"]
+        assert any(error["field"] == "Latitude" for error in record["errors"]["fields"])
 
     def test_decode_euring2020_latitude_out_of_range(self):
         record = euring_decode_record(
@@ -265,7 +266,7 @@ class TestDecoding:
                 lng_value="2.0000",
             )
         )
-        assert "Latitude" in record["errors"]
+        assert any(error["field"] == "Latitude" for error in record["errors"]["fields"])
 
     def test_decode_euring2020_longitude_out_of_range(self):
         record = euring_decode_record(
@@ -275,7 +276,7 @@ class TestDecoding:
                 lng_value="180.0001",
             )
         )
-        assert "Longitude" in record["errors"]
+        assert any(error["field"] == "Longitude" for error in record["errors"]["fields"])
 
     def test_decode_euring2020_latitude_too_many_decimals(self):
         record = euring_decode_record(
@@ -285,14 +286,14 @@ class TestDecoding:
                 lng_value="2.0000",
             )
         )
-        assert "Latitude" in record["errors"]
+        assert any(error["field"] == "Latitude" for error in record["errors"]["fields"])
 
     def test_decode_duplicate_field_name(self):
         decoder = EuringDecoder("GBB")
         decoder.results = {"data": {"Ringing Scheme": {"value": "GBB"}}}
-        decoder.errors = {}
+        decoder.errors = {"record": [], "fields": []}
         decoder.parse_field(["GBB"], 0, "Ringing Scheme", type=TYPE_INTEGER, length=3)
-        assert "Ringing Scheme" in decoder.errors
+        assert any(error["field"] == "Ringing Scheme" for error in decoder.errors["fields"])
 
     def test_decode_euring2000_fixture_records(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -307,7 +308,8 @@ class TestDecoding:
         for line in module.EURING2000_EXAMPLES:
             record = euring_decode_record(line)
             assert record["format"] == "EURING2000"
-            assert not record["errors"]
+            assert not record["errors"]["record"]
+            assert not record["errors"]["fields"]
 
     def test_decode_euring2000plus_fixture_records(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -322,7 +324,8 @@ class TestDecoding:
         for line in module.EURING2000PLUS_EXAMPLES:
             record = euring_decode_record(line)
             assert record["format"] == "EURING2000+"
-            assert not record["errors"]
+            assert not record["errors"]["record"]
+            assert not record["errors"]["fields"]
 
     def test_decode_euring2020_fixture_records(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -337,4 +340,5 @@ class TestDecoding:
         for line in module.EURING2020_EXAMPLES:
             record = euring_decode_record(line)
             assert record["format"] == "EURING2020"
-            assert not record["errors"]
+            assert not record["errors"]["record"]
+            assert not record["errors"]["fields"]

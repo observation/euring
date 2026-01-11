@@ -219,7 +219,7 @@ def test_validate_cli_forced_euring2000_rejects_pipe_record():
     result = runner.invoke(app, ["validate", "--json", "--format", "euring2000", record])
     assert result.exit_code == 1
     payload = json.loads(result.output)
-    messages = [message for values in payload["errors"].values() for message in values]
+    messages = [error["message"] for error in payload["errors"]["record"]]
     assert 'Format "EURING2000" conflicts with pipe-delimited data.' in messages
 
 
@@ -309,8 +309,9 @@ def test_decode_cli_invalid_species_format_reports_errors():
     assert result.exit_code == 0
     payload = json.loads(result.output)
     assert "errors" in payload
-    assert "Species Mentioned" in payload["errors"]
-    assert "Species Concluded" in payload["errors"]
+    fields = [error["field"] for error in payload["errors"]["fields"]]
+    assert "Species Mentioned" in fields
+    assert "Species Concluded" in fields
 
 
 def test_lookup_cli_json_output():
