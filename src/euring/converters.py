@@ -5,12 +5,14 @@ from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
+    format_hint,
+    normalize_format,
 )
 from .utils import euring_lat_to_dms, euring_lng_to_dms
 
 
 def convert_euring2000_record(value: str, target_format: str = FORMAT_EURING2020) -> str:
-    """Convert a fixed-width EURING2000 record to EURING2000PLUS or EURING2020."""
+    """Convert a fixed-width euring2000 record to euring2000plus or euring2020."""
     return convert_euring_record(value, source_format=FORMAT_EURING2000, target_format=target_format)
 
 
@@ -20,7 +22,7 @@ def convert_euring_record(
     target_format: str = FORMAT_EURING2020,
     force: bool = False,
 ) -> str:
-    """Convert EURING records between EURING2000, EURING2000PLUS, and EURING2020."""
+    """Convert EURING records between euring2000, euring2000plus, and euring2020."""
     normalized_target, values_by_key, target_fields = convert_euring_record_data(
         value, source_format=source_format, target_format=target_format, force=force
     )
@@ -187,25 +189,17 @@ def _target_fields(target_format: str) -> list[dict[str, object]]:
 
 
 def _normalize_target_format(target_format: str) -> str:
-    raw = target_format.strip()
-    normalized = raw.upper()
-    if normalized.startswith("EURING"):
-        normalized = normalized.replace("EURING", "")
-    else:
-        raise ValueError(
+    try:
+        return normalize_format(target_format)
+    except ValueError:
+        suggestion = format_hint(target_format)
+        message = (
             f'Unknown target format "{target_format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, '
             f"or {FORMAT_EURING2020}."
         )
-    if normalized in {"2000", "2000+", "2000PLUS", "2000P"}:
-        if normalized == "2000":
-            return FORMAT_EURING2000
-        return FORMAT_EURING2000PLUS
-    if normalized == "2020":
-        return FORMAT_EURING2020
-    raise ValueError(
-        f'Unknown target format "{target_format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, '
-        f"or {FORMAT_EURING2020}."
-    )
+        if suggestion:
+            message = f"{message} Did you mean {suggestion}?"
+        raise ValueError(message)
 
 
 def _normalize_source_format(source_format: str | None, value: str) -> str:
@@ -221,25 +215,17 @@ def _normalize_source_format(source_format: str | None, value: str) -> str:
             return FORMAT_EURING2020
         return FORMAT_EURING2000PLUS
 
-    normalized = source_format.strip().upper()
-    if not normalized.startswith("EURING"):
-        raise ValueError(
+    try:
+        return normalize_format(source_format)
+    except ValueError:
+        suggestion = format_hint(source_format)
+        message = (
             f'Unknown source format "{source_format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, '
             f"or {FORMAT_EURING2020}."
         )
-    normalized = normalized.replace("EURING", "")
-    if normalized in {"2000", "2000+", "2000PLUS", "2000P", "2020"}:
-        if normalized == "2000":
-            return FORMAT_EURING2000
-        if normalized in {"2000PLUS", "2000P"}:
-            normalized = "2000+"
-        if normalized == "2020":
-            return FORMAT_EURING2020
-        return FORMAT_EURING2000PLUS
-    raise ValueError(
-        f'Unknown source format "{source_format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, '
-        f"or {FORMAT_EURING2020}."
-    )
+        if suggestion:
+            message = f"{message} Did you mean {suggestion}?"
+        raise ValueError(message)
 
 
 def _field_index(key: str) -> int:

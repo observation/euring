@@ -34,7 +34,7 @@ def decode(
     format: str | None = typer.Option(
         None,
         "--format",
-        help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p).",
+        help="Force EURING format: euring2000, euring2000plus, or euring2020.",
     ),
 ):
     """Decode EURING records (single record or --file)."""
@@ -122,7 +122,7 @@ def validate_record(
     format: str | None = typer.Option(
         None,
         "--format",
-        help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+        help="Force EURING format: euring2000, euring2000plus, or euring2020",
     ),
 ):
     """Validate EURING records and return errors only."""
@@ -221,7 +221,7 @@ def convert(
     target_format: str = typer.Option(
         FORMAT_EURING2020,
         "--to",
-        help="Target format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
+        help="Target format: euring2000, euring2000plus, or euring2020",
     ),
     force: bool = typer.Option(
         False,

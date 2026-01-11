@@ -1,4 +1,4 @@
-"""Tests for format aliases and hints."""
+"""Tests for format inputs and hints."""
 
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
@@ -19,11 +19,32 @@ def _load_fixture(module_name: str, filename: str) -> list[str]:
     return module.__dict__[module_name.upper()]
 
 
-def test_decode_format_accepts_aliases():
+def test_decode_format_accepts_lowercase():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    decoded = euring_decode_record(record, format="EURING2000P")
+    decoded = euring_decode_record(record, format="euring2000plus")
     assert decoded["format"] == "EURING2000+"
+
+
+def test_decode_format_rejects_uppercase_formal():
+    records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
+    record = records[0]
+    with pytest.raises(EuringParseException, match="Unknown format"):
+        euring_decode_record(record, format="EURING2000PLUS")
+
+
+def test_decode_format_rejects_plus_alias():
+    records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
+    record = records[0]
+    with pytest.raises(EuringParseException, match="Unknown format"):
+        euring_decode_record(record, format="euring2000+")
+
+
+def test_decode_format_rejects_short_alias():
+    records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
+    record = records[0]
+    with pytest.raises(EuringParseException, match="Unknown format"):
+        euring_decode_record(record, format="euring2000p")
 
 
 def test_decode_format_rejects_missing_prefix():
@@ -33,11 +54,32 @@ def test_decode_format_rejects_missing_prefix():
         euring_decode_record(record, format="2000plus")
 
 
-def test_convert_target_format_accepts_aliases():
+def test_convert_target_format_accepts_lowercase():
     records = _load_fixture("euring2000_examples", "euring2000_examples.py")
     record = records[0]
-    converted = convert_euring_record(record, target_format="EURING2000P")
+    converted = convert_euring_record(record, target_format="euring2000plus")
     assert "|" in converted
+
+
+def test_convert_target_format_rejects_uppercase_formal():
+    records = _load_fixture("euring2000_examples", "euring2000_examples.py")
+    record = records[0]
+    with pytest.raises(ValueError, match="Unknown target format"):
+        convert_euring_record(record, target_format="EURING2000PLUS")
+
+
+def test_convert_target_format_rejects_plus_alias():
+    records = _load_fixture("euring2000_examples", "euring2000_examples.py")
+    record = records[0]
+    with pytest.raises(ValueError, match="Unknown target format"):
+        convert_euring_record(record, target_format="euring2000+")
+
+
+def test_convert_target_format_rejects_short_alias():
+    records = _load_fixture("euring2000_examples", "euring2000_examples.py")
+    record = records[0]
+    with pytest.raises(ValueError, match="Unknown target format"):
+        convert_euring_record(record, target_format="euring2000p")
 
 
 def test_convert_target_format_rejects_missing_prefix():
@@ -47,15 +89,36 @@ def test_convert_target_format_rejects_missing_prefix():
         convert_euring_record(record, target_format="2000plus")
 
 
-def test_convert_source_format_accepts_aliases():
+def test_convert_source_format_accepts_lowercase():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    converted = convert_euring_record(record, source_format="EURING2000PLUS", target_format="EURING2020")
+    converted = convert_euring_record(record, source_format="euring2000plus", target_format="euring2020")
     assert "|" in converted
+
+
+def test_convert_source_format_rejects_uppercase_formal():
+    records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
+    record = records[0]
+    with pytest.raises(ValueError, match="Unknown source format"):
+        convert_euring_record(record, source_format="EURING2000PLUS", target_format="euring2020")
+
+
+def test_convert_source_format_rejects_plus_alias():
+    records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
+    record = records[0]
+    with pytest.raises(ValueError, match="Unknown source format"):
+        convert_euring_record(record, source_format="euring2000+", target_format="euring2020")
+
+
+def test_convert_source_format_rejects_short_alias():
+    records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
+    record = records[0]
+    with pytest.raises(ValueError, match="Unknown source format"):
+        convert_euring_record(record, source_format="euring2000p", target_format="euring2020")
 
 
 def test_convert_source_format_rejects_missing_prefix():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
     with pytest.raises(ValueError, match="Unknown source format"):
-        convert_euring_record(record, source_format="2000plus", target_format="EURING2020")
+        convert_euring_record(record, source_format="2000plus", target_format="euring2020")
