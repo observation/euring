@@ -5,7 +5,7 @@ from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
-    format_hint,
+    format_error,
     normalize_format,
 )
 from .utils import euring_lat_to_dms, euring_lng_to_dms
@@ -192,14 +192,7 @@ def _normalize_target_format(target_format: str) -> str:
     try:
         return normalize_format(target_format)
     except ValueError:
-        suggestion = format_hint(target_format)
-        message = (
-            f'Unknown target format "{target_format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, '
-            f"or {FORMAT_EURING2020}."
-        )
-        if suggestion:
-            message = f"{message} Did you mean {suggestion}?"
-        raise ValueError(message)
+        raise ValueError(format_error(target_format, "target format"))
 
 
 def _normalize_source_format(source_format: str | None, value: str) -> str:
@@ -218,14 +211,7 @@ def _normalize_source_format(source_format: str | None, value: str) -> str:
     try:
         return normalize_format(source_format)
     except ValueError:
-        suggestion = format_hint(source_format)
-        message = (
-            f'Unknown source format "{source_format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, '
-            f"or {FORMAT_EURING2020}."
-        )
-        if suggestion:
-            message = f"{message} Did you mean {suggestion}?"
-        raise ValueError(message)
+        raise ValueError(format_error(source_format, "source format"))
 
 
 def _field_index(key: str) -> int:

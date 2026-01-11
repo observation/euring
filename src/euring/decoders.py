@@ -10,7 +10,7 @@ from .formats import (
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
     format_display_name,
-    format_hint,
+    format_error,
     normalize_format,
 )
 from .types import is_valid_type
@@ -265,10 +265,4 @@ class EuringDecoder:
         try:
             return normalize_format(format)
         except ValueError:
-            suggestion = format_hint(format)
-            message = (
-                f'Unknown format "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}.'
-            )
-            if suggestion:
-                message = f"{message} Did you mean {suggestion}?"
-            raise EuringParseException(message)
+            raise EuringParseException(format_error(format))
