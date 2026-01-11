@@ -101,10 +101,10 @@ class TestDecoding:
         record = euring_decode_record(_make_euring2000_plus_record(accuracy="A"))
         assert record["format"] == "EURING2020"
 
-    def test_decode_euring2020_format_hint_rejects_2000_plus(self):
+    def test_decode_euring2020_format_rejects_2000_plus(self):
         record = euring_decode_record(
             _make_euring2000_plus_record(accuracy="A"),
-            format_hint="EURING2000+",
+            format="EURING2000+",
         )
         assert record["errors"]
 
@@ -201,15 +201,15 @@ class TestDecoding:
         )
         assert "Geographical Co-ordinates" in record["errors"]
 
-    def test_decode_format_hint_unknown(self):
-        with pytest.raises(EuringParseException):
-            EuringDecoder("GBB", format_hint="2000")
+    def test_decode_format_unknown(self):
+        with pytest.raises(EuringParseException, match="Unknown format"):
+            EuringDecoder("GBB", format="2000")
 
-    def test_decode_format_hint_conflict_pipe(self):
-        record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"), format_hint="EURING2000")
+    def test_decode_format_conflict_pipe(self):
+        record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"), format="EURING2000")
         assert record["errors"]
 
-    def test_decode_format_hint_conflict_fixed_width(self):
+    def test_decode_format_conflict_fixed_width(self):
         from importlib.util import module_from_spec, spec_from_file_location
         from pathlib import Path
 
@@ -219,7 +219,7 @@ class TestDecoding:
         module = module_from_spec(spec)
         spec.loader.exec_module(module)
 
-        record = euring_decode_record(module.EURING2000_EXAMPLES[0], format_hint="EURING2000+")
+        record = euring_decode_record(module.EURING2000_EXAMPLES[0], format="EURING2000+")
         assert record["errors"]
 
     def test_decode_invalid_species_format(self):

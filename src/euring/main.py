@@ -30,7 +30,7 @@ def decode(
     output: Path | None = typer.Option(None, "--output", "-o", help="Write output to a file"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
-    format_hint: str | None = typer.Option(
+    format: str | None = typer.Option(
         None,
         "--format",
         help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p).",
@@ -54,27 +54,46 @@ def decode(
                 raise typer.Exit(1)
             lines = file.read_text(encoding="utf-8").splitlines()
             records = []
+            has_errors = False
             for line in lines:
                 record_line = line.strip()
                 if not record_line:
                     continue
-                records.append(euring_decode_record(record_line, format_hint=format_hint))
+                record = euring_decode_record(record_line, format=format)
+                if format and record.get("errors"):
+                    has_errors = True
+                records.append(record)
             payload = _with_meta({"records": records})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
+                if format and has_errors:
+                    raise typer.Exit(1)
                 return
             typer.echo(text)
+            if format and has_errors:
+                raise typer.Exit(1)
             return
-        record = euring_decode_record(euring_string, format_hint=format_hint)
+        record = euring_decode_record(euring_string, format=format)
+        errors = record.get("errors", {})
         if output_format == "json":
             payload = _with_meta(record)
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
+                if format and errors:
+                    raise typer.Exit(1)
                 return
             typer.echo(text)
+            if format and errors:
+                raise typer.Exit(1)
             return
+        if format and errors:
+            typer.echo("Record has errors:", err=True)
+            for field, messages in errors.items():
+                for message in messages:
+                    typer.echo(f"  {field}: {message}", err=True)
+            raise typer.Exit(1)
         typer.echo("Decoded EURING record:")
         typer.echo(f"Format: {record.get('format', 'Unknown')}")
         typer.echo(f"Ringing Scheme: {record.get('ringing_scheme', 'Unknown')}")
@@ -99,7 +118,7 @@ def validate_record(
     output: Path | None = typer.Option(None, "--output", "-o", help="Write output to a file"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
-    format_hint: str | None = typer.Option(
+    format: str | None = typer.Option(
         None,
         "--format",
         help="Force EURING format: euring2000, euring2000plus, or euring2020 (aliases: euring2000+, euring2000p)",
@@ -127,7 +146,7 @@ def validate_record(
                 if not record_line:
                     continue
                 total += 1
-                record = euring_decode_record(record_line, format_hint=format_hint)
+                record = euring_decode_record(record_line, format=format)
                 errors = record.get("errors", {})
                 if errors:
                     invalid += 1
@@ -157,7 +176,7 @@ def validate_record(
                 typer.echo(text)
             return
 
-        record = euring_decode_record(euring_string, format_hint=format_hint)
+        record = euring_decode_record(euring_string, format=format)
         errors = record.get("errors", {})
         if as_json:
             payload = _with_meta({"format": record.get("format"), "errors": errors})

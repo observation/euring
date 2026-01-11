@@ -56,8 +56,8 @@ class EuringRecordBuilder:
             record = "|".join(values_by_key.get(field["key"], "") for field in fields)
 
         if self.strict:
-            hint = _format_hint(self.format)
-            result = euring_decode_record(record, format_hint=hint)
+            format = _normalize_format(self.format)
+            result = euring_decode_record(record, format=format)
             if result.get("errors"):
                 raise ValueError(f"Record validation failed: {result['errors']}")
 
@@ -75,14 +75,6 @@ def _normalize_format(format: str) -> str:
     if raw in {"euring2000", "euring2000plus", "euring2020"}:
         return raw
     raise ValueError(f'Unknown format "{format}". Use euring2000, euring2000plus, or euring2020.')
-
-
-def _format_hint(format: str) -> str:
-    if format == "euring2000":
-        return "EURING2000"
-    if format == "euring2000plus":
-        return "EURING2000+"
-    return "EURING2020"
 
 
 def _fields_for_format(format: str) -> list[dict[str, object]]:
