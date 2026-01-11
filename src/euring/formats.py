@@ -2,20 +2,16 @@ FORMAT_EURING2000 = "euring2000"
 FORMAT_EURING2000PLUS = "euring2000plus"
 FORMAT_EURING2020 = "euring2020"
 
-FORMAT_CANON_EURING2000 = "EURING2000"
-FORMAT_CANON_EURING2000PLUS = "EURING2000+"
-FORMAT_CANON_EURING2020 = "EURING2020"
-
-FORMAT_CANON_NAMES = {
-    FORMAT_EURING2000: FORMAT_CANON_EURING2000,
-    FORMAT_EURING2000PLUS: FORMAT_CANON_EURING2000PLUS,
-    FORMAT_EURING2020: FORMAT_CANON_EURING2020,
-}
-
 FORMAT_VALUES = {
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
+}
+
+FORMAT_NAMES = {
+    FORMAT_EURING2000: "EURING2000",
+    FORMAT_EURING2000PLUS: "EURING2000+",
+    FORMAT_EURING2020: "EURING2020",
 }
 
 
@@ -32,7 +28,7 @@ def normalize_format(format: str) -> str:
 def format_display_name(format: str) -> str:
     """Return the formal display name for an internal EURING format value."""
     try:
-        return FORMAT_CANON_NAMES[format]
+        return FORMAT_NAMES[format]
     except KeyError as exc:
         raise ValueError(f'Unknown format "{format}".') from exc
 
@@ -43,10 +39,10 @@ def format_hint(format: str) -> str | None:
     lower = raw.lower()
     if lower in FORMAT_VALUES:
         return lower
-    if lower in {"2000", "2000plus", "2020"}:
-        return f"euring{lower}"
-    if lower in {"2000+", "euring2000+"}:
-        return FORMAT_EURING2000PLUS
-    if lower in {"euring2000", "euring2000plus", "euring2020"}:
-        return lower
+    if "2020" in lower:
+        return FORMAT_EURING2020
+    if "2000" in lower:
+        if "plus" in lower or "+" in lower:
+            return FORMAT_EURING2000PLUS
+        return FORMAT_EURING2000
     return None

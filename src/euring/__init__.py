@@ -17,9 +17,6 @@ from .converters import convert_euring2000_record, convert_euring_record
 from .decoders import EuringDecoder, euring_decode_record
 from .exceptions import EuringException, EuringParseException
 from .formats import (
-    FORMAT_CANON_EURING2000,
-    FORMAT_CANON_EURING2000PLUS,
-    FORMAT_CANON_EURING2020,
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
