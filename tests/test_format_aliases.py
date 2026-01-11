@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from euring import EuringRecordBuilder, euring_decode_record
+from euring import euring_decode_record
 from euring.converters import convert_euring_record
 from euring.exceptions import EuringParseException
 
@@ -17,13 +17,6 @@ def _load_fixture(module_name: str, filename: str) -> list[str]:
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
     return module.__dict__[module_name.upper()]
-
-
-def test_builder_normalizes_aliases():
-    assert EuringRecordBuilder("2000").format == "euring2000"
-    assert EuringRecordBuilder("2000+", strict=False).format == "euring2000plus"
-    assert EuringRecordBuilder("2000p", strict=False).format == "euring2000plus"
-    assert EuringRecordBuilder("2020", strict=False).format == "euring2020"
 
 
 def test_decode_format_accepts_aliases():

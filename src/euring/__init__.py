@@ -16,6 +16,14 @@ from .builder import EuringRecordBuilder
 from .converters import convert_euring2000_record, convert_euring_record
 from .decoders import EuringDecoder, euring_decode_record
 from .exceptions import EuringException, EuringParseException
+from .formats import (
+    FORMAT_CANON_EURING2000,
+    FORMAT_CANON_EURING2000PLUS,
+    FORMAT_CANON_EURING2020,
+    FORMAT_EURING2000,
+    FORMAT_EURING2000PLUS,
+    FORMAT_EURING2020,
+)
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -66,6 +74,12 @@ __all__ = [
     "is_valid_type",
     "EuringException",
     "EuringParseException",
+    "FORMAT_CANON_EURING2000",
+    "FORMAT_CANON_EURING2000PLUS",
+    "FORMAT_CANON_EURING2020",
+    "FORMAT_EURING2000",
+    "FORMAT_EURING2000PLUS",
+    "FORMAT_EURING2020",
     "euring_dms_to_float",
     "euring_float_to_dms",
     "euring_coord_to_dms",

@@ -84,6 +84,11 @@ def test_build_invalid_format_raises():
         EuringRecordBuilder("bad-format")
 
 
+def test_build_missing_format_raises():
+    with pytest.raises(TypeError):
+        EuringRecordBuilder()  # type: ignore[call-arg]
+
+
 def test_build_invalid_value_raises():
     builder = EuringRecordBuilder("euring2000plus", strict=False)
     builder.set("ringing_scheme", "1")

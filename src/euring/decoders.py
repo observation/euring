@@ -5,6 +5,14 @@ from hashlib import md5
 from .codes import lookup_description
 from .exceptions import EuringParseException
 from .fields import EURING_FIELDS
+from .formats import (
+    FORMAT_CANON_EURING2000,
+    FORMAT_CANON_EURING2000PLUS,
+    FORMAT_CANON_EURING2020,
+    FORMAT_EURING2000,
+    FORMAT_EURING2000PLUS,
+    FORMAT_EURING2020,
+)
 from .types import is_valid_type
 
 
@@ -128,7 +136,7 @@ class EuringDecoder:
 
         # Just one field? Then we have EURING2000
         if len(fields) <= 1:
-            if self.format and self.format != "EURING2000":
+            if self.format and self.format != FORMAT_CANON_EURING2000:
                 self.add_error(0, f'Format "{self.format}" conflicts with fixed-width EURING2000 data.')
             fields = []
             start = 0
@@ -154,34 +162,34 @@ class EuringDecoder:
                 else:
                     # No length, so we don't expect any more valid fields
                     done = True
-            self.results["format"] = "EURING2000"
+            self.results["format"] = FORMAT_CANON_EURING2000
         else:
-            if self.format == "EURING2000":
+            if self.format == FORMAT_CANON_EURING2000:
                 self.add_error(0, 'Format "EURING2000" conflicts with pipe-delimited data.')
-            self.results["format"] = self.format or "EURING2000+"
+            self.results["format"] = self.format or FORMAT_CANON_EURING2000PLUS
 
         # Parse the fields
         for index, field_kwargs in enumerate(EURING_FIELDS):
             self.parse_field(fields, index, **field_kwargs)
-        if self.results["format"] in {"EURING2000+", "EURING2020"}:
+        if self.results["format"] in {FORMAT_CANON_EURING2000PLUS, FORMAT_CANON_EURING2020}:
             is_2020 = self._is_euring2020()
-            if is_2020 and self.results["format"] == "EURING2000+":
+            if is_2020 and self.results["format"] == FORMAT_CANON_EURING2000PLUS:
                 if self.format:
                     self.add_error(
                         "Accuracy of Co-ordinates",
                         "Alphabetic accuracy codes or 2020-only fields require EURING2020 format.",
                     )
                 else:
-                    self.results["format"] = "EURING2020"
-            elif self.results["format"] == "EURING2020" and self.format is None and not is_2020:
+                    self.results["format"] = FORMAT_CANON_EURING2020
+            elif self.results["format"] == FORMAT_CANON_EURING2020 and self.format is None and not is_2020:
                 # Format was explicitly set to EURING2020 elsewhere; keep it as-is.
                 pass
-        if self.results["format"] == "EURING2000" and self._accuracy_is_alpha():
+        if self.results["format"] == FORMAT_CANON_EURING2000 and self._accuracy_is_alpha():
             self.add_error(
                 "Accuracy of Co-ordinates",
                 "Alphabetic accuracy codes are only valid in EURING2020.",
             )
-        if self.results["format"] == "EURING2020":
+        if self.results["format"] == FORMAT_CANON_EURING2020:
             data_by_key = self.results.get("data_by_key") or {}
             geo = data_by_key.get("geographical_coordinates")
             lat = data_by_key.get("latitude")
@@ -254,21 +262,25 @@ class EuringDecoder:
         if normalized.startswith("EURING"):
             normalized = normalized.replace("EURING", "")
         else:
-            format = _format_suggestion(normalized)
-            message = f'Unknown format "{format}". Use euring2000, euring2000plus, or euring2020.'
-            if format:
-                message = f"{message} Did you mean {format}?"
+            suggestion = _format_suggestion(normalized)
+            message = (
+                f'Unknown format "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}.'
+            )
+            if suggestion:
+                message = f"{message} Did you mean {suggestion}?"
             raise EuringParseException(message)
         if normalized in {"2000", "2000+", "2000PLUS", "2000P", "2020"}:
             if normalized in {"2000PLUS", "2000P"}:
                 normalized = "2000+"
             return f"EURING{normalized}"
-        raise EuringParseException(f'Unknown format "{format}". Use euring2000, euring2000plus, or euring2020.')
+        raise EuringParseException(
+            f'Unknown format "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}.'
+        )
 
 
 def _format_suggestion(normalized: str) -> str | None:
     if normalized in {"2000", "2000+", "2000PLUS", "2000P"}:
-        return "euring2000plus"
+        return FORMAT_EURING2000PLUS
     if normalized == "2020":
-        return "euring2020"
+        return FORMAT_EURING2020
     return None
