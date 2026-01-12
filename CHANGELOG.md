@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 26.2 (2026-01-12)
 
 - Refactor JSON structure and errors structure (#70).
 - Make EURING format options explicit (#68, #69).
