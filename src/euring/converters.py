@@ -5,7 +5,7 @@ from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
-    format_error,
+    unknown_format_error,
     normalize_format,
 )
 from .utils import euring_lat_to_dms, euring_lng_to_dms
@@ -68,6 +68,7 @@ def convert_euring_record_data(
 
 
 def _split_fixed_width(value: str) -> list[str]:
+    """Split a fixed-width EURING2000 record into field values."""
     if "|" in value:
         raise ValueError(f"Input appears to be pipe-delimited, not fixed-width {FORMAT_EURING2000}.")
     if len(value) < 94:
@@ -88,10 +89,12 @@ def _split_fixed_width(value: str) -> list[str]:
 
 
 def _split_pipe_delimited(value: str) -> list[str]:
+    """Split a pipe-delimited record into field values."""
     return value.split("|")
 
 
 def _map_fields_to_values(fields: list[dict[str, object]], values: list[str]) -> dict[str, str]:
+    """Map field definitions to values by key."""
     mapping: dict[str, str] = {}
     for index, field in enumerate(fields):
         key = field["key"]
@@ -100,6 +103,7 @@ def _map_fields_to_values(fields: list[dict[str, object]], values: list[str]) ->
 
 
 def _require_force_on_loss(values_by_key: dict[str, str], source_format: str, target_format: str, force: bool) -> None:
+    """Raise when conversion would lose data without force."""
     reasons: list[str] = []
     if target_format in {FORMAT_EURING2000, FORMAT_EURING2000PLUS}:
         for key in ("latitude", "longitude", "current_place_code", "more_other_marks"):
@@ -121,6 +125,7 @@ def _require_force_on_loss(values_by_key: dict[str, str], source_format: str, ta
 def _apply_coordinate_downgrade(
     values_by_key: dict[str, str], source_format: str, target_format: str, force: bool
 ) -> None:
+    """Apply lossy coordinate downgrade rules when needed."""
     if target_format not in {FORMAT_EURING2000, FORMAT_EURING2000PLUS}:
         return
     accuracy = values_by_key.get("accuracy_of_coordinates", "")
@@ -146,6 +151,7 @@ def _apply_coordinate_downgrade(
 
 
 def _map_alpha_accuracy_to_numeric(code: str) -> str | None:
+    """Map alphabetic accuracy codes to numeric values."""
     mapping = {
         "A": "0",
         "B": "0",
@@ -166,6 +172,7 @@ def _map_alpha_accuracy_to_numeric(code: str) -> str | None:
 
 
 def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, object]]) -> str:
+    """Serialize values into a fixed-width record."""
     parts: list[str] = []
     for field in fields:
         key = field["key"]
@@ -181,6 +188,7 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
 
 
 def _target_fields(target_format: str) -> list[dict[str, object]]:
+    """Return the field definitions for a target format."""
     if target_format == FORMAT_EURING2000PLUS:
         for index, field in enumerate(EURING_FIELDS):
             if field.get("key") == "reference":
@@ -189,13 +197,15 @@ def _target_fields(target_format: str) -> list[dict[str, object]]:
 
 
 def _normalize_target_format(target_format: str) -> str:
+    """Normalize a target format string to an internal constant."""
     try:
         return normalize_format(target_format)
     except ValueError:
-        raise ValueError(format_error(target_format, "target format"))
+        raise ValueError(unknown_format_error(target_format, "target format"))
 
 
 def _normalize_source_format(source_format: str | None, value: str) -> str:
+    """Normalize a source format string or auto-detect from the value."""
     if source_format is None:
         if "|" not in value:
             return FORMAT_EURING2000
@@ -211,10 +221,11 @@ def _normalize_source_format(source_format: str | None, value: str) -> str:
     try:
         return normalize_format(source_format)
     except ValueError:
-        raise ValueError(format_error(source_format, "source format"))
+        raise ValueError(unknown_format_error(source_format, "source format"))
 
 
 def _field_index(key: str) -> int:
+    """Return the field index for a given key."""
     for index, field in enumerate(EURING_FIELDS):
         if field.get("key") == key:
             return index
@@ -222,6 +233,7 @@ def _field_index(key: str) -> int:
 
 
 def _fixed_width_fields() -> list[dict[str, object]]:
+    """Return field definitions for the EURING2000 fixed-width layout."""
     fields: list[dict[str, object]] = []
     start = 0
     for field in EURING_FIELDS:

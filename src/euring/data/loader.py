@@ -8,10 +8,12 @@ from typing import Any
 
 @cache
 def load_data(name: str) -> Any | None:
+    """Load a data table module by name."""
     return _load_code_table_module(name)
 
 
 def _load_code_table_module(name: str) -> Any | None:
+    """Import a code table module and return its TABLE data."""
     module_name = f"euring.data.code_table_{name}"
     try:
         module = importlib.import_module(module_name)
@@ -21,6 +23,7 @@ def _load_code_table_module(name: str) -> Any | None:
 
 
 def load_table(name: str) -> list[dict[str, Any]] | None:
+    """Load a code table as a list of dicts."""
     data = load_data(name)
     if not data:
         return None
@@ -28,6 +31,7 @@ def load_table(name: str) -> list[dict[str, Any]] | None:
 
 
 def normalize_code(code: Any) -> str | None:
+    """Normalize raw code values for consistent lookups."""
     if code is None:
         return None
     if isinstance(code, bool):
@@ -47,6 +51,7 @@ def load_code_map(
     value_key: str = "description",
     code_filter: Callable[[str], bool] | None = None,
 ) -> dict[str, str]:
+    """Load a code-to-description map for a table."""
     data = load_data(filename)
     if not data:
         return {}
@@ -65,6 +70,7 @@ def load_code_map(
 
 
 def load_other_marks_data() -> dict[str, dict[str, str]] | None:
+    """Load other-marks lookup data split by code position."""
     data = load_data("other_marks_information")
     if not data:
         return None
@@ -83,6 +89,7 @@ def load_named_code_map(
     *,
     name_key: str = "name",
 ) -> dict[str, str]:
+    """Load a code-to-name map for a table."""
     data = load_data(filename)
     if not data:
         return {}
@@ -99,6 +106,7 @@ def load_named_code_map(
 
 
 def load_place_map() -> dict[str, str]:
+    """Load place codes mapped to display names."""
     data = load_table("place_code")
     if not data:
         return {}
@@ -161,10 +169,12 @@ def load_scheme_details() -> dict[str, dict[str, Any]]:
 
 
 def load_species_map() -> dict[str, str]:
+    """Load species codes mapped to names."""
     return load_named_code_map("species", name_key="name")
 
 
 def load_scheme_map() -> dict[str, str]:
+    """Load ringing scheme codes mapped to centre and country."""
     data = load_table("ringing_scheme")
     if not data:
         return {}

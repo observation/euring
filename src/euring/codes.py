@@ -18,6 +18,7 @@ LOOKUP_CONDITION = load_code_map("condition")
 
 
 def _catching_method_code_filter(code: str) -> bool:
+    """Filter catching method codes to valid entries."""
     return code == "-" or len(code) == 1
 
 
@@ -180,6 +181,7 @@ def parse_longitude(value):
 
 
 def _parse_decimal_coordinate(value, *, max_abs, max_decimals, field_name):
+    """Parse and validate a decimal latitude/longitude string."""
     try:
         parsed = float(value)
     except (TypeError, ValueError):
@@ -194,6 +196,7 @@ def _parse_decimal_coordinate(value, *, max_abs, max_decimals, field_name):
 
 
 def _validate_dms_component(value, *, degrees_digits, max_degrees):
+    """Validate a DMS coordinate component."""
     if value is None:
         raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
     expected_length = 1 + degrees_digits + 2 + 2
