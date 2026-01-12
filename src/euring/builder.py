@@ -10,22 +10,26 @@ class EuringRecordBuilder:
     """Build EURING record strings from field values."""
 
     def __init__(self, format: str, *, strict: bool = True) -> None:
+        """Initialize a builder for the given EURING format."""
         self.format = normalize_format(format)
         self.strict = strict
         self._values: dict[str, str] = {}
 
     def set(self, key: str, value: object) -> EuringRecordBuilder:
+        """Set a field value by key."""
         if key not in _FIELD_KEYS:
             raise ValueError(f'Unknown field key "{key}".')
         self._values[key] = "" if value is None else str(value)
         return self
 
     def update(self, values: dict[str, object]) -> EuringRecordBuilder:
+        """Update multiple field values."""
         for key, value in values.items():
             self.set(key, value)
         return self
 
     def build(self) -> str:
+        """Build and validate a EURING record string."""
         fields = _fields_for_format(self.format)
         values_by_key: dict[str, str] = {}
 
@@ -66,6 +70,7 @@ class EuringRecordBuilder:
         return record
 
     def has_errors(self, errors: object) -> bool:
+        """Return True when a structured errors payload contains entries."""
         if not isinstance(errors, dict):
             return bool(errors)
         record_errors = errors.get("record", [])
@@ -74,6 +79,7 @@ class EuringRecordBuilder:
 
 
 def _fields_for_format(format: str) -> list[dict[str, object]]:
+    """Return the field list for the target format."""
     if format == FORMAT_EURING2000:
         return _fixed_width_fields()
     if format == FORMAT_EURING2000PLUS:
@@ -84,6 +90,7 @@ def _fields_for_format(format: str) -> list[dict[str, object]]:
 
 
 def _fixed_width_fields() -> list[dict[str, object]]:
+    """Return field definitions for the EURING2000 fixed-width layout."""
     fields: list[dict[str, object]] = []
     start = 0
     for field in EURING_FIELDS:
@@ -98,6 +105,7 @@ def _fixed_width_fields() -> list[dict[str, object]]:
 
 
 def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, object]]) -> str:
+    """Serialize values into a fixed-width record."""
     parts: list[str] = []
     for field in fields:
         key = field["key"]

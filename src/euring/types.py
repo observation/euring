@@ -35,6 +35,7 @@ RE_TEXT = r"^[^\x00-\x1F\x7C\7F]*$"
 
 
 def _matches(value, regex):
+    """Return True when the value matches the given regex."""
     return re.match(regex, value) is not None
 
 

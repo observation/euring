@@ -425,6 +425,7 @@ def main():
 
 
 def _has_errors(errors: dict[str, object]) -> bool:
+    """Return True when a structured errors payload contains entries."""
     if not isinstance(errors, dict):
         return bool(errors)
     record_errors = errors.get("record", [])
@@ -433,6 +434,7 @@ def _has_errors(errors: dict[str, object]) -> bool:
 
 
 def _format_error_lines(errors: dict[str, object], *, indent: str) -> list[str]:
+    """Format structured errors into human-readable lines."""
     lines: list[str] = []
     record_errors = errors.get("record", []) if isinstance(errors, dict) else []
     field_errors = errors.get("fields", []) if isinstance(errors, dict) else []
@@ -463,6 +465,7 @@ def _format_error_lines(errors: dict[str, object], *, indent: str) -> list[str]:
 
 
 def _emit_detail(label: str, value) -> None:
+    """Emit a labeled value when present."""
     if value is None:
         return
     text = str(value).strip()
@@ -472,12 +475,14 @@ def _emit_detail(label: str, value) -> None:
 
 
 def _emit_detail_bool(label: str, value) -> None:
+    """Emit a labeled boolean value when present."""
     if value is None:
         return
     typer.echo(f"  {label}: {'yes' if value else 'no'}")
 
 
 def _emit_glob_hint(value: str) -> None:
+    """Warn when a glob-like string may have been expanded by the shell."""
     if any(char in value for char in "*?[]"):
         return
     if Path(value).exists():
@@ -485,6 +490,7 @@ def _emit_glob_hint(value: str) -> None:
 
 
 def _with_meta(payload: dict[str, Any]) -> dict[str, Any]:
+    """Attach generator metadata to a JSON payload."""
     meta = {
         "generator": {
             "name": "euring",

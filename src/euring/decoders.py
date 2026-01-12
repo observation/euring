@@ -8,8 +8,8 @@ from .formats import (
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
     format_display_name,
-    format_error,
     normalize_format,
+    unknown_format_error,
 )
 from .types import is_valid_type
 
@@ -77,6 +77,7 @@ class EuringDecoder:
     errors = None
 
     def __init__(self, value_to_decode, format: str | None = None):
+        """Initialize a decoder for a single record."""
         self.value_to_decode = value_to_decode
         self.format = self._normalize_format(format)
         self._data = OrderedDict()
@@ -85,6 +86,7 @@ class EuringDecoder:
         super().__init__()
 
     def add_record_error(self, message):
+        """Add a record-level error."""
         self.errors["record"].append({"message": f"{message}"})
 
     def add_field_error(
@@ -98,6 +100,7 @@ class EuringDecoder:
         position=None,
         length=None,
     ):
+        """Add a field-level error with optional metadata."""
         payload = {
             "field": field,
             "message": f"{message}",
@@ -114,6 +117,7 @@ class EuringDecoder:
         self.errors["fields"].append(payload)
 
     def parse_field(self, fields, index, name, key=None, **kwargs):
+        """Parse and validate a field value into the result structure."""
         required = kwargs.get("required", True)
         try:
             value = fields[index]
@@ -162,10 +166,12 @@ class EuringDecoder:
                 self._data_by_key[key] = decoded
 
     def clean(self):
+        """Apply post-processing to decoded results."""
         # Removed Django Point creation for standalone version
         pass
 
     def decode(self):
+        """Decode the record and populate results/errors."""
         self.results = OrderedDict()
         self.errors = {"record": [], "fields": []}
         self._field_positions = {}
@@ -180,6 +186,7 @@ class EuringDecoder:
         self.results["errors"] = self.errors
 
     def _decode(self):
+        """Perform the internal decoding steps."""
         try:
             fields = self.value_to_decode.split("|")
         except AttributeError:
@@ -287,11 +294,13 @@ class EuringDecoder:
         self.results["fields"] = self._build_fields()
 
     def get_results(self):
+        """Return decoded results, decoding if needed."""
         if self.results is None:
             self.decode()
         return self.results
 
     def _build_fields(self) -> OrderedDict:
+        """Build the public fields mapping from decoded values."""
         fields = OrderedDict()
         for index, field in enumerate(EURING_FIELDS):
             key = field["key"]
@@ -307,6 +316,7 @@ class EuringDecoder:
         return fields
 
     def _add_field_error_for_key(self, key, field_name, message, value=None):
+        """Add a field error using a field key to look up metadata."""
         field_index = None
         for index, field in enumerate(EURING_FIELDS):
             if field.get("key") == key:
@@ -328,6 +338,7 @@ class EuringDecoder:
         )
 
     def _is_euring2020(self) -> bool:
+        """Return True when decoded values require EURING2020."""
         if self._accuracy_is_alpha():
             return True
         for key in ("latitude", "longitude", "current_place_code", "more_other_marks"):
@@ -337,6 +348,7 @@ class EuringDecoder:
         return False
 
     def _accuracy_is_alpha(self) -> bool:
+        """Return True when accuracy_of_coordinates is alphabetic."""
         accuracy = self._data_by_key.get("accuracy_of_coordinates")
         if not accuracy:
             return False
@@ -345,9 +357,10 @@ class EuringDecoder:
 
     @staticmethod
     def _normalize_format(format: str | None) -> str | None:
+        """Normalize a user-provided format string or raise."""
         if not format:
             return None
         try:
             return normalize_format(format)
         except ValueError:
-            raise EuringParseException(format_error(format))
+            raise EuringParseException(unknown_format_error(format))

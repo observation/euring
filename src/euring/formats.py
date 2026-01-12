@@ -48,9 +48,10 @@ def format_hint(format: str) -> str | None:
     return None
 
 
-def format_error(format: str, name: str = "format") -> str:
-    suggestion = format_hint(format)
+def unknown_format_error(format: str, name: str = "format") -> str:
+    """Return an error message for an unknown EURING format."""
+    hint = format_hint(format)
     message = f'Unknown {name} "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}."'
-    if suggestion:
-        message = f"{message}\nDid you mean {suggestion}?"
+    if hint:
+        message = f"{message}\nDid you mean {hint}?"
     return message
