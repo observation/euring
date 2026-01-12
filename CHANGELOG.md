@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Refactor JSON structure and errors structure (#70).
+- Make EURING format options explicit (#68, #69).
+- Add tests for EURING formats (#67).
+- Add documentation for EuringRecordBuilder (#63).
+
 ## 26.1 (2026-01-02)
 
 - Use singular naming for place code table (#60).
