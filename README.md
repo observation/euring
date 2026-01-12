@@ -83,6 +83,7 @@ Decoded JSON structure (single record):
   "fields": {
     "ringing_scheme": {"name": "Ringing Scheme", "value": "ESA", "order": 0},
     "primary_identification_method": {"name": "Primary Identification Method", "value": "A0", "order": 1}
+    // ...
   },
   "errors": {
     "record": [],
