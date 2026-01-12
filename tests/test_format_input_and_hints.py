@@ -8,6 +8,7 @@ import pytest
 from euring import euring_decode_record
 from euring.converters import convert_euring_record
 from euring.exceptions import EuringParseException
+from euring.formats import format_hint
 
 
 def _load_fixture(module_name: str, filename: str) -> list[str]:
@@ -122,3 +123,23 @@ def test_convert_source_format_rejects_missing_prefix():
     record = records[0]
     with pytest.raises(ValueError, match="Unknown source format"):
         convert_euring_record(record, source_format="2000plus", target_format="euring2020")
+
+
+def test_format_hint_for_2020():
+    assert format_hint("2020") == "euring2020"
+
+
+def test_format_hint_for_2000plus():
+    assert format_hint("2000plus") == "euring2000plus"
+
+
+def test_format_hint_for_2000_plus_symbol():
+    assert format_hint("2000+") == "euring2000plus"
+
+
+def test_format_hint_for_2000():
+    assert format_hint("2000") == "euring2000"
+
+
+def test_format_hint_unknown_returns_none():
+    assert format_hint("unknown") is None

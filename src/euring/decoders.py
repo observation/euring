@@ -8,8 +8,8 @@ from .formats import (
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
     format_display_name,
-    unknown_format_error,
     normalize_format,
+    unknown_format_error,
 )
 from .types import is_valid_type
 
@@ -166,7 +166,7 @@ class EuringDecoder:
                 self._data_by_key[key] = decoded
 
     def clean(self):
-        """Hook for post-processing decoded results."""
+        """Apply post-processing to decoded results."""
         # Removed Django Point creation for standalone version
         pass
 
@@ -186,7 +186,7 @@ class EuringDecoder:
         self.results["errors"] = self.errors
 
     def _decode(self):
-        """Internal decoding implementation."""
+        """Perform the internal decoding steps."""
         try:
             fields = self.value_to_decode.split("|")
         except AttributeError:

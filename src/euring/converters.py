@@ -5,8 +5,8 @@ from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
-    unknown_format_error,
     normalize_format,
+    unknown_format_error,
 )
 from .utils import euring_lat_to_dms, euring_lng_to_dms
 
