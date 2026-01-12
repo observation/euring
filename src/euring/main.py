@@ -90,12 +90,17 @@ def decode(
                 raise typer.Exit(1)
             return
         typer.echo("Decoded EURING record:")
-        typer.echo(f"Format: {record.get('format', 'Unknown')}")
-        typer.echo(f"Ringing Scheme: {record.get('ringing_scheme', 'Unknown')}")
-        if "data" in record:
+        format_value = (record.get("record") or {}).get("format") or "Unknown"
+        typer.echo(f"Format: {format_value}")
+        fields = record.get("fields") or {}
+        if "ringing_scheme" in fields:
+            typer.echo(f"Ringing Scheme: {fields['ringing_scheme'].get('value', 'Unknown')}")
+        if fields:
             typer.echo("Data fields:")
-            for key, value in record["data"].items():
-                typer.echo(f"  {key}: {value}")
+            for field in fields.values():
+                name = field.get("name", "Unknown")
+                value = field.get("value", "")
+                typer.echo(f"  {name}: {value}")
         if _has_errors(errors):
             typer.echo("Record has errors:", err=True)
             for line in _format_error_lines(errors, indent="  "):
@@ -178,7 +183,7 @@ def validate_record(
         record = euring_decode_record(euring_string, format=format)
         errors = record.get("errors", {})
         if as_json:
-            payload = _with_meta({"format": record.get("format"), "errors": errors})
+            payload = _with_meta({"format": (record.get("record") or {}).get("format"), "errors": errors})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")

@@ -90,16 +90,13 @@ class TestDecoding:
     def test_decode_minimal_record(self):
         # Very minimal EURING record for testing
         record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"))
-        assert record["format"] == "EURING2000+"
-        assert record["ringing_scheme"] == "GBB"
-        assert "data" in record
-        assert "data_by_key" in record
-        assert "Ringing Scheme" in record["data"]
-        assert record["data_by_key"]["ringing_scheme"]["value"] == "GBB"
+        assert record["record"]["format"] == "EURING2000+"
+        assert record["fields"]["ringing_scheme"]["value"] == "GBB"
+        assert "fields" in record
 
     def test_decode_euring2020_format(self):
         record = euring_decode_record(_make_euring2000_plus_record(accuracy="A"))
-        assert record["format"] == "EURING2020"
+        assert record["record"]["format"] == "EURING2020"
 
     def test_decode_euring2020_format_rejects_2000_plus(self):
         record = euring_decode_record(
@@ -159,17 +156,19 @@ class TestDecoding:
 
     def test_parse_field_missing_optional_does_not_error(self):
         decoder = EuringDecoder("GBB")
-        decoder.results = {"data": OrderedDict(), "data_by_key": OrderedDict()}
+        decoder._data = OrderedDict()
+        decoder._data_by_key = OrderedDict()
         decoder.errors = {"record": [], "fields": []}
         decoder.parse_field([], 1, "Optional", key="optional", type=TYPE_INTEGER, required=False)
         assert decoder.errors == {"record": [], "fields": []}
 
     def test_parse_field_sets_none_for_optional_empty(self):
         decoder = EuringDecoder("GBB")
-        decoder.results = {"data": OrderedDict(), "data_by_key": OrderedDict()}
+        decoder._data = OrderedDict()
+        decoder._data_by_key = OrderedDict()
         decoder.errors = {"record": [], "fields": []}
         decoder.parse_field([""], 0, "Optional", key="optional", type=TYPE_INTEGER, required=False)
-        assert decoder.results["data_by_key"]["optional"] is None
+        assert decoder._data_by_key["optional"] is None
 
     def test_decode_euring2000_format(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -182,8 +181,8 @@ class TestDecoding:
         spec.loader.exec_module(module)
 
         record = euring_decode_record(module.EURING2000_EXAMPLES[1])
-        assert record["format"] == "EURING2000"
-        assert record["data"]["Ringing Scheme"]["value"] == "DER"
+        assert record["record"]["format"] == "EURING2000"
+        assert record["fields"]["ringing_scheme"]["value"] == "DER"
 
     def test_decode_euring2000_invalid_extra_data(self):
         record = euring_decode_record("AAB1234567890" + "9" * 90)
@@ -290,7 +289,8 @@ class TestDecoding:
 
     def test_decode_duplicate_field_name(self):
         decoder = EuringDecoder("GBB")
-        decoder.results = {"data": {"Ringing Scheme": {"value": "GBB"}}}
+        decoder._data = {"Ringing Scheme": {"value": "GBB"}}
+        decoder._data_by_key = OrderedDict()
         decoder.errors = {"record": [], "fields": []}
         decoder.parse_field(["GBB"], 0, "Ringing Scheme", type=TYPE_INTEGER, length=3)
         assert any(error["field"] == "Ringing Scheme" for error in decoder.errors["fields"])
@@ -307,7 +307,7 @@ class TestDecoding:
 
         for line in module.EURING2000_EXAMPLES:
             record = euring_decode_record(line)
-            assert record["format"] == "EURING2000"
+            assert record["record"]["format"] == "EURING2000"
             assert not record["errors"]["record"]
             assert not record["errors"]["fields"]
 
@@ -323,7 +323,7 @@ class TestDecoding:
 
         for line in module.EURING2000PLUS_EXAMPLES:
             record = euring_decode_record(line)
-            assert record["format"] == "EURING2000+"
+            assert record["record"]["format"] == "EURING2000+"
             assert not record["errors"]["record"]
             assert not record["errors"]["fields"]
 
@@ -339,6 +339,6 @@ class TestDecoding:
 
         for line in module.EURING2020_EXAMPLES:
             record = euring_decode_record(line)
-            assert record["format"] == "EURING2020"
+            assert record["record"]["format"] == "EURING2020"
             assert not record["errors"]["record"]
             assert not record["errors"]["fields"]

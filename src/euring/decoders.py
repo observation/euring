@@ -79,6 +79,8 @@ class EuringDecoder:
     def __init__(self, value_to_decode, format: str | None = None):
         self.value_to_decode = value_to_decode
         self.format = self._normalize_format(format)
+        self._data = OrderedDict()
+        self._data_by_key = OrderedDict()
         self._field_positions = {}
         super().__init__()
 
@@ -127,7 +129,7 @@ class EuringDecoder:
                     length=self._field_positions.get(index, {}).get("length"),
                 )
             return
-        if name in self.results["data"]:
+        if name in self._data:
             self.add_field_error(
                 name,
                 "A value is already present in results.",
@@ -151,13 +153,13 @@ class EuringDecoder:
                 length=self._field_positions.get(index, {}).get("length"),
             )
             return
-        self.results["data"][name] = decoded
+        self._data[name] = decoded
         if key:
             if decoded is None:
-                self.results["data_by_key"][key] = None
+                self._data_by_key[key] = None
             else:
                 decoded["key"] = key
-                self.results["data_by_key"][key] = decoded
+                self._data_by_key[key] = decoded
 
     def clean(self):
         # Removed Django Point creation for standalone version
@@ -167,10 +169,14 @@ class EuringDecoder:
         self.results = OrderedDict()
         self.errors = {"record": [], "fields": []}
         self._field_positions = {}
-        self.results["data"] = OrderedDict()
-        self.results["data_by_key"] = OrderedDict()
+        self._data = OrderedDict()
+        self._data_by_key = OrderedDict()
         self._decode()
         self.clean()
+        if "record" not in self.results:
+            self.results["record"] = {"format": None}
+        if "fields" not in self.results:
+            self.results["fields"] = OrderedDict()
         self.results["errors"] = self.errors
 
     def _decode(self):
@@ -225,8 +231,7 @@ class EuringDecoder:
             is_2020 = self._is_euring2020()
             if is_2020 and current_format == FORMAT_EURING2000PLUS:
                 if self.format:
-                    data_by_key = self.results.get("data_by_key") or {}
-                    accuracy = data_by_key.get("accuracy_of_coordinates")
+                    accuracy = self._data_by_key.get("accuracy_of_coordinates")
                     self._add_field_error_for_key(
                         "accuracy_of_coordinates",
                         "Accuracy of Co-ordinates",
@@ -239,8 +244,7 @@ class EuringDecoder:
                 # Format was explicitly set to EURING2020 elsewhere; keep it as-is.
                 pass
         if current_format == FORMAT_EURING2000 and self._accuracy_is_alpha():
-            data_by_key = self.results.get("data_by_key") or {}
-            accuracy = data_by_key.get("accuracy_of_coordinates")
+            accuracy = self._data_by_key.get("accuracy_of_coordinates")
             self._add_field_error_for_key(
                 "accuracy_of_coordinates",
                 "Accuracy of Co-ordinates",
@@ -248,10 +252,9 @@ class EuringDecoder:
                 value=accuracy.get("value") if accuracy else "",
             )
         if current_format == FORMAT_EURING2020:
-            data_by_key = self.results.get("data_by_key") or {}
-            geo = data_by_key.get("geographical_coordinates")
-            lat = data_by_key.get("latitude")
-            lng = data_by_key.get("longitude")
+            geo = self._data_by_key.get("geographical_coordinates")
+            lat = self._data_by_key.get("latitude")
+            lng = self._data_by_key.get("longitude")
             geo_value = geo.get("value") if geo else None
             lat_value = lat.get("value") if lat else None
             lng_value = lng.get("value") if lng else None
@@ -278,30 +281,30 @@ class EuringDecoder:
                     value="",
                 )
 
-        self.results["format"] = format_display_name(current_format)
+        # Record metadata output is assembled after field validation.
 
-        # Some post processing
-        try:
-            scheme = self.results["data"]["Ringing Scheme"]["value"]
-        except KeyError:
-            scheme = "---"
-        try:
-            ring = self.results["data"]["Identification number (ring)"]["description"]
-        except KeyError:
-            ring = "----------"
-        try:
-            date = self.results["data"]["Date"]["description"]
-        except KeyError:
-            date = None
-        self.results["ring"] = ring
-        self.results["ringing_scheme"] = scheme
-        self.results["animal"] = f"{scheme}#{ring}"
-        self.results["date"] = date
+        self.results["record"] = {"format": format_display_name(current_format)}
+        self.results["fields"] = self._build_fields()
 
     def get_results(self):
         if self.results is None:
             self.decode()
         return self.results
+
+    def _build_fields(self) -> OrderedDict:
+        fields = OrderedDict()
+        for index, field in enumerate(EURING_FIELDS):
+            key = field["key"]
+            if key not in self._data_by_key:
+                continue
+            decoded = self._data_by_key.get(key)
+            value = None if decoded is None else decoded.get("value", "")
+            fields[key] = {
+                "name": field["name"],
+                "value": value,
+                "order": index,
+            }
+        return fields
 
     def _add_field_error_for_key(self, key, field_name, message, value=None):
         field_index = None
@@ -310,8 +313,7 @@ class EuringDecoder:
                 field_index = index
                 break
         if value is None:
-            data_by_key = self.results.get("data_by_key") or {}
-            stored = data_by_key.get(key)
+            stored = self._data_by_key.get(key)
             value = stored.get("value") if stored else ""
         position = self._field_positions.get(field_index, {}).get("position") if field_index is not None else None
         length = self._field_positions.get(field_index, {}).get("length") if field_index is not None else None
@@ -326,18 +328,16 @@ class EuringDecoder:
         )
 
     def _is_euring2020(self) -> bool:
-        data_by_key = self.results.get("data_by_key") or {}
         if self._accuracy_is_alpha():
             return True
         for key in ("latitude", "longitude", "current_place_code", "more_other_marks"):
-            value = data_by_key.get(key)
+            value = self._data_by_key.get(key)
             if value and value.get("value"):
                 return True
         return False
 
     def _accuracy_is_alpha(self) -> bool:
-        data_by_key = self.results.get("data_by_key") or {}
-        accuracy = data_by_key.get("accuracy_of_coordinates")
+        accuracy = self._data_by_key.get("accuracy_of_coordinates")
         if not accuracy:
             return False
         value = accuracy.get("value")
