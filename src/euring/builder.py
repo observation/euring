@@ -59,10 +59,18 @@ class EuringRecordBuilder:
         if self.strict:
             format = normalize_format(self.format)
             result = euring_decode_record(record, format=format)
-            if result.get("errors"):
+            errors = result.get("errors", {})
+            if self.has_errors(errors):
                 raise ValueError(f"Record validation failed: {result['errors']}")
 
         return record
+
+    def has_errors(self, errors: object) -> bool:
+        if not isinstance(errors, dict):
+            return bool(errors)
+        record_errors = errors.get("record", [])
+        field_errors = errors.get("fields", [])
+        return bool(record_errors) or bool(field_errors)
 
 
 def _fields_for_format(format: str) -> list[dict[str, object]]:

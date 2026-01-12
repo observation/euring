@@ -61,18 +61,18 @@ def decode(
                 if not record_line:
                     continue
                 record = euring_decode_record(record_line, format=format)
-                if format and record.get("errors"):
+                if _has_errors(record.get("errors", {})):
                     has_errors = True
                 records.append(record)
             payload = _with_meta({"records": records})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
-                if format and has_errors:
+                if has_errors:
                     raise typer.Exit(1)
                 return
             typer.echo(text)
-            if format and has_errors:
+            if has_errors:
                 raise typer.Exit(1)
             return
         record = euring_decode_record(euring_string, format=format)
@@ -82,26 +82,30 @@ def decode(
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
-                if format and errors:
+                if _has_errors(errors):
                     raise typer.Exit(1)
                 return
             typer.echo(text)
-            if format and errors:
+            if _has_errors(errors):
                 raise typer.Exit(1)
             return
-        if format and errors:
-            typer.echo("Record has errors:", err=True)
-            for field, messages in errors.items():
-                for message in messages:
-                    typer.echo(f"  {field}: {message}", err=True)
-            raise typer.Exit(1)
         typer.echo("Decoded EURING record:")
-        typer.echo(f"Format: {record.get('format', 'Unknown')}")
-        typer.echo(f"Ringing Scheme: {record.get('ringing_scheme', 'Unknown')}")
-        if "data" in record:
+        format_value = (record.get("record") or {}).get("format") or "Unknown"
+        typer.echo(f"Format: {format_value}")
+        fields = record.get("fields") or {}
+        if "ringing_scheme" in fields:
+            typer.echo(f"Ringing Scheme: {fields['ringing_scheme'].get('value', 'Unknown')}")
+        if fields:
             typer.echo("Data fields:")
-            for key, value in record["data"].items():
-                typer.echo(f"  {key}: {value}")
+            for field in fields.values():
+                name = field.get("name", "Unknown")
+                value = field.get("value", "")
+                typer.echo(f"  {name}: {value}")
+        if _has_errors(errors):
+            typer.echo("Record has errors:", err=True)
+            for line in _format_error_lines(errors, indent="  "):
+                typer.echo(line, err=True)
+            raise typer.Exit(1)
     except EuringParseException as e:
         typer.echo(f"Parse error: {e}", err=True)
         raise typer.Exit(1)
@@ -149,7 +153,7 @@ def validate_record(
                 total += 1
                 record = euring_decode_record(record_line, format=format)
                 errors = record.get("errors", {})
-                if errors:
+                if _has_errors(errors):
                     invalid += 1
                     results.append({"line": index, "record": record_line, "errors": errors})
             if as_json:
@@ -166,9 +170,8 @@ def validate_record(
                 typer.echo(f"{invalid} of {total} records have errors:")
                 for item in results:
                     typer.echo(f"  Line {item['line']}:")
-                    for field, messages in item["errors"].items():
-                        for message in messages:
-                            typer.echo(f"    {field}: {message}")
+                    for line in _format_error_lines(item["errors"], indent="    "):
+                        typer.echo(line)
                 raise typer.Exit(1)
             text = f"All {total} records are valid."
             if output:
@@ -180,20 +183,19 @@ def validate_record(
         record = euring_decode_record(euring_string, format=format)
         errors = record.get("errors", {})
         if as_json:
-            payload = _with_meta({"format": record.get("format"), "errors": errors})
+            payload = _with_meta({"format": (record.get("record") or {}).get("format"), "errors": errors})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
             else:
                 typer.echo(text)
-            if errors:
+            if _has_errors(errors):
                 raise typer.Exit(1)
             return
-        if errors:
+        if _has_errors(errors):
             typer.echo("Record has errors:")
-            for field, messages in errors.items():
-                for message in messages:
-                    typer.echo(f"  {field}: {message}")
+            for line in _format_error_lines(errors, indent="  "):
+                typer.echo(line)
             raise typer.Exit(1)
         text = "Record is valid."
         if output:
@@ -420,6 +422,44 @@ if __name__ == "__main__":
 def main():
     """Entry point for the CLI."""
     app()
+
+
+def _has_errors(errors: dict[str, object]) -> bool:
+    if not isinstance(errors, dict):
+        return bool(errors)
+    record_errors = errors.get("record", [])
+    field_errors = errors.get("fields", [])
+    return bool(record_errors) or bool(field_errors)
+
+
+def _format_error_lines(errors: dict[str, object], *, indent: str) -> list[str]:
+    lines: list[str] = []
+    record_errors = errors.get("record", []) if isinstance(errors, dict) else []
+    field_errors = errors.get("fields", []) if isinstance(errors, dict) else []
+    if record_errors:
+        lines.append(f"{indent}Record errors:")
+        for error in record_errors:
+            message = error.get("message", "")
+            lines.append(f"{indent}  - {message}")
+    if field_errors:
+        lines.append(f"{indent}Field errors:")
+        for error in field_errors:
+            field = error.get("field", "Unknown field")
+            message = error.get("message", "")
+            meta: list[str] = []
+            if "key" in error and error["key"]:
+                meta.append(f"key={error['key']}")
+            if "index" in error and error["index"] is not None:
+                meta.append(f"index={error['index']}")
+            if "position" in error and error["position"] is not None:
+                meta.append(f"position={error['position']}")
+            if "length" in error and error["length"] is not None:
+                meta.append(f"length={error['length']}")
+            if "value" in error and error["value"] != "":
+                meta.append(f'value="{error["value"]}"')
+            label = f"{field} ({', '.join(meta)})" if meta else field
+            lines.append(f"{indent}  - {label}: {message}")
+    return lines
 
 
 def _emit_detail(label: str, value) -> None:

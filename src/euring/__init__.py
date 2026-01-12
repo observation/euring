@@ -55,7 +55,6 @@ __all__ = [
     "convert_euring2000_record",
     "convert_euring_record",
     "EuringDecoder",
-    "EuringRecordBuilder",
     "TYPE_ALPHABETIC",
     "TYPE_ALPHANUMERIC",
     "TYPE_INTEGER",

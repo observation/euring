@@ -73,6 +73,27 @@ euring decode --file euring_records.txt --json --output decoded_records.json
 
 ```
 
+Decoded JSON structure (single record):
+
+```json
+{
+  "record": {
+    "format": "EURING2000+"
+  },
+  "fields": {
+    "ringing_scheme": {"name": "Ringing Scheme", "value": "ESA", "order": 0},
+    "primary_identification_method": {"name": "Primary Identification Method", "value": "A0", "order": 1}
+  },
+  "errors": {
+    "record": [],
+    "fields": []
+  },
+  "_meta": {
+    "generator": {"name": "euring", "version": "X.Y.Z", "url": "https://github.com/observation/euring"}
+  }
+}
+```
+
 ### Python Library
 
 ```python

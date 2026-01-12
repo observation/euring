@@ -11,10 +11,11 @@ from euring import EuringRecordBuilder, euring_decode_record
 def _values_from_record(record: str) -> dict[str, str]:
     decoded = euring_decode_record(record)
     values: dict[str, str] = {}
-    for key, field in decoded["data_by_key"].items():
-        if field is None:
+    for key, field in decoded["fields"].items():
+        value = field.get("value")
+        if value is None:
             continue
-        values[key] = field["value"]
+        values[key] = value
     return values
 
 
