@@ -101,17 +101,18 @@ def test_lookup_glob_hint_when_shell_expands_to_file():
 
 def test_decode_cli_success():
     runner = CliRunner()
+    record = _load_fixture_records("euring2000plus_examples.py", "EURING2000PLUS_EXAMPLES")[0]
     result = runner.invoke(
         app,
         [
             "decode",
-            "GBB|A0|1234567890|0|1|ZZ|00010|00010|N|0|M|U|U|U|2|2|U|01012024|0|0000|AB00|+0000000+0000000|1|9|99|0|4",
+            record,
         ],
     )
     assert result.exit_code == 0
     assert "Decoded EURING record:" in result.output
     assert "Format: EURING2000+" in result.output
-    assert "Ringing Scheme: GBB" in result.output
+    assert "Ringing Scheme: ESA" in result.output
 
 
 def test_decode_cli_format_mismatch_fails():
