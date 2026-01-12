@@ -84,3 +84,46 @@ Options:
   ``--pretty``  Pretty-print JSON output.
   ``--force``  Overwrite existing files.
   ``--all``  Dump all code tables (requires ``--output-dir``).
+
+JSON structure
+--------------
+
+``decode --json`` (single record) returns:
+
+.. code-block:: json
+
+   {
+     "record": {
+       "format": "EURING2000+"
+     },
+     "fields": {
+       "ringing_scheme": {"name": "Ringing Scheme", "value": "ESA", "order": 0},
+       "primary_identification_method": {"name": "Primary Identification Method", "value": "A0", "order": 1}
+     },
+     "errors": {
+       "record": [],
+       "fields": []
+     },
+     "_meta": {
+       "generator": {"name": "euring", "version": "X.Y.Z", "url": "https://github.com/observation/euring"}
+     }
+   }
+
+``decode --file --json`` returns:
+
+.. code-block:: json
+
+   {
+     "records": [/* decode --json objects */],
+     "_meta": {"generator": {"name": "euring", "version": "X.Y.Z", "url": "https://github.com/observation/euring"}}
+   }
+
+``validate --json`` returns:
+
+.. code-block:: json
+
+   {
+     "format": "EURING2000+",
+     "errors": {"record": [], "fields": []},
+     "_meta": {"generator": {"name": "euring", "version": "X.Y.Z", "url": "https://github.com/observation/euring"}}
+   }
