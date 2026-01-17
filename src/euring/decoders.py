@@ -63,10 +63,22 @@ def euring_decode_record(value, format: str | None = None):
 
     :param value: EURING text
     :param format: Optional format declaration ("euring2000", "euring2000plus", "euring2020")
-    :return: OrderedDict with results
+    :return: EuringRecord instance
     """
     decoder = EuringDecoder(value, format=format)
-    return decoder.get_results()
+    result = decoder.get_results()
+    from .record import EuringRecord
+
+    if decoder.record_format:
+        internal_format = decoder.record_format
+    elif format:
+        internal_format = normalize_format(format)
+    else:
+        internal_format = FORMAT_EURING2000PLUS
+    record = EuringRecord(internal_format, strict=False)
+    record.fields = result["fields"]
+    record.errors = result["errors"]
+    return record
 
 
 class EuringDecoder:
@@ -83,6 +95,7 @@ class EuringDecoder:
         self._data = OrderedDict()
         self._data_by_key = OrderedDict()
         self._field_positions = {}
+        self.record_format: str | None = None
         super().__init__()
 
     def add_record_error(self, message):
@@ -292,6 +305,7 @@ class EuringDecoder:
 
         self.results["record"] = {"format": format_display_name(current_format)}
         self.results["fields"] = self._build_fields()
+        self.record_format = current_format
 
     def get_results(self):
         """Return decoded results, decoding if needed."""

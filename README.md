@@ -98,7 +98,7 @@ Decoded JSON structure (single record):
 ### Python Library
 
 ```python
-from euring import EuringRecordBuilder, euring_decode_record, is_valid_type, TYPE_ALPHABETIC
+from euring import EuringRecord, euring_decode_record, is_valid_type, TYPE_ALPHABETIC
 
 # Decode a record
 record = euring_decode_record(
@@ -106,14 +106,14 @@ record = euring_decode_record(
 )
 
 # Build a record (EURING2000+ example)
-builder = EuringRecordBuilder("euring2000plus")
-builder.set("ringing_scheme", "GBB")
-builder.set("primary_identification_method", "A0")
-builder.set("identification_number", "1234567890")
-builder.set("place_code", "AB00")
-builder.set("geographical_coordinates", "+0000000+0000000")
-builder.set("accuracy_of_coordinates", "1")
-record = builder.build()
+record = EuringRecord("euring2000plus")
+record.set("ringing_scheme", "GBB")
+record.set("primary_identification_method", "A0")
+record.set("identification_number", "1234567890")
+record.set("place_code", "AB00")
+record.set("geographical_coordinates", "+0000000+0000000")
+record.set("accuracy_of_coordinates", "1")
+record_str = record.serialize()
 
 # Validate a value
 is_valid = is_valid_type("ABC", TYPE_ALPHABETIC)

@@ -24,7 +24,7 @@ def test_decode_format_accepts_lowercase():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
     decoded = euring_decode_record(record, format="euring2000plus")
-    assert decoded["record"]["format"] == "EURING2000+"
+    assert decoded.display_format == "EURING2000+"
 
 
 def test_decode_format_rejects_uppercase_formal():

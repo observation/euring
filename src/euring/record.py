@@ -1,41 +1,65 @@
 from __future__ import annotations
 
-from .decoders import euring_decode_record, euring_decode_value
+from .decoders import EuringDecoder, euring_decode_value
 from .exceptions import EuringParseException
 from .fields import EURING_FIELDS
-from .formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, normalize_format
+from .formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, format_display_name, normalize_format
 
 
-class EuringRecordBuilder:
-    """Build EURING record strings from field values."""
+class EuringRecord:
+    """Build or decode EURING records."""
 
     def __init__(self, format: str, *, strict: bool = True) -> None:
-        """Initialize a builder for the given EURING format."""
+        """Initialize a record with the given EURING format."""
         self.format = normalize_format(format)
         self.strict = strict
-        self._values: dict[str, str] = {}
+        self._fields: dict[str, dict[str, object]] = {}
+        self.errors: dict[str, list] = {"record": [], "fields": []}
+        self.fields = self._fields
 
-    def set(self, key: str, value: object) -> EuringRecordBuilder:
+    @classmethod
+    def decode(cls, value: str, format: str | None = None) -> EuringRecord:
+        """Decode a EURING record string into an EuringRecord."""
+        decoder = EuringDecoder(value, format=format)
+        result = decoder.get_results()
+        if decoder.record_format:
+            internal_format = decoder.record_format
+        elif format:
+            internal_format = normalize_format(format)
+        else:
+            internal_format = FORMAT_EURING2000PLUS
+        record = cls(internal_format, strict=False)
+        record._fields = result["fields"]
+        record.fields = record._fields
+        record.errors = result["errors"]
+        return record
+
+    def set(self, key: str, value: object) -> EuringRecord:
         """Set a field value by key."""
-        if key not in _FIELD_KEYS:
+        field = _FIELD_MAP.get(key)
+        if field is None:
             raise ValueError(f'Unknown field key "{key}".')
-        self._values[key] = "" if value is None else str(value)
+        self._fields[key] = {
+            "name": field["name"],
+            "value": "" if value is None else str(value),
+            "order": field["order"],
+        }
         return self
 
-    def update(self, values: dict[str, object]) -> EuringRecordBuilder:
+    def update(self, values: dict[str, object]) -> EuringRecord:
         """Update multiple field values."""
         for key, value in values.items():
             self.set(key, value)
         return self
 
-    def build(self) -> str:
-        """Build and validate a EURING record string."""
+    def serialize(self) -> str:
+        """Serialize and validate a EURING record string."""
         fields = _fields_for_format(self.format)
         values_by_key: dict[str, str] = {}
 
         for field in fields:
             key = field["key"]
-            value = self._values.get(key, "")
+            value = self._fields.get(key, {}).get("value", "")
             if value == "":
                 if self.strict and field.get("required", True):
                     raise ValueError(f'Missing required field "{key}".')
@@ -60,12 +84,9 @@ class EuringRecordBuilder:
         else:
             record = "|".join(values_by_key.get(field["key"], "") for field in fields)
 
-        if self.strict:
-            format = normalize_format(self.format)
-            result = euring_decode_record(record, format=format)
-            errors = result.get("errors", {})
-            if self.has_errors(errors):
-                raise ValueError(f"Record validation failed: {result['errors']}")
+        errors = self.validate(record)
+        if self.strict and self.has_errors(errors):
+            raise ValueError(f"Record validation failed: {errors}")
 
         return record
 
@@ -76,6 +97,37 @@ class EuringRecordBuilder:
         record_errors = errors.get("record", [])
         field_errors = errors.get("fields", [])
         return bool(record_errors) or bool(field_errors)
+
+    def validate(self, record: str | None = None) -> dict[str, list]:
+        """Validate the record and store errors on the record."""
+        if record is None:
+            record = self._serialize()
+        decoder = EuringDecoder(record, format=self.format)
+        result = decoder.get_results()
+        self.errors = result.get("errors", {"record": [], "fields": []})
+        self._fields = result.get("fields", {})
+        self.fields = self._fields
+        return self.errors
+
+    def to_dict(self) -> dict[str, object]:
+        """Return a JSON-serializable representation of the record."""
+        return {"record": {"format": format_display_name(self.format)}, "fields": self.fields, "errors": self.errors}
+
+    @property
+    def display_format(self) -> str:
+        """Return the formal EURING format name."""
+        return format_display_name(self.format)
+
+    def _serialize(self) -> str:
+        """Serialize current field values without strict completeness checks."""
+        fields = _fields_for_format(self.format)
+        values_by_key: dict[str, str] = {}
+        for field in fields:
+            key = field["key"]
+            values_by_key[key] = self._fields.get(key, {}).get("value", "")
+        if self.format == FORMAT_EURING2000:
+            return _format_fixed_width(values_by_key, _fixed_width_fields())
+        return "|".join(values_by_key.get(field["key"], "") for field in fields)
 
 
 def _fields_for_format(format: str) -> list[dict[str, object]]:
@@ -120,4 +172,4 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
     return "".join(parts)
 
 
-_FIELD_KEYS = {field["key"] for field in EURING_FIELDS}
+_FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING_FIELDS)}

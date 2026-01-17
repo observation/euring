@@ -4,23 +4,23 @@ Examples
 Building records
 ----------------
 
-Use ``EuringRecordBuilder`` to assemble a valid EURING record from field values.
+Use ``EuringRecord`` to assemble a valid EURING record from field values.
 
 .. code-block:: python
 
-   from euring import EuringRecordBuilder
+   from euring import EuringRecord
 
-   builder = EuringRecordBuilder("euring2000plus")
-   builder.set("ringing_scheme", "GBB")
-   builder.set("primary_identification_method", "A0")
-   builder.set("identification_number", "1234567890")
-   builder.set("place_code", "AB00")
-   builder.set("geographical_coordinates", "+0000000+0000000")
-   builder.set("accuracy_of_coordinates", "1")
-   record = builder.build()
+   record = EuringRecord("euring2000plus")
+   record.set("ringing_scheme", "GBB")
+   record.set("primary_identification_method", "A0")
+   record.set("identification_number", "1234567890")
+   record.set("place_code", "AB00")
+   record.set("geographical_coordinates", "+0000000+0000000")
+   record.set("accuracy_of_coordinates", "1")
+   record_str = record.serialize()
 
 If you want to allow missing optional values and keep placeholders, pass
-``strict=False`` to the builder. ``build()`` raises ``ValueError`` when a field
+``strict=False`` to the record. ``serialize()`` raises ``ValueError`` when a field
 fails validation.
 
 Exporting records
@@ -31,14 +31,14 @@ and write each record as a line in a pipe-delimited file.
 
 .. code-block:: python
 
-   from euring import EuringRecordBuilder
+   from euring import EuringRecord
 
    def export_records(records, path):
-       builder = EuringRecordBuilder("euring2000plus")
+       record = EuringRecord("euring2000plus")
        errors = []
        with open(path, "w", encoding="utf-8", newline="\n") as handle:
            for row in records:
-               builder.update(
+               record.update(
                    {
                        "ringing_scheme": row["ringing_scheme_code"],
                        "primary_identification_method": row["primary_id_method"],
@@ -50,7 +50,7 @@ and write each record as a line in a pipe-delimited file.
                    }
                )
                try:
-                   handle.write(builder.build() + "\n")
+                   handle.write(record.serialize() + "\n")
                except ValueError as exc:
                    errors.append((row["id"], str(exc)))
        return errors
