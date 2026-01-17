@@ -6,6 +6,8 @@ from pathlib import Path
 import pytest
 
 from euring import EuringRecord, euring_decode_record
+from euring.record import _fields_for_format, _fixed_width_fields, _format_fixed_width
+import euring.record as record_module
 
 
 def _values_from_record(record: str) -> dict[str, str]:
@@ -98,6 +100,7 @@ def test_record_invalid_value_raises():
 
 
 def test_record_record_validation_error():
+    """Raise when record-level validation fails under strict mode."""
     fixture_path = Path(__file__).parent / "fixtures" / "euring2020_examples.py"
     spec = spec_from_file_location("euring2020_examples", fixture_path)
     assert spec and spec.loader
@@ -108,6 +111,123 @@ def test_record_record_validation_error():
     values = _values_from_record(record)
     record = EuringRecord("euring2020")
     record.update(values)
-    record.set("geographical_coordinates", "+0000000+0000000")
+    record.set("geographical_coordinates", "+000000+0000000")
     with pytest.raises(ValueError):
         record.serialize()
+
+
+def test_record_decode_sets_format_and_fields():
+    """Decode should set format and populate fields."""
+    fixture_path = Path(__file__).parent / "fixtures" / "euring2020_examples.py"
+    spec = spec_from_file_location("euring2020_examples", fixture_path)
+    assert spec and spec.loader
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    record_str = module.EURING2020_EXAMPLES[0]
+    record = EuringRecord.decode(record_str)
+    assert record.format == "euring2020"
+    assert "ringing_scheme" in record.fields
+
+
+def test_record_has_errors_non_dict():
+    """Non-dict errors should fall back to truthiness checks."""
+    record = EuringRecord("euring2000")
+    assert record.has_errors(["oops"])
+    assert not record.has_errors([])
+
+
+def test_record_validate_without_record_uses_current_fields():
+    """Validate without an explicit record should serialize current fields."""
+    record = EuringRecord("euring2000plus", strict=False)
+    record.set("ringing_scheme", "GBB")
+    errors = record.validate()
+    assert isinstance(errors, dict)
+    assert record.fields
+
+
+def test_fields_for_format_euring2000plus_truncates():
+    """EURING2000PLUS should stop at the reference field."""
+    fields = _fields_for_format("euring2000plus")
+    assert fields[-1]["key"] == "reference"
+
+
+def test_fixed_width_fields_respects_max_length():
+    """Fixed-width fields should not exceed the 94-character cutoff."""
+    fields = _fixed_width_fields()
+    total_length = sum(field["length"] for field in fields)
+    assert total_length <= 94
+
+
+def test_format_fixed_width_handles_empty_and_padding():
+    """Fixed-width formatting should pad and fill empty fields."""
+    fields = [{"key": "alpha", "length": 2}, {"key": "beta", "length": 3}]
+    record = _format_fixed_width({"alpha": "A"}, fields)
+    assert record == "A-" + "---"
+
+
+def test_record_decode_uses_format_when_decoder_missing(monkeypatch):
+    """Decoder without record_format should fall back to provided format."""
+    class DummyDecoder:
+        def __init__(self, value, format=None):
+            self.record_format = None
+
+        def get_results(self):
+            return {"fields": {}, "errors": {"record": [], "fields": []}}
+
+    monkeypatch.setattr(record_module, "EuringDecoder", DummyDecoder)
+    record = EuringRecord.decode("value", format="euring2020")
+    assert record.format == "euring2020"
+
+
+def test_record_decode_defaults_when_decoder_missing(monkeypatch):
+    """Decoder without record_format should default to EURING2000PLUS."""
+    class DummyDecoder:
+        def __init__(self, value, format=None):
+            self.record_format = None
+
+        def get_results(self):
+            return {"fields": {}, "errors": {"record": [], "fields": []}}
+
+    monkeypatch.setattr(record_module, "EuringDecoder", DummyDecoder)
+    record = EuringRecord.decode("value")
+    assert record.format == "euring2000plus"
+
+
+def test_record_validate_without_record_uses_fixed_width():
+    """Validation should serialize fixed-width records when needed."""
+    record = EuringRecord("euring2000", strict=False)
+    record.set("ringing_scheme", "GBB")
+    errors = record.validate()
+    assert isinstance(errors, dict)
+
+
+def test_fields_for_format_euring2000plus_without_reference(monkeypatch):
+    """EURING2000PLUS should return all fields when reference is missing."""
+    fields = [{"key": "alpha", "length": 1}, {"key": "beta", "length": 1}]
+    monkeypatch.setattr(record_module, "EURING_FIELDS", fields)
+    assert _fields_for_format("euring2000plus") == fields
+
+
+def test_fixed_width_fields_breaks_on_missing_length(monkeypatch):
+    """Fixed-width fields should stop when length metadata is missing."""
+    fields = [{"key": "alpha", "length": 1}, {"key": "beta"}]
+    monkeypatch.setattr(record_module, "EURING_FIELDS", fields)
+    result = _fixed_width_fields()
+    assert result == [{"key": "alpha", "length": 1}]
+
+
+def test_fixed_width_fields_breaks_at_cutoff(monkeypatch):
+    """Fixed-width fields should stop once reaching 94 characters."""
+    fields = [{"key": "alpha", "length": 94}, {"key": "beta", "length": 1}]
+    monkeypatch.setattr(record_module, "EURING_FIELDS", fields)
+    result = _fixed_width_fields()
+    assert result == [{"key": "alpha", "length": 94}]
+
+
+def test_fixed_width_fields_complete_without_break(monkeypatch):
+    """Fixed-width fields should include all fields when under the cutoff."""
+    fields = [{"key": "alpha", "length": 1}, {"key": "beta", "length": 2}]
+    monkeypatch.setattr(record_module, "EURING_FIELDS", fields)
+    result = _fixed_width_fields()
+    assert result == [{"key": "alpha", "length": 1}, {"key": "beta", "length": 2}]
