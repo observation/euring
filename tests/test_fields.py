@@ -3,7 +3,7 @@
 import re
 
 from euring.fields import EURING_FIELDS
-from euring.record_rules import EURING2000_KEYS, EURING2000PLUS_KEYS, EURING2020_KEYS
+from euring.record_rules import EURING2000_KEYS, EURING2000PLUS_KEYS, EURING2020_KEYS, NON_EURING2000_KEYS
 from euring.types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -54,3 +54,4 @@ def test_fields_per_format():
     assert len(EURING2000_KEYS) == 33
     assert len(EURING2000PLUS_KEYS) == 60
     assert len(EURING2020_KEYS) == 64
+    assert len(NON_EURING2000_KEYS) == 64 - 33

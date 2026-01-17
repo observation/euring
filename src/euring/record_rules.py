@@ -28,6 +28,7 @@ EURING2000_KEYS = tuple(_fixed_width_keys)
 EURING2000PLUS_KEYS = tuple(_plus_keys)
 EURING2020_KEYS = tuple(field["key"] for field in EURING_FIELDS)
 EURING2020_ONLY_KEYS = ("latitude", "longitude", "current_place_code", "more_other_marks")
+NON_EURING2000_KEYS = tuple(set(EURING2000PLUS_KEYS + EURING2020_ONLY_KEYS).difference(EURING2000_KEYS))
 
 
 def field_name_for_key(key: str) -> str:
@@ -39,6 +40,19 @@ def accuracy_is_alpha(values_by_key: dict[str, str]) -> bool:
     """Return True when accuracy_of_coordinates is alphabetic."""
     accuracy = values_by_key.get("accuracy_of_coordinates", "")
     return bool(accuracy) and accuracy.isalpha()
+
+
+def matches_euring2000(values_by_key: dict[str, str]) -> bool:
+    """Return True when values fit EURING2000."""
+    for key in NON_EURING2000_KEYS:
+        if values_by_key.get(key):
+            return False
+    return True
+
+
+def requires_euring2000plus(values_by_key: dict[str, str]) -> bool:
+    """Return True when values require EURING2000+."""
+    return not matches_euring2000(values_by_key)
 
 
 def requires_euring2020(values_by_key: dict[str, str]) -> bool:
@@ -54,34 +68,6 @@ def requires_euring2020(values_by_key: dict[str, str]) -> bool:
 def record_rule_errors(format: str, values_by_key: dict[str, str]) -> list[dict[str, str]]:
     """Return record-level validation errors for the current values."""
     issues: list[dict[str, str]] = []
-    accuracy = values_by_key.get("accuracy_of_coordinates", "") or ""
-    if format == FORMAT_EURING2000PLUS and requires_euring2020(values_by_key):
-        issues.append(
-            {
-                "key": "accuracy_of_coordinates",
-                "message": "Alphabetic accuracy codes or 2020-only fields require EURING2020 format.",
-                "value": accuracy,
-            }
-        )
-    if format == FORMAT_EURING2000 and accuracy_is_alpha(values_by_key):
-        issues.append(
-            {
-                "key": "accuracy_of_coordinates",
-                "message": "Alphabetic accuracy codes are only valid in EURING2020.",
-                "value": accuracy,
-            }
-        )
-    if format == FORMAT_EURING2000:
-        fixed_width_set = set(EURING2000_KEYS)
-        extra_keys = [key for key, value in values_by_key.items() if value and key not in fixed_width_set]
-        if extra_keys:
-            issues.append(
-                {
-                    "key": extra_keys[0],
-                    "message": "Fields beyond the EURING2000 fixed-width layout are not allowed.",
-                    "value": values_by_key.get(extra_keys[0], ""),
-                }
-            )
     if format == FORMAT_EURING2020:
         geo_value = values_by_key.get("geographical_coordinates", "") or ""
         lat_value = values_by_key.get("latitude", "") or ""
@@ -111,4 +97,38 @@ def record_rule_errors(format: str, values_by_key: dict[str, str]) -> list[dict[
                     "value": "",
                 }
             )
+    else:
+        accuracy = values_by_key.get("accuracy_of_coordinates", "") or ""
+        if accuracy and accuracy.isalpha():
+            issues.append(
+                {
+                    "key": "accuracy_of_coordinates",
+                    "message": "Alphabetic accuracy codes are only valid in EURING2020.",
+                    "value": accuracy,
+                }
+            )
+        if format == FORMAT_EURING2000:
+            for key in NON_EURING2000_KEYS:
+                value = values_by_key.get(key, "")
+                if not value:
+                    continue
+                issues.append(
+                    {
+                        "key": key,
+                        "message": "Fields beyond the EURING2000 fixed-width layout are not allowed.",
+                        "value": value,
+                    }
+                )
+        if format == FORMAT_EURING2000PLUS:
+            for key in EURING2020_ONLY_KEYS:
+                value = values_by_key.get(key, "")
+                if not value:
+                    continue
+                issues.append(
+                    {
+                        "key": key,
+                        "message": "EURING2020-only fields require EURING2020 format.",
+                        "value": value,
+                    }
+                )
     return issues
