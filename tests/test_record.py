@@ -19,7 +19,7 @@ def _values_from_record(record: str) -> dict[str, str]:
     return values
 
 
-def test_build_euring2000_round_trip():
+def test_record_euring2000_round_trip():
     fixture_path = Path(__file__).parent / "fixtures" / "euring2000_examples.py"
     spec = spec_from_file_location("euring2000_examples", fixture_path)
     assert spec and spec.loader
@@ -28,12 +28,12 @@ def test_build_euring2000_round_trip():
 
     record = module.EURING2000_EXAMPLES[0]
     values = _values_from_record(record)
-    builder = EuringRecord("euring2000")
-    builder.update(values)
-    assert builder.serialize() == record
+    record = EuringRecord("euring2000")
+    record.update(values)
+    assert record.serialize() == record
 
 
-def test_build_euring2000plus_round_trip():
+def test_record_euring2000plus_round_trip():
     fixture_path = Path(__file__).parent / "fixtures" / "euring2000plus_examples.py"
     spec = spec_from_file_location("euring2000plus_examples", fixture_path)
     assert spec and spec.loader
@@ -42,12 +42,12 @@ def test_build_euring2000plus_round_trip():
 
     record = module.EURING2000PLUS_EXAMPLES[0]
     values = _values_from_record(record)
-    builder = EuringRecord("euring2000plus")
-    builder.update(values)
-    assert builder.serialize() == record
+    record = EuringRecord("euring2000plus")
+    record.update(values)
+    assert record.serialize() == record
 
 
-def test_build_euring2020_round_trip():
+def test_record_euring2020_round_trip():
     fixture_path = Path(__file__).parent / "fixtures" / "euring2020_examples.py"
     spec = spec_from_file_location("euring2020_examples", fixture_path)
     assert spec and spec.loader
@@ -56,48 +56,48 @@ def test_build_euring2020_round_trip():
 
     record = module.EURING2020_EXAMPLES[0]
     values = _values_from_record(record)
-    builder = EuringRecord("euring2020")
-    builder.update(values)
-    assert builder.serialize() == record
+    record = EuringRecord("euring2020")
+    record.update(values)
+    assert record.serialize() == record
 
 
-def test_build_missing_required_field_raises():
-    builder = EuringRecord("euring2000plus")
+def test_record_missing_required_field_raises():
+    record = EuringRecord("euring2000plus")
     with pytest.raises(ValueError):
-        builder.serialize()
+        record.serialize()
 
 
-def test_build_unknown_field_key_raises():
-    builder = EuringRecord("euring2000plus", strict=False)
+def test_record_unknown_field_key_raises():
+    record = EuringRecord("euring2000plus", strict=False)
     with pytest.raises(ValueError):
-        builder.set("unknown_key", "value")
+        record.set("unknown_key", "value")
 
 
-def test_build_non_strict_allows_missing_required():
-    builder = EuringRecord("euring2000plus", strict=False)
-    builder.set("ringing_scheme", "GBB")
-    record = builder.serialize()
+def test_record_non_strict_allows_missing_required():
+    record = EuringRecord("euring2000plus", strict=False)
+    record.set("ringing_scheme", "GBB")
+    record = record.serialize()
     assert record.split("|")[0] == "GBB"
 
 
-def test_build_invalid_format_raises():
+def test_record_invalid_format_raises():
     with pytest.raises(ValueError):
         EuringRecord("bad-format")
 
 
-def test_build_missing_format_raises():
+def test_record_missing_format_raises():
     with pytest.raises(TypeError):
         EuringRecord()  # type: ignore[call-arg]
 
 
-def test_build_invalid_value_raises():
-    builder = EuringRecord("euring2000plus", strict=False)
-    builder.set("ringing_scheme", "1")
+def test_record_invalid_value_raises():
+    record = EuringRecord("euring2000plus", strict=False)
+    record.set("ringing_scheme", "1")
     with pytest.raises(ValueError):
-        builder.serialize()
+        record.serialize()
 
 
-def test_build_record_validation_error():
+def test_record_record_validation_error():
     fixture_path = Path(__file__).parent / "fixtures" / "euring2020_examples.py"
     spec = spec_from_file_location("euring2020_examples", fixture_path)
     assert spec and spec.loader
@@ -106,8 +106,8 @@ def test_build_record_validation_error():
 
     record = module.EURING2020_EXAMPLES[0]
     values = _values_from_record(record)
-    builder = EuringRecord("euring2020")
-    builder.update(values)
-    builder.set("geographical_coordinates", "+0000000+0000000")
+    record = EuringRecord("euring2020")
+    record.update(values)
+    record.set("geographical_coordinates", "+0000000+0000000")
     with pytest.raises(ValueError):
-        builder.serialize()
+        record.serialize()
