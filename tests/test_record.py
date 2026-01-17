@@ -5,9 +5,9 @@ from pathlib import Path
 
 import pytest
 
+import euring.record as record_module
 from euring import EuringRecord, euring_decode_record
 from euring.record import _fields_for_format, _fixed_width_fields, _format_fixed_width
-import euring.record as record_module
 
 
 def _values_from_record(record: str) -> dict[str, str]:
@@ -168,6 +168,7 @@ def test_format_fixed_width_handles_empty_and_padding():
 
 def test_record_decode_uses_format_when_decoder_missing(monkeypatch):
     """Decoder without record_format should fall back to provided format."""
+
     class DummyDecoder:
         def __init__(self, value, format=None):
             self.record_format = None
@@ -182,6 +183,7 @@ def test_record_decode_uses_format_when_decoder_missing(monkeypatch):
 
 def test_record_decode_defaults_when_decoder_missing(monkeypatch):
     """Decoder without record_format should default to EURING2000PLUS."""
+
     class DummyDecoder:
         def __init__(self, value, format=None):
             self.record_format = None
