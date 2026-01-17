@@ -178,11 +178,6 @@ class EuringDecoder:
                 decoded["key"] = key
                 self._data_by_key[key] = decoded
 
-    def clean(self):
-        """Apply post-processing to decoded results."""
-        # Removed Django Point creation for standalone version
-        pass
-
     def decode(self):
         """Decode the record and populate results/errors."""
         self.results = OrderedDict()
@@ -191,7 +186,6 @@ class EuringDecoder:
         self._data = OrderedDict()
         self._data_by_key = OrderedDict()
         self._decode()
-        self.clean()
         if "record" not in self.results:
             self.results["record"] = {"format": None}
         if "fields" not in self.results:
