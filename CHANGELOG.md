@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Refactor to generic EuringRecord for encoding and decoding (#76).
+
 ## 26.2 (2026-01-12)
 
 - Refactor JSON structure and errors structure (#70).
