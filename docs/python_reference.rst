@@ -27,7 +27,10 @@ Build a EURING record:
    record.set("geographical_coordinates", "+0000000+0000000")
    record.set("accuracy_of_coordinates", "1")
    record_str = record.serialize()
+   record_json = record.serialize(output_format="json")
+   record_2020 = record.export("euring2020")
 
 ``serialize()`` raises ``ValueError`` if required fields are missing or a value
 fails validation. Use ``EuringRecord("euring2000plus", strict=False)``
-to allow missing optional values and keep placeholders in the output.
+to allow missing optional values and keep placeholders in the output. Use
+``export()`` to convert to other EURING string formats.

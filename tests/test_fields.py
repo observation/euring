@@ -3,6 +3,7 @@
 import re
 
 from euring.fields import EURING_FIELDS
+from euring.record_rules import EURING2000_KEYS, EURING2000PLUS_KEYS, EURING2020_KEYS
 from euring.types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -46,3 +47,10 @@ def test_field_shape_and_types():
                 assert field[bound] >= 0
         if "required" in field:
             assert isinstance(field["required"], bool)
+
+
+def test_fields_per_format():
+    # EURING2020 Code Manual Page4-5
+    assert len(EURING2000_KEYS) == 33
+    assert len(EURING2000PLUS_KEYS) == 60
+    assert len(EURING2020_KEYS) == 64

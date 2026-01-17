@@ -114,6 +114,8 @@ record.set("place_code", "AB00")
 record.set("geographical_coordinates", "+0000000+0000000")
 record.set("accuracy_of_coordinates", "1")
 record_str = record.serialize()
+record_json = record.serialize(output_format="json")
+record_2020 = record.export("euring2020")
 
 # Validate a value
 is_valid = is_valid_type("ABC", TYPE_ALPHABETIC)

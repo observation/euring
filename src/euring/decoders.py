@@ -11,6 +11,7 @@ from .formats import (
     normalize_format,
     unknown_format_error,
 )
+from .record_rules import accuracy_is_alpha, field_name_for_key, record_rule_errors, requires_euring2020
 from .types import is_valid_type
 
 
@@ -247,59 +248,21 @@ class EuringDecoder:
         # Parse the fields
         for index, field_kwargs in enumerate(EURING_FIELDS):
             self.parse_field(fields, index, **field_kwargs)
+        values_by_key = self._values_by_key()
         if current_format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020}:
-            is_2020 = self._is_euring2020()
-            if is_2020 and current_format == FORMAT_EURING2000PLUS:
-                if self.format:
-                    accuracy = self._data_by_key.get("accuracy_of_coordinates")
-                    self._add_field_error_for_key(
-                        "accuracy_of_coordinates",
-                        "Accuracy of Co-ordinates",
-                        "Alphabetic accuracy codes or 2020-only fields require EURING2020 format.",
-                        value=accuracy.get("value") if accuracy else "",
-                    )
-                else:
-                    current_format = FORMAT_EURING2020
+            is_2020 = requires_euring2020(values_by_key)
+            if is_2020 and current_format == FORMAT_EURING2000PLUS and self.format is None:
+                current_format = FORMAT_EURING2020
             elif current_format == FORMAT_EURING2020 and self.format is None and not is_2020:
                 # Format was explicitly set to EURING2020 elsewhere; keep it as-is.
                 pass
-        if current_format == FORMAT_EURING2000 and self._accuracy_is_alpha():
-            accuracy = self._data_by_key.get("accuracy_of_coordinates")
+        for error in record_rule_errors(current_format, values_by_key):
             self._add_field_error_for_key(
-                "accuracy_of_coordinates",
-                "Accuracy of Co-ordinates",
-                "Alphabetic accuracy codes are only valid in EURING2020.",
-                value=accuracy.get("value") if accuracy else "",
+                error["key"],
+                field_name_for_key(error["key"]),
+                error["message"],
+                value=error["value"],
             )
-        if current_format == FORMAT_EURING2020:
-            geo = self._data_by_key.get("geographical_coordinates")
-            lat = self._data_by_key.get("latitude")
-            lng = self._data_by_key.get("longitude")
-            geo_value = geo.get("value") if geo else None
-            lat_value = lat.get("value") if lat else None
-            lng_value = lng.get("value") if lng else None
-            if lat_value or lng_value:
-                if geo_value and geo_value != "." * 15:
-                    self._add_field_error_for_key(
-                        "geographical_coordinates",
-                        "Geographical Co-ordinates",
-                        "When Latitude/Longitude are provided, Geographical Co-ordinates must be 15 dots.",
-                        value=geo_value or "",
-                    )
-            if lat_value and not lng_value:
-                self._add_field_error_for_key(
-                    "longitude",
-                    "Longitude",
-                    "Longitude is required when Latitude is provided.",
-                    value="",
-                )
-            if lng_value and not lat_value:
-                self._add_field_error_for_key(
-                    "latitude",
-                    "Latitude",
-                    "Latitude is required when Longitude is provided.",
-                    value="",
-                )
 
         # Record metadata output is assembled after field validation.
 
@@ -353,21 +316,15 @@ class EuringDecoder:
 
     def _is_euring2020(self) -> bool:
         """Return True when decoded values require EURING2020."""
-        if self._accuracy_is_alpha():
-            return True
-        for key in ("latitude", "longitude", "current_place_code", "more_other_marks"):
-            value = self._data_by_key.get(key)
-            if value and value.get("value"):
-                return True
-        return False
+        return requires_euring2020(self._values_by_key())
 
     def _accuracy_is_alpha(self) -> bool:
         """Return True when accuracy_of_coordinates is alphabetic."""
-        accuracy = self._data_by_key.get("accuracy_of_coordinates")
-        if not accuracy:
-            return False
-        value = accuracy.get("value")
-        return bool(value) and value.isalpha()
+        return accuracy_is_alpha(self._values_by_key())
+
+    def _values_by_key(self) -> dict[str, str]:
+        """Return decoded values keyed by field key."""
+        return {key: (value.get("value") if value else "") for key, value in self._data_by_key.items()}
 
     @staticmethod
     def _normalize_format(format: str | None) -> str | None:

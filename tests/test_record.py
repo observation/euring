@@ -1,5 +1,6 @@
 """Tests for building EURING records."""
 
+import json
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 
@@ -7,6 +8,7 @@ import pytest
 
 import euring.record as record_module
 from euring import EuringRecord, euring_decode_record
+from euring.formats import FORMAT_JSON
 from euring.record import _fields_for_format, _fixed_width_fields, _format_fixed_width
 
 
@@ -95,6 +97,60 @@ def test_record_missing_format_raises():
 def test_record_invalid_value_raises():
     record = EuringRecord("euring2000plus", strict=False)
     record.set("ringing_scheme", "1")
+    with pytest.raises(ValueError):
+        record.serialize()
+
+
+def test_record_serialize_json():
+    record = EuringRecord("euring2000plus", strict=False)
+    record.set("ringing_scheme", "GBB")
+    payload = json.loads(record.serialize(output_format=FORMAT_JSON))
+    assert payload["record"]["format"] == "EURING2000+"
+    assert payload["fields"]["ringing_scheme"]["value"] == "GBB"
+
+
+def test_record_serialize_rejects_mismatched_format():
+    record = EuringRecord("euring2000plus", strict=False)
+    with pytest.raises(ValueError):
+        record.serialize(output_format="euring2020")
+
+
+def test_record_export_same_format():
+    record = EuringRecord("euring2000plus", strict=False)
+    record.set("ringing_scheme", "GBB")
+    assert record.export("euring2000plus") == record.serialize()
+
+
+def test_record_export_requires_force_for_loss():
+    fixture_path = Path(__file__).parent / "fixtures" / "euring2020_examples.py"
+    spec = spec_from_file_location("euring2020_examples", fixture_path)
+    assert spec and spec.loader
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    record_str = module.EURING2020_EXAMPLES[0]
+    record = EuringRecord.decode(record_str)
+    with pytest.raises(ValueError):
+        record.export("euring2000plus")
+
+
+def test_record_export_warns_on_loss_with_force():
+    fixture_path = Path(__file__).parent / "fixtures" / "euring2020_examples.py"
+    spec = spec_from_file_location("euring2020_examples", fixture_path)
+    assert spec and spec.loader
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    record_str = module.EURING2020_EXAMPLES[0]
+    record = EuringRecord.decode(record_str)
+    with pytest.warns(UserWarning):
+        record.export("euring2000plus", force=True)
+
+
+def test_record_euring2000_rejects_extra_fields():
+    record = EuringRecord("euring2000", strict=False)
+    record.set("ringing_scheme", "GBB")
+    record.set("latitude", "52.3760")
     with pytest.raises(ValueError):
         record.serialize()
 
