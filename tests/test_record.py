@@ -26,11 +26,11 @@ def test_record_euring2000_round_trip():
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
 
-    record = module.EURING2000_EXAMPLES[0]
-    values = _values_from_record(record)
+    record_str = module.EURING2000_EXAMPLES[0]
+    values = _values_from_record(record_str)
     record = EuringRecord("euring2000")
     record.update(values)
-    assert record.serialize() == record
+    assert record.serialize() == record_str
 
 
 def test_record_euring2000plus_round_trip():
@@ -40,11 +40,11 @@ def test_record_euring2000plus_round_trip():
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
 
-    record = module.EURING2000PLUS_EXAMPLES[0]
-    values = _values_from_record(record)
+    record_str = module.EURING2000PLUS_EXAMPLES[0]
+    values = _values_from_record(record_str)
     record = EuringRecord("euring2000plus")
     record.update(values)
-    assert record.serialize() == record
+    assert record.serialize() == record_str
 
 
 def test_record_euring2020_round_trip():
@@ -54,11 +54,11 @@ def test_record_euring2020_round_trip():
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
 
-    record = module.EURING2020_EXAMPLES[0]
-    values = _values_from_record(record)
+    record_str = module.EURING2020_EXAMPLES[0]
+    values = _values_from_record(record_str)
     record = EuringRecord("euring2020")
     record.update(values)
-    assert record.serialize() == record
+    assert record.serialize() == record_str
 
 
 def test_record_missing_required_field_raises():
