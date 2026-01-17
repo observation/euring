@@ -67,68 +67,66 @@ def requires_euring2020(values_by_key: dict[str, str]) -> bool:
 
 def record_rule_errors(format: str, values_by_key: dict[str, str]) -> list[dict[str, str]]:
     """Return record-level validation errors for the current values."""
-    issues: list[dict[str, str]] = []
+    errors: list[dict[str, str]] = []
+
+    def _error(key, message):
+        return {
+            "key": key,
+            "message": message,
+            "value": values_by_key.get(key, "") or "",
+        }
+
     if format == FORMAT_EURING2020:
         geo_value = values_by_key.get("geographical_coordinates", "") or ""
         lat_value = values_by_key.get("latitude", "") or ""
         lng_value = values_by_key.get("longitude", "") or ""
         if lat_value or lng_value:
             if geo_value and geo_value != "." * 15:
-                issues.append(
-                    {
-                        "key": "geographical_coordinates",
-                        "message": ("When Latitude/Longitude are provided, Geographical Co-ordinates must be 15 dots."),
-                        "value": geo_value,
-                    }
+                errors.append(
+                    _error(
+                        key="geographical_coordinates",
+                        message="When Latitude/Longitude are provided, Geographical Co-ordinates must be 15 dots.",
+                    )
                 )
         if lat_value and not lng_value:
-            issues.append(
-                {
-                    "key": "longitude",
-                    "message": "Longitude is required when Latitude is provided.",
-                    "value": "",
-                }
+            errors.append(
+                _error(key="longitude", message="Longitude is required when Latitude is provided."),
             )
         if lng_value and not lat_value:
-            issues.append(
-                {
-                    "key": "latitude",
-                    "message": "Latitude is required when Longitude is provided.",
-                    "value": "",
-                }
+            errors.append(
+                _error(
+                    key="latitude",
+                    message="Latitude is required when Longitude is provided.",
+                )
             )
     else:
-        accuracy = values_by_key.get("accuracy_of_coordinates", "") or ""
-        if accuracy and accuracy.isalpha():
-            issues.append(
-                {
-                    "key": "accuracy_of_coordinates",
-                    "message": "Alphabetic accuracy codes are only valid in EURING2020.",
-                    "value": accuracy,
-                }
+        if accuracy_is_alpha(values_by_key):
+            errors.append(
+                _error(
+                    key="accuracy_of_coordinates",
+                    message="Alphabetic accuracy codes are only valid in EURING2020.",
+                )
             )
         if format == FORMAT_EURING2000:
             for key in NON_EURING2000_KEYS:
                 value = values_by_key.get(key, "")
                 if not value:
                     continue
-                issues.append(
-                    {
-                        "key": key,
-                        "message": "Fields beyond the EURING2000 fixed-width layout are not allowed.",
-                        "value": value,
-                    }
+                errors.append(
+                    _error(
+                        key=key,
+                        message="Fields beyond the EURING2000 fixed-width layout are not allowed.",
+                    )
                 )
         if format == FORMAT_EURING2000PLUS:
             for key in EURING2020_ONLY_KEYS:
                 value = values_by_key.get(key, "")
                 if not value:
                     continue
-                issues.append(
-                    {
-                        "key": key,
-                        "message": "EURING2020-only fields require EURING2020 format.",
-                        "value": value,
-                    }
+                errors.append(
+                    _error(
+                        key=key,
+                        message="EURING2020-only fields require EURING2020 format.",
+                    )
                 )
-    return issues
+    return errors

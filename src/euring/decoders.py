@@ -11,7 +11,7 @@ from .formats import (
     normalize_format,
     unknown_format_error,
 )
-from .record_rules import accuracy_is_alpha, field_name_for_key, record_rule_errors, requires_euring2020
+from .record_rules import field_name_for_key, record_rule_errors, requires_euring2020
 from .types import is_valid_type
 
 
@@ -317,10 +317,6 @@ class EuringDecoder:
     def _is_euring2020(self) -> bool:
         """Return True when decoded values require EURING2020."""
         return requires_euring2020(self._values_by_key())
-
-    def _accuracy_is_alpha(self) -> bool:
-        """Return True when accuracy_of_coordinates is alphabetic."""
-        return accuracy_is_alpha(self._values_by_key())
 
     def _values_by_key(self) -> dict[str, str]:
         """Return decoded values keyed by field key."""
