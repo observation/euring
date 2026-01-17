@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from euring import euring_decode_record
+from euring import EuringRecord
 from euring.converters import convert_euring_record
 from euring.exceptions import EuringParseException
 from euring.formats import format_hint
@@ -23,7 +23,7 @@ def _load_fixture(module_name: str, filename: str) -> list[str]:
 def test_decode_format_accepts_lowercase():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    decoded = euring_decode_record(record, format="euring2000plus")
+    decoded = EuringRecord.decode(record, format="euring2000plus")
     assert decoded.display_format == "EURING2000+"
 
 
@@ -31,28 +31,28 @@ def test_decode_format_rejects_uppercase_formal():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
     with pytest.raises(EuringParseException, match="Unknown format"):
-        euring_decode_record(record, format="EURING2000PLUS")
+        EuringRecord.decode(record, format="EURING2000PLUS")
 
 
 def test_decode_format_rejects_plus_alias():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
     with pytest.raises(EuringParseException, match="Unknown format"):
-        euring_decode_record(record, format="euring2000+")
+        EuringRecord.decode(record, format="euring2000+")
 
 
 def test_decode_format_rejects_short_alias():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
     with pytest.raises(EuringParseException, match="Unknown format"):
-        euring_decode_record(record, format="euring2000p")
+        EuringRecord.decode(record, format="euring2000p")
 
 
 def test_decode_format_rejects_missing_prefix():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
     with pytest.raises(EuringParseException, match="Unknown format"):
-        euring_decode_record(record, format="2000plus")
+        EuringRecord.decode(record, format="2000plus")
 
 
 def test_convert_target_format_accepts_lowercase():

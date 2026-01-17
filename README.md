@@ -98,10 +98,10 @@ Decoded JSON structure (single record):
 ### Python Library
 
 ```python
-from euring import EuringRecord, euring_decode_record, is_valid_type, TYPE_ALPHABETIC
+from euring import EuringRecord, is_valid_type, TYPE_ALPHABETIC
 
 # Decode a record
-record = euring_decode_record(
+record = EuringRecord.decode(
     "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
 )
 

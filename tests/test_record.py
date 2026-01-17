@@ -7,13 +7,13 @@ from pathlib import Path
 import pytest
 
 import euring.record as record_module
-from euring import EuringRecord, euring_decode_record
+from euring import EuringRecord
 from euring.formats import FORMAT_JSON
 from euring.record import _fields_for_format, _fixed_width_fields, _format_fixed_width
 
 
 def _values_from_record(record: str) -> dict[str, str]:
-    decoded = euring_decode_record(record)
+    decoded = EuringRecord.decode(record)
     values: dict[str, str] = {}
     for key, field in decoded.fields.items():
         value = field.get("value")

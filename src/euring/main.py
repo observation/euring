@@ -18,8 +18,9 @@ from .codes import (
 from .converters import convert_euring_record
 from .data.code_tables import EURING_CODE_TABLES
 from .data.loader import load_data
-from .decoders import EuringParseException, euring_decode_record
+from .exceptions import EuringParseException
 from .formats import FORMAT_EURING2020
+from .record import EuringRecord
 
 app = typer.Typer(help="EURING data processing CLI")
 
@@ -60,7 +61,7 @@ def decode(
                 record_line = line.strip()
                 if not record_line:
                     continue
-                record = euring_decode_record(record_line, format=format)
+                record = EuringRecord.decode(record_line, format=format)
                 if _has_errors(record.errors):
                     has_errors = True
                 records.append(record.to_dict())
@@ -75,7 +76,7 @@ def decode(
             if has_errors:
                 raise typer.Exit(1)
             return
-        record = euring_decode_record(euring_string, format=format)
+        record = EuringRecord.decode(euring_string, format=format)
         errors = record.errors
         if output_format == "json":
             payload = _with_meta(record.to_dict())
@@ -151,7 +152,7 @@ def validate_record(
                 if not record_line:
                     continue
                 total += 1
-                record = euring_decode_record(record_line, format=format)
+                record = EuringRecord.decode(record_line, format=format)
                 errors = record.errors
                 if _has_errors(errors):
                     invalid += 1
@@ -180,7 +181,7 @@ def validate_record(
                 typer.echo(text)
             return
 
-        record = euring_decode_record(euring_string, format=format)
+        record = EuringRecord.decode(euring_string, format=format)
         errors = record.errors
         if as_json:
             payload = _with_meta({"format": record.display_format, "errors": errors})

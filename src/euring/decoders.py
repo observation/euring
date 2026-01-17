@@ -88,23 +88,6 @@ def decode_fields(value, format: str | None = None) -> dict[str, object]:
     }
 
 
-def euring_decode_record(value, format: str | None = None):
-    """
-    Decode a EURING record.
-
-    :param value: EURING text
-    :param format: Optional format declaration ("euring2000", "euring2000plus", "euring2020")
-    :return: EuringRecord instance
-    """
-    result = decode_fields(value, format=format)
-    from .record import EuringRecord
-
-    record = EuringRecord(result["format"], strict=False)
-    record.fields = result["fields"]
-    record.errors = result["errors"]
-    return record
-
-
 class EuringDecoder:
     """Decode a EURING record into structured data and errors."""
 

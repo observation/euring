@@ -26,7 +26,6 @@ class EuringRecord:
         self.strict = strict
         self._fields: dict[str, dict[str, object]] = {}
         self.errors: dict[str, list] = {"record": [], "fields": []}
-        self.fields = self._fields
 
     @classmethod
     def decode(cls, value: str, format: str | None = None) -> EuringRecord:
@@ -34,9 +33,13 @@ class EuringRecord:
         result = decode_fields(value, format=format)
         record = cls(result["format"], strict=False)
         record._fields = result["fields"]
-        record.fields = record._fields
         record.errors = result["errors"]
         return record
+
+    @property
+    def fields(self) -> dict[str, dict[str, object]]:
+        """Return the decoded field data."""
+        return self._fields
 
     def set(self, key: str, value: object) -> EuringRecord:
         """Set a field value by key."""
@@ -157,7 +160,7 @@ class EuringRecord:
 
     def to_dict(self) -> dict[str, object]:
         """Return a JSON-serializable representation of the record."""
-        return {"record": {"format": format_display_name(self.format)}, "fields": self.fields, "errors": self.errors}
+        return {"record": {"format": format_display_name(self.format)}, "fields": self._fields, "errors": self.errors}
 
     @property
     def display_format(self) -> str:
