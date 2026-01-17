@@ -1,9 +1,20 @@
 from __future__ import annotations
 
+import json
+import warnings
+
+from .converters import convert_euring_record
 from .decoders import EuringDecoder, euring_decode_value
 from .exceptions import EuringParseException
 from .fields import EURING_FIELDS
-from .formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, format_display_name, normalize_format
+from .formats import (
+    FORMAT_EURING2000,
+    FORMAT_EURING2000PLUS,
+    FORMAT_JSON,
+    format_display_name,
+    normalize_format,
+)
+from .record_rules import record_rule_errors
 
 
 class EuringRecord:
@@ -52,18 +63,61 @@ class EuringRecord:
             self.set(key, value)
         return self
 
-    def serialize(self) -> str:
-        """Serialize and validate a EURING record string."""
-        fields = _fields_for_format(self.format)
-        values_by_key: dict[str, str] = {}
+    def serialize(self, output_format: str | None = None) -> str:
+        """Serialize and validate a EURING record string or JSON payload."""
+        if output_format is not None and output_format != FORMAT_JSON:
+            normalized = normalize_format(output_format)
+            if normalized != self.format:
+                raise ValueError(f'Record format is "{self.format}". Use that format or "{FORMAT_JSON}".')
+        errors = self.validate()
+        if self.has_errors(errors):
+            if self.strict or self._has_non_optional_errors(errors):
+                raise ValueError(f"Record validation failed: {errors}")
+        if output_format == FORMAT_JSON:
+            return json.dumps(self.to_dict())
+        return self._serialize()
 
-        for field in fields:
+    def export(self, output_format: str, *, force: bool = False, warn_on_loss: bool = True) -> str:
+        """Export the record to another EURING string format."""
+        if output_format == FORMAT_JSON:
+            raise ValueError("Use serialize(output_format='json') for JSON output.")
+        normalized = normalize_format(output_format)
+        if normalized == self.format:
+            return self.serialize()
+        record = self.serialize()
+        if force and warn_on_loss:
+            try:
+                return convert_euring_record(record, source_format=self.format, target_format=normalized, force=False)
+            except ValueError as exc:
+                warnings.warn(str(exc), UserWarning)
+        return convert_euring_record(record, source_format=self.format, target_format=normalized, force=force)
+
+    def has_errors(self, errors: object) -> bool:
+        """Return True when a structured errors payload contains entries."""
+        if not isinstance(errors, dict):
+            return bool(errors)
+        record_errors = errors.get("record", [])
+        field_errors = errors.get("fields", [])
+        return bool(record_errors) or bool(field_errors)
+
+    def validate(self, record: str | None = None) -> dict[str, list]:
+        """Validate all fields, then apply multi-field and record-level checks."""
+        errors = {"record": [], "fields": []}
+        field_errors = self._validate_fields()
+        errors["fields"].extend(field_errors)
+        errors["fields"].extend(self._validate_record_rules())
+        self.errors = errors
+        return self.errors
+
+    def _validate_fields(self) -> list[dict[str, object]]:
+        """Validate each field value against its definition."""
+        errors: list[dict[str, object]] = []
+        fields = _fields_for_format(self.format)
+        positions = _field_positions(fields) if self.format == FORMAT_EURING2000 else {}
+        for index, field in enumerate(fields):
             key = field["key"]
             value = self._fields.get(key, {}).get("value", "")
-            if value == "":
-                if self.strict and field.get("required", True):
-                    raise ValueError(f'Missing required field "{key}".')
-                continue
+            value = "" if value is None else value
             try:
                 euring_decode_value(
                     value,
@@ -76,38 +130,37 @@ class EuringRecord:
                     lookup=field.get("lookup"),
                 )
             except EuringParseException as exc:
-                raise ValueError(f'Invalid value for "{key}": {exc}') from exc
-            values_by_key[key] = value
+                payload = {
+                    "field": field["name"],
+                    "message": f"{exc}",
+                    "value": "" if value is None else f"{value}",
+                    "key": key,
+                    "index": index,
+                }
+                position = positions.get(key)
+                if position:
+                    payload["position"] = position["position"]
+                    payload["length"] = position["length"]
+                errors.append(payload)
+        return errors
 
-        if self.format == FORMAT_EURING2000:
-            record = _format_fixed_width(values_by_key, _fixed_width_fields())
-        else:
-            record = "|".join(values_by_key.get(field["key"], "") for field in fields)
+    def _has_non_optional_errors(self, errors: dict[str, list]) -> bool:
+        """Return True if errors include anything beyond missing required fields."""
+        if errors.get("record"):
+            return True
+        for error in errors.get("fields", []):
+            message = error.get("message", "")
+            if message != 'Required field, empty value "" is not permitted.':
+                return True
+        return False
 
-        errors = self.validate(record)
-        if self.strict and self.has_errors(errors):
-            raise ValueError(f"Record validation failed: {errors}")
-
-        return record
-
-    def has_errors(self, errors: object) -> bool:
-        """Return True when a structured errors payload contains entries."""
-        if not isinstance(errors, dict):
-            return bool(errors)
-        record_errors = errors.get("record", [])
-        field_errors = errors.get("fields", [])
-        return bool(record_errors) or bool(field_errors)
-
-    def validate(self, record: str | None = None) -> dict[str, list]:
-        """Validate the record and store errors on the record."""
-        if record is None:
-            record = self._serialize()
-        decoder = EuringDecoder(record, format=self.format)
-        result = decoder.get_results()
-        self.errors = result.get("errors", {"record": [], "fields": []})
-        self._fields = result.get("fields", {})
-        self.fields = self._fields
-        return self.errors
+    def _validate_record_rules(self) -> list[dict[str, object]]:
+        """Validate multi-field and record-level rules."""
+        values_by_key = {key: field.get("value", "") for key, field in self._fields.items()}
+        errors: list[dict[str, object]] = []
+        for error in record_rule_errors(self.format, values_by_key):
+            errors.append(_record_error_for_key(error["key"], error["message"], value=error["value"]))
+        return errors
 
     def to_dict(self) -> dict[str, object]:
         """Return a JSON-serializable representation of the record."""
@@ -124,7 +177,8 @@ class EuringRecord:
         values_by_key: dict[str, str] = {}
         for field in fields:
             key = field["key"]
-            values_by_key[key] = self._fields.get(key, {}).get("value", "")
+            value = self._fields.get(key, {}).get("value", "")
+            values_by_key[key] = "" if value is None else value
         if self.format == FORMAT_EURING2000:
             return _format_fixed_width(values_by_key, _fixed_width_fields())
         return "|".join(values_by_key.get(field["key"], "") for field in fields)
@@ -173,3 +227,28 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
 
 
 _FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING_FIELDS)}
+
+
+def _field_positions(fields: list[dict[str, object]]) -> dict[str, dict[str, int]]:
+    """Return position metadata for fixed-width fields."""
+    positions: dict[str, dict[str, int]] = {}
+    start = 1
+    for field in fields:
+        length = field.get("length")
+        if not length:
+            continue
+        positions[field["key"]] = {"position": start, "length": length}
+        start += length
+    return positions
+
+
+def _record_error_for_key(key: str, message: str, *, value: str) -> dict[str, object]:
+    """Build a field error payload for a record-level rule."""
+    field = _FIELD_MAP.get(key, {})
+    return {
+        "field": field.get("name", key),
+        "message": message,
+        "value": "" if value is None else f"{value}",
+        "key": key,
+        "index": field.get("order"),
+    }

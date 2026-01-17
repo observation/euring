@@ -18,6 +18,8 @@ Use ``EuringRecord`` to assemble a valid EURING record from field values.
    record.set("geographical_coordinates", "+0000000+0000000")
    record.set("accuracy_of_coordinates", "1")
    record_str = record.serialize()
+   record_json = record.serialize(output_format="json")
+   record_2020 = record.export("euring2020")
 
 If you want to allow missing optional values and keep placeholders, pass
 ``strict=False`` to the record. ``serialize()`` raises ``ValueError`` when a field
