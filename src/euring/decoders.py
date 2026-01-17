@@ -15,6 +15,24 @@ from .rules import field_name_for_key, record_rule_errors, requires_euring2020
 from .types import is_valid_type
 
 
+def _build_euring2000_field_positions() -> dict[int, dict[str, int]]:
+    """Build fixed-width field positions for EURING2000 once."""
+    positions: dict[int, dict[str, int]] = {}
+    start = 0
+    for index, field_kwargs in enumerate(EURING_FIELDS):
+        if start >= 94:
+            break
+        length = field_kwargs.get("length", field_kwargs.get("max_length", None))
+        if not length:
+            break
+        positions[index] = {"position": start + 1, "length": length}
+        start += length
+    return positions
+
+
+_EURING2000_FIELD_POSITIONS = _build_euring2000_field_positions()
+
+
 def euring_decode_value(
     value, type, required=True, length=None, min_length=None, max_length=None, parser=None, lookup=None
 ):
@@ -60,7 +78,7 @@ def euring_decode_value(
 
 def decode_fields(value, format: str | None = None) -> dict[str, object]:
     """Decode a EURING record into fields, errors, and the detected format."""
-    decoder = _EuringDecoder(value, format=format)
+    decoder = EuringDecoder(value, format=format)
     result = decoder.get_results()
     record_format = decoder.record_format or (normalize_format(format) if format else FORMAT_EURING2000PLUS)
     return {
@@ -87,7 +105,7 @@ def euring_decode_record(value, format: str | None = None):
     return record
 
 
-class _EuringDecoder:
+class EuringDecoder:
     """Decode a EURING record into structured data and errors."""
 
     value_to_decode = None
@@ -100,7 +118,6 @@ class _EuringDecoder:
         self.format = self._normalize_format(format)
         self._data = OrderedDict()
         self._data_by_key = OrderedDict()
-        self._field_positions = {}
         self.record_format: str | None = None
         super().__init__()
 
@@ -128,8 +145,8 @@ class _EuringDecoder:
         if index is not None:
             payload["index"] = index
             if self.record_format == FORMAT_EURING2000:
-                payload["position"] = self._field_positions.get(index, {}).get("position")
-                payload["length"] = self._field_positions.get(index, {}).get("length")
+                payload["position"] = _EURING2000_FIELD_POSITIONS.get(index, {}).get("position")
+                payload["length"] = _EURING2000_FIELD_POSITIONS.get(index, {}).get("length")
         self.errors["fields"].append(payload)
 
     def parse_field(self, fields, index, name, key=None, **kwargs):
@@ -179,7 +196,6 @@ class _EuringDecoder:
         """Decode the record and populate results/errors."""
         self.results = OrderedDict()
         self.errors = {"record": [], "fields": []}
-        self._field_positions = {}
         self._data = OrderedDict()
         self._data_by_key = OrderedDict()
         self._decode()
@@ -221,7 +237,6 @@ class _EuringDecoder:
                         return
                     end = start + length
                     value = self.value_to_decode[start:end]
-                    self._field_positions[index] = {"position": start + 1, "length": length}
                     start = end
                     fields.append(value)
                 else:
