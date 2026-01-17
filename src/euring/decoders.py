@@ -11,7 +11,7 @@ from .formats import (
     normalize_format,
     unknown_format_error,
 )
-from .record_rules import field_name_for_key, record_rule_errors, requires_euring2020
+from .rules import field_name_for_key, record_rule_errors, requires_euring2020
 from .types import is_valid_type
 
 

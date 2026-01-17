@@ -1,12 +1,24 @@
 """Tests for record_rules helpers."""
 
-from euring.record_rules import (
+from euring.rules import (
+    EURING2000_KEYS,
+    EURING2000PLUS_KEYS,
+    EURING2020_KEYS,
     EURING2020_ONLY_KEYS,
+    NON_EURING2000_KEYS,
     matches_euring2000,
     record_rule_errors,
     requires_euring2000plus,
     requires_euring2020,
 )
+
+
+def test_fields_per_format():
+    # EURING2020 Code Manual Page4-5
+    assert len(EURING2000_KEYS) == 33
+    assert len(EURING2000PLUS_KEYS) == 60
+    assert len(EURING2020_KEYS) == 64
+    assert len(NON_EURING2000_KEYS) == 64 - 33
 
 
 def test_matches_euring2000_true_without_extra_values():

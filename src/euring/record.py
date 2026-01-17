@@ -14,7 +14,7 @@ from .formats import (
     format_display_name,
     normalize_format,
 )
-from .record_rules import record_rule_errors
+from .rules import record_rule_errors
 
 
 class EuringRecord:
