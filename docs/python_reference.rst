@@ -17,17 +17,17 @@ Build a EURING record:
 
 .. code-block:: python
 
-   from euring import EuringRecordBuilder
+   from euring import EuringRecord
 
-   builder = EuringRecordBuilder("euring2000plus")
-   builder.set("ringing_scheme", "GBB")
-   builder.set("primary_identification_method", "A0")
-   builder.set("identification_number", "1234567890")
-   builder.set("place_code", "AB00")
-   builder.set("geographical_coordinates", "+0000000+0000000")
-   builder.set("accuracy_of_coordinates", "1")
-   record = builder.build()
+   record = EuringRecord("euring2000plus")
+   record.set("ringing_scheme", "GBB")
+   record.set("primary_identification_method", "A0")
+   record.set("identification_number", "1234567890")
+   record.set("place_code", "AB00")
+   record.set("geographical_coordinates", "+0000000+0000000")
+   record.set("accuracy_of_coordinates", "1")
+   record_str = record.serialize()
 
-``build()`` raises ``ValueError`` if required fields are missing or a value
-fails validation. Use ``EuringRecordBuilder("euring2000plus", strict=False)``
+``serialize()`` raises ``ValueError`` if required fields are missing or a value
+fails validation. Use ``EuringRecord("euring2000plus", strict=False)``
 to allow missing optional values and keep placeholders in the output.

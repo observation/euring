@@ -19,7 +19,7 @@ def main():
     record = euring_decode_record(
         "DERA0CD...5206514ZZ1877018770N0ZUFF02U-----120719760----SV55+584200+01348000101030100202301739"
     )
-    assert record["record"]["format"] == "EURING2000"
+    assert record.display_format == "EURING2000"
     assert record["errors"] == {"record": [], "fields": []}
 
 

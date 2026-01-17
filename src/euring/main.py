@@ -61,9 +61,9 @@ def decode(
                 if not record_line:
                     continue
                 record = euring_decode_record(record_line, format=format)
-                if _has_errors(record.get("errors", {})):
+                if _has_errors(record.errors):
                     has_errors = True
-                records.append(record)
+                records.append(record.to_dict())
             payload = _with_meta({"records": records})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
@@ -76,9 +76,9 @@ def decode(
                 raise typer.Exit(1)
             return
         record = euring_decode_record(euring_string, format=format)
-        errors = record.get("errors", {})
+        errors = record.errors
         if output_format == "json":
-            payload = _with_meta(record)
+            payload = _with_meta(record.to_dict())
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")
@@ -90,9 +90,9 @@ def decode(
                 raise typer.Exit(1)
             return
         typer.echo("Decoded EURING record:")
-        format_value = (record.get("record") or {}).get("format") or "Unknown"
+        format_value = record.display_format
         typer.echo(f"Format: {format_value}")
-        fields = record.get("fields") or {}
+        fields = record.fields or {}
         if "ringing_scheme" in fields:
             typer.echo(f"Ringing Scheme: {fields['ringing_scheme'].get('value', 'Unknown')}")
         if fields:
@@ -152,7 +152,7 @@ def validate_record(
                     continue
                 total += 1
                 record = euring_decode_record(record_line, format=format)
-                errors = record.get("errors", {})
+                errors = record.errors
                 if _has_errors(errors):
                     invalid += 1
                     results.append({"line": index, "record": record_line, "errors": errors})
@@ -181,9 +181,9 @@ def validate_record(
             return
 
         record = euring_decode_record(euring_string, format=format)
-        errors = record.get("errors", {})
+        errors = record.errors
         if as_json:
-            payload = _with_meta({"format": (record.get("record") or {}).get("format"), "errors": errors})
+            payload = _with_meta({"format": record.display_format, "errors": errors})
             text = json.dumps(payload, default=str, indent=2 if pretty else None)
             if output:
                 output.write_text(text, encoding="utf-8")

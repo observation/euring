@@ -12,7 +12,6 @@ Main features:
 """
 
 from .__about__ import __version__
-from .builder import EuringRecordBuilder
 from .converters import convert_euring2000_record, convert_euring_record
 from .decoders import EuringDecoder, euring_decode_record
 from .exceptions import EuringException, EuringParseException
@@ -21,6 +20,7 @@ from .formats import (
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
 )
+from .record import EuringRecord
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -50,7 +50,7 @@ from .utils import (
 
 __all__ = [
     "__version__",
-    "EuringRecordBuilder",
+    "EuringRecord",
     "euring_decode_record",
     "convert_euring2000_record",
     "convert_euring_record",
