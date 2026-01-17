@@ -4,7 +4,7 @@ import json
 import warnings
 
 from .converters import convert_euring_record
-from .decoders import EuringDecoder, euring_decode_value
+from .decoders import decode_fields, euring_decode_value
 from .exceptions import EuringParseException
 from .fields import EURING_FIELDS
 from .formats import (
@@ -31,15 +31,8 @@ class EuringRecord:
     @classmethod
     def decode(cls, value: str, format: str | None = None) -> EuringRecord:
         """Decode a EURING record string into an EuringRecord."""
-        decoder = EuringDecoder(value, format=format)
-        result = decoder.get_results()
-        if decoder.record_format:
-            internal_format = decoder.record_format
-        elif format:
-            internal_format = normalize_format(format)
-        else:
-            internal_format = FORMAT_EURING2000PLUS
-        record = cls(internal_format, strict=False)
+        result = decode_fields(value, format=format)
+        record = cls(result["format"], strict=False)
         record._fields = result["fields"]
         record.fields = record._fields
         record.errors = result["errors"]

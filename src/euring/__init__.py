@@ -13,7 +13,7 @@ Main features:
 
 from .__about__ import __version__
 from .converters import convert_euring2000_record, convert_euring_record
-from .decoders import EuringDecoder, euring_decode_record
+from .decoders import euring_decode_record
 from .exceptions import EuringException, EuringParseException
 from .formats import (
     FORMAT_EURING2000,
@@ -55,7 +55,6 @@ __all__ = [
     "euring_decode_record",
     "convert_euring2000_record",
     "convert_euring_record",
-    "EuringDecoder",
     "TYPE_ALPHABETIC",
     "TYPE_ALPHANUMERIC",
     "TYPE_INTEGER",

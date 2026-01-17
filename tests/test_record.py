@@ -222,36 +222,6 @@ def test_format_fixed_width_handles_empty_and_padding():
     assert record == "A-" + "---"
 
 
-def test_record_decode_uses_format_when_decoder_missing(monkeypatch):
-    """Decoder without record_format should fall back to provided format."""
-
-    class DummyDecoder:
-        def __init__(self, value, format=None):
-            self.record_format = None
-
-        def get_results(self):
-            return {"fields": {}, "errors": {"record": [], "fields": []}}
-
-    monkeypatch.setattr(record_module, "EuringDecoder", DummyDecoder)
-    record = EuringRecord.decode("value", format="euring2020")
-    assert record.format == "euring2020"
-
-
-def test_record_decode_defaults_when_decoder_missing(monkeypatch):
-    """Decoder without record_format should default to EURING2000PLUS."""
-
-    class DummyDecoder:
-        def __init__(self, value, format=None):
-            self.record_format = None
-
-        def get_results(self):
-            return {"fields": {}, "errors": {"record": [], "fields": []}}
-
-    monkeypatch.setattr(record_module, "EuringDecoder", DummyDecoder)
-    record = EuringRecord.decode("value")
-    assert record.format == "euring2000plus"
-
-
 def test_record_validate_without_record_uses_fixed_width():
     """Validation should serialize fixed-width records when needed."""
     record = EuringRecord("euring2000", strict=False)

@@ -58,6 +58,18 @@ def euring_decode_value(
     return results
 
 
+def decode_fields(value, format: str | None = None) -> dict[str, object]:
+    """Decode a EURING record into fields, errors, and the detected format."""
+    decoder = _EuringDecoder(value, format=format)
+    result = decoder.get_results()
+    record_format = decoder.record_format or (normalize_format(format) if format else FORMAT_EURING2000PLUS)
+    return {
+        "format": record_format,
+        "fields": result.get("fields", OrderedDict()),
+        "errors": result.get("errors", {"record": [], "fields": []}),
+    }
+
+
 def euring_decode_record(value, format: str | None = None):
     """
     Decode a EURING record.
@@ -66,23 +78,16 @@ def euring_decode_record(value, format: str | None = None):
     :param format: Optional format declaration ("euring2000", "euring2000plus", "euring2020")
     :return: EuringRecord instance
     """
-    decoder = EuringDecoder(value, format=format)
-    result = decoder.get_results()
+    result = decode_fields(value, format=format)
     from .record import EuringRecord
 
-    if decoder.record_format:
-        internal_format = decoder.record_format
-    elif format:
-        internal_format = normalize_format(format)
-    else:
-        internal_format = FORMAT_EURING2000PLUS
-    record = EuringRecord(internal_format, strict=False)
+    record = EuringRecord(result["format"], strict=False)
     record.fields = result["fields"]
     record.errors = result["errors"]
     return record
 
 
-class EuringDecoder:
+class _EuringDecoder:
     """Decode a EURING record into structured data and errors."""
 
     value_to_decode = None

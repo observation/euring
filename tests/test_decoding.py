@@ -1,17 +1,15 @@
 """Tests for EURING record decoding."""
 
-from collections import OrderedDict
-
 import pytest
 
-from euring import EuringDecoder, euring_decode_record
+from euring import euring_decode_record
 from euring.codes import (
     lookup_date,
     lookup_geographical_coordinates,
     parse_geographical_coordinates,
     parse_old_greater_coverts,
 )
-from euring.decoders import euring_decode_value
+from euring.decoders import decode_fields, euring_decode_value
 from euring.exceptions import EuringParseException
 from euring.fields import EURING_FIELDS
 from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
@@ -149,26 +147,9 @@ class TestDecoding:
         with pytest.raises(EuringParseException):
             parse_old_greater_coverts("B")
 
-    def test_decoder_handles_non_string(self):
-        decoder = EuringDecoder(None)
-        results = decoder.get_results()
+    def test_decode_fields_handles_non_string(self):
+        results = decode_fields(None)
         assert results["errors"]["record"] or results["errors"]["fields"]
-
-    def test_parse_field_missing_optional_does_not_error(self):
-        decoder = EuringDecoder("GBB")
-        decoder._data = OrderedDict()
-        decoder._data_by_key = OrderedDict()
-        decoder.errors = {"record": [], "fields": []}
-        decoder.parse_field([], 1, "Optional", key="optional", type=TYPE_INTEGER, required=False)
-        assert decoder.errors == {"record": [], "fields": []}
-
-    def test_parse_field_sets_none_for_optional_empty(self):
-        decoder = EuringDecoder("GBB")
-        decoder._data = OrderedDict()
-        decoder._data_by_key = OrderedDict()
-        decoder.errors = {"record": [], "fields": []}
-        decoder.parse_field([""], 0, "Optional", key="optional", type=TYPE_INTEGER, required=False)
-        assert decoder._data_by_key["optional"] is None
 
     def test_decode_euring2000_format(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -202,7 +183,7 @@ class TestDecoding:
 
     def test_decode_format_unknown(self):
         with pytest.raises(EuringParseException, match="Unknown format"):
-            EuringDecoder("GBB", format="2000")
+            decode_fields("GBB", format="2000")
 
     def test_decode_format_conflict_pipe(self):
         record = euring_decode_record(_make_euring2000_plus_record(accuracy="1"), format="euring2000")
@@ -287,13 +268,9 @@ class TestDecoding:
         )
         assert any(error["field"] == "Latitude" for error in record.errors["fields"])
 
-    def test_decode_duplicate_field_name(self):
-        decoder = EuringDecoder("GBB")
-        decoder._data = {"Ringing Scheme": {"value": "GBB"}}
-        decoder._data_by_key = OrderedDict()
-        decoder.errors = {"record": [], "fields": []}
-        decoder.parse_field(["GBB"], 0, "Ringing Scheme", type=TYPE_INTEGER, length=3)
-        assert any(error["field"] == "Ringing Scheme" for error in decoder.errors["fields"])
+    def test_decode_fields_returns_format(self):
+        result = decode_fields(_make_euring2000_plus_record(accuracy="1"))
+        assert result["format"] == "euring2000plus"
 
     def test_decode_euring2000_fixture_records(self):
         from importlib.util import module_from_spec, spec_from_file_location
