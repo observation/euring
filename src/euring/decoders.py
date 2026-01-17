@@ -116,8 +116,6 @@ class _EuringDecoder:
         value="",
         key=None,
         index=None,
-        position=None,
-        length=None,
     ):
         """Add a field-level error with optional metadata."""
         payload = {
@@ -129,10 +127,9 @@ class _EuringDecoder:
             payload["key"] = key
         if index is not None:
             payload["index"] = index
-        if position is not None:
-            payload["position"] = position
-        if length is not None:
-            payload["length"] = length
+            if self.record_format == FORMAT_EURING2000:
+                payload["position"] = self._field_positions.get(index, {}).get("position")
+                payload["length"] = self._field_positions.get(index, {}).get("length")
         self.errors["fields"].append(payload)
 
     def parse_field(self, fields, index, name, key=None, **kwargs):
@@ -148,8 +145,6 @@ class _EuringDecoder:
                     value="",
                     key=key,
                     index=index,
-                    position=self._field_positions.get(index, {}).get("position"),
-                    length=self._field_positions.get(index, {}).get("length"),
                 )
             return
         if name in self._data:
@@ -159,8 +154,6 @@ class _EuringDecoder:
                 value=value,
                 key=key,
                 index=index,
-                position=self._field_positions.get(index, {}).get("position"),
-                length=self._field_positions.get(index, {}).get("length"),
             )
             return
         try:
@@ -172,8 +165,6 @@ class _EuringDecoder:
                 value=value,
                 key=key,
                 index=index,
-                position=self._field_positions.get(index, {}).get("position"),
-                length=self._field_positions.get(index, {}).get("length"),
             )
             return
         self._data[name] = decoded
@@ -301,16 +292,12 @@ class _EuringDecoder:
         if value is None:
             stored = self._data_by_key.get(key)
             value = stored.get("value") if stored else ""
-        position = self._field_positions.get(field_index, {}).get("position") if field_index is not None else None
-        length = self._field_positions.get(field_index, {}).get("length") if field_index is not None else None
         self.add_field_error(
             field_name,
             message,
             value=value,
             key=key,
             index=field_index,
-            position=position,
-            length=length,
         )
 
     def _is_euring2020(self) -> bool:
