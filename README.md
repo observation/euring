@@ -121,12 +121,9 @@ record_2020 = record.export("euring2020")
 is_valid = is_valid_type("ABC", TYPE_ALPHABETIC)
 ```
 
-Decoded records expose two field mappings:
-
-- `data`: keyed by the official EURING field name (as in the manual)
-- `data_by_key`: keyed by a stable ASCII snake_case `key` for programmatic use
-
-Each field entry includes the raw `value`, a human-readable `description` (when available), and the `key`.
+Decoded records expose a single `fields` mapping keyed by the stable ASCII
+snake_case field `key`. Each field entry includes the official `name`, the raw
+`value`, and an `order` index for stable sorting.
 
 ## Data definition
 
