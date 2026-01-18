@@ -503,6 +503,7 @@ def _with_meta(payload: dict[str, Any]) -> dict[str, Any]:
     combined["_meta"] = meta
     return combined
 
+
 def _lines_from_file(file):
     """Read a text file and return lines, exiting on missing files."""
     try:
