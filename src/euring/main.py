@@ -54,7 +54,7 @@ def decode(
             if output_format != "json":
                 typer.echo("Use --json when decoding files.", err=True)
                 raise typer.Exit(1)
-            lines = file.read_text(encoding="utf-8").splitlines()
+            lines = _lines_from_file(file)
             records = []
             has_errors = False
             for line in lines:
@@ -143,7 +143,7 @@ def validate_record(
             raise typer.Exit(1)
 
         if file:
-            lines = file.read_text(encoding="utf-8").splitlines()
+            lines = _lines_from_file(file)
             results: list[dict[str, object]] = []
             total = 0
             invalid = 0
@@ -241,7 +241,7 @@ def convert(
             typer.echo("Provide a record or use --file.", err=True)
             raise typer.Exit(1)
         if file:
-            lines = file.read_text(encoding="utf-8").splitlines()
+            lines = _lines_from_file(file)
             outputs: list[str] = []
             errors: list[tuple[int, str]] = []
             for index, line in enumerate(lines, start=1):
@@ -502,3 +502,12 @@ def _with_meta(payload: dict[str, Any]) -> dict[str, Any]:
     combined = dict(payload)
     combined["_meta"] = meta
     return combined
+
+def _lines_from_file(file):
+    """Read a text file and return lines, exiting on missing files."""
+    try:
+        lines = file.read_text(encoding="utf-8").splitlines()
+    except FileNotFoundError:
+        typer.echo(f"File not found: {file}", err=True)
+        raise typer.Exit(1)
+    return lines

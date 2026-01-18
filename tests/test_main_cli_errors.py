@@ -36,6 +36,14 @@ def test_decode_cli_file_without_json_fails(tmp_path):
     assert "Use --json when decoding files." in result.output
 
 
+def test_decode_cli_file_missing(tmp_path):
+    file_path = tmp_path / "missing.txt"
+    runner = CliRunner()
+    result = runner.invoke(app, ["decode", "--file", str(file_path), "--json"])
+    assert result.exit_code == 1
+    assert f"File not found: {file_path}" in result.output
+
+
 def test_decode_cli_file_and_record_conflict(tmp_path):
     record = _load_fixture_records("euring2000_examples.py", "EURING2000_EXAMPLES")[0]
     file_path = tmp_path / "records.txt"
@@ -108,6 +116,14 @@ def test_validate_cli_file_and_record_conflict(tmp_path):
     assert "Use either a record or --file" in result.output
 
 
+def test_validate_cli_file_missing(tmp_path):
+    file_path = tmp_path / "missing.txt"
+    runner = CliRunner()
+    result = runner.invoke(app, ["validate", "--file", str(file_path)])
+    assert result.exit_code == 1
+    assert f"File not found: {file_path}" in result.output
+
+
 def test_validate_cli_no_input_fails():
     runner = CliRunner()
     result = runner.invoke(app, ["validate"])
@@ -150,6 +166,14 @@ def test_convert_cli_file_errors(tmp_path):
     result = runner.invoke(app, ["convert", "--file", str(file_path)])
     assert result.exit_code == 1
     assert "Conversion errors:" in result.output
+
+
+def test_convert_cli_file_missing(tmp_path):
+    file_path = tmp_path / "missing.txt"
+    runner = CliRunner()
+    result = runner.invoke(app, ["convert", "--file", str(file_path)])
+    assert result.exit_code == 1
+    assert f"File not found: {file_path}" in result.output
 
 
 def test_convert_cli_file_and_record_conflict(tmp_path):
