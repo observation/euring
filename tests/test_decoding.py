@@ -9,9 +9,9 @@ from euring.codes import (
     parse_geographical_coordinates,
     parse_old_greater_coverts,
 )
-from euring.decoders import decode_fields, euring_decode_value
 from euring.exceptions import EuringParseException
 from euring.fields import EURING_FIELDS
+from euring.parsing import euring_decode_value
 from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
 
 
@@ -148,8 +148,8 @@ class TestDecoding:
             parse_old_greater_coverts("B")
 
     def test_decode_fields_handles_non_string(self):
-        results = decode_fields(None)
-        assert results["errors"]["record"] or results["errors"]["fields"]
+        record = EuringRecord.decode(None)
+        assert record.errors["record"] or record.errors["fields"]
 
     def test_decode_euring2000_format(self):
         from importlib.util import module_from_spec, spec_from_file_location
@@ -183,7 +183,7 @@ class TestDecoding:
 
     def test_decode_format_unknown(self):
         with pytest.raises(EuringParseException, match="Unknown format"):
-            decode_fields("GBB", format="2000")
+            EuringRecord.decode("GBB", format="2000")
 
     def test_decode_format_conflict_pipe(self):
         record = EuringRecord.decode(_make_euring2000_plus_record(accuracy="1"), format="euring2000")
@@ -269,8 +269,8 @@ class TestDecoding:
         assert any(error["field"] == "Latitude" for error in record.errors["fields"])
 
     def test_decode_fields_returns_format(self):
-        result = decode_fields(_make_euring2000_plus_record(accuracy="1"))
-        assert result["format"] == "euring2000plus"
+        record = EuringRecord.decode(_make_euring2000_plus_record(accuracy="1"))
+        assert record.format == "euring2000plus"
 
     def test_decode_euring2000_fixture_records(self):
         from importlib.util import module_from_spec, spec_from_file_location
