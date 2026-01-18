@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Refactor to generic EuringRecord for encoding and decoding (#76).
+- Refactor to generic EuringRecord for encoding and decoding (#76, #81).
 
 ## 26.2 (2026-01-12)
 

@@ -7,13 +7,13 @@ from pathlib import Path
 import pytest
 
 import euring.record as record_module
-from euring import EuringRecord, euring_decode_record
+from euring import EuringRecord
 from euring.formats import FORMAT_JSON
 from euring.record import _fields_for_format, _fixed_width_fields, _format_fixed_width
 
 
 def _values_from_record(record: str) -> dict[str, str]:
-    decoded = euring_decode_record(record)
+    decoded = EuringRecord.decode(record)
     values: dict[str, str] = {}
     for key, field in decoded.fields.items():
         value = field.get("value")
@@ -220,36 +220,6 @@ def test_format_fixed_width_handles_empty_and_padding():
     fields = [{"key": "alpha", "length": 2}, {"key": "beta", "length": 3}]
     record = _format_fixed_width({"alpha": "A"}, fields)
     assert record == "A-" + "---"
-
-
-def test_record_decode_uses_format_when_decoder_missing(monkeypatch):
-    """Decoder without record_format should fall back to provided format."""
-
-    class DummyDecoder:
-        def __init__(self, value, format=None):
-            self.record_format = None
-
-        def get_results(self):
-            return {"fields": {}, "errors": {"record": [], "fields": []}}
-
-    monkeypatch.setattr(record_module, "EuringDecoder", DummyDecoder)
-    record = EuringRecord.decode("value", format="euring2020")
-    assert record.format == "euring2020"
-
-
-def test_record_decode_defaults_when_decoder_missing(monkeypatch):
-    """Decoder without record_format should default to EURING2000PLUS."""
-
-    class DummyDecoder:
-        def __init__(self, value, format=None):
-            self.record_format = None
-
-        def get_results(self):
-            return {"fields": {}, "errors": {"record": [], "fields": []}}
-
-    monkeypatch.setattr(record_module, "EuringDecoder", DummyDecoder)
-    record = EuringRecord.decode("value")
-    assert record.format == "euring2000plus"
 
 
 def test_record_validate_without_record_uses_fixed_width():

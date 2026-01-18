@@ -4,17 +4,19 @@ import json
 import warnings
 
 from .converters import convert_euring_record
-from .decoders import EuringDecoder, euring_decode_value
 from .exceptions import EuringParseException
 from .fields import EURING_FIELDS
 from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
+    FORMAT_EURING2020,
     FORMAT_JSON,
     format_display_name,
     normalize_format,
+    unknown_format_error,
 )
-from .rules import record_rule_errors
+from .parsing import euring_decode_value
+from .rules import record_rule_errors, requires_euring2020
 
 
 class EuringRecord:
@@ -26,24 +28,24 @@ class EuringRecord:
         self.strict = strict
         self._fields: dict[str, dict[str, object]] = {}
         self.errors: dict[str, list] = {"record": [], "fields": []}
-        self.fields = self._fields
 
     @classmethod
     def decode(cls, value: str, format: str | None = None) -> EuringRecord:
         """Decode a EURING record string into an EuringRecord."""
-        decoder = EuringDecoder(value, format=format)
-        result = decoder.get_results()
-        if decoder.record_format:
-            internal_format = decoder.record_format
-        elif format:
-            internal_format = normalize_format(format)
-        else:
-            internal_format = FORMAT_EURING2000PLUS
-        record = cls(internal_format, strict=False)
-        record._fields = result["fields"]
-        record.fields = record._fields
-        record.errors = result["errors"]
+        record_format, values_by_key, record_errors = _decode_raw_record(value, format)
+        record = cls(record_format, strict=False)
+        for key, raw_value in values_by_key.items():
+            record._set_raw_value(key, raw_value)
+        errors = record.validate()
+        if record_errors:
+            errors["record"] = record_errors + errors.get("record", [])
+            record.errors = errors
         return record
+
+    @property
+    def fields(self) -> dict[str, dict[str, object]]:
+        """Return the decoded field data."""
+        return self._fields
 
     def set(self, key: str, value: object) -> EuringRecord:
         """Set a field value by key."""
@@ -56,6 +58,17 @@ class EuringRecord:
             "order": field["order"],
         }
         return self
+
+    def _set_raw_value(self, key: str, value: object) -> None:
+        """Set a field from decoded input without normalization."""
+        field = _FIELD_MAP.get(key)
+        if field is None:
+            return
+        self._fields[key] = {
+            "name": field["name"],
+            "value": "" if value is None else value,
+            "order": field["order"],
+        }
 
     def update(self, values: dict[str, object]) -> EuringRecord:
         """Update multiple field values."""
@@ -164,7 +177,7 @@ class EuringRecord:
 
     def to_dict(self) -> dict[str, object]:
         """Return a JSON-serializable representation of the record."""
-        return {"record": {"format": format_display_name(self.format)}, "fields": self.fields, "errors": self.errors}
+        return {"record": {"format": format_display_name(self.format)}, "fields": self._fields, "errors": self.errors}
 
     @property
     def display_format(self) -> str:
@@ -224,6 +237,57 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
             value = value.ljust(length, "-")
         parts.append(value[:length])
     return "".join(parts)
+
+
+def _normalize_decode_format(format: str | None) -> str | None:
+    """Normalize a user-provided format string or raise."""
+    if not format:
+        return None
+    try:
+        return normalize_format(format)
+    except ValueError:
+        raise EuringParseException(unknown_format_error(format))
+
+
+def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str, str], list[dict[str, str]]]:
+    """Decode raw field values from an encoded EURING record string."""
+    normalized = _normalize_decode_format(format)
+    record_errors: list[dict[str, str]] = []
+    values_by_key: dict[str, str] = {}
+    if not isinstance(value, str):
+        record_errors.append({"message": f'Value "{value}" cannot be split with pipe character.'})
+        return normalized or FORMAT_EURING2000PLUS, values_by_key, record_errors
+
+    fields = value.split("|")
+    if len(fields) <= 1:
+        if normalized and normalized != FORMAT_EURING2000:
+            record_errors.append(
+                {"message": f'Format "{format_display_name(normalized)}" conflicts with fixed-width EURING2000 data.'}
+            )
+        start = 0
+        for field in _fixed_width_fields():
+            length = field["length"]
+            end = start + length
+            values_by_key[field["key"]] = value[start:end]
+            start = end
+        remainder = value[start:]
+        if remainder.strip():
+            record_errors.append({"message": f'Value "{value}" invalid EURING2000 code beyond position {start}.'})
+        current_format = FORMAT_EURING2000
+    else:
+        if normalized == FORMAT_EURING2000:
+            record_errors.append(
+                {"message": f'Format "{format_display_name(normalized)}" conflicts with pipe-delimited data.'}
+            )
+        current_format = normalized or FORMAT_EURING2000PLUS
+        for index, raw_value in enumerate(fields):
+            if index >= len(EURING_FIELDS):
+                break
+            values_by_key[EURING_FIELDS[index]["key"]] = raw_value
+        if normalized is None and current_format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020}:
+            if requires_euring2020(values_by_key):
+                current_format = FORMAT_EURING2020
+    return current_format, values_by_key, record_errors
 
 
 _FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING_FIELDS)}

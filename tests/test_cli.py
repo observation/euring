@@ -373,10 +373,10 @@ def test_decode_cli_non_euring_string():
 
 
 def test_decode_cli_parse_exception(monkeypatch):
-    def _raise_parse(_value, **_kwargs):
+    def _raise_parse(_cls, _value, **_kwargs):
         raise euring_exceptions.EuringParseException("bad")
 
-    monkeypatch.setattr(main_module, "euring_decode_record", _raise_parse)
+    monkeypatch.setattr(main_module.EuringRecord, "decode", classmethod(_raise_parse))
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "GBB|A0"])
     assert result.exit_code == 1
@@ -384,10 +384,10 @@ def test_decode_cli_parse_exception(monkeypatch):
 
 
 def test_decode_cli_unexpected_exception(monkeypatch):
-    def _raise_error(_value, **_kwargs):
+    def _raise_error(_cls, _value, **_kwargs):
         raise RuntimeError("boom")
 
-    monkeypatch.setattr(main_module, "euring_decode_record", _raise_error)
+    monkeypatch.setattr(main_module.EuringRecord, "decode", classmethod(_raise_error))
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "GBB|A0"])
     assert result.exit_code == 1
