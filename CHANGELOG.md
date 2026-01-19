@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased
+## 26.3 (2026-01-19)
 
-- Add error on file not found in CLI (#82).
-- Refactor to generic EuringRecord for encoding and decoding (#76, #81).
+- Breaking: Remove `euring_decode_record` and fold decoding into EuringRecord (#76, #81).
+- CLI: Add error on file not found (#82).
 
 ## 26.2 (2026-01-12)
 
