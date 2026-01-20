@@ -341,7 +341,7 @@ def lookup(
                     typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
                     return
                 typer.echo(f"Place {code}")
-                _emit_detail("Name", details.get("code"))
+                _emit_detail("Name", details.get("country"))
                 _emit_detail("Region", details.get("region"))
                 _emit_detail_bool("Current", details.get("is_current"))
                 _emit_detail("Updated", details.get("updated"))

@@ -21,9 +21,10 @@ TABLE = {
         {"code": "C", "description": "Mark already present."},
         {"code": "D", "description": "Mark removed."},
         {"code": "E", "description": "Mark changed."},
+        {"code": "-", "description": "Unknown."},
     ],
     "special_cases": [
-        {"code": "MM", "description": "More than one mark present."},
+        {"code": "MM", "description": "More than one mark added/present/removed."},
         {"code": "OM", "description": "Other mark(s) present."},
         {"code": "OP", "description": "Other permanent mark(s) present."},
         {"code": "OT", "description": "Other temporary mark(s) present."},

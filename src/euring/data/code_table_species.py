@@ -73,7 +73,7 @@ TABLE = [
     {
         "code": "00212",
         "name": "Macronectes halli",
-        "notes": "Formerly Macronectes giganteus halli ",
+        "notes": "Formerly Macronectes giganteus halli",
         "updated": "2019-01-17",
     },
     {"code": "00220", "name": "Fulmarus glacialis", "notes": "", "updated": "2008-06-02"},
@@ -623,8 +623,7 @@ TABLE = [
     {
         "code": "03200",
         "name": "Falco peregrinus",
-        "notes": "Includes the former Falco peregrinoides. Use code 03210 when Falco peregrinus peregrinoides has been "
-        "identified using morphological characters.",
+        "notes": "Includes the former Falco peregrinoides. Use code 03210 when Falco peregrinus peregrinoides has been identified using morphological characters.",
         "updated": "2008-06-02",
     },
     {"code": "03201", "name": "Falco peregrinus peregrinus", "notes": "", "updated": "2008-06-02"},
@@ -698,8 +697,7 @@ TABLE = [
     {
         "code": "03702",
         "name": "Coturnix coturnix confisa",
-        "notes": "Subspecies not recognized by IOC but EURING will continue to recognize Canary and Madeira islands "
-        "populations.",
+        "notes": "Subspecies not recognized by IOC but EURING will continue to recognize Canary and Madeira islands populations.",
         "updated": "2024-01-10",
     },
     {"code": "03703", "name": "Coturnix coturnix inopinata", "notes": "", "updated": "2015-11-15"},
@@ -740,8 +738,7 @@ TABLE = [
     {
         "code": "04040",
         "name": "Rallus longirostris",
-        "notes": "Extent of the code has changed over time. Excludes Rallus tenuirostris; Rallus obsoletus; Rallus elegans "
-        "and Rallus crepitans.",
+        "notes": "Extent of the code has changed over time. Excludes Rallus tenuirostris; Rallus obsoletus; Rallus elegans and Rallus crepitans.",
         "updated": "2024-01-10",
     },
     {"code": "04050", "name": "Rallus elegans", "notes": "", "updated": "2008-06-02"},
@@ -759,8 +756,7 @@ TABLE = [
     {
         "code": "04169",
         "name": "Porzana / Zapornis sp.",
-        "notes": "The present code contained taxa that are currently considered as not closely related. The use of this code "
-        "is not recommanded.",
+        "notes": "The present code contained taxa that are currently considered as not closely related. The use of this code is not recommanded.",
         "updated": "2008-06-02",
     },
     {"code": "04170", "name": "Coturnicops exquisitus", "notes": "", "updated": "2008-06-02"},
@@ -776,8 +772,7 @@ TABLE = [
     {
         "code": "04270",
         "name": "Porphyrio porphyrio",
-        "notes": "Excludes Porphyrio madagascariensis; Porphyrio poliocephalus; Porphyrio indicus; Porphyrio pulverulentus "
-        "and Porphyrio melanotus",
+        "notes": "Excludes Porphyrio madagascariensis; Porphyrio poliocephalus; Porphyrio indicus; Porphyrio pulverulentus and Porphyrio melanotus",
         "updated": "2008-06-02",
     },
     {"code": "04271", "name": "Obsolete code", "notes": "Duplicated species; use 04270", "updated": "2008-06-02"},
@@ -1002,8 +997,7 @@ TABLE = [
     {
         "code": "05690",
         "name": "Stercorarius skua",
-        "notes": "Excludes Stercorarius maccormicki; Stercorarius antarcticus; Stercorarius chilensis. Extent of code has "
-        "changed.",
+        "notes": "Excludes Stercorarius maccormicki; Stercorarius antarcticus; Stercorarius chilensis. Extent of code has changed.",
         "updated": "2024-03-09",
     },
     {"code": "05691", "name": "Obsolete code", "notes": "Duplicated species; use 05690", "updated": "2008-06-02"},
@@ -1049,9 +1043,7 @@ TABLE = [
     {
         "code": "05920",
         "name": "Larus argentatus sensu lato",
-        "notes": "Use 5929 when current taxonomy used but species not identified; keep 5920 for data of past taxonomy where "
-        "Larus argentatus included Larus cachinnans; Larus michahellis; Larus smithsonianus; Larus vegae; Larus "
-        "mongolicus and / or Larus fuscus heuglini. ",
+        "notes": "Use 5929 when current taxonomy used but species not identified; keep 5920 for data of past taxonomy where Larus argentatus included Larus cachinnans; Larus michahellis; Larus smithsonianus; Larus vegae; Larus mongolicus and / or Larus fuscus heuglini.",
         "updated": "2024-11-22",
     },
     {"code": "05921", "name": "Larus argentatus argentatus", "notes": "", "updated": "2024-03-09"},
@@ -1731,8 +1723,7 @@ TABLE = [
     {
         "code": "10141",
         "name": "Anthus spinoletta",
-        "notes": "Extend of code may have change over time since Anthus spinoletta coutellii and Anthus spinoletta "
-        "blackistoni were not included in the past.",
+        "notes": "Extend of code may have change over time since Anthus spinoletta coutellii and Anthus spinoletta blackistoni were not included in the past.",
         "updated": "2024-11-07",
     },
     {"code": "10142", "name": "Anthus petrosus petrosus", "notes": "", "updated": "2024-11-07"},
@@ -1746,8 +1737,7 @@ TABLE = [
     {
         "code": "10170",
         "name": "Motacilla flava",
-        "notes": "Extend of code may have been changed over time since 26643 Motacilla tschutschensis has been considered a "
-        "ssp of present species code",
+        "notes": "Extend of code may have been changed over time since 26643 Motacilla tschutschensis has been considered a ssp of present species code",
         "updated": "2024-11-07",
     },
     {"code": "10171", "name": "Motacilla flava flava", "notes": "", "updated": "2008-06-02"},
@@ -1855,8 +1845,7 @@ TABLE = [
     {
         "code": "10650",
         "name": "Troglodytes aedon sensu lato",
-        "notes": "Includes Troglodytes musculus; Troglodytes cobbi; Troglodytes beani; Troglodytes martinicensis; "
-        "Troglodytes mesoleucus; Troglodytes musicus and Troglodytes grenadensis",
+        "notes": "Includes Troglodytes musculus; Troglodytes cobbi; Troglodytes beani; Troglodytes martinicensis; Troglodytes mesoleucus; Troglodytes musicus and Troglodytes grenadensis",
         "updated": "2024-11-22",
     },
     {"code": "10651", "name": "Troglodytes aedon", "notes": "", "updated": "2024-11-22"},
@@ -1990,8 +1979,7 @@ TABLE = [
     {
         "code": "11391",
         "name": "Saxicola torquatus",
-        "notes": "Excludes Saxicola maurus; Saxicola stejnegeri and Saxicola rubicola ; but includes past species Saxicola "
-        "sibilla ",
+        "notes": "Excludes Saxicola maurus; Saxicola stejnegeri and Saxicola rubicola ; but includes past species Saxicola sibilla",
         "updated": "2024-10-18",
     },
     {"code": "11392", "name": "Saxicola stejnegeri", "notes": "", "updated": "2021-06-07"},
@@ -2995,8 +2983,7 @@ TABLE = [
     {
         "code": "16630",
         "name": "Acanthis flammea flammea sensu lato",
-        "notes": "Includes Acanthis flammea cabaret and Acanthis flammea rostrata but excludes Acanthis flammea hornemanni "
-        "and Acanthis flammea exilipes",
+        "notes": "Includes Acanthis flammea cabaret and Acanthis flammea rostrata but excludes Acanthis flammea hornemanni and Acanthis flammea exilipes",
         "updated": "2024-11-22",
     },
     {"code": "16631", "name": "Acanthis flammea flammea", "notes": "", "updated": "2008-06-02"},
@@ -3004,8 +2991,7 @@ TABLE = [
     {
         "code": "16633",
         "name": "Acanthis flammea flammea sensu lato",
-        "notes": "Includes Acanthis flammea rostrata; but excludes Acanthis flammea cabaret; Acanthis flammea hornemanni and "
-        "Acanthis flammea exilipes",
+        "notes": "Includes Acanthis flammea rostrata; but excludes Acanthis flammea cabaret; Acanthis flammea hornemanni and Acanthis flammea exilipes",
         "updated": "2024-11-22",
     },
     {"code": "16634", "name": "Acanthis flammea cabaret", "notes": "", "updated": "2024-11-22"},
@@ -3191,8 +3177,7 @@ TABLE = [
     {
         "code": "17950",
         "name": "Arremon torquatus sensu lato",
-        "notes": "Includes Arremon basilicus; Arremon perijanus; Arremon atricapillus; Arremon phaeopleurus; Arremon phygas "
-        "and Arremon assimilis",
+        "notes": "Includes Arremon basilicus; Arremon perijanus; Arremon atricapillus; Arremon phaeopleurus; Arremon phygas and Arremon assimilis",
         "updated": "2024-11-07",
     },
     {"code": "17960", "name": "Arremonops rufivirgatus", "notes": "", "updated": "2008-06-02"},
@@ -3566,8 +3551,7 @@ TABLE = [
     {
         "code": "26643",
         "name": "Motacilla tschutschensis",
-        "notes": "Code created originally for the no longer recognized ssp simillima under a broader sp Motacilla flava. "
-        "Extent of code might thus have changed over the time.",
+        "notes": "Code created originally for the no longer recognized ssp simillima under a broader sp Motacilla flava. Extent of code might thus have changed over the time.",
         "updated": "2024-11-07",
     },
     {"code": "26650", "name": "Radjah radjah", "notes": "", "updated": "2008-06-02"},
@@ -3585,7 +3569,7 @@ TABLE = [
     {"code": "26730", "name": "Ammodramus humeralis", "notes": "", "updated": "2008-06-02"},
     {"code": "26740", "name": "Anthus hellmayri", "notes": "", "updated": "2008-06-02"},
     {"code": "26750", "name": "Psittacara leucophthalmus", "notes": "", "updated": "2008-06-02"},
-    {"code": "26760", "name": "Arremon taciturnus", "notes": "Excludes Arremon axillaris ", "updated": "2025-03-26"},
+    {"code": "26760", "name": "Arremon taciturnus", "notes": "Excludes Arremon axillaris", "updated": "2025-03-26"},
     {"code": "26770", "name": "Attila bolivianus", "notes": "", "updated": "2008-06-02"},
     {"code": "26780", "name": "Rupornis magnirostris", "notes": "", "updated": "2008-06-02"},
     {"code": "26790", "name": "Cacicus cela", "notes": "", "updated": "2008-06-02"},
@@ -4204,8 +4188,7 @@ TABLE = [
     {
         "code": "33860",
         "name": "Ortygospiza atricollis",
-        "notes": "Extend of code changed after the lump with Ortygospiza fuscocrissa; Ortygospiza gabonensis and Ortygospiza "
-        "atricollis",
+        "notes": "Extend of code changed after the lump with Ortygospiza fuscocrissa; Ortygospiza gabonensis and Ortygospiza atricollis",
         "updated": "2024-11-07",
     },
     {"code": "33870", "name": "Ortyxelos meiffrenii", "notes": "", "updated": "2008-06-02"},
@@ -4383,8 +4366,7 @@ TABLE = [
     {
         "code": "35210",
         "name": "Tockus kempi",
-        "notes": "Code used in the past for Tockus erythrorhynchus sensu lato. Since the data collected up to the time where "
-        "the split was adopted were of Tockus kempi; the code is recycled for this taxa.",
+        "notes": "Code used in the past for Tockus erythrorhynchus sensu lato. Since the data collected up to the time where the split was adopted were of Tockus kempi; the code is recycled for this taxa.",
         "updated": "2008-06-02",
     },
     {
@@ -4569,8 +4551,7 @@ TABLE = [
     {
         "code": "36380",
         "name": "Larus argentatus",
-        "notes": "Excludes Larus cachinnans; Larus michahellis; Larus smithsonianus; Larus armenicus; Larus vegae; Larus "
-        "mongolicus and Larus fuscus heuglini",
+        "notes": "Excludes Larus cachinnans; Larus michahellis; Larus smithsonianus; Larus armenicus; Larus vegae; Larus mongolicus and Larus fuscus heuglini",
         "updated": "2024-11-22",
     },
     {"code": "36390", "name": "Anthus pallidiventris", "notes": "", "updated": "2024-03-09"},
@@ -5128,8 +5109,7 @@ TABLE = [
     {
         "code": "90370",
         "name": "Acanthis flammea hornemanni sensu lato x Acanthis flammea flammea sensu lato",
-        "notes": "Consider using code 16635; note that parent Acanthis flammea hornemanni sensu lato includes Acanthis "
-        "flammea exilipes and Acanthis flammea flammea sensu lato includes Acanthis flammea rostrata",
+        "notes": "Consider using code 16635; note that parent Acanthis flammea hornemanni sensu lato includes Acanthis flammea exilipes and Acanthis flammea flammea sensu lato includes Acanthis flammea rostrata",
         "updated": "2024-11-22",
     },
     {"code": "90380", "name": "Sylvia atricapilla x Sylvia borin", "notes": "", "updated": "2017-09-04"},
@@ -5328,5 +5308,3 @@ TABLE = [
     {"code": "99931", "name": "Unidentified duck", "notes": "", "updated": "2021-05-01"},
     {"code": "99999", "name": "Ring destroyed or lost", "notes": "", "updated": "2008-06-02"},
 ]
-
-__all__ = ["TABLE"]

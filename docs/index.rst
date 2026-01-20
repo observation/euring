@@ -10,5 +10,6 @@ Contents:
    python_reference
    examples
    cli
+   code_table_notes
    contributing
    changelog
