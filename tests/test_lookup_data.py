@@ -35,7 +35,7 @@ def test_lookup_place_code_uses_packaged_data():
 
 def test_lookup_place_details_uses_packaged_data():
     details = lookup_place_details("GR83")
-    assert details["code"] == "Greece"
+    assert details["country"] == "Greece"
     assert details["region"] == "Makedonia"
 
 
@@ -114,7 +114,7 @@ def test_lookup_other_marks_missing_reference_data(monkeypatch):
 
 
 def test_lookup_other_marks_special_case():
-    assert lookup_other_marks("MM") == "More than one mark present."
+    assert lookup_other_marks("MM") == "More than one mark added/present/removed."
 
 
 def test_lookup_other_marks_hyphen_second_char():
