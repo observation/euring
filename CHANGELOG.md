@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 26.4 (2026-01-20)
 
 - Data: Update EURING Code Tables and document transcription to Python (#85, #86).
 
