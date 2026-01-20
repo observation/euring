@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Update EURING Code Tables and document transcription to Python (#85, #86).
+
 ## 26.3 (2026-01-19)
 
 - Breaking: Remove `euring_decode_record` and fold decoding into EuringRecord (#76, #81).
