@@ -2,19 +2,19 @@ from __future__ import annotations
 
 # Generated from curated EURING reference data.
 TABLE = [
-    {"code": "Aden", "is_current": True, "notes": "", "place_code": "AI00", "region": "", "updated": "2008-06-16"},
+    {"country": "Aden", "is_current": True, "notes": "", "place_code": "AI00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Afghanistan",
+        "country": "Afghanistan",
         "is_current": True,
         "notes": "",
         "place_code": "GN00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Albania", "is_current": True, "notes": "", "place_code": "AB00", "region": "", "updated": "2008-06-16"},
-    {"code": "Algeria", "is_current": True, "notes": "", "place_code": "AG--", "region": "", "updated": "2008-06-16"},
+    {"country": "Albania", "is_current": True, "notes": "", "place_code": "AB00", "region": "", "updated": "2008-06-16"},
+    {"country": "Algeria", "is_current": True, "notes": "", "place_code": "AG--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Algeria",
+        "country": "Algeria",
         "is_current": True,
         "notes": "",
         "place_code": "AGAL",
@@ -22,7 +22,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Algeria",
+        "country": "Algeria",
         "is_current": True,
         "notes": "",
         "place_code": "AGCO",
@@ -30,7 +30,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Algeria",
+        "country": "Algeria",
         "is_current": True,
         "notes": "",
         "place_code": "AGOR",
@@ -38,25 +38,25 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Algeria",
+        "country": "Algeria",
         "is_current": True,
         "notes": "",
         "place_code": "AGTS",
         "region": "Other provinces",
         "updated": "2008-06-16",
     },
-    {"code": "Andorra", "is_current": True, "notes": "", "place_code": "EK00", "region": "", "updated": "2008-06-16"},
+    {"country": "Andorra", "is_current": True, "notes": "", "place_code": "EK00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Andorra",
+        "country": "Andorra",
         "is_current": False,
         "notes": "Incorrect, but has been used historically",
         "place_code": "EK23",
         "region": "",
         "updated": "2008-11-05",
     },
-    {"code": "Angola", "is_current": True, "notes": "", "place_code": "AL00", "region": "", "updated": "2008-06-16"},
+    {"country": "Angola", "is_current": True, "notes": "", "place_code": "AL00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Antarctica",
+        "country": "Antarctica",
         "is_current": True,
         "notes": "",
         "place_code": "AN00",
@@ -64,17 +64,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Arctic Ocean",
+        "country": "Arctic Ocean",
         "is_current": True,
         "notes": "",
         "place_code": "+A00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Argentina", "is_current": True, "notes": "", "place_code": "BJ00", "region": "", "updated": "2008-06-16"},
-    {"code": "Armenia", "is_current": True, "notes": "", "place_code": "AE00", "region": "", "updated": "2008-06-16"},
+    {"country": "Argentina", "is_current": True, "notes": "", "place_code": "BJ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Armenia", "is_current": True, "notes": "", "place_code": "AE00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-B00",
@@ -82,7 +82,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-C00",
@@ -90,7 +90,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-D00",
@@ -98,7 +98,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-E00",
@@ -106,7 +106,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-F00",
@@ -114,7 +114,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-G00",
@@ -122,7 +122,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "except --D00",
         "place_code": "-H00",
@@ -130,7 +130,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-I00",
@@ -138,16 +138,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "At sea",
+        "country": "At sea",
         "is_current": True,
         "notes": "",
         "place_code": "-J00",
         "region": "Indian Ocean",
         "updated": "2008-06-16",
     },
-    {"code": "Australia", "is_current": True, "notes": "", "place_code": "AA--", "region": "", "updated": "2008-06-16"},
+    {"country": "Australia", "is_current": True, "notes": "", "place_code": "AA--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Australia",
+        "country": "Australia",
         "is_current": True,
         "notes": "",
         "place_code": "AANS",
@@ -155,7 +155,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Australia",
+        "country": "Australia",
         "is_current": True,
         "notes": "",
         "place_code": "AANT",
@@ -163,7 +163,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Australia",
+        "country": "Australia",
         "is_current": True,
         "notes": "",
         "place_code": "AAQU",
@@ -171,7 +171,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Australia",
+        "country": "Australia",
         "is_current": True,
         "notes": "",
         "place_code": "AASA",
@@ -179,7 +179,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Australia",
+        "country": "Australia",
         "is_current": True,
         "notes": "",
         "place_code": "AATA",
@@ -187,7 +187,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Australia",
+        "country": "Australia",
         "is_current": True,
         "notes": "",
         "place_code": "AAVI",
@@ -195,16 +195,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Australia",
+        "country": "Australia",
         "is_current": True,
         "notes": "",
         "place_code": "AAWA",
         "region": "Western Australia",
         "updated": "2008-06-16",
     },
-    {"code": "Austria", "is_current": True, "notes": "", "place_code": "AU--", "region": "", "updated": "2008-06-16"},
+    {"country": "Austria", "is_current": True, "notes": "", "place_code": "AU--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU00",
@@ -212,7 +212,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU01",
@@ -220,7 +220,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU02",
@@ -228,7 +228,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU03",
@@ -236,7 +236,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU04",
@@ -244,7 +244,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU05",
@@ -252,7 +252,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU06",
@@ -260,7 +260,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU07",
@@ -268,7 +268,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Austria",
+        "country": "Austria",
         "is_current": True,
         "notes": "",
         "place_code": "AU08",
@@ -276,7 +276,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Azerbaijan",
+        "country": "Azerbaijan",
         "is_current": True,
         "notes": "",
         "place_code": "AK--",
@@ -284,7 +284,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Azerbaijan",
+        "country": "Azerbaijan",
         "is_current": True,
         "notes": "Daliq Qarabag",
         "place_code": "AK01",
@@ -292,16 +292,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Azerbaijan",
+        "country": "Azerbaijan",
         "is_current": False,
         "notes": "",
         "place_code": "SU92",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Bahamas", "is_current": True, "notes": "", "place_code": "TJ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Bahamas", "is_current": True, "notes": "", "place_code": "TJ00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Bahrain & Qatar",
+        "country": "Bahrain & Qatar",
         "is_current": True,
         "notes": "",
         "place_code": "AZ00",
@@ -309,7 +309,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Baltic Sea islands",
+        "country": "Baltic Sea islands",
         "is_current": True,
         "notes": "check codes in neighbouring countries before using this code",
         "place_code": "+E00",
@@ -317,7 +317,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bangladesh",
+        "country": "Bangladesh",
         "is_current": True,
         "notes": "",
         "place_code": "RN00",
@@ -325,7 +325,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bay of Biscay islands",
+        "country": "Bay of Biscay islands",
         "is_current": True,
         "notes": "",
         "place_code": "+D00",
@@ -333,16 +333,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bear Island",
+        "country": "Bear Island",
         "is_current": True,
         "notes": "Bj0rn0ya",
         "place_code": "+ABI",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Belarus", "is_current": True, "notes": "", "place_code": "BY--", "region": "", "updated": "2008-06-16"},
+    {"country": "Belarus", "is_current": True, "notes": "", "place_code": "BY--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": True,
         "notes": "",
         "place_code": "BY20",
@@ -350,7 +350,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": True,
         "notes": "",
         "place_code": "BY22",
@@ -358,7 +358,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": True,
         "notes": "",
         "place_code": "BY23",
@@ -366,7 +366,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": True,
         "notes": "",
         "place_code": "BY25",
@@ -374,7 +374,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": True,
         "notes": "",
         "place_code": "BY26",
@@ -382,16 +382,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": True,
         "notes": "",
         "place_code": "BY28",
         "region": "Vitebsk O.",
         "updated": "2008-06-16",
     },
-    {"code": "Belarus", "is_current": False, "notes": "", "place_code": "SU2-", "region": "", "updated": "2008-06-16"},
+    {"country": "Belarus", "is_current": False, "notes": "", "place_code": "SU2-", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": False,
         "notes": "",
         "place_code": "SU20",
@@ -399,7 +399,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": False,
         "notes": "",
         "place_code": "SU22",
@@ -407,7 +407,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": False,
         "notes": "",
         "place_code": "SU23",
@@ -415,7 +415,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": False,
         "notes": "",
         "place_code": "SU25",
@@ -423,7 +423,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": False,
         "notes": "",
         "place_code": "SU26",
@@ -431,16 +431,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belarus",
+        "country": "Belarus",
         "is_current": False,
         "notes": "",
         "place_code": "SU28",
         "region": "Vitebsk O.",
         "updated": "2008-06-16",
     },
-    {"code": "Belgium", "is_current": True, "notes": "", "place_code": "BL--", "region": "", "updated": "2008-06-16"},
+    {"country": "Belgium", "is_current": True, "notes": "", "place_code": "BL--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL19",
@@ -448,7 +448,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL20",
@@ -456,7 +456,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL21",
@@ -464,7 +464,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL22",
@@ -472,7 +472,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL23",
@@ -480,7 +480,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL24",
@@ -488,7 +488,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL25",
@@ -496,7 +496,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL26",
@@ -504,7 +504,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL27",
@@ -512,7 +512,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL28",
@@ -520,7 +520,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL29",
@@ -528,36 +528,36 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Belgium",
+        "country": "Belgium",
         "is_current": True,
         "notes": "",
         "place_code": "BL30",
         "region": "Vlaams Brabant",
         "updated": "2009-07-20",
     },
-    {"code": "Belize", "is_current": True, "notes": "", "place_code": "CABA", "region": "", "updated": "2008-06-16"},
+    {"country": "Belize", "is_current": True, "notes": "", "place_code": "CABA", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Benin",
+        "country": "Benin",
         "is_current": True,
         "notes": "formerly Dahomey XQ00",
         "place_code": "XY00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Bermuda", "is_current": True, "notes": "", "place_code": "+HBE", "region": "", "updated": "2008-06-16"},
-    {"code": "Bhutan", "is_current": True, "notes": "", "place_code": "QA00", "region": "", "updated": "2008-06-16"},
-    {"code": "Bioco", "is_current": True, "notes": "", "place_code": "YH00", "region": "", "updated": "2008-06-16"},
+    {"country": "Bermuda", "is_current": True, "notes": "", "place_code": "+HBE", "region": "", "updated": "2008-06-16"},
+    {"country": "Bhutan", "is_current": True, "notes": "", "place_code": "QA00", "region": "", "updated": "2008-06-16"},
+    {"country": "Bioco", "is_current": True, "notes": "", "place_code": "YH00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Black and Caspian Sea islands",
+        "country": "Black and Caspian Sea islands",
         "is_current": True,
         "notes": "",
         "place_code": "+G00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Bolivia", "is_current": True, "notes": "", "place_code": "SABA", "region": "", "updated": "2008-06-16"},
+    {"country": "Bolivia", "is_current": True, "notes": "", "place_code": "SABA", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Borneo",
+        "country": "Borneo",
         "is_current": True,
         "notes": "",
         "place_code": "OVB0",
@@ -565,7 +565,7 @@ TABLE = [
         "updated": "2017-05-01",
     },
     {
-        "code": "Borneo",
+        "country": "Borneo",
         "is_current": True,
         "notes": "",
         "place_code": "OVI0",
@@ -573,7 +573,7 @@ TABLE = [
         "updated": "2017-05-01",
     },
     {
-        "code": "Borneo",
+        "country": "Borneo",
         "is_current": True,
         "notes": "",
         "place_code": "OVM0",
@@ -581,7 +581,7 @@ TABLE = [
         "updated": "2017-05-01",
     },
     {
-        "code": "Borneo Island",
+        "country": "Borneo Island",
         "is_current": True,
         "notes": "",
         "place_code": "OV00",
@@ -589,26 +589,26 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bosnia and Herzegovina",
+        "country": "Bosnia and Herzegovina",
         "is_current": True,
         "notes": "",
         "place_code": "BH00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Botswana", "is_current": True, "notes": "", "place_code": "WG00", "region": "", "updated": "2008-06-16"},
-    {"code": "Brazil", "is_current": True, "notes": "", "place_code": "BA00", "region": "", "updated": "2008-06-16"},
+    {"country": "Botswana", "is_current": True, "notes": "", "place_code": "WG00", "region": "", "updated": "2008-06-16"},
+    {"country": "Brazil", "is_current": True, "notes": "", "place_code": "BA00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "British Indian Ocean Territories",
+        "country": "British Indian Ocean Territories",
         "is_current": True,
         "notes": "",
         "place_code": "IO00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Bulgaria", "is_current": True, "notes": "", "place_code": "BG--", "region": "", "updated": "2008-06-16"},
+    {"country": "Bulgaria", "is_current": True, "notes": "", "place_code": "BG--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG01",
@@ -616,7 +616,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG02",
@@ -624,7 +624,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG03",
@@ -632,7 +632,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG04",
@@ -640,7 +640,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG05",
@@ -648,7 +648,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG06",
@@ -656,7 +656,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG07",
@@ -664,7 +664,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG08",
@@ -672,7 +672,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG09",
@@ -680,7 +680,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG10",
@@ -688,7 +688,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG11",
@@ -696,7 +696,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG12",
@@ -704,7 +704,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG13",
@@ -712,7 +712,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG14",
@@ -720,7 +720,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG15",
@@ -728,7 +728,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG16",
@@ -736,7 +736,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG17",
@@ -744,7 +744,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG18",
@@ -752,7 +752,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG19",
@@ -760,7 +760,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG20",
@@ -768,7 +768,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG21",
@@ -776,7 +776,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG22",
@@ -784,7 +784,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG23",
@@ -792,7 +792,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG24",
@@ -800,7 +800,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG25",
@@ -808,7 +808,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG26",
@@ -816,7 +816,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG27",
@@ -824,7 +824,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": True,
         "notes": "",
         "place_code": "BG28",
@@ -832,7 +832,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG70",
@@ -840,7 +840,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG71",
@@ -848,7 +848,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG72",
@@ -856,7 +856,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG73",
@@ -864,7 +864,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG74",
@@ -872,7 +872,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG75",
@@ -880,7 +880,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG76",
@@ -888,7 +888,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG77",
@@ -896,7 +896,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG78",
@@ -904,7 +904,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG79",
@@ -912,7 +912,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG80",
@@ -920,7 +920,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Bulgaria",
+        "country": "Bulgaria",
         "is_current": False,
         "notes": "",
         "place_code": "BG81",
@@ -928,7 +928,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Burkina Faso",
+        "country": "Burkina Faso",
         "is_current": True,
         "notes": "formerly Upper Volta, Haute Volta",
         "place_code": "VU00",
@@ -936,27 +936,27 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Burma",
+        "country": "Burma",
         "is_current": False,
         "notes": "now Myanmar",
         "place_code": "FE00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Burundi", "is_current": True, "notes": "", "place_code": "PX00", "region": "", "updated": "2008-06-16"},
+    {"country": "Burundi", "is_current": True, "notes": "", "place_code": "PX00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Côte d`Ivoire",
+        "country": "Côte d`Ivoire",
         "is_current": True,
         "notes": "",
         "place_code": "PY00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Cambodia", "is_current": True, "notes": "", "place_code": "FNCA", "region": "", "updated": "2008-06-16"},
-    {"code": "Cameroon", "is_current": True, "notes": "", "place_code": "QQ00", "region": "", "updated": "2008-06-16"},
-    {"code": "Canada", "is_current": True, "notes": "", "place_code": "EA--", "region": "", "updated": "2008-06-16"},
+    {"country": "Cambodia", "is_current": True, "notes": "", "place_code": "FNCA", "region": "", "updated": "2008-06-16"},
+    {"country": "Cameroon", "is_current": True, "notes": "", "place_code": "QQ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Canada", "is_current": True, "notes": "", "place_code": "EA--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EAAL",
@@ -964,7 +964,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EABC",
@@ -972,7 +972,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EALA",
@@ -980,7 +980,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EAMA",
@@ -988,7 +988,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EANB",
@@ -996,7 +996,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EANF",
@@ -1004,7 +1004,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EANS",
@@ -1012,7 +1012,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EANW",
@@ -1020,7 +1020,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EAON",
@@ -1028,7 +1028,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EAPE",
@@ -1036,7 +1036,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EAQU",
@@ -1044,7 +1044,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canada",
+        "country": "Canada",
         "is_current": True,
         "notes": "",
         "place_code": "EASA",
@@ -1052,7 +1052,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Canary Islands",
+        "country": "Canary Islands",
         "is_current": False,
         "notes": "",
         "place_code": "+HCN",
@@ -1060,7 +1060,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Cape Verde Islands",
+        "country": "Cape Verde Islands",
         "is_current": True,
         "notes": "",
         "place_code": "+HCV",
@@ -1068,7 +1068,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Central African Republic",
+        "country": "Central African Republic",
         "is_current": True,
         "notes": "",
         "place_code": "QH00",
@@ -1076,7 +1076,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Central America",
+        "country": "Central America",
         "is_current": True,
         "notes": "Country unspecified",
         "place_code": "CA--",
@@ -1084,17 +1084,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Central America",
+        "country": "Central America",
         "is_current": False,
         "notes": "Incorrect, but used historically",
         "place_code": "CA00",
         "region": "",
         "updated": "2008-11-05",
     },
-    {"code": "Ceuta", "is_current": True, "notes": "", "place_code": "DA00", "region": "", "updated": "2008-06-16"},
-    {"code": "Chad", "is_current": True, "notes": "", "place_code": "FT00", "region": "", "updated": "2008-06-16"},
+    {"country": "Ceuta", "is_current": True, "notes": "", "place_code": "DA00", "region": "", "updated": "2008-06-16"},
+    {"country": "Chad", "is_current": True, "notes": "", "place_code": "FT00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Channel Islands",
+        "country": "Channel Islands",
         "is_current": True,
         "notes": "",
         "place_code": "CI00",
@@ -1102,7 +1102,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Channel Islands",
+        "country": "Channel Islands",
         "is_current": True,
         "notes": "",
         "place_code": "CIAL",
@@ -1110,7 +1110,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Channel Islands",
+        "country": "Channel Islands",
         "is_current": True,
         "notes": "",
         "place_code": "CIGU",
@@ -1118,7 +1118,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Channel Islands",
+        "country": "Channel Islands",
         "is_current": True,
         "notes": "",
         "place_code": "CIHE",
@@ -1126,7 +1126,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Channel Islands",
+        "country": "Channel Islands",
         "is_current": True,
         "notes": "",
         "place_code": "CIJE",
@@ -1134,17 +1134,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Channel Islands",
+        "country": "Channel Islands",
         "is_current": True,
         "notes": "",
         "place_code": "CISA",
         "region": "Sark",
         "updated": "2008-06-16",
     },
-    {"code": "Chile", "is_current": True, "notes": "", "place_code": "KA00", "region": "", "updated": "2008-06-16"},
-    {"code": "China", "is_current": True, "notes": "", "place_code": "CP--", "region": "", "updated": "2008-06-16"},
+    {"country": "Chile", "is_current": True, "notes": "", "place_code": "KA00", "region": "", "updated": "2008-06-16"},
+    {"country": "China", "is_current": True, "notes": "", "place_code": "CP--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Anhui",
         "place_code": "CPAN",
@@ -1152,7 +1152,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Zhejiang",
         "place_code": "CPCH",
@@ -1160,7 +1160,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Fujian",
         "place_code": "CPFU",
@@ -1168,7 +1168,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Hupeh or Hubei",
         "place_code": "CPHI",
@@ -1176,7 +1176,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Heilongjiang",
         "place_code": "CPHK",
@@ -1184,7 +1184,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Henan",
         "place_code": "CPHO",
@@ -1192,7 +1192,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Hopeh or Hebei",
         "place_code": "CPHP",
@@ -1200,7 +1200,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Hunan",
         "place_code": "CPHU",
@@ -1208,7 +1208,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Nei Mongol (AR)",
         "place_code": "CPIM",
@@ -1216,7 +1216,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Gansu",
         "place_code": "CPKA",
@@ -1224,7 +1224,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Guangdong",
         "place_code": "CPKG",
@@ -1232,7 +1232,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Jiangxi",
         "place_code": "CPKI",
@@ -1240,7 +1240,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Jilin",
         "place_code": "CPKR",
@@ -1248,7 +1248,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Guangxi(Zhuang AR)",
         "place_code": "CPKS",
@@ -1256,7 +1256,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Jiangsu",
         "place_code": "CPKU",
@@ -1264,7 +1264,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Guizhou",
         "place_code": "CPKW",
@@ -1272,7 +1272,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Liaoning",
         "place_code": "CPLI",
@@ -1280,7 +1280,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Ningxia (Hui AR)",
         "place_code": "CPNH",
@@ -1288,7 +1288,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Beijing",
         "place_code": "CPPK",
@@ -1296,7 +1296,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Shanxi",
         "place_code": "CPSA",
@@ -1304,7 +1304,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Shandong",
         "place_code": "CPSG",
@@ -1312,7 +1312,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Shanghai",
         "place_code": "CPSH",
@@ -1320,7 +1320,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Shaanxi",
         "place_code": "CPSI",
@@ -1328,7 +1328,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Xinjiang Uygur (AR)",
         "place_code": "CPSK",
@@ -1336,7 +1336,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Sichuan",
         "place_code": "CPSZ",
@@ -1344,7 +1344,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Tsinghai or Qinghai",
         "place_code": "CPTS",
@@ -1352,7 +1352,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Tianjin",
         "place_code": "CPTT",
@@ -1360,17 +1360,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "China",
+        "country": "China",
         "is_current": True,
         "notes": "Yunnan",
         "place_code": "CPYU",
         "region": "Yunnan",
         "updated": "2008-06-16",
     },
-    {"code": "Colombia", "is_current": True, "notes": "", "place_code": "SACA", "region": "", "updated": "2008-06-16"},
-    {"code": "Comoros", "is_current": True, "notes": "", "place_code": "KM00", "region": "", "updated": "2008-06-16"},
+    {"country": "Colombia", "is_current": True, "notes": "", "place_code": "SACA", "region": "", "updated": "2008-06-16"},
+    {"country": "Comoros", "is_current": True, "notes": "", "place_code": "KM00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Congo",
+        "country": "Congo",
         "is_current": True,
         "notes": "formerly Congo Brazzaville",
         "place_code": "YY00",
@@ -1378,7 +1378,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Costa Rica",
+        "country": "Costa Rica",
         "is_current": True,
         "notes": "",
         "place_code": "CACA",
@@ -1386,7 +1386,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Croatia",
+        "country": "Croatia",
         "is_current": True,
         "notes": "Previously part of former Yugoslavia. New and old place codes do not match geogrpahic areas.",
         "place_code": "HR--",
@@ -1394,7 +1394,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Croatia",
+        "country": "Croatia",
         "is_current": True,
         "notes": "",
         "place_code": "HR01",
@@ -1402,7 +1402,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Croatia",
+        "country": "Croatia",
         "is_current": True,
         "notes": "",
         "place_code": "HR02",
@@ -1410,7 +1410,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Croatia",
+        "country": "Croatia",
         "is_current": True,
         "notes": "",
         "place_code": "HR03",
@@ -1418,7 +1418,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Croatia",
+        "country": "Croatia",
         "is_current": True,
         "notes": "",
         "place_code": "HR04",
@@ -1426,17 +1426,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Croatia",
+        "country": "Croatia",
         "is_current": True,
         "notes": "",
         "place_code": "HR05",
         "region": "Southern Croatian Coast",
         "updated": "2008-06-16",
     },
-    {"code": "Cuba", "is_current": True, "notes": "", "place_code": "CJCA", "region": "", "updated": "2008-06-16"},
-    {"code": "Cyprus", "is_current": True, "notes": "", "place_code": "CY00", "region": "", "updated": "2008-06-16"},
+    {"country": "Cuba", "is_current": True, "notes": "", "place_code": "CJCA", "region": "", "updated": "2008-06-16"},
+    {"country": "Cyprus", "is_current": True, "notes": "", "place_code": "CY00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Cyprus",
+        "country": "Cyprus",
         "is_current": True,
         "notes": "To include UK Sovereign bases",
         "place_code": "CYB-",
@@ -1444,7 +1444,7 @@ TABLE = [
         "updated": "2012-01-30",
     },
     {
-        "code": "Cyprus",
+        "country": "Cyprus",
         "is_current": True,
         "notes": "",
         "place_code": "CYN-",
@@ -1452,7 +1452,7 @@ TABLE = [
         "updated": "2012-01-30",
     },
     {
-        "code": "Cyprus",
+        "country": "Cyprus",
         "is_current": True,
         "notes": "",
         "place_code": "CYS-",
@@ -1460,7 +1460,7 @@ TABLE = [
         "updated": "2012-01-30",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS--",
@@ -1468,7 +1468,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS1-",
@@ -1476,7 +1476,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS10",
@@ -1484,7 +1484,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS11",
@@ -1492,7 +1492,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS12",
@@ -1500,7 +1500,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS13",
@@ -1508,7 +1508,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS14",
@@ -1516,7 +1516,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS15",
@@ -1524,7 +1524,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS16",
@@ -1532,7 +1532,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS17",
@@ -1540,7 +1540,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS18",
@@ -1548,7 +1548,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS2-",
@@ -1556,7 +1556,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS22",
@@ -1564,7 +1564,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS23",
@@ -1572,7 +1572,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS26",
@@ -1580,7 +1580,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CS27",
@@ -1588,7 +1588,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ--",
@@ -1596,7 +1596,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ1-",
@@ -1604,7 +1604,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ10",
@@ -1612,7 +1612,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ10",
@@ -1620,7 +1620,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ11",
@@ -1628,7 +1628,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ11",
@@ -1636,7 +1636,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ12",
@@ -1644,7 +1644,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ12",
@@ -1652,7 +1652,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ13",
@@ -1660,7 +1660,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ13",
@@ -1668,7 +1668,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ14",
@@ -1676,7 +1676,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ14",
@@ -1684,7 +1684,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ15",
@@ -1692,7 +1692,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ15",
@@ -1700,7 +1700,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ16",
@@ -1708,7 +1708,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ16",
@@ -1716,7 +1716,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ17",
@@ -1724,7 +1724,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ17",
@@ -1732,7 +1732,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ18",
@@ -1740,7 +1740,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ18",
@@ -1748,7 +1748,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ2-",
@@ -1756,7 +1756,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ22",
@@ -1764,7 +1764,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ22",
@@ -1772,7 +1772,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ23",
@@ -1780,7 +1780,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ23",
@@ -1788,7 +1788,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ26",
@@ -1796,7 +1796,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ26",
@@ -1804,7 +1804,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "pre-2001",
         "place_code": "CZ27",
@@ -1812,7 +1812,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": True,
         "notes": "",
         "place_code": "CZ27",
@@ -1820,7 +1820,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZAA",
@@ -1828,7 +1828,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZBE",
@@ -1836,7 +1836,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZBK",
@@ -1844,7 +1844,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZBM",
@@ -1852,7 +1852,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZBN",
@@ -1860,7 +1860,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZBO",
@@ -1868,7 +1868,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZBR",
@@ -1876,7 +1876,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZBV",
@@ -1884,7 +1884,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZCB",
@@ -1892,7 +1892,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZCH",
@@ -1900,7 +1900,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZCK",
@@ -1908,7 +1908,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZCL",
@@ -1916,7 +1916,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZCR",
@@ -1924,7 +1924,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZCV",
@@ -1932,7 +1932,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZDC",
@@ -1940,7 +1940,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZDO",
@@ -1948,7 +1948,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZFM",
@@ -1956,7 +1956,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZHB",
@@ -1964,7 +1964,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZHK",
@@ -1972,7 +1972,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZHO",
@@ -1980,7 +1980,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZJC",
@@ -1988,7 +1988,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZJE",
@@ -1996,7 +1996,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZJH",
@@ -2004,7 +2004,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZJI",
@@ -2012,7 +2012,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZJN",
@@ -2020,7 +2020,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZKA",
@@ -2028,7 +2028,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZKH",
@@ -2036,7 +2036,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZKL",
@@ -2044,7 +2044,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZKM",
@@ -2052,7 +2052,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZKO",
@@ -2060,7 +2060,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZKT",
@@ -2068,7 +2068,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZKV",
@@ -2076,7 +2076,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZLI",
@@ -2084,7 +2084,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZLN",
@@ -2092,7 +2092,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZLT",
@@ -2100,7 +2100,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZMB",
@@ -2108,7 +2108,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZME",
@@ -2116,7 +2116,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZMO",
@@ -2124,7 +2124,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZNA",
@@ -2132,7 +2132,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZNB",
@@ -2140,7 +2140,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZNJ",
@@ -2148,7 +2148,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZOL",
@@ -2156,7 +2156,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZOP",
@@ -2164,7 +2164,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZOS",
@@ -2172,7 +2172,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPA",
@@ -2180,7 +2180,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPB",
@@ -2188,7 +2188,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPE",
@@ -2196,7 +2196,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPH",
@@ -2204,7 +2204,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPI",
@@ -2212,7 +2212,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPJ",
@@ -2220,7 +2220,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPM",
@@ -2228,7 +2228,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPR",
@@ -2236,7 +2236,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPS",
@@ -2244,7 +2244,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPT",
@@ -2252,7 +2252,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPV",
@@ -2260,7 +2260,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZPZ",
@@ -2268,7 +2268,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZRA",
@@ -2276,7 +2276,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZRK",
@@ -2284,7 +2284,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZRO",
@@ -2292,7 +2292,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZSM",
@@ -2300,7 +2300,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZSO",
@@ -2308,7 +2308,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZST",
@@ -2316,7 +2316,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZSU",
@@ -2324,7 +2324,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZSY",
@@ -2332,7 +2332,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZTA",
@@ -2340,7 +2340,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZTC",
@@ -2348,7 +2348,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZTP",
@@ -2356,7 +2356,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZTR",
@@ -2364,7 +2364,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZTU",
@@ -2372,7 +2372,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZUH",
@@ -2380,7 +2380,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZUL",
@@ -2388,7 +2388,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZUO",
@@ -2396,7 +2396,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZVS",
@@ -2404,7 +2404,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZVY",
@@ -2412,7 +2412,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZZL",
@@ -2420,7 +2420,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZZN",
@@ -2428,7 +2428,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czech Republic",
+        "country": "Czech Republic",
         "is_current": False,
         "notes": "used during 2001 and 2002",
         "place_code": "CZZR",
@@ -2436,7 +2436,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czechoslovakia",
+        "country": "Czechoslovakia",
         "is_current": False,
         "notes": "became SK20",
         "place_code": "CS20",
@@ -2444,7 +2444,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czechoslovakia",
+        "country": "Czechoslovakia",
         "is_current": False,
         "notes": "became SK21",
         "place_code": "CS21",
@@ -2452,7 +2452,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czechoslovakia",
+        "country": "Czechoslovakia",
         "is_current": False,
         "notes": "became SK24",
         "place_code": "CS24",
@@ -2460,7 +2460,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czechoslovakia",
+        "country": "Czechoslovakia",
         "is_current": False,
         "notes": "became SK25",
         "place_code": "CS25",
@@ -2468,7 +2468,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czechoslovakia",
+        "country": "Czechoslovakia",
         "is_current": False,
         "notes": "became SK28",
         "place_code": "CS28",
@@ -2476,7 +2476,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Czechoslovakia",
+        "country": "Czechoslovakia",
         "is_current": False,
         "notes": "became SK29",
         "place_code": "CS29",
@@ -2484,7 +2484,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Dahomey",
+        "country": "Dahomey",
         "is_current": False,
         "notes": "now Benin",
         "place_code": "XQ00",
@@ -2492,16 +2492,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Democratic Republic of Congo",
+        "country": "Democratic Republic of Congo",
         "is_current": True,
         "notes": "",
         "place_code": "ZI00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Denmark", "is_current": True, "notes": "", "place_code": "DK--", "region": "", "updated": "2008-06-16"},
+    {"country": "Denmark", "is_current": True, "notes": "", "place_code": "DK--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now part of DKMJ",
         "place_code": "DK00",
@@ -2509,7 +2509,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now part of DKSD",
         "place_code": "DK01",
@@ -2517,7 +2517,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now includes parts of DKMJ & DKNJ",
         "place_code": "DK02",
@@ -2525,7 +2525,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now part of DKNJ",
         "place_code": "DK03",
@@ -2533,7 +2533,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now part of DKSL",
         "place_code": "DK04",
@@ -2541,7 +2541,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now part of DkMJ",
         "place_code": "DK05",
@@ -2549,7 +2549,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now includes parts of DKHS and DKSL",
         "place_code": "DK06",
@@ -2557,7 +2557,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now part of DKSD",
         "place_code": "DK07",
@@ -2565,7 +2565,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "Now part of DKHS",
         "place_code": "DK10",
@@ -2573,7 +2573,7 @@ TABLE = [
         "updated": "2020-03-04",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK06",
         "place_code": "DK15",
@@ -2581,7 +2581,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK06",
         "place_code": "DK20",
@@ -2589,7 +2589,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK06",
         "place_code": "DK25",
@@ -2597,7 +2597,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK06",
         "place_code": "DK30",
@@ -2605,7 +2605,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK04 and DK06 SE of 55.20N-11.30E",
         "place_code": "DK35",
@@ -2613,7 +2613,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK10",
         "place_code": "DK40",
@@ -2621,7 +2621,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK01",
         "place_code": "DK42",
@@ -2629,7 +2629,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK02 and DK07 S of 55.15N",
         "place_code": "DK50",
@@ -2637,7 +2637,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK02 and DK07 N of 55.15N",
         "place_code": "DK55",
@@ -2645,7 +2645,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK02",
         "place_code": "DK60",
@@ -2653,7 +2653,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK02",
         "place_code": "DK65",
@@ -2661,7 +2661,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK02 and DK00",
         "place_code": "DK70",
@@ -2669,7 +2669,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK02",
         "place_code": "DK76",
@@ -2677,7 +2677,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": False,
         "notes": "formerly DK02 and DK03",
         "place_code": "DK80",
@@ -2685,7 +2685,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": True,
         "notes": "Used from 1 January 2007",
         "place_code": "DKHS",
@@ -2693,7 +2693,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": True,
         "notes": "Used from 1 January 2007",
         "place_code": "DKMJ",
@@ -2701,7 +2701,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": True,
         "notes": "Used from 1 January 2007",
         "place_code": "DKNJ",
@@ -2709,7 +2709,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": True,
         "notes": "Used from 1 January 2007",
         "place_code": "DKSD",
@@ -2717,26 +2717,26 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Denmark",
+        "country": "Denmark",
         "is_current": True,
         "notes": "Used from 1 January 2007",
         "place_code": "DKSL",
         "region": "Sjælland",
         "updated": "2008-11-05",
     },
-    {"code": "Djibouti", "is_current": True, "notes": "", "place_code": "EY00", "region": "", "updated": "2008-06-16"},
+    {"country": "Djibouti", "is_current": True, "notes": "", "place_code": "EY00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Dominican Republic",
+        "country": "Dominican Republic",
         "is_current": True,
         "notes": "",
         "place_code": "LJDA",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Ecuador", "is_current": True, "notes": "", "place_code": "SAEA", "region": "", "updated": "2008-06-16"},
-    {"code": "Egypt", "is_current": True, "notes": "", "place_code": "EG00", "region": "", "updated": "2008-06-16"},
+    {"country": "Ecuador", "is_current": True, "notes": "", "place_code": "SAEA", "region": "", "updated": "2008-06-16"},
+    {"country": "Egypt", "is_current": True, "notes": "", "place_code": "EG00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "El Salvador",
+        "country": "El Salvador",
         "is_current": True,
         "notes": "",
         "place_code": "CAEA",
@@ -2744,7 +2744,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "English Channel/Irish Sea islands",
+        "country": "English Channel/Irish Sea islands",
         "is_current": True,
         "notes": "not Channel Islands",
         "place_code": "+C00",
@@ -2752,18 +2752,18 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Equatorial Guinea",
+        "country": "Equatorial Guinea",
         "is_current": True,
         "notes": "",
         "place_code": "YQ00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Eritrea", "is_current": True, "notes": "", "place_code": "EV00", "region": "", "updated": "2008-06-16"},
-    {"code": "Estonia", "is_current": True, "notes": "", "place_code": "ET00", "region": "", "updated": "2008-06-16"},
-    {"code": "Ethiopia", "is_current": True, "notes": "", "place_code": "EQ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Eritrea", "is_current": True, "notes": "", "place_code": "EV00", "region": "", "updated": "2008-06-16"},
+    {"country": "Estonia", "is_current": True, "notes": "", "place_code": "ET00", "region": "", "updated": "2008-06-16"},
+    {"country": "Ethiopia", "is_current": True, "notes": "", "place_code": "EQ00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Falkland Islands",
+        "country": "Falkland Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FK00",
@@ -2771,7 +2771,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA--",
@@ -2779,7 +2779,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA01",
@@ -2787,7 +2787,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA02",
@@ -2795,7 +2795,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA03",
@@ -2803,7 +2803,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA04",
@@ -2811,7 +2811,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA05",
@@ -2819,7 +2819,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA06",
@@ -2827,7 +2827,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Faroe Islands",
+        "country": "Faroe Islands",
         "is_current": True,
         "notes": "",
         "place_code": "FA07",
@@ -2835,16 +2835,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Fernando Poo",
+        "country": "Fernando Poo",
         "is_current": False,
         "notes": "now named Bioco",
         "place_code": "YH00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Finland", "is_current": True, "notes": "", "place_code": "SF--", "region": "", "updated": "2008-06-16"},
+    {"country": "Finland", "is_current": True, "notes": "", "place_code": "SF--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Travastehus",
         "place_code": "SF80",
@@ -2852,7 +2852,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "",
         "place_code": "SF81",
@@ -2860,7 +2860,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Kymmen",
         "place_code": "SF82",
@@ -2868,7 +2868,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Lappland",
         "place_code": "SF83",
@@ -2876,7 +2876,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "St. Michel",
         "place_code": "SF84",
@@ -2884,7 +2884,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Uleåborg",
         "place_code": "SF85",
@@ -2892,7 +2892,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Åbo-Björneborg",
         "place_code": "SF86",
@@ -2900,7 +2900,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Nyland",
         "place_code": "SF87",
@@ -2908,7 +2908,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Vasa",
         "place_code": "SF88",
@@ -2916,16 +2916,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Finland",
+        "country": "Finland",
         "is_current": True,
         "notes": "Åland",
         "place_code": "SF90",
         "region": "Ahvenanmaa",
         "updated": "2008-06-16",
     },
-    {"code": "France", "is_current": True, "notes": "", "place_code": "FR--", "region": "", "updated": "2008-06-16"},
+    {"country": "France", "is_current": True, "notes": "", "place_code": "FR--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR0-",
@@ -2933,7 +2933,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 14",
         "place_code": "FR01",
@@ -2941,7 +2941,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 27",
         "place_code": "FR02",
@@ -2949,7 +2949,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 50",
         "place_code": "FR03",
@@ -2957,7 +2957,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 53",
         "place_code": "FR04",
@@ -2965,7 +2965,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 59",
         "place_code": "FR05",
@@ -2973,7 +2973,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 61",
         "place_code": "FR06",
@@ -2981,7 +2981,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 62",
         "place_code": "FR07",
@@ -2989,7 +2989,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 76",
         "place_code": "FR08",
@@ -2997,7 +2997,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 80",
         "place_code": "FR09",
@@ -3005,7 +3005,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR1-",
@@ -3013,7 +3013,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 02",
         "place_code": "FR10",
@@ -3021,7 +3021,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 08",
         "place_code": "FR11",
@@ -3029,7 +3029,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 67",
         "place_code": "FR12",
@@ -3037,7 +3037,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 52",
         "place_code": "FR13",
@@ -3045,7 +3045,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Départements 68 and 90",
         "place_code": "FR14",
@@ -3053,7 +3053,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 51",
         "place_code": "FR15",
@@ -3061,7 +3061,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 54",
         "place_code": "FR16",
@@ -3069,7 +3069,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 55",
         "place_code": "FR17",
@@ -3077,7 +3077,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 57",
         "place_code": "FR18",
@@ -3085,7 +3085,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 88",
         "place_code": "FR19",
@@ -3093,7 +3093,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR2-",
@@ -3101,7 +3101,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 10",
         "place_code": "FR20",
@@ -3109,7 +3109,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 21",
         "place_code": "FR21",
@@ -3117,7 +3117,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 28",
         "place_code": "FR22",
@@ -3125,7 +3125,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 41",
         "place_code": "FR23",
@@ -3133,7 +3133,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 45",
         "place_code": "FR24",
@@ -3141,7 +3141,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 60",
         "place_code": "FR25",
@@ -3149,7 +3149,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 72",
         "place_code": "FR26",
@@ -3157,7 +3157,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 77",
         "place_code": "FR27",
@@ -3165,7 +3165,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Départements75, 78, 91, 92, 93, 94 and 95",
         "place_code": "FR28",
@@ -3173,7 +3173,7 @@ TABLE = [
         "updated": "2017-10-30",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 89",
         "place_code": "FR29",
@@ -3181,7 +3181,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR3-",
@@ -3189,7 +3189,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 64, formerly Basses-Pyrénées",
         "place_code": "FR30",
@@ -3197,7 +3197,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 17, formerly Charente-Inférieure",
         "place_code": "FR31",
@@ -3205,7 +3205,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 22, formerly Côtes-du-Nord",
         "place_code": "FR32",
@@ -3213,7 +3213,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 29",
         "place_code": "FR33",
@@ -3221,7 +3221,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 33",
         "place_code": "FR34",
@@ -3229,7 +3229,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 35",
         "place_code": "FR35",
@@ -3237,7 +3237,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 40",
         "place_code": "FR36",
@@ -3245,7 +3245,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 44, formerly Loire-Inférieure and Loire-Maritime",
         "place_code": "FR37",
@@ -3253,7 +3253,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 56",
         "place_code": "FR38",
@@ -3261,7 +3261,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 85",
         "place_code": "FR39",
@@ -3269,7 +3269,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR4-",
@@ -3277,7 +3277,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 16",
         "place_code": "FR40",
@@ -3285,7 +3285,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 19",
         "place_code": "FR41",
@@ -3293,7 +3293,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 23",
         "place_code": "FR42",
@@ -3301,7 +3301,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 79",
         "place_code": "FR43",
@@ -3309,7 +3309,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 24",
         "place_code": "FR44",
@@ -3317,7 +3317,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 87",
         "place_code": "FR45",
@@ -3325,7 +3325,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 36",
         "place_code": "FR46",
@@ -3333,7 +3333,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 37",
         "place_code": "FR47",
@@ -3341,7 +3341,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 49",
         "place_code": "FR48",
@@ -3349,7 +3349,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 86",
         "place_code": "FR49",
@@ -3357,7 +3357,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR5-",
@@ -3365,7 +3365,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 03",
         "place_code": "FR50",
@@ -3373,7 +3373,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 07",
         "place_code": "FR51",
@@ -3381,7 +3381,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 15",
         "place_code": "FR52",
@@ -3389,7 +3389,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 18",
         "place_code": "FR53",
@@ -3397,7 +3397,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 43",
         "place_code": "FR54",
@@ -3405,7 +3405,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 42",
         "place_code": "FR55",
@@ -3413,7 +3413,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 58",
         "place_code": "FR56",
@@ -3421,7 +3421,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 63",
         "place_code": "FR57",
@@ -3429,7 +3429,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 69",
         "place_code": "FR58",
@@ -3437,7 +3437,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 71",
         "place_code": "FR59",
@@ -3445,7 +3445,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR6-",
@@ -3453,7 +3453,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 01",
         "place_code": "FR60",
@@ -3461,7 +3461,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 04 formerly Basses-Alpes",
         "place_code": "FR61",
@@ -3469,7 +3469,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 25",
         "place_code": "FR62",
@@ -3477,7 +3477,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 26",
         "place_code": "FR63",
@@ -3485,7 +3485,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 05",
         "place_code": "FR64",
@@ -3493,7 +3493,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 70",
         "place_code": "FR65",
@@ -3501,7 +3501,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 74",
         "place_code": "FR66",
@@ -3509,7 +3509,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 38",
         "place_code": "FR67",
@@ -3517,7 +3517,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 39",
         "place_code": "FR68",
@@ -3525,7 +3525,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 73",
         "place_code": "FR69",
@@ -3533,7 +3533,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR7-",
@@ -3541,7 +3541,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 09",
         "place_code": "FR70",
@@ -3549,7 +3549,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 12",
         "place_code": "FR71",
@@ -3557,7 +3557,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 32",
         "place_code": "FR72",
@@ -3565,7 +3565,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 31",
         "place_code": "FR73",
@@ -3573,7 +3573,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 65",
         "place_code": "FR74",
@@ -3581,7 +3581,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 46",
         "place_code": "FR75",
@@ -3589,7 +3589,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 47",
         "place_code": "FR76",
@@ -3597,7 +3597,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 48",
         "place_code": "FR77",
@@ -3605,7 +3605,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 81",
         "place_code": "FR78",
@@ -3613,7 +3613,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 82",
         "place_code": "FR79",
@@ -3621,7 +3621,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "",
         "place_code": "FR8-",
@@ -3629,7 +3629,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 06",
         "place_code": "FR80",
@@ -3637,7 +3637,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 11",
         "place_code": "FR81",
@@ -3645,7 +3645,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 13",
         "place_code": "FR82",
@@ -3653,7 +3653,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 30",
         "place_code": "FR83",
@@ -3661,7 +3661,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 34",
         "place_code": "FR84",
@@ -3669,7 +3669,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 66",
         "place_code": "FR85",
@@ -3677,7 +3677,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 83",
         "place_code": "FR86",
@@ -3685,7 +3685,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département 84",
         "place_code": "FR87",
@@ -3693,7 +3693,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "France",
+        "country": "France",
         "is_current": True,
         "notes": "Département20, now 2A and 2B",
         "place_code": "FR90",
@@ -3701,7 +3701,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "French Guiana",
+        "country": "French Guiana",
         "is_current": True,
         "notes": "",
         "place_code": "GF00",
@@ -3709,16 +3709,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "French Southern Territories",
+        "country": "French Southern Territories",
         "is_current": True,
         "notes": "Crozet Islands, Kerguélen, St. Paul, Amsterdam Island",
         "place_code": "TF00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Gabon", "is_current": True, "notes": "", "place_code": "QY00", "region": "", "updated": "2008-06-16"},
+    {"country": "Gabon", "is_current": True, "notes": "", "place_code": "QY00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Gaza Strip",
+        "country": "Gaza Strip",
         "is_current": True,
         "notes": "",
         "place_code": "GS00",
@@ -3726,7 +3726,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Gaza Strip",
+        "country": "Gaza Strip",
         "is_current": False,
         "notes": "Replaced by PSGZ",
         "place_code": "GZ00",
@@ -3734,7 +3734,7 @@ TABLE = [
         "updated": "2012-01-30",
     },
     {
-        "code": "Georgia",
+        "country": "Georgia",
         "is_current": True,
         "notes": "Formerly SU95",
         "place_code": "GE--",
@@ -3742,7 +3742,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Georgia",
+        "country": "Georgia",
         "is_current": True,
         "notes": "Ajaria",
         "place_code": "GE01",
@@ -3750,7 +3750,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Georgia",
+        "country": "Georgia",
         "is_current": True,
         "notes": "South Ossetia",
         "place_code": "GE02",
@@ -3758,7 +3758,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Georgia",
+        "country": "Georgia",
         "is_current": True,
         "notes": "Abkhazia",
         "place_code": "GE03",
@@ -3766,7 +3766,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Georgia",
+        "country": "Georgia",
         "is_current": False,
         "notes": "Now GE--",
         "place_code": "SU95",
@@ -3774,7 +3774,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DE--",
         "place_code": "DD--",
@@ -3782,7 +3782,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "",
         "place_code": "DD6-",
@@ -3790,7 +3790,7 @@ TABLE = [
         "updated": "2014-03-17",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "",
         "place_code": "DD6+",
@@ -3798,7 +3798,7 @@ TABLE = [
         "updated": "2014-03-17",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DEM",
         "place_code": "DD60",
@@ -3806,7 +3806,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DEMV",
         "place_code": "DD61",
@@ -3814,7 +3814,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part in DEMV and part in DEGL",
         "place_code": "DD62",
@@ -3822,7 +3822,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DEBE",
         "place_code": "DD63",
@@ -3830,7 +3830,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DEBB",
         "place_code": "DD64",
@@ -3838,7 +3838,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DEBB",
         "place_code": "DD65",
@@ -3846,7 +3846,7 @@ TABLE = [
         "updated": "2014-03-17",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DERH",
         "place_code": "DD66",
@@ -3854,7 +3854,7 @@ TABLE = [
         "updated": "2014-03-17",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "",
         "place_code": "DD7-",
@@ -3862,7 +3862,7 @@ TABLE = [
         "updated": "2014-03-17",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "",
         "place_code": "DD7+",
@@ -3870,7 +3870,7 @@ TABLE = [
         "updated": "2014-03-17",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "",
         "place_code": "DD70",
@@ -3878,7 +3878,7 @@ TABLE = [
         "updated": "2014-03-17",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DERM",
         "place_code": "DD71",
@@ -3886,7 +3886,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "Chemnitz - now DESC",
         "place_code": "DD72",
@@ -3894,7 +3894,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DESD",
         "place_code": "DD73",
@@ -3902,7 +3902,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DETH",
         "place_code": "DD74",
@@ -3910,7 +3910,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DETH",
         "place_code": "DD75",
@@ -3918,7 +3918,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DESL",
         "place_code": "DD76",
@@ -3926,7 +3926,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now part of DETH",
         "place_code": "DD77",
@@ -3934,7 +3934,7 @@ TABLE = [
         "updated": "2009-07-20",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DF--",
         "place_code": "DE--",
@@ -3942,7 +3942,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFA-",
         "place_code": "DEA-",
@@ -3950,7 +3950,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFAB",
         "place_code": "DEAB",
@@ -3958,7 +3958,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFAF",
         "place_code": "DEAF",
@@ -3966,7 +3966,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFAM",
         "place_code": "DEAM",
@@ -3974,7 +3974,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFAN",
         "place_code": "DEAN",
@@ -3982,7 +3982,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFAP",
         "place_code": "DEAP",
@@ -3990,7 +3990,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFAS",
         "place_code": "DEAS",
@@ -3998,7 +3998,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFAU",
         "place_code": "DEAU",
@@ -4006,7 +4006,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFB-",
         "place_code": "DEB-",
@@ -4014,7 +4014,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DEBB",
@@ -4022,7 +4022,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DF63",
         "place_code": "DEBE",
@@ -4030,7 +4030,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "Freiburg; formerly DFBF",
         "place_code": "DEBF",
@@ -4038,7 +4038,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "Karlsruhe; formerly DFBK",
         "place_code": "DEBK",
@@ -4046,7 +4046,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "Stuttgart; formerly DFBS",
         "place_code": "DEBS",
@@ -4054,7 +4054,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "Tübingen; formerly DFBT",
         "place_code": "DEBT",
@@ -4062,7 +4062,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFC-",
         "place_code": "DEC-",
@@ -4070,7 +4070,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFCK",
         "place_code": "DECK",
@@ -4078,7 +4078,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFCR",
         "place_code": "DECR",
@@ -4086,7 +4086,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "including Montabaur; formerly DFCT",
         "place_code": "DECT",
@@ -4094,7 +4094,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFDS",
         "place_code": "DEDO",
@@ -4102,7 +4102,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFE-",
         "place_code": "DEE-",
@@ -4110,7 +4110,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "including Wiesbaden; formerly DFED",
         "place_code": "DEED",
@@ -4118,7 +4118,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFEG",
         "place_code": "DEEG",
@@ -4126,7 +4126,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFEK",
         "place_code": "DEEK",
@@ -4134,7 +4134,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFF-",
         "place_code": "DEF-",
@@ -4142,7 +4142,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFFA",
         "place_code": "DEFA",
@@ -4150,7 +4150,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFFD",
         "place_code": "DEFD",
@@ -4158,7 +4158,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "including Aachen; formerly DFFK",
         "place_code": "DEFK",
@@ -4166,7 +4166,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "Lippe; formerly DFFL",
         "place_code": "DEFL",
@@ -4174,7 +4174,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFFM",
         "place_code": "DEFM",
@@ -4182,7 +4182,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFG-",
         "place_code": "DEG-",
@@ -4190,7 +4190,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFGB",
         "place_code": "DEGB",
@@ -4198,7 +4198,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "East Frisian Islands including Mellum; formerly DFGF",
         "place_code": "DEGF",
@@ -4206,7 +4206,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFGH",
         "place_code": "DEGH",
@@ -4214,7 +4214,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "excluding islands; formerly DFGL",
         "place_code": "DEGL",
@@ -4222,7 +4222,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFGN",
         "place_code": "DEGN",
@@ -4230,7 +4230,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "excluding islandsAurich; Oldenburg; Osnabrück; formerly DFGW",
         "place_code": "DEGW",
@@ -4238,7 +4238,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFHH",
         "place_code": "DEHH",
@@ -4246,7 +4246,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DEMV",
@@ -4254,7 +4254,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFQ-",
         "place_code": "DEQ-",
@@ -4262,7 +4262,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFQH",
         "place_code": "DEQH",
@@ -4270,7 +4270,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "Northfrisian Islands; formerly DFQN",
         "place_code": "DEQN",
@@ -4278,7 +4278,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "excluding islands in North Sea; formerly DFQS",
         "place_code": "DEQS",
@@ -4286,7 +4286,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFQT",
         "place_code": "DEQT",
@@ -4294,7 +4294,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DERA",
@@ -4302,7 +4302,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DERH",
@@ -4310,7 +4310,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DERM",
@@ -4318,7 +4318,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DERS",
@@ -4326,7 +4326,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DESC",
@@ -4334,7 +4334,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DESD",
@@ -4342,7 +4342,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DESL",
@@ -4350,7 +4350,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DESN",
@@ -4358,7 +4358,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "",
         "place_code": "DETH",
@@ -4366,7 +4366,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "formerly DFXB",
         "place_code": "DEXB",
@@ -4374,7 +4374,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": True,
         "notes": "now DE--",
         "place_code": "DF--",
@@ -4382,7 +4382,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEBE",
         "place_code": "DF63",
@@ -4390,7 +4390,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEA-",
         "place_code": "DFA-",
@@ -4398,7 +4398,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEAB",
         "place_code": "DFAB",
@@ -4406,7 +4406,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEAF",
         "place_code": "DFAF",
@@ -4414,7 +4414,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEAM",
         "place_code": "DFAM",
@@ -4422,7 +4422,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEAN",
         "place_code": "DFAN",
@@ -4430,7 +4430,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEAP",
         "place_code": "DFAP",
@@ -4438,7 +4438,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEAS",
         "place_code": "DFAS",
@@ -4446,7 +4446,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEAU",
         "place_code": "DFAU",
@@ -4454,7 +4454,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEB-",
         "place_code": "DFB-",
@@ -4462,7 +4462,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEBF",
         "place_code": "DFBF",
@@ -4470,7 +4470,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEBK",
         "place_code": "DFBK",
@@ -4478,7 +4478,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEBS",
         "place_code": "DFBS",
@@ -4486,7 +4486,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEBT",
         "place_code": "DFBT",
@@ -4494,7 +4494,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEC-",
         "place_code": "DFC-",
@@ -4502,7 +4502,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DECK",
         "place_code": "DFCK",
@@ -4510,7 +4510,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DECR",
         "place_code": "DFCR",
@@ -4518,7 +4518,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DECT",
         "place_code": "DFCT",
@@ -4526,7 +4526,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEDO",
         "place_code": "DFDS",
@@ -4534,7 +4534,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEE-",
         "place_code": "DFE-",
@@ -4542,7 +4542,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEED",
         "place_code": "DFED",
@@ -4550,7 +4550,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEEG",
         "place_code": "DFEG",
@@ -4558,7 +4558,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEEK",
         "place_code": "DFEK",
@@ -4566,7 +4566,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEF-",
         "place_code": "DFF-",
@@ -4574,7 +4574,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEFA",
         "place_code": "DFFA",
@@ -4582,7 +4582,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEFD",
         "place_code": "DFFD",
@@ -4590,7 +4590,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEFK",
         "place_code": "DFFK",
@@ -4598,7 +4598,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEFL",
         "place_code": "DFFL",
@@ -4606,7 +4606,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEFM",
         "place_code": "DFFM",
@@ -4614,7 +4614,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEG-",
         "place_code": "DFG-",
@@ -4622,7 +4622,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEGB",
         "place_code": "DFGB",
@@ -4630,7 +4630,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEGF",
         "place_code": "DFGF",
@@ -4638,7 +4638,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEGH",
         "place_code": "DFGH",
@@ -4646,7 +4646,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEGL",
         "place_code": "DFGL",
@@ -4654,7 +4654,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEGN",
         "place_code": "DFGN",
@@ -4662,7 +4662,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEGW",
         "place_code": "DFGW",
@@ -4670,7 +4670,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEHH",
         "place_code": "DFHH",
@@ -4678,7 +4678,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEQ-",
         "place_code": "DFQ-",
@@ -4686,7 +4686,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEQH",
         "place_code": "DFQH",
@@ -4694,7 +4694,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEQN",
         "place_code": "DFQN",
@@ -4702,7 +4702,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEQS",
         "place_code": "DFQS",
@@ -4710,7 +4710,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEQT",
         "place_code": "DFQT",
@@ -4718,16 +4718,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Germany",
+        "country": "Germany",
         "is_current": False,
         "notes": "now DEXB",
         "place_code": "DFXB",
         "region": "Bremen",
         "updated": "2008-06-16",
     },
-    {"code": "Ghana", "is_current": True, "notes": "", "place_code": "GH00", "region": "", "updated": "2008-06-16"},
+    {"country": "Ghana", "is_current": True, "notes": "", "place_code": "GH00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Gibraltar",
+        "country": "Gibraltar",
         "is_current": True,
         "notes": "formerly NB60",
         "place_code": "NB00",
@@ -4735,16 +4735,16 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Gibraltar",
+        "country": "Gibraltar",
         "is_current": False,
         "notes": "Incorrect, but has been used historically",
         "place_code": "NB60",
         "region": "",
         "updated": "2008-11-05",
     },
-    {"code": "Greece", "is_current": True, "notes": "", "place_code": "GR--", "region": "", "updated": "2008-06-16"},
+    {"country": "Greece", "is_current": True, "notes": "", "place_code": "GR--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "Except islands belonging to other provinces",
         "place_code": "GR80",
@@ -4752,7 +4752,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "",
         "place_code": "GR81",
@@ -4760,7 +4760,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "",
         "place_code": "GR82",
@@ -4768,7 +4768,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "Corresponds to the new divisions of Dytiki Makedonia, Kentriki Makedonia and Anatoliki Makedonia kai Thraki, west of the River Nestos.",
         "place_code": "GR83",
@@ -4776,7 +4776,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "Including the southern half of the new division of Dytiki Ellas (Ileia and Achaia) and islands west of 24° 00' E.L.",
         "place_code": "GR84",
@@ -4784,7 +4784,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "",
         "place_code": "GR85",
@@ -4792,7 +4792,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "The whole of the new division of Sterea Ellas plus the northern (mainland) half of the new division of Dytili Ellas (Aitolia and Akarmania) excluding islands west of 24° 00' E.L.",
         "place_code": "GR86",
@@ -4800,7 +4800,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "",
         "place_code": "GR87",
@@ -4808,16 +4808,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greece",
+        "country": "Greece",
         "is_current": True,
         "notes": "The part of the new division of Anatoliki Makedonia kai Thraki east of the River Nestos",
         "place_code": "GR88",
         "region": "Thraki",
         "updated": "2008-06-16",
     },
-    {"code": "Greenland", "is_current": True, "notes": "", "place_code": "GD--", "region": "", "updated": "2008-06-16"},
+    {"country": "Greenland", "is_current": True, "notes": "", "place_code": "GD--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD01",
@@ -4825,7 +4825,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD03",
@@ -4833,7 +4833,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD05",
@@ -4841,7 +4841,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD07",
@@ -4849,7 +4849,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD09",
@@ -4857,7 +4857,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD11",
@@ -4865,7 +4865,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD13",
@@ -4873,7 +4873,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD15",
@@ -4881,7 +4881,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD17",
@@ -4889,7 +4889,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD19",
@@ -4897,7 +4897,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD21",
@@ -4905,7 +4905,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD23",
@@ -4913,7 +4913,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD25",
@@ -4921,7 +4921,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD27",
@@ -4929,7 +4929,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD29",
@@ -4937,7 +4937,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD41",
@@ -4945,7 +4945,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD51",
@@ -4953,7 +4953,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD53",
@@ -4961,17 +4961,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Greenland",
+        "country": "Greenland",
         "is_current": True,
         "notes": "",
         "place_code": "GD61",
         "region": "Kommunegarfiit avataanni",
         "updated": "2008-06-16",
     },
-    {"code": "Guatemala", "is_current": True, "notes": "", "place_code": "CAGA", "region": "", "updated": "2008-06-16"},
-    {"code": "Guinea", "is_current": True, "notes": "", "place_code": "GY00", "region": "", "updated": "2008-06-16"},
+    {"country": "Guatemala", "is_current": True, "notes": "", "place_code": "CAGA", "region": "", "updated": "2008-06-16"},
+    {"country": "Guinea", "is_current": True, "notes": "", "place_code": "GY00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Guinea Bissau",
+        "country": "Guinea Bissau",
         "is_current": True,
         "notes": "",
         "place_code": "GQ00",
@@ -4979,20 +4979,20 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Guinea Islands",
+        "country": "Guinea Islands",
         "is_current": True,
         "notes": "",
         "place_code": "HH00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Guyana", "is_current": True, "notes": "", "place_code": "SAGA", "region": "", "updated": "2008-06-16"},
-    {"code": "Haiti", "is_current": True, "notes": "", "place_code": "LJHA", "region": "", "updated": "2008-06-16"},
-    {"code": "Honduras", "is_current": True, "notes": "", "place_code": "CAHA", "region": "", "updated": "2008-06-16"},
-    {"code": "Hong Kong", "is_current": True, "notes": "", "place_code": "CG00", "region": "", "updated": "2008-06-16"},
-    {"code": "Hungary", "is_current": True, "notes": "", "place_code": "HG--", "region": "", "updated": "2008-06-16"},
+    {"country": "Guyana", "is_current": True, "notes": "", "place_code": "SAGA", "region": "", "updated": "2008-06-16"},
+    {"country": "Haiti", "is_current": True, "notes": "", "place_code": "LJHA", "region": "", "updated": "2008-06-16"},
+    {"country": "Honduras", "is_current": True, "notes": "", "place_code": "CAHA", "region": "", "updated": "2008-06-16"},
+    {"country": "Hong Kong", "is_current": True, "notes": "", "place_code": "CG00", "region": "", "updated": "2008-06-16"},
+    {"country": "Hungary", "is_current": True, "notes": "", "place_code": "HG--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG3-",
@@ -5000,7 +5000,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG30",
@@ -5008,7 +5008,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG31",
@@ -5016,7 +5016,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG32",
@@ -5024,7 +5024,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG33",
@@ -5032,7 +5032,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG34",
@@ -5040,7 +5040,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG35",
@@ -5048,7 +5048,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG36",
@@ -5056,7 +5056,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG37",
@@ -5064,7 +5064,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG38",
@@ -5072,7 +5072,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG4-",
@@ -5080,7 +5080,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG40",
@@ -5088,7 +5088,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG41",
@@ -5096,7 +5096,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG42",
@@ -5104,7 +5104,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG43",
@@ -5112,7 +5112,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG44",
@@ -5120,7 +5120,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG45",
@@ -5128,7 +5128,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG46",
@@ -5136,7 +5136,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG47",
@@ -5144,7 +5144,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG48",
@@ -5152,16 +5152,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Hungary",
+        "country": "Hungary",
         "is_current": True,
         "notes": "",
         "place_code": "HG49",
         "region": "Szabolcs-Szatmár-Bereg",
         "updated": "2008-06-16",
     },
-    {"code": "Iceland", "is_current": True, "notes": "", "place_code": "IS--", "region": "", "updated": "2008-06-16"},
+    {"country": "Iceland", "is_current": True, "notes": "", "place_code": "IS--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Reyk",
         "place_code": "IS01",
@@ -5169,7 +5169,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Kjós",
         "place_code": "IS02",
@@ -5177,7 +5177,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Borg",
         "place_code": "IS03",
@@ -5185,7 +5185,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Mør",
         "place_code": "IS04",
@@ -5193,7 +5193,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Hnapp",
         "place_code": "IS05",
@@ -5201,7 +5201,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Snöf",
         "place_code": "IS06",
@@ -5209,7 +5209,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Dal",
         "place_code": "IS07",
@@ -5217,7 +5217,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "A-Barð",
         "place_code": "IS08",
@@ -5225,7 +5225,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "V-Barð",
         "place_code": "IS09",
@@ -5233,7 +5233,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "V-Ísf",
         "place_code": "IS10",
@@ -5241,7 +5241,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "N-Ísf",
         "place_code": "IS11",
@@ -5249,7 +5249,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Strand",
         "place_code": "IS12",
@@ -5257,7 +5257,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "V-Hún",
         "place_code": "IS13",
@@ -5265,7 +5265,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "A-Hún",
         "place_code": "IS14",
@@ -5273,7 +5273,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Skag",
         "place_code": "IS15",
@@ -5281,7 +5281,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Eyf",
         "place_code": "IS16",
@@ -5289,7 +5289,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "S-Åing",
         "place_code": "IS17",
@@ -5297,7 +5297,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "N-Åing",
         "place_code": "IS18",
@@ -5305,7 +5305,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "N-Múl",
         "place_code": "IS19",
@@ -5313,7 +5313,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "S-Múl",
         "place_code": "IS20",
@@ -5321,7 +5321,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "A-Skaft",
         "place_code": "IS21",
@@ -5329,7 +5329,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "V-Skaft",
         "place_code": "IS22",
@@ -5337,7 +5337,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Rang",
         "place_code": "IS23",
@@ -5345,7 +5345,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Örn",
         "place_code": "IS24",
@@ -5353,7 +5353,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Gull",
         "place_code": "IS25",
@@ -5361,7 +5361,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Vestm",
         "place_code": "IS26",
@@ -5369,16 +5369,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Iceland",
+        "country": "Iceland",
         "is_current": True,
         "notes": "Miðh",
         "place_code": "IS27",
         "region": "Miðhálendi",
         "updated": "2008-06-16",
     },
-    {"code": "India", "is_current": True, "notes": "", "place_code": "IN--", "region": "", "updated": "2008-06-16"},
+    {"country": "India", "is_current": True, "notes": "", "place_code": "IN--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INAP",
@@ -5386,7 +5386,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INAS",
@@ -5394,7 +5394,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INBI",
@@ -5402,7 +5402,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "Mumbai; Bombay",
         "place_code": "INBO",
@@ -5410,7 +5410,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INDE",
@@ -5418,7 +5418,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INHP",
@@ -5426,7 +5426,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INJK",
@@ -5434,7 +5434,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INKE",
@@ -5442,7 +5442,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INMP",
@@ -5450,7 +5450,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INMR",
@@ -5458,7 +5458,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "Madras",
         "place_code": "INMS",
@@ -5466,7 +5466,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "Mysore including Goa",
         "place_code": "INMY",
@@ -5474,7 +5474,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INOR",
@@ -5482,7 +5482,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INPO",
@@ -5490,7 +5490,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INPU",
@@ -5498,7 +5498,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INRA",
@@ -5506,7 +5506,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INTR",
@@ -5514,7 +5514,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INUP",
@@ -5522,7 +5522,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "India",
+        "country": "India",
         "is_current": True,
         "notes": "",
         "place_code": "INWB",
@@ -5530,18 +5530,18 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Indian Ocean islands",
+        "country": "Indian Ocean islands",
         "is_current": True,
         "notes": "",
         "place_code": "+J00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Indonesia", "is_current": True, "notes": "", "place_code": "ON00", "region": "", "updated": "2008-06-16"},
-    {"code": "Iran", "is_current": True, "notes": "", "place_code": "IP00", "region": "", "updated": "2008-06-16"},
-    {"code": "Iraq", "is_current": True, "notes": "", "place_code": "IQ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Indonesia", "is_current": True, "notes": "", "place_code": "ON00", "region": "", "updated": "2008-06-16"},
+    {"country": "Iran", "is_current": True, "notes": "", "place_code": "IP00", "region": "", "updated": "2008-06-16"},
+    {"country": "Iraq", "is_current": True, "notes": "", "place_code": "IQ00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "Eire",
         "place_code": "ER--",
@@ -5549,7 +5549,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERCK",
@@ -5557,7 +5557,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERCL",
@@ -5565,7 +5565,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERCV",
@@ -5573,7 +5573,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERCW",
@@ -5581,7 +5581,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERDO",
@@ -5589,7 +5589,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERDU",
@@ -5597,7 +5597,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERGA",
@@ -5605,7 +5605,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERKD",
@@ -5613,7 +5613,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERKE",
@@ -5621,7 +5621,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERKK",
@@ -5629,7 +5629,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERLG",
@@ -5637,7 +5637,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERLK",
@@ -5645,7 +5645,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERLM",
@@ -5653,7 +5653,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERLU",
@@ -5661,7 +5661,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "Also known as Leix",
         "place_code": "ERLX",
@@ -5669,7 +5669,7 @@ TABLE = [
         "updated": "2014-12-08",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERMA",
@@ -5677,7 +5677,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERME",
@@ -5685,7 +5685,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERMO",
@@ -5693,7 +5693,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "EROF",
@@ -5701,7 +5701,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERRO",
@@ -5709,7 +5709,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERSL",
@@ -5717,7 +5717,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERTP",
@@ -5725,7 +5725,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERWA",
@@ -5733,7 +5733,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERWI",
@@ -5741,7 +5741,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERWM",
@@ -5749,7 +5749,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ireland",
+        "country": "Ireland",
         "is_current": True,
         "notes": "",
         "place_code": "ERWX",
@@ -5757,17 +5757,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Islands in other oceans",
+        "country": "Islands in other oceans",
         "is_current": True,
         "notes": "",
         "place_code": "+I00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Israel", "is_current": True, "notes": "", "place_code": "IL00", "region": "", "updated": "2008-06-16"},
-    {"code": "Italy", "is_current": True, "notes": "", "place_code": "IA--", "region": "", "updated": "2008-06-16"},
+    {"country": "Israel", "is_current": True, "notes": "", "place_code": "IL00", "region": "", "updated": "2008-06-16"},
+    {"country": "Italy", "is_current": True, "notes": "", "place_code": "IA--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA0-",
@@ -5775,7 +5775,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA00",
@@ -5783,7 +5783,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA01",
@@ -5791,7 +5791,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA02",
@@ -5799,7 +5799,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA03",
@@ -5807,7 +5807,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA04",
@@ -5815,7 +5815,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA05",
@@ -5823,7 +5823,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA06",
@@ -5831,7 +5831,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA07",
@@ -5839,7 +5839,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA08",
@@ -5847,7 +5847,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA09",
@@ -5855,7 +5855,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA1-",
@@ -5863,7 +5863,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA10",
@@ -5871,7 +5871,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA11",
@@ -5879,7 +5879,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA12",
@@ -5887,7 +5887,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA13",
@@ -5895,7 +5895,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA14",
@@ -5903,7 +5903,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA15",
@@ -5911,7 +5911,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA16",
@@ -5919,7 +5919,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA17",
@@ -5927,7 +5927,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA18",
@@ -5935,7 +5935,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA19",
@@ -5943,7 +5943,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA2-",
@@ -5951,7 +5951,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA20",
@@ -5959,7 +5959,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA21",
@@ -5967,7 +5967,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA22",
@@ -5975,7 +5975,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA23",
@@ -5983,7 +5983,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA24",
@@ -5991,7 +5991,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA25",
@@ -5999,7 +5999,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA26",
@@ -6007,7 +6007,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA27",
@@ -6015,7 +6015,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA28",
@@ -6023,7 +6023,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA29",
@@ -6031,7 +6031,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA3-",
@@ -6039,7 +6039,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA30",
@@ -6047,7 +6047,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA31",
@@ -6055,7 +6055,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA32",
@@ -6063,7 +6063,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA33",
@@ -6071,7 +6071,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA34",
@@ -6079,7 +6079,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA35",
@@ -6087,7 +6087,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA36",
@@ -6095,7 +6095,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA37",
@@ -6103,7 +6103,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA38",
@@ -6111,7 +6111,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA39",
@@ -6119,7 +6119,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA4-",
@@ -6127,7 +6127,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA40",
@@ -6135,7 +6135,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA41",
@@ -6143,7 +6143,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA42",
@@ -6151,7 +6151,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA43",
@@ -6159,7 +6159,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA44",
@@ -6167,7 +6167,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA45",
@@ -6175,7 +6175,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA46",
@@ -6183,16 +6183,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA47",
         "region": "Reggio di Calabria",
         "updated": "2008-06-16",
     },
-    {"code": "Italy", "is_current": True, "notes": "", "place_code": "IA48", "region": "Roma", "updated": "2008-06-16"},
+    {"country": "Italy", "is_current": True, "notes": "", "place_code": "IA48", "region": "Roma", "updated": "2008-06-16"},
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA49",
@@ -6200,7 +6200,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA5-",
@@ -6208,16 +6208,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA50",
         "region": "L’Aquila d.Abruzzi",
         "updated": "2008-06-16",
     },
-    {"code": "Italy", "is_current": True, "notes": "", "place_code": "IA51", "region": "Bari", "updated": "2008-06-16"},
+    {"country": "Italy", "is_current": True, "notes": "", "place_code": "IA51", "region": "Bari", "updated": "2008-06-16"},
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA52",
@@ -6225,7 +6225,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA53",
@@ -6233,7 +6233,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA54",
@@ -6241,7 +6241,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA55",
@@ -6249,7 +6249,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA56",
@@ -6257,7 +6257,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA57",
@@ -6265,7 +6265,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA58",
@@ -6273,7 +6273,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA59",
@@ -6281,16 +6281,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA6-",
         "region": "Italian Islands",
         "updated": "2008-06-16",
     },
-    {"code": "Italy", "is_current": True, "notes": "", "place_code": "IA61", "region": "Elba", "updated": "2008-06-16"},
+    {"country": "Italy", "is_current": True, "notes": "", "place_code": "IA61", "region": "Elba", "updated": "2008-06-16"},
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA62",
@@ -6298,7 +6298,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA63",
@@ -6306,7 +6306,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA64",
@@ -6314,7 +6314,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA65",
@@ -6322,7 +6322,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA66",
@@ -6330,7 +6330,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "IA76",
@@ -6338,19 +6338,19 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Italy",
+        "country": "Italy",
         "is_current": True,
         "notes": "",
         "place_code": "RA48",
         "region": "Vatican City",
         "updated": "2008-06-16",
     },
-    {"code": "Jamaica", "is_current": True, "notes": "", "place_code": "CJJA", "region": "", "updated": "2008-06-16"},
-    {"code": "Jan Mayen", "is_current": True, "notes": "", "place_code": "+AJM", "region": "", "updated": "2008-06-16"},
-    {"code": "Japan", "is_current": True, "notes": "", "place_code": "JH00", "region": "", "updated": "2008-06-16"},
-    {"code": "Jordan", "is_current": True, "notes": "", "place_code": "JO00", "region": "", "updated": "2008-06-16"},
+    {"country": "Jamaica", "is_current": True, "notes": "", "place_code": "CJJA", "region": "", "updated": "2008-06-16"},
+    {"country": "Jan Mayen", "is_current": True, "notes": "", "place_code": "+AJM", "region": "", "updated": "2008-06-16"},
+    {"country": "Japan", "is_current": True, "notes": "", "place_code": "JH00", "region": "", "updated": "2008-06-16"},
+    {"country": "Jordan", "is_current": True, "notes": "", "place_code": "JO00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI0-",
         "place_code": "KZ--",
@@ -6358,7 +6358,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI00",
         "place_code": "KZ00",
@@ -6366,7 +6366,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI01",
         "place_code": "KZ01",
@@ -6374,7 +6374,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI03",
         "place_code": "KZ03",
@@ -6382,7 +6382,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "Taroz city;formerly SI04",
         "place_code": "KZ04",
@@ -6390,7 +6390,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "including Mangyshiak O. Atyrau City; formerly SI06",
         "place_code": "KZ06",
@@ -6398,7 +6398,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "including Dzezkazgan O, ; formerly SI07",
         "place_code": "KZ07",
@@ -6406,7 +6406,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "Arkalyk City; including Kustanay O.; formerly SI09",
         "place_code": "KZ09",
@@ -6414,7 +6414,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI10",
         "place_code": "KZ10",
@@ -6422,7 +6422,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI11",
         "place_code": "KZ11",
@@ -6430,7 +6430,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "Kokchetav City; formerly SI12",
         "place_code": "KZ12",
@@ -6438,7 +6438,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI13",
         "place_code": "KZ13",
@@ -6446,7 +6446,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "formerly SI14",
         "place_code": "KZ14",
@@ -6454,7 +6454,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "Astana city, Tselinograd on old maps; formerly SI15",
         "place_code": "KZ15",
@@ -6462,7 +6462,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "Uralsk city; West Kazakhstan",
         "place_code": "KZ16",
@@ -6470,7 +6470,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": True,
         "notes": "including Ust-Kamenogorsk city; formerly SI17",
         "place_code": "KZ17",
@@ -6478,7 +6478,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ--",
         "place_code": "SI0-",
@@ -6486,7 +6486,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ00",
         "place_code": "SI00",
@@ -6494,7 +6494,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ01",
         "place_code": "SI01",
@@ -6502,7 +6502,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ03",
         "place_code": "SI03",
@@ -6510,7 +6510,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ04",
         "place_code": "SI04",
@@ -6518,7 +6518,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ06",
         "place_code": "SI06",
@@ -6526,7 +6526,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ07",
         "place_code": "SI07",
@@ -6534,7 +6534,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ09",
         "place_code": "SI09",
@@ -6542,7 +6542,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ10",
         "place_code": "SI10",
@@ -6550,7 +6550,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ11",
         "place_code": "SI11",
@@ -6558,7 +6558,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ12",
         "place_code": "SI12",
@@ -6566,7 +6566,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ13",
         "place_code": "SI13",
@@ -6574,7 +6574,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ14",
         "place_code": "SI14",
@@ -6582,7 +6582,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ15",
         "place_code": "SI15",
@@ -6590,7 +6590,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ16",
         "place_code": "SI16",
@@ -6598,17 +6598,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kazakhstan",
+        "country": "Kazakhstan",
         "is_current": False,
         "notes": "now KZ17",
         "place_code": "SI17",
         "region": "Vostochno-Kazakhstan O.",
         "updated": "2008-06-16",
     },
-    {"code": "Kenya", "is_current": True, "notes": "", "place_code": "GP00", "region": "", "updated": "2008-06-16"},
-    {"code": "Kuwait", "is_current": True, "notes": "", "place_code": "JI00", "region": "", "updated": "2008-06-16"},
+    {"country": "Kenya", "is_current": True, "notes": "", "place_code": "GP00", "region": "", "updated": "2008-06-16"},
+    {"country": "Kuwait", "is_current": True, "notes": "", "place_code": "JI00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Kyrgyzstan",
+        "country": "Kyrgyzstan",
         "is_current": True,
         "notes": "formerly SI53",
         "place_code": "KI--",
@@ -6616,7 +6616,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kyrgyzstan",
+        "country": "Kyrgyzstan",
         "is_current": True,
         "notes": "formerly SI53",
         "place_code": "KI01",
@@ -6624,7 +6624,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kyrgyzstan",
+        "country": "Kyrgyzstan",
         "is_current": True,
         "notes": "formerly SI53",
         "place_code": "KI02",
@@ -6632,7 +6632,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kyrgyzstan",
+        "country": "Kyrgyzstan",
         "is_current": True,
         "notes": "formerly SI53",
         "place_code": "KI03",
@@ -6640,38 +6640,38 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Kyrgyzstan",
+        "country": "Kyrgyzstan",
         "is_current": False,
         "notes": "now KI--",
         "place_code": "SI53",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Laos", "is_current": True, "notes": "", "place_code": "FNLA", "region": "", "updated": "2008-06-16"},
-    {"code": "Latvia", "is_current": True, "notes": "", "place_code": "LV00", "region": "", "updated": "2008-06-16"},
-    {"code": "Lebanon", "is_current": True, "notes": "", "place_code": "LE00", "region": "", "updated": "2008-06-16"},
-    {"code": "Lesotho", "is_current": True, "notes": "", "place_code": "FG00", "region": "", "updated": "2008-06-16"},
+    {"country": "Laos", "is_current": True, "notes": "", "place_code": "FNLA", "region": "", "updated": "2008-06-16"},
+    {"country": "Latvia", "is_current": True, "notes": "", "place_code": "LV00", "region": "", "updated": "2008-06-16"},
+    {"country": "Lebanon", "is_current": True, "notes": "", "place_code": "LE00", "region": "", "updated": "2008-06-16"},
+    {"country": "Lesotho", "is_current": True, "notes": "", "place_code": "FG00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Lesser Antilles",
+        "country": "Lesser Antilles",
         "is_current": True,
         "notes": "",
         "place_code": "LA00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Liberia", "is_current": True, "notes": "", "place_code": "PQ00", "region": "", "updated": "2008-06-16"},
-    {"code": "Libya", "is_current": True, "notes": "", "place_code": "LT00", "region": "", "updated": "2008-06-16"},
+    {"country": "Liberia", "is_current": True, "notes": "", "place_code": "PQ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Libya", "is_current": True, "notes": "", "place_code": "LT00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Liechtenstein",
+        "country": "Liechtenstein",
         "is_current": True,
         "notes": "",
         "place_code": "AM00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Lithuania", "is_current": True, "notes": "", "place_code": "LI00", "region": "", "updated": "2008-06-16"},
+    {"country": "Lithuania", "is_current": True, "notes": "", "place_code": "LI00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Luxembourg",
+        "country": "Luxembourg",
         "is_current": True,
         "notes": "",
         "place_code": "KN00",
@@ -6679,29 +6679,29 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Luxembourg",
+        "country": "Luxembourg",
         "is_current": False,
         "notes": "Incorrect, but has been used historically.",
         "place_code": "KN29",
         "region": "",
         "updated": "2008-11-05",
     },
-    {"code": "Macedonia", "is_current": True, "notes": "", "place_code": "MK00", "region": "", "updated": "2008-06-16"},
+    {"country": "Macedonia", "is_current": True, "notes": "", "place_code": "MK00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Madagascar",
+        "country": "Madagascar",
         "is_current": True,
         "notes": "",
         "place_code": "MG00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Malawi", "is_current": True, "notes": "", "place_code": "MY00", "region": "", "updated": "2008-06-16"},
-    {"code": "Malaysia", "is_current": True, "notes": "", "place_code": "FVMA", "region": "", "updated": "2008-06-16"},
-    {"code": "Maldives", "is_current": True, "notes": "", "place_code": "MV00", "region": "", "updated": "2008-06-16"},
-    {"code": "Mali", "is_current": True, "notes": "", "place_code": "EM00", "region": "", "updated": "2008-06-16"},
-    {"code": "Malta", "is_current": True, "notes": "", "place_code": "ML00", "region": "", "updated": "2008-06-16"},
+    {"country": "Malawi", "is_current": True, "notes": "", "place_code": "MY00", "region": "", "updated": "2008-06-16"},
+    {"country": "Malaysia", "is_current": True, "notes": "", "place_code": "FVMA", "region": "", "updated": "2008-06-16"},
+    {"country": "Maldives", "is_current": True, "notes": "", "place_code": "MV00", "region": "", "updated": "2008-06-16"},
+    {"country": "Mali", "is_current": True, "notes": "", "place_code": "EM00", "region": "", "updated": "2008-06-16"},
+    {"country": "Malta", "is_current": True, "notes": "", "place_code": "ML00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM00",
@@ -6709,7 +6709,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM01",
@@ -6717,7 +6717,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM02",
@@ -6725,7 +6725,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM03",
@@ -6733,7 +6733,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM04",
@@ -6741,7 +6741,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM05",
@@ -6749,7 +6749,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM06",
@@ -6757,7 +6757,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM07",
@@ -6765,7 +6765,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM08",
@@ -6773,7 +6773,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM09",
@@ -6781,7 +6781,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM10",
@@ -6789,7 +6789,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM11",
@@ -6797,7 +6797,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NM12",
@@ -6805,7 +6805,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritania",
+        "country": "Mauritania",
         "is_current": True,
         "notes": "",
         "place_code": "NMNK",
@@ -6813,38 +6813,38 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Mauritius",
+        "country": "Mauritius",
         "is_current": True,
         "notes": "including Rodrigues Island",
         "place_code": "MU00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Mayotte", "is_current": True, "notes": "", "place_code": "YT00", "region": "", "updated": "2008-06-16"},
+    {"country": "Mayotte", "is_current": True, "notes": "", "place_code": "YT00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Mediterranean Sea islands",
+        "country": "Mediterranean Sea islands",
         "is_current": True,
         "notes": "",
         "place_code": "+F00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Melilla", "is_current": True, "notes": "", "place_code": "MJ00", "region": "", "updated": "2008-06-16"},
-    {"code": "Mexico", "is_current": True, "notes": "", "place_code": "TA00", "region": "", "updated": "2008-06-16"},
-    {"code": "Moldova", "is_current": True, "notes": "", "place_code": "MD00", "region": "", "updated": "2008-06-16"},
-    {"code": "Monaco", "is_current": True, "notes": "", "place_code": "WR80", "region": "", "updated": "2008-06-16"},
-    {"code": "Mongolia", "is_current": True, "notes": "", "place_code": "MN00", "region": "", "updated": "2008-06-16"},
+    {"country": "Melilla", "is_current": True, "notes": "", "place_code": "MJ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Mexico", "is_current": True, "notes": "", "place_code": "TA00", "region": "", "updated": "2008-06-16"},
+    {"country": "Moldova", "is_current": True, "notes": "", "place_code": "MD00", "region": "", "updated": "2008-06-16"},
+    {"country": "Monaco", "is_current": True, "notes": "", "place_code": "WR80", "region": "", "updated": "2008-06-16"},
+    {"country": "Mongolia", "is_current": True, "notes": "", "place_code": "MN00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Montenegro",
+        "country": "Montenegro",
         "is_current": True,
         "notes": "formerly YU72",
         "place_code": "ME00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Morocco", "is_current": True, "notes": "", "place_code": "MA00", "region": "", "updated": "2008-06-16"},
+    {"country": "Morocco", "is_current": True, "notes": "", "place_code": "MA00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA01",
@@ -6852,7 +6852,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA02",
@@ -6860,7 +6860,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA03",
@@ -6868,7 +6868,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA04",
@@ -6876,7 +6876,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA05",
@@ -6884,7 +6884,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA06",
@@ -6892,7 +6892,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA07",
@@ -6900,7 +6900,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA08",
@@ -6908,7 +6908,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA09",
@@ -6916,7 +6916,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA10",
@@ -6924,7 +6924,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA11",
@@ -6932,7 +6932,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA12",
@@ -6940,7 +6940,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA13",
@@ -6948,7 +6948,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA14",
@@ -6956,7 +6956,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA15",
@@ -6964,7 +6964,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": False,
         "notes": "",
         "place_code": "MA16",
@@ -6972,7 +6972,7 @@ TABLE = [
         "updated": "2014-11-03",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MATT",
@@ -6980,7 +6980,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MALO",
@@ -6988,7 +6988,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MAFM",
@@ -6996,7 +6996,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MARS",
@@ -7004,7 +7004,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MABM",
@@ -7012,7 +7012,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MACS",
@@ -7020,7 +7020,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MAMS",
@@ -7028,7 +7028,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MADT",
@@ -7036,7 +7036,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MASM",
@@ -7044,7 +7044,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MAGO",
@@ -7052,7 +7052,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MALS",
@@ -7060,7 +7060,7 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Morocco",
+        "country": "Morocco",
         "is_current": True,
         "notes": "",
         "place_code": "MADO",
@@ -7068,18 +7068,18 @@ TABLE = [
         "updated": "2023-09-19",
     },
     {
-        "code": "Mozambique",
+        "country": "Mozambique",
         "is_current": True,
         "notes": "",
         "place_code": "MQ00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Myanmar", "is_current": True, "notes": "", "place_code": "FE00", "region": "", "updated": "2008-06-16"},
-    {"code": "Namibia", "is_current": True, "notes": "", "place_code": "FM00", "region": "", "updated": "2008-06-16"},
-    {"code": "Nepal", "is_current": True, "notes": "", "place_code": "HJ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Myanmar", "is_current": True, "notes": "", "place_code": "FE00", "region": "", "updated": "2008-06-16"},
+    {"country": "Namibia", "is_current": True, "notes": "", "place_code": "FM00", "region": "", "updated": "2008-06-16"},
+    {"country": "Nepal", "is_current": True, "notes": "", "place_code": "HJ00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "New Caledonia",
+        "country": "New Caledonia",
         "is_current": True,
         "notes": "",
         "place_code": "NC00",
@@ -7087,7 +7087,7 @@ TABLE = [
         "updated": "2009-01-20",
     },
     {
-        "code": "New Guinea",
+        "country": "New Guinea",
         "is_current": True,
         "notes": "",
         "place_code": "WE00",
@@ -7095,7 +7095,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "New Zealand",
+        "country": "New Zealand",
         "is_current": True,
         "notes": "",
         "place_code": "AJ--",
@@ -7103,7 +7103,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "New Zealand",
+        "country": "New Zealand",
         "is_current": True,
         "notes": "",
         "place_code": "AJNI",
@@ -7111,18 +7111,18 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "New Zealand",
+        "country": "New Zealand",
         "is_current": True,
         "notes": "",
         "place_code": "AJSI",
         "region": "South Island",
         "updated": "2008-06-16",
     },
-    {"code": "Nicaragua", "is_current": True, "notes": "", "place_code": "CANA", "region": "", "updated": "2008-06-16"},
-    {"code": "Niger", "is_current": True, "notes": "", "place_code": "NE00", "region": "", "updated": "2008-06-16"},
-    {"code": "Nigeria", "is_current": True, "notes": "", "place_code": "NV00", "region": "", "updated": "2008-06-16"},
+    {"country": "Nicaragua", "is_current": True, "notes": "", "place_code": "CANA", "region": "", "updated": "2008-06-16"},
+    {"country": "Niger", "is_current": True, "notes": "", "place_code": "NE00", "region": "", "updated": "2008-06-16"},
+    {"country": "Nigeria", "is_current": True, "notes": "", "place_code": "NV00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "North Atlantic Ocean islands",
+        "country": "North Atlantic Ocean islands",
         "is_current": True,
         "notes": "",
         "place_code": "+H00",
@@ -7130,7 +7130,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "North Korea",
+        "country": "North Korea",
         "is_current": True,
         "notes": "",
         "place_code": "TP00",
@@ -7138,16 +7138,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "North Sea islands",
+        "country": "North Sea islands",
         "is_current": True,
         "notes": "check codes in neighbouring countries before using this code",
         "place_code": "+B00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Norway", "is_current": True, "notes": "", "place_code": "NO--", "region": "", "updated": "2008-06-16"},
+    {"country": "Norway", "is_current": True, "notes": "", "place_code": "NO--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "including Oslo",
         "place_code": "NO20",
@@ -7155,7 +7155,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "Bergen (city) is in NO25",
         "place_code": "NO21",
@@ -7163,7 +7163,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO22",
@@ -7171,7 +7171,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO23",
@@ -7179,7 +7179,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO24",
@@ -7187,7 +7187,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "including Bergen",
         "place_code": "NO25",
@@ -7195,7 +7195,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO26",
@@ -7203,7 +7203,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO27",
@@ -7211,7 +7211,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO28",
@@ -7219,7 +7219,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "Oslo (city) is in NO20",
         "place_code": "NO29",
@@ -7227,7 +7227,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO30",
@@ -7235,7 +7235,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO31",
@@ -7243,7 +7243,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO32",
@@ -7251,7 +7251,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO33",
@@ -7259,7 +7259,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO34",
@@ -7267,7 +7267,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO35",
@@ -7275,7 +7275,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO36",
@@ -7283,25 +7283,25 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Norway",
+        "country": "Norway",
         "is_current": True,
         "notes": "",
         "place_code": "NO37",
         "region": "Vestfold",
         "updated": "2008-06-16",
     },
-    {"code": "Oman", "is_current": True, "notes": "", "place_code": "OM00", "region": "", "updated": "2008-06-16"},
+    {"country": "Oman", "is_current": True, "notes": "", "place_code": "OM00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Pacific Islands",
+        "country": "Pacific Islands",
         "is_current": True,
         "notes": "all including Galapagos in East",
         "place_code": "PI00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Pakistan", "is_current": True, "notes": "", "place_code": "PN00", "region": "", "updated": "2008-06-16"},
+    {"country": "Pakistan", "is_current": True, "notes": "", "place_code": "PN00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Palestine",
+        "country": "Palestine",
         "is_current": True,
         "notes": "Formerly GZ00",
         "place_code": "PSGZ",
@@ -7309,27 +7309,27 @@ TABLE = [
         "updated": "2012-01-30",
     },
     {
-        "code": "Palestine",
+        "country": "Palestine",
         "is_current": True,
         "notes": "Formerly WB00",
         "place_code": "PSWB",
         "region": "West Bank",
         "updated": "2012-01-30",
     },
-    {"code": "Panama", "is_current": True, "notes": "", "place_code": "CAPA", "region": "", "updated": "2008-06-16"},
-    {"code": "Paraguay", "is_current": True, "notes": "", "place_code": "SAPA", "region": "", "updated": "2008-06-16"},
-    {"code": "Peru", "is_current": True, "notes": "", "place_code": "KJ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Panama", "is_current": True, "notes": "", "place_code": "CAPA", "region": "", "updated": "2008-06-16"},
+    {"country": "Paraguay", "is_current": True, "notes": "", "place_code": "SAPA", "region": "", "updated": "2008-06-16"},
+    {"country": "Peru", "is_current": True, "notes": "", "place_code": "KJ00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Philippines",
+        "country": "Philippines",
         "is_current": True,
         "notes": "",
         "place_code": "OE00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Poland", "is_current": True, "notes": "", "place_code": "PL--", "region": "", "updated": "2008-06-16"},
+    {"country": "Poland", "is_current": True, "notes": "", "place_code": "PL--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL8-",
@@ -7337,7 +7337,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL80",
@@ -7345,7 +7345,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL81",
@@ -7353,7 +7353,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL82",
@@ -7361,7 +7361,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL83",
@@ -7369,7 +7369,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL84",
@@ -7377,7 +7377,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL85",
@@ -7385,7 +7385,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL86",
@@ -7393,7 +7393,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL9-",
@@ -7401,7 +7401,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL90",
@@ -7409,7 +7409,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL91",
@@ -7417,7 +7417,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL92",
@@ -7425,7 +7425,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL93",
@@ -7433,7 +7433,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL94",
@@ -7441,7 +7441,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL95",
@@ -7449,7 +7449,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL96",
@@ -7457,7 +7457,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL97",
@@ -7465,7 +7465,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL98",
@@ -7473,7 +7473,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "pre-1970",
         "place_code": "PL99",
@@ -7481,7 +7481,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLAL",
@@ -7489,7 +7489,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLBB",
@@ -7497,7 +7497,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLBE",
@@ -7505,7 +7505,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLBP",
@@ -7513,7 +7513,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLBT",
@@ -7521,7 +7521,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLBU",
@@ -7529,7 +7529,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLBY",
@@ -7537,7 +7537,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLCH",
@@ -7545,7 +7545,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLCZ",
@@ -7553,7 +7553,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLDL",
@@ -7561,7 +7561,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLDO",
@@ -7569,7 +7569,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLDZ",
@@ -7577,7 +7577,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLEL",
@@ -7585,7 +7585,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLGD",
@@ -7593,7 +7593,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLGW",
@@ -7601,7 +7601,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLHA",
@@ -7609,7 +7609,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLHH",
@@ -7617,7 +7617,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLIC",
@@ -7625,7 +7625,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLIS",
@@ -7633,7 +7633,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLJG",
@@ -7641,7 +7641,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLKP",
@@ -7649,7 +7649,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLKW",
@@ -7657,7 +7657,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLLA",
@@ -7665,7 +7665,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLLC",
@@ -7673,7 +7673,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLLO",
@@ -7681,7 +7681,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLLS",
@@ -7689,7 +7689,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLLU",
@@ -7697,7 +7697,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLMP",
@@ -7705,7 +7705,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLMZ",
@@ -7713,7 +7713,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLNS",
@@ -7721,7 +7721,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLOA",
@@ -7729,7 +7729,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLOE",
@@ -7737,7 +7737,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLOL",
@@ -7745,7 +7745,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLOM",
@@ -7753,7 +7753,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLON",
@@ -7761,7 +7761,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLOP",
@@ -7769,7 +7769,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLPA",
@@ -7777,7 +7777,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLPC",
@@ -7785,7 +7785,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLPK",
@@ -7793,7 +7793,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLPM",
@@ -7801,7 +7801,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLPN",
@@ -7809,7 +7809,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLPR",
@@ -7817,7 +7817,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLPS",
@@ -7825,7 +7825,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLPT",
@@ -7833,7 +7833,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLRM",
@@ -7841,7 +7841,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLRN",
@@ -7849,7 +7849,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1998",
         "place_code": "PLRO",
@@ -7857,7 +7857,7 @@ TABLE = [
         "updated": "2008-11-05",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLRZ",
@@ -7865,7 +7865,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLSL",
@@ -7873,7 +7873,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLSU",
@@ -7881,7 +7881,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLSW",
@@ -7889,7 +7889,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLSZ",
@@ -7897,7 +7897,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLTG",
@@ -7905,7 +7905,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLTO",
@@ -7913,7 +7913,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLTV",
@@ -7921,7 +7921,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLUP",
@@ -7929,7 +7929,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLWH",
@@ -7937,7 +7937,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLWI",
@@ -7945,7 +7945,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLWK",
@@ -7953,7 +7953,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLWM",
@@ -7961,7 +7961,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLWW",
@@ -7969,7 +7969,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLWZ",
@@ -7977,7 +7977,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLZA",
@@ -7985,7 +7985,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": False,
         "notes": "used 1970 - 1999",
         "place_code": "PLZG",
@@ -7993,16 +7993,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Poland",
+        "country": "Poland",
         "is_current": True,
         "notes": "",
         "place_code": "PLZP",
         "region": "Zachodnio-Pomorskie",
         "updated": "2008-06-16",
     },
-    {"code": "Portugal", "is_current": True, "notes": "", "place_code": "PO--", "region": "", "updated": "2008-06-16"},
+    {"country": "Portugal", "is_current": True, "notes": "", "place_code": "PO--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO01",
@@ -8010,7 +8010,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO02",
@@ -8018,7 +8018,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO03",
@@ -8026,7 +8026,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO04",
@@ -8034,7 +8034,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO05",
@@ -8042,7 +8042,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO06",
@@ -8050,7 +8050,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO07",
@@ -8058,7 +8058,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO08",
@@ -8066,7 +8066,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO09",
@@ -8074,7 +8074,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO10",
@@ -8082,7 +8082,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO11",
@@ -8090,7 +8090,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO12",
@@ -8098,7 +8098,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO13",
@@ -8106,7 +8106,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO14",
@@ -8114,7 +8114,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO15",
@@ -8122,7 +8122,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO16",
@@ -8130,7 +8130,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO17",
@@ -8138,7 +8138,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO18",
@@ -8146,7 +8146,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO19",
@@ -8154,7 +8154,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO20",
@@ -8162,7 +8162,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO21",
@@ -8170,7 +8170,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO22",
@@ -8178,7 +8178,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO23",
@@ -8186,7 +8186,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO24",
@@ -8194,7 +8194,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO25",
@@ -8202,7 +8202,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO26",
@@ -8210,7 +8210,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO27",
@@ -8218,7 +8218,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO28",
@@ -8226,7 +8226,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Portugal",
+        "country": "Portugal",
         "is_current": True,
         "notes": "",
         "place_code": "PO29",
@@ -8234,7 +8234,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Puerto Rico",
+        "country": "Puerto Rico",
         "is_current": True,
         "notes": "",
         "place_code": "LJPA",
@@ -8242,7 +8242,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Republic of Serbia",
+        "country": "Republic of Serbia",
         "is_current": True,
         "notes": "formerly part of YU--",
         "place_code": "RS--",
@@ -8250,7 +8250,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Republic of Serbia",
+        "country": "Republic of Serbia",
         "is_current": True,
         "notes": "formerly YU74",
         "place_code": "RS74",
@@ -8258,7 +8258,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Republic of Serbia",
+        "country": "Republic of Serbia",
         "is_current": True,
         "notes": "formerly YU77",
         "place_code": "RS77",
@@ -8266,17 +8266,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Republic of Serbia",
+        "country": "Republic of Serbia",
         "is_current": True,
         "notes": "formerly YU78",
         "place_code": "RS78",
         "region": "Vojvodina",
         "updated": "2008-06-16",
     },
-    {"code": "Reunion", "is_current": True, "notes": "", "place_code": "RE00", "region": "", "updated": "2008-06-16"},
-    {"code": "Romania", "is_current": True, "notes": "", "place_code": "RO--", "region": "", "updated": "2008-06-16"},
+    {"country": "Reunion", "is_current": True, "notes": "", "place_code": "RE00", "region": "", "updated": "2008-06-16"},
+    {"country": "Romania", "is_current": True, "notes": "", "place_code": "RO--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO5-",
@@ -8284,7 +8284,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO50",
@@ -8292,7 +8292,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO51",
@@ -8300,7 +8300,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO52",
@@ -8308,7 +8308,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO53",
@@ -8316,7 +8316,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO54",
@@ -8324,7 +8324,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO55",
@@ -8332,7 +8332,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO56",
@@ -8340,7 +8340,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO57",
@@ -8348,7 +8348,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO58",
@@ -8356,7 +8356,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO59",
@@ -8364,7 +8364,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO6-",
@@ -8372,7 +8372,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO60",
@@ -8380,7 +8380,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO61",
@@ -8388,7 +8388,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO62",
@@ -8396,7 +8396,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO63",
@@ -8404,7 +8404,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO64",
@@ -8412,7 +8412,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO65",
@@ -8420,7 +8420,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO66",
@@ -8428,7 +8428,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": False,
         "notes": "",
         "place_code": "RO67",
@@ -8436,7 +8436,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO54",
         "place_code": "ROAB",
@@ -8444,7 +8444,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO66",
         "place_code": "ROAG",
@@ -8452,7 +8452,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO50",
         "place_code": "ROAR",
@@ -8460,7 +8460,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO61",
         "place_code": "ROB-",
@@ -8468,7 +8468,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Parts formerly in RO51 and RO60",
         "place_code": "ROBC",
@@ -8476,7 +8476,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO56",
         "place_code": "ROBH",
@@ -8484,7 +8484,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO53",
         "place_code": "ROBN",
@@ -8492,7 +8492,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO64",
         "place_code": "ROBR",
@@ -8500,7 +8500,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO58",
         "place_code": "ROBT",
@@ -8508,7 +8508,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO57",
         "place_code": "ROBV",
@@ -8516,7 +8516,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO67",
         "place_code": "ROBZ",
@@ -8524,7 +8524,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO53",
         "place_code": "ROCJ",
@@ -8532,7 +8532,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO61",
         "place_code": "ROCL",
@@ -8540,7 +8540,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO59",
         "place_code": "ROCS",
@@ -8548,7 +8548,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO62",
         "place_code": "ROCT",
@@ -8556,7 +8556,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO55",
         "place_code": "ROCV",
@@ -8564,7 +8564,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO67",
         "place_code": "RODB",
@@ -8572,7 +8572,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO63",
         "place_code": "RODJ",
@@ -8580,7 +8580,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO63",
         "place_code": "ROGJ",
@@ -8588,7 +8588,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO64",
         "place_code": "ROGL",
@@ -8596,7 +8596,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO61",
         "place_code": "ROGR",
@@ -8604,7 +8604,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO54",
         "place_code": "ROHD",
@@ -8612,7 +8612,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO55",
         "place_code": "ROHR",
@@ -8620,7 +8620,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO61",
         "place_code": "ROIF",
@@ -8628,7 +8628,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO61",
         "place_code": "ROIL",
@@ -8636,7 +8636,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO65",
         "place_code": "ROIS",
@@ -8644,7 +8644,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO63",
         "place_code": "ROMH",
@@ -8652,7 +8652,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO52",
         "place_code": "ROMM",
@@ -8660,7 +8660,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO53",
         "place_code": "ROMS",
@@ -8668,7 +8668,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO51",
         "place_code": "RONT",
@@ -8676,7 +8676,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Parts formerly in RO63 and RO66",
         "place_code": "ROOT",
@@ -8684,7 +8684,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO67",
         "place_code": "ROPH",
@@ -8692,7 +8692,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO57",
         "place_code": "ROSB",
@@ -8700,7 +8700,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Parts formerly in RO53 and RO56",
         "place_code": "ROSJ",
@@ -8708,7 +8708,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO52",
         "place_code": "ROSM",
@@ -8716,7 +8716,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO58",
         "place_code": "ROSV",
@@ -8724,7 +8724,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO64",
         "place_code": "ROTL",
@@ -8732,7 +8732,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO59",
         "place_code": "ROTM",
@@ -8740,7 +8740,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO61",
         "place_code": "ROTR",
@@ -8748,7 +8748,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO66",
         "place_code": "ROVL",
@@ -8756,7 +8756,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO60",
         "place_code": "ROVN",
@@ -8764,7 +8764,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Romania",
+        "country": "Romania",
         "is_current": True,
         "notes": "Formerly part of RO65",
         "place_code": "ROVS",
@@ -8772,7 +8772,7 @@ TABLE = [
         "updated": "2023-07-07",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "",
         "place_code": "RU--",
@@ -8780,7 +8780,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU14",
         "place_code": "RU01",
@@ -8788,7 +8788,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU12",
         "place_code": "RU02",
@@ -8796,7 +8796,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU03, including St. Petersburg",
         "place_code": "RU03",
@@ -8804,7 +8804,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU01",
         "place_code": "RU04",
@@ -8812,7 +8812,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU06",
         "place_code": "RU05",
@@ -8820,7 +8820,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU05",
         "place_code": "RU06",
@@ -8828,7 +8828,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "excluding islands, formerly SU10",
         "place_code": "RU07",
@@ -8836,7 +8836,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "including Kolguev & Vaygach islandsformerly SU15",
         "place_code": "RU08",
@@ -8844,7 +8844,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU13",
         "place_code": "RU09",
@@ -8852,7 +8852,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU11",
         "place_code": "RU10",
@@ -8860,7 +8860,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU16",
         "place_code": "RU11",
@@ -8868,7 +8868,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU17",
         "place_code": "RU12",
@@ -8876,7 +8876,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU39",
         "place_code": "RU13",
@@ -8884,7 +8884,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerlyKalinin O., SU32",
         "place_code": "RU14",
@@ -8892,7 +8892,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU33",
         "place_code": "RU15",
@@ -8900,7 +8900,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU31",
         "place_code": "RU16",
@@ -8908,7 +8908,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU35",
         "place_code": "RU17",
@@ -8916,7 +8916,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU38",
         "place_code": "RU18",
@@ -8924,7 +8924,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU27",
         "place_code": "RU19",
@@ -8932,7 +8932,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU24",
         "place_code": "RU20",
@@ -8940,7 +8940,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU37",
         "place_code": "RU21",
@@ -8948,7 +8948,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU36",
         "place_code": "RU22",
@@ -8956,7 +8956,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU42",
         "place_code": "RU23",
@@ -8964,7 +8964,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU46",
         "place_code": "RU24",
@@ -8972,7 +8972,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU48",
         "place_code": "RU25",
@@ -8980,7 +8980,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly Gorkiy O., SU30",
         "place_code": "RU26",
@@ -8988,7 +8988,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU44",
         "place_code": "RU27",
@@ -8996,7 +8996,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU41",
         "place_code": "RU28",
@@ -9004,7 +9004,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU34",
         "place_code": "RU29",
@@ -9012,7 +9012,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU47",
         "place_code": "RU30",
@@ -9020,7 +9020,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU49",
         "place_code": "RU31",
@@ -9028,7 +9028,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU84",
         "place_code": "RU32",
@@ -9036,7 +9036,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly Kuybyshev O., SU43",
         "place_code": "RU33",
@@ -9044,7 +9044,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU86",
         "place_code": "RU34",
@@ -9052,7 +9052,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU21",
         "place_code": "RU35",
@@ -9060,7 +9060,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU83",
         "place_code": "RU36",
@@ -9068,7 +9068,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU81",
         "place_code": "RU37",
@@ -9076,7 +9076,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU82",
         "place_code": "RU38",
@@ -9084,7 +9084,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU87",
         "place_code": "RU39",
@@ -9092,7 +9092,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU89",
         "place_code": "RU40",
@@ -9100,7 +9100,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU80",
         "place_code": "RU41",
@@ -9108,7 +9108,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly Stalingrad O., SU88",
         "place_code": "RU42",
@@ -9116,7 +9116,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU85",
         "place_code": "RU43",
@@ -9124,7 +9124,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU91",
         "place_code": "RU44",
@@ -9132,7 +9132,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU96",
         "place_code": "RU45",
@@ -9140,7 +9140,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "including Adygey, formerly SU97",
         "place_code": "RU46",
@@ -9148,7 +9148,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU98",
         "place_code": "RU47",
@@ -9156,7 +9156,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly part of SU93",
         "place_code": "RU48",
@@ -9164,7 +9164,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly part of SU93",
         "place_code": "RU49",
@@ -9172,7 +9172,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly part of SU93",
         "place_code": "RU50",
@@ -9180,7 +9180,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly part of SU93",
         "place_code": "RU51",
@@ -9188,7 +9188,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly part of SU93",
         "place_code": "RU52",
@@ -9196,7 +9196,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU94",
         "place_code": "RU53",
@@ -9204,7 +9204,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "including Ekaterinburg, formerly SI26",
         "place_code": "RU54",
@@ -9212,7 +9212,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI23",
         "place_code": "RU55",
@@ -9220,7 +9220,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI20",
         "place_code": "RU56",
@@ -9228,7 +9228,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU40",
         "place_code": "RU57",
@@ -9236,7 +9236,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SU45",
         "place_code": "RU58",
@@ -9244,7 +9244,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Tyumen' O., formerly SI29",
         "place_code": "RU60",
@@ -9252,7 +9252,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Tyumen' O., formerly SI22",
         "place_code": "RU61",
@@ -9260,7 +9260,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "excluding Yamalo-Nenets & Khanty-Mansi A.O., formerly SI28",
         "place_code": "RU62",
@@ -9268,7 +9268,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI25",
         "place_code": "RU63",
@@ -9276,7 +9276,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI27",
         "place_code": "RU64",
@@ -9284,7 +9284,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI24",
         "place_code": "RU65",
@@ -9292,7 +9292,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI21",
         "place_code": "RU66",
@@ -9300,7 +9300,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "including Gorno-Altaysk, formerly SI05 & SI02",
         "place_code": "RU67",
@@ -9308,7 +9308,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Taymyr O., formerly SI35",
         "place_code": "RU68",
@@ -9316,7 +9316,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Krasnoyarsk, excluding Severnaya Zemlya Islands, formerly SI36",
         "place_code": "RU69",
@@ -9324,7 +9324,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Krasnoyarsk, formerly SI30",
         "place_code": "RU70",
@@ -9332,7 +9332,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "excluding Severnaya Zemlya & Taymyr, Evenkiy, Khakassia A.O., formerly SI33",
         "place_code": "RU71",
@@ -9340,7 +9340,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Krasnoyarsk, formerly SI32",
         "place_code": "RU72",
@@ -9348,7 +9348,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI37",
         "place_code": "RU73",
@@ -9356,7 +9356,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI31",
         "place_code": "RU74",
@@ -9364,7 +9364,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI41",
         "place_code": "RU75",
@@ -9372,7 +9372,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI42",
         "place_code": "RU76",
@@ -9380,7 +9380,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Yakutia-Sakha, formerly SI34",
         "place_code": "RU77",
@@ -9388,7 +9388,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI38 & SI39",
         "place_code": "RU78",
@@ -9396,7 +9396,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Chukotka, formerly SI43",
         "place_code": "RU79",
@@ -9404,7 +9404,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "excluding Wrangel Island, formerly SI43",
         "place_code": "RU80",
@@ -9412,7 +9412,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI47",
         "place_code": "RU81",
@@ -9420,7 +9420,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "including Komandorskiye Islands, formerly SI44",
         "place_code": "RU82",
@@ -9428,7 +9428,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "including Blagoveshchensk city, formerly SI40",
         "place_code": "RU83",
@@ -9436,7 +9436,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI45",
         "place_code": "RU84",
@@ -9444,7 +9444,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "formerly SI49",
         "place_code": "RU85",
@@ -9452,7 +9452,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "excluding Kuril islands, formerly SI48",
         "place_code": "RU86",
@@ -9460,7 +9460,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "part of Sakhalin O., formerly SI46",
         "place_code": "RU87",
@@ -9468,7 +9468,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU74 to RU76",
         "place_code": "RUBS",
@@ -9476,7 +9476,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU35 to RU41",
         "place_code": "RUCB",
@@ -9484,7 +9484,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU12 to RU22",
         "place_code": "RUCE",
@@ -9492,7 +9492,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU68 to RU73",
         "place_code": "RUCS",
@@ -9500,7 +9500,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU83 to RU87",
         "place_code": "RUFE",
@@ -9508,7 +9508,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU26 to RU34",
         "place_code": "RUMV",
@@ -9516,7 +9516,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU46 to RU53",
         "place_code": "RUNC",
@@ -9524,7 +9524,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU79 to RU82",
         "place_code": "RUNE",
@@ -9532,7 +9532,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU07 to RU11",
         "place_code": "RUNR",
@@ -9540,7 +9540,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU01 to RU06",
         "place_code": "RUNW",
@@ -9548,7 +9548,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU65 to RU67",
         "place_code": "RUSS",
@@ -9556,7 +9556,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU54 to RU58",
         "place_code": "RUSU",
@@ -9564,7 +9564,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU42 to RU45",
         "place_code": "RUVD",
@@ -9572,7 +9572,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU23 to RU25",
         "place_code": "RUVV",
@@ -9580,7 +9580,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU60 to RU64",
         "place_code": "RUWS",
@@ -9588,16 +9588,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Russian Federation",
+        "country": "Russian Federation",
         "is_current": True,
         "notes": "Districts RU77 to RU78",
         "place_code": "RUYS",
         "region": "Yakutia",
         "updated": "2008-06-16",
     },
-    {"code": "Rwanda", "is_current": True, "notes": "", "place_code": "PP00", "region": "", "updated": "2008-06-16"},
+    {"country": "Rwanda", "is_current": True, "notes": "", "place_code": "PP00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "San Marino",
+        "country": "San Marino",
         "is_current": True,
         "notes": "",
         "place_code": "ZA33",
@@ -9605,16 +9605,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Saudi Arabia",
+        "country": "Saudi Arabia",
         "is_current": True,
         "notes": "",
         "place_code": "AR00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Senegal", "is_current": True, "notes": "", "place_code": "NU00", "region": "", "updated": "2008-06-16"},
+    {"country": "Senegal", "is_current": True, "notes": "", "place_code": "NU00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Seychelles",
+        "country": "Seychelles",
         "is_current": True,
         "notes": "",
         "place_code": "SC00",
@@ -9622,18 +9622,18 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sierra Leone",
+        "country": "Sierra Leone",
         "is_current": True,
         "notes": "",
         "place_code": "PH00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Sikkim", "is_current": True, "notes": "", "place_code": "QJ00", "region": "", "updated": "2008-06-16"},
-    {"code": "Singapore", "is_current": True, "notes": "", "place_code": "FVSA", "region": "", "updated": "2008-06-16"},
-    {"code": "Slovakia", "is_current": True, "notes": "", "place_code": "SK--", "region": "", "updated": "2008-06-16"},
+    {"country": "Sikkim", "is_current": True, "notes": "", "place_code": "QJ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Singapore", "is_current": True, "notes": "", "place_code": "FVSA", "region": "", "updated": "2008-06-16"},
+    {"country": "Slovakia", "is_current": True, "notes": "", "place_code": "SK--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": False,
         "notes": "Valid until 2002; formerly CS20",
         "place_code": "SK20",
@@ -9641,7 +9641,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": False,
         "notes": "Valid until 2002; formerly CS21",
         "place_code": "SK21",
@@ -9649,7 +9649,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": False,
         "notes": "Valid until 2002; formerly CS24",
         "place_code": "SK24",
@@ -9657,7 +9657,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": False,
         "notes": "Valid until 2002; formerly CS25",
         "place_code": "SK25",
@@ -9665,7 +9665,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": False,
         "notes": "Valid until 2002; formerly CS28",
         "place_code": "SK28",
@@ -9673,7 +9673,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": False,
         "notes": "Valid until 2002; formerly CS29",
         "place_code": "SK29",
@@ -9681,7 +9681,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKBA",
@@ -9689,7 +9689,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKBB",
@@ -9697,7 +9697,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKBJ",
@@ -9705,7 +9705,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKBN",
@@ -9713,7 +9713,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKBR",
@@ -9721,7 +9721,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKBS",
@@ -9729,7 +9729,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKBY",
@@ -9737,7 +9737,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKCA",
@@ -9745,7 +9745,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKDK",
@@ -9753,7 +9753,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKDS",
@@ -9761,7 +9761,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKDT",
@@ -9769,7 +9769,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKGA",
@@ -9777,7 +9777,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKGL",
@@ -9785,7 +9785,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKHC",
@@ -9793,7 +9793,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKHE",
@@ -9801,7 +9801,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKIL",
@@ -9809,7 +9809,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKKA",
@@ -9817,7 +9817,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKKE",
@@ -9825,7 +9825,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKKK",
@@ -9833,7 +9833,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKKM",
@@ -9841,7 +9841,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKKN",
@@ -9849,7 +9849,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKKS",
@@ -9857,7 +9857,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKLC",
@@ -9865,7 +9865,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKLE",
@@ -9873,7 +9873,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKLM",
@@ -9881,7 +9881,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKLV",
@@ -9889,7 +9889,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKMA",
@@ -9897,7 +9897,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKMI",
@@ -9905,7 +9905,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKML",
@@ -9913,7 +9913,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKMT",
@@ -9921,7 +9921,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKMY",
@@ -9929,7 +9929,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKNM",
@@ -9937,7 +9937,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKNO",
@@ -9945,7 +9945,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKNR",
@@ -9953,7 +9953,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKNZ",
@@ -9961,7 +9961,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPB",
@@ -9969,7 +9969,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPD",
@@ -9977,7 +9977,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPE",
@@ -9985,7 +9985,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPI",
@@ -9993,7 +9993,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPK",
@@ -10001,7 +10001,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPO",
@@ -10009,7 +10009,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPP",
@@ -10017,7 +10017,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPT",
@@ -10025,7 +10025,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKPU",
@@ -10033,7 +10033,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKRA",
@@ -10041,7 +10041,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKRK",
@@ -10049,7 +10049,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKRS",
@@ -10057,7 +10057,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKRV",
@@ -10065,7 +10065,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSA",
@@ -10073,7 +10073,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSB",
@@ -10081,7 +10081,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSC",
@@ -10089,7 +10089,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSE",
@@ -10097,7 +10097,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSI",
@@ -10105,7 +10105,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSK",
@@ -10113,7 +10113,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSL",
@@ -10121,7 +10121,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSN",
@@ -10129,7 +10129,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSO",
@@ -10137,7 +10137,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSP",
@@ -10145,7 +10145,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKSV",
@@ -10153,7 +10153,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKTN",
@@ -10161,7 +10161,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKTO",
@@ -10169,7 +10169,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKTR",
@@ -10177,7 +10177,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKTS",
@@ -10185,7 +10185,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKTT",
@@ -10193,7 +10193,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKTV",
@@ -10201,7 +10201,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKVK",
@@ -10209,7 +10209,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKVT",
@@ -10217,7 +10217,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKZA",
@@ -10225,7 +10225,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKZC",
@@ -10233,7 +10233,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKZH",
@@ -10241,7 +10241,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKZM",
@@ -10249,17 +10249,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Slovakia",
+        "country": "Slovakia",
         "is_current": True,
         "notes": "",
         "place_code": "SKZV",
         "region": "Zvolen",
         "updated": "2008-06-16",
     },
-    {"code": "Slovenia", "is_current": True, "notes": "", "place_code": "SL00", "region": "", "updated": "2008-06-16"},
-    {"code": "Somalia", "is_current": True, "notes": "", "place_code": "YS00", "region": "", "updated": "2008-06-16"},
+    {"country": "Slovenia", "is_current": True, "notes": "", "place_code": "SL00", "region": "", "updated": "2008-06-16"},
+    {"country": "Somalia", "is_current": True, "notes": "", "place_code": "YS00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "South Africa",
+        "country": "South Africa",
         "is_current": True,
         "notes": "",
         "place_code": "FP--",
@@ -10267,7 +10267,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "South Africa",
+        "country": "South Africa",
         "is_current": True,
         "notes": "",
         "place_code": "FPCG",
@@ -10275,7 +10275,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "South Africa",
+        "country": "South Africa",
         "is_current": True,
         "notes": "",
         "place_code": "FPNA",
@@ -10283,7 +10283,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "South Africa",
+        "country": "South Africa",
         "is_current": True,
         "notes": "",
         "place_code": "FPOF",
@@ -10291,7 +10291,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "South Africa",
+        "country": "South Africa",
         "is_current": True,
         "notes": "",
         "place_code": "FPTV",
@@ -10299,7 +10299,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "South Korea",
+        "country": "South Korea",
         "is_current": True,
         "notes": "",
         "place_code": "TX00",
@@ -10307,7 +10307,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU--",
         "place_code": "SI--",
@@ -10315,7 +10315,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "excluding Gorno-Altaysk, now RU67",
         "place_code": "SI02",
@@ -10323,7 +10323,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU67",
         "place_code": "SI05",
@@ -10331,7 +10331,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU56",
         "place_code": "SI20",
@@ -10339,7 +10339,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU66",
         "place_code": "SI21",
@@ -10347,7 +10347,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU61",
         "place_code": "SI22",
@@ -10355,7 +10355,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU55",
         "place_code": "SI23",
@@ -10363,7 +10363,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU65",
         "place_code": "SI24",
@@ -10371,7 +10371,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU63",
         "place_code": "SI25",
@@ -10379,7 +10379,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "including Ekaterinburg, now RU54",
         "place_code": "SI26",
@@ -10387,7 +10387,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU64",
         "place_code": "SI27",
@@ -10395,7 +10395,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "excluding Yamal-Nenets & Khanty-Mansi A.O., now RU62",
         "place_code": "SI28",
@@ -10403,7 +10403,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU60",
         "place_code": "SI29",
@@ -10411,7 +10411,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU70",
         "place_code": "SI30",
@@ -10419,7 +10419,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU74",
         "place_code": "SI31",
@@ -10427,7 +10427,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU72",
         "place_code": "SI32",
@@ -10435,7 +10435,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU71",
         "place_code": "SI33",
@@ -10443,7 +10443,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU77",
         "place_code": "SI34",
@@ -10451,7 +10451,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU68",
         "place_code": "SI35",
@@ -10459,7 +10459,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU69",
         "place_code": "SI36",
@@ -10467,7 +10467,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU73",
         "place_code": "SI37",
@@ -10475,7 +10475,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "east of 135°E, now RU78",
         "place_code": "SI38",
@@ -10483,7 +10483,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "west of 135°E, now RU78",
         "place_code": "SI39",
@@ -10491,7 +10491,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU83",
         "place_code": "SI40",
@@ -10499,7 +10499,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU75",
         "place_code": "SI41",
@@ -10507,7 +10507,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU76",
         "place_code": "SI42",
@@ -10515,7 +10515,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "including Wrangel island, now RU79 or RURU80",
         "place_code": "SI43",
@@ -10523,7 +10523,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU82",
         "place_code": "SI44",
@@ -10531,7 +10531,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU84",
         "place_code": "SI45",
@@ -10539,7 +10539,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU87",
         "place_code": "SI46",
@@ -10547,7 +10547,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU81",
         "place_code": "SI47",
@@ -10555,7 +10555,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU86",
         "place_code": "SI48",
@@ -10563,7 +10563,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU85",
         "place_code": "SI49",
@@ -10571,7 +10571,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UZ05",
         "place_code": "SI52",
@@ -10579,7 +10579,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UZ--",
         "place_code": "SI57",
@@ -10587,7 +10587,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU--",
         "place_code": "SU--",
@@ -10595,7 +10595,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU04",
         "place_code": "SU01",
@@ -10603,7 +10603,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU03",
         "place_code": "SU03",
@@ -10611,7 +10611,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU06",
         "place_code": "SU05",
@@ -10619,7 +10619,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU05",
         "place_code": "SU06",
@@ -10627,7 +10627,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU07",
         "place_code": "SU10",
@@ -10635,7 +10635,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU10",
         "place_code": "SU11",
@@ -10643,7 +10643,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU02",
         "place_code": "SU12",
@@ -10651,7 +10651,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU09",
         "place_code": "SU13",
@@ -10659,7 +10659,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU01",
         "place_code": "SU14",
@@ -10667,7 +10667,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU08",
         "place_code": "SU15",
@@ -10675,7 +10675,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU11",
         "place_code": "SU16",
@@ -10683,7 +10683,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU12",
         "place_code": "SU17",
@@ -10691,7 +10691,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU35",
         "place_code": "SU21",
@@ -10699,7 +10699,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU20",
         "place_code": "SU24",
@@ -10707,7 +10707,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU19",
         "place_code": "SU27",
@@ -10715,7 +10715,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU26",
         "place_code": "SU30",
@@ -10723,7 +10723,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU16",
         "place_code": "SU31",
@@ -10731,7 +10731,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU14",
         "place_code": "SU32",
@@ -10739,7 +10739,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU15",
         "place_code": "SU33",
@@ -10747,7 +10747,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU29",
         "place_code": "SU34",
@@ -10755,7 +10755,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU17",
         "place_code": "SU35",
@@ -10763,7 +10763,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU22",
         "place_code": "SU36",
@@ -10771,7 +10771,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU21",
         "place_code": "SU37",
@@ -10779,7 +10779,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU18",
         "place_code": "SU38",
@@ -10787,7 +10787,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU13",
         "place_code": "SU39",
@@ -10795,7 +10795,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU57",
         "place_code": "SU40",
@@ -10803,7 +10803,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU28",
         "place_code": "SU41",
@@ -10811,7 +10811,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU23",
         "place_code": "SU42",
@@ -10819,7 +10819,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU33",
         "place_code": "SU43",
@@ -10827,7 +10827,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU27",
         "place_code": "SU44",
@@ -10835,7 +10835,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU58",
         "place_code": "SU45",
@@ -10843,7 +10843,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU24",
         "place_code": "SU46",
@@ -10851,7 +10851,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU30",
         "place_code": "SU47",
@@ -10859,7 +10859,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU25",
         "place_code": "SU48",
@@ -10867,7 +10867,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU31",
         "place_code": "SU49",
@@ -10875,7 +10875,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK--",
         "place_code": "SU5-",
@@ -10883,7 +10883,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK50",
         "place_code": "SU50",
@@ -10891,7 +10891,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK51",
         "place_code": "SU51",
@@ -10899,7 +10899,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK52",
         "place_code": "SU52",
@@ -10907,7 +10907,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK53",
         "place_code": "SU53",
@@ -10915,7 +10915,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK54",
         "place_code": "SU54",
@@ -10923,7 +10923,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK55",
         "place_code": "SU55",
@@ -10931,7 +10931,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK56",
         "place_code": "SU56",
@@ -10939,7 +10939,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK57",
         "place_code": "SU57",
@@ -10947,7 +10947,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK58",
         "place_code": "SU58",
@@ -10955,7 +10955,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK59",
         "place_code": "SU59",
@@ -10963,7 +10963,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK60",
         "place_code": "SU60",
@@ -10971,7 +10971,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK61",
         "place_code": "SU61",
@@ -10979,7 +10979,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK62",
         "place_code": "SU62",
@@ -10987,7 +10987,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK63",
         "place_code": "SU63",
@@ -10995,7 +10995,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK65",
         "place_code": "SU65",
@@ -11003,7 +11003,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK66",
         "place_code": "SU66",
@@ -11011,7 +11011,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK67",
         "place_code": "SU67",
@@ -11019,7 +11019,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK68",
         "place_code": "SU68",
@@ -11027,7 +11027,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK69",
         "place_code": "SU69",
@@ -11035,7 +11035,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK70",
         "place_code": "SU70",
@@ -11043,7 +11043,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK71",
         "place_code": "SU71",
@@ -11051,7 +11051,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK72",
         "place_code": "SU72",
@@ -11059,7 +11059,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK73",
         "place_code": "SU73",
@@ -11067,7 +11067,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK74",
         "place_code": "SU74",
@@ -11075,7 +11075,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now UK75",
         "place_code": "SU75",
@@ -11083,7 +11083,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU41",
         "place_code": "SU80",
@@ -11091,7 +11091,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU37",
         "place_code": "SU81",
@@ -11099,7 +11099,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU38",
         "place_code": "SU82",
@@ -11107,7 +11107,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU36",
         "place_code": "SU83",
@@ -11115,7 +11115,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU32",
         "place_code": "SU84",
@@ -11123,7 +11123,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU43",
         "place_code": "SU85",
@@ -11131,7 +11131,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU34",
         "place_code": "SU86",
@@ -11139,7 +11139,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU39",
         "place_code": "SU87",
@@ -11147,7 +11147,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU42",
         "place_code": "SU88",
@@ -11155,7 +11155,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU40",
         "place_code": "SU89",
@@ -11163,7 +11163,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU44",
         "place_code": "SU91",
@@ -11171,7 +11171,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU48",
         "place_code": "SU93",
@@ -11179,7 +11179,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU49",
         "place_code": "SU93",
@@ -11187,7 +11187,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU50",
         "place_code": "SU93",
@@ -11195,7 +11195,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU51 or RU52",
         "place_code": "SU93",
@@ -11203,7 +11203,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU53",
         "place_code": "SU94",
@@ -11211,7 +11211,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU45",
         "place_code": "SU96",
@@ -11219,7 +11219,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "including Adygey, now RU46",
         "place_code": "SU97",
@@ -11227,16 +11227,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Soviet Union",
+        "country": "Soviet Union",
         "is_current": False,
         "notes": "now RU47",
         "place_code": "SU98",
         "region": "Stavropol' O.",
         "updated": "2008-06-16",
     },
-    {"code": "Spain", "is_current": True, "notes": "", "place_code": "ES--", "region": "", "updated": "2008-06-16"},
+    {"country": "Spain", "is_current": True, "notes": "", "place_code": "ES--", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES0-",
@@ -11244,7 +11244,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES00",
@@ -11252,7 +11252,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES01",
@@ -11260,16 +11260,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES02",
         "region": "Guipúzcoa",
         "updated": "2008-06-16",
     },
-    {"code": "Spain", "is_current": True, "notes": "", "place_code": "ES03", "region": "Lugo", "updated": "2008-06-16"},
+    {"country": "Spain", "is_current": True, "notes": "", "place_code": "ES03", "region": "Lugo", "updated": "2008-06-16"},
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES04",
@@ -11277,7 +11277,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "Oviedo",
         "place_code": "ES05",
@@ -11285,7 +11285,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES06",
@@ -11293,7 +11293,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": False,
         "notes": "now named Cantabria",
         "place_code": "ES07",
@@ -11301,7 +11301,7 @@ TABLE = [
         "updated": "2013-07-25",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "formerly called Santander",
         "place_code": "ES07",
@@ -11309,7 +11309,7 @@ TABLE = [
         "updated": "2013-07-25",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES08",
@@ -11317,7 +11317,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES1-",
@@ -11325,7 +11325,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES10",
@@ -11333,16 +11333,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES11",
         "region": "Burgos",
         "updated": "2008-06-16",
     },
-    {"code": "Spain", "is_current": True, "notes": "", "place_code": "ES12", "region": "León", "updated": "2008-06-16"},
+    {"country": "Spain", "is_current": True, "notes": "", "place_code": "ES12", "region": "León", "updated": "2008-06-16"},
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES13",
@@ -11350,7 +11350,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES14",
@@ -11358,7 +11358,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES15",
@@ -11366,7 +11366,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES16",
@@ -11374,7 +11374,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES17",
@@ -11382,7 +11382,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES18",
@@ -11390,7 +11390,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES19",
@@ -11398,7 +11398,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES2-",
@@ -11406,7 +11406,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES20",
@@ -11414,7 +11414,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES21",
@@ -11422,7 +11422,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES22",
@@ -11430,7 +11430,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES23",
@@ -11438,7 +11438,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES24",
@@ -11446,7 +11446,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES25",
@@ -11454,7 +11454,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES26",
@@ -11462,7 +11462,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES3-",
@@ -11470,7 +11470,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES30",
@@ -11478,7 +11478,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES31",
@@ -11486,7 +11486,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES32",
@@ -11494,7 +11494,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES33",
@@ -11502,7 +11502,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES4-",
@@ -11510,7 +11510,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES40",
@@ -11518,7 +11518,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES41",
@@ -11526,7 +11526,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES42",
@@ -11534,7 +11534,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES43",
@@ -11542,7 +11542,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES44",
@@ -11550,7 +11550,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES5-",
@@ -11558,7 +11558,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES50",
@@ -11566,7 +11566,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES51",
@@ -11574,7 +11574,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES52",
@@ -11582,7 +11582,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES53",
@@ -11590,7 +11590,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES54",
@@ -11598,7 +11598,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES6-",
@@ -11606,7 +11606,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES60",
@@ -11614,7 +11614,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES61",
@@ -11622,7 +11622,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES62",
@@ -11630,16 +11630,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES63",
         "region": "Huelva",
         "updated": "2008-06-16",
     },
-    {"code": "Spain", "is_current": True, "notes": "", "place_code": "ES64", "region": "Jaén", "updated": "2008-06-16"},
+    {"country": "Spain", "is_current": True, "notes": "", "place_code": "ES64", "region": "Jaén", "updated": "2008-06-16"},
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES65",
@@ -11647,7 +11647,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES66",
@@ -11655,7 +11655,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES7-",
@@ -11663,7 +11663,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "Ibiza; including Formentera",
         "place_code": "ES70",
@@ -11671,7 +11671,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "including Cabrera",
         "place_code": "ES71",
@@ -11679,7 +11679,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES72",
@@ -11687,7 +11687,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "formerly +HCN; Canary Islands",
         "place_code": "ES8-",
@@ -11695,7 +11695,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES80",
@@ -11703,7 +11703,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES81",
@@ -11711,7 +11711,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES82",
@@ -11719,7 +11719,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES83",
@@ -11727,7 +11727,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES84",
@@ -11735,7 +11735,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES85",
@@ -11743,28 +11743,28 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Spain",
+        "country": "Spain",
         "is_current": True,
         "notes": "",
         "place_code": "ES86",
         "region": "Isla de Lanzarote",
         "updated": "2008-06-16",
     },
-    {"code": "Sri Lanka", "is_current": True, "notes": "", "place_code": "ZE00", "region": "", "updated": "2008-06-16"},
-    {"code": "Sudan", "is_current": True, "notes": "", "place_code": "SS00", "region": "", "updated": "2008-06-16"},
-    {"code": "Suqutrá", "is_current": True, "notes": "", "place_code": "YB00", "region": "", "updated": "2008-06-16"},
-    {"code": "Suriname", "is_current": True, "notes": "", "place_code": "SR00", "region": "", "updated": "2008-06-16"},
+    {"country": "Sri Lanka", "is_current": True, "notes": "", "place_code": "ZE00", "region": "", "updated": "2008-06-16"},
+    {"country": "Sudan", "is_current": True, "notes": "", "place_code": "SS00", "region": "", "updated": "2008-06-16"},
+    {"country": "Suqutrá", "is_current": True, "notes": "", "place_code": "YB00", "region": "", "updated": "2008-06-16"},
+    {"country": "Suriname", "is_current": True, "notes": "", "place_code": "SR00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Svalbard",
+        "country": "Svalbard",
         "is_current": True,
         "notes": "Spitsbergen",
         "place_code": "+ASV",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Swaziland", "is_current": True, "notes": "", "place_code": "WP00", "region": "", "updated": "2008-06-16"},
+    {"country": "Swaziland", "is_current": True, "notes": "", "place_code": "WP00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV40",
@@ -11772,7 +11772,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV41",
@@ -11780,7 +11780,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV42",
@@ -11788,7 +11788,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV43",
@@ -11796,7 +11796,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV44",
@@ -11804,7 +11804,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV45",
@@ -11812,7 +11812,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV46",
@@ -11820,7 +11820,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV47",
@@ -11828,7 +11828,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV48",
@@ -11836,7 +11836,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV49",
@@ -11844,7 +11844,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV50",
@@ -11852,7 +11852,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV51",
@@ -11860,7 +11860,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV52",
@@ -11868,7 +11868,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV53",
@@ -11876,7 +11876,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV54",
@@ -11884,7 +11884,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV55",
@@ -11892,7 +11892,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV56",
@@ -11900,7 +11900,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "including Stockholm city",
         "place_code": "SV57",
@@ -11908,7 +11908,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV58",
@@ -11916,7 +11916,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV59",
@@ -11924,7 +11924,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV60",
@@ -11932,7 +11932,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV61",
@@ -11940,7 +11940,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV62",
@@ -11948,7 +11948,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV63",
@@ -11956,7 +11956,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV64",
@@ -11964,7 +11964,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV70",
@@ -11972,7 +11972,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Sweden",
+        "country": "Sweden",
         "is_current": True,
         "notes": "",
         "place_code": "SV71",
@@ -11980,7 +11980,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "",
         "place_code": "HE--",
@@ -11988,7 +11988,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEAG and HELU",
         "place_code": "HE90",
@@ -11996,7 +11996,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEAI, HEAR, HESG and HESO",
         "place_code": "HE91",
@@ -12004,7 +12004,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEBL, HEBS & HESO",
         "place_code": "HE92",
@@ -12012,7 +12012,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEBE",
         "place_code": "HE93",
@@ -12020,7 +12020,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEFR, HEGE, HENE & HEVD",
         "place_code": "HE94",
@@ -12028,7 +12028,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEGL, HESZ, HENW, HEOW, HEUR, HEZG",
         "place_code": "HE95",
@@ -12036,7 +12036,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEGR",
         "place_code": "HE96",
@@ -12044,7 +12044,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HESH & HEZH",
         "place_code": "HE97",
@@ -12052,7 +12052,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HETI",
         "place_code": "HE98",
@@ -12060,7 +12060,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": False,
         "notes": "now HEVS",
         "place_code": "HE99",
@@ -12068,7 +12068,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE90",
         "place_code": "HEAG",
@@ -12076,7 +12076,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "part of Appenzell; formerly part of HE91",
         "place_code": "HEAI",
@@ -12084,7 +12084,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "part of Appenzell; formerly part of HE91",
         "place_code": "HEAR",
@@ -12092,7 +12092,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly HE93",
         "place_code": "HEBE",
@@ -12100,7 +12100,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "part of Basel; formerly part of HE92",
         "place_code": "HEBL",
@@ -12108,7 +12108,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "part of Basel; formerly part of HE92",
         "place_code": "HEBS",
@@ -12116,7 +12116,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE94",
         "place_code": "HEFR",
@@ -12124,7 +12124,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE94",
         "place_code": "HEGE",
@@ -12132,7 +12132,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE95",
         "place_code": "HEGL",
@@ -12140,7 +12140,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly HE96",
         "place_code": "HEGR",
@@ -12148,7 +12148,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "",
         "place_code": "HEJU",
@@ -12156,7 +12156,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE90",
         "place_code": "HELU",
@@ -12164,7 +12164,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE94",
         "place_code": "HENE",
@@ -12172,7 +12172,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "part of Unterwalden; formerly part of HE95",
         "place_code": "HENW",
@@ -12180,7 +12180,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "part of Unterwalden; formerly part of HE95",
         "place_code": "HEOW",
@@ -12188,7 +12188,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE91",
         "place_code": "HESG",
@@ -12196,7 +12196,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE97",
         "place_code": "HESH",
@@ -12204,7 +12204,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE92",
         "place_code": "HESO",
@@ -12212,7 +12212,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE95",
         "place_code": "HESZ",
@@ -12220,7 +12220,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE91",
         "place_code": "HETG",
@@ -12228,7 +12228,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly HE98",
         "place_code": "HETI",
@@ -12236,7 +12236,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE95",
         "place_code": "HEUR",
@@ -12244,7 +12244,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE94",
         "place_code": "HEVD",
@@ -12252,7 +12252,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly HE99",
         "place_code": "HEVS",
@@ -12260,7 +12260,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE95",
         "place_code": "HEZG",
@@ -12268,17 +12268,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Switzerland",
+        "country": "Switzerland",
         "is_current": True,
         "notes": "formerly part of HE97",
         "place_code": "HEZH",
         "region": "Zürich",
         "updated": "2008-06-16",
     },
-    {"code": "Syria", "is_current": True, "notes": "", "place_code": "SY00", "region": "", "updated": "2008-06-16"},
-    {"code": "Taiwan", "is_current": True, "notes": "", "place_code": "CX00", "region": "", "updated": "2008-06-16"},
+    {"country": "Syria", "is_current": True, "notes": "", "place_code": "SY00", "region": "", "updated": "2008-06-16"},
+    {"country": "Taiwan", "is_current": True, "notes": "", "place_code": "CX00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Tajikistan",
+        "country": "Tajikistan",
         "is_current": False,
         "notes": "now called Sogdi, TD04",
         "place_code": "SI55",
@@ -12286,7 +12286,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Tajikistan",
+        "country": "Tajikistan",
         "is_current": True,
         "notes": "formerly part of SI55",
         "place_code": "TD--",
@@ -12294,7 +12294,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Tajikistan",
+        "country": "Tajikistan",
         "is_current": True,
         "notes": "formerly part of SI55",
         "place_code": "TD01",
@@ -12302,7 +12302,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Tajikistan",
+        "country": "Tajikistan",
         "is_current": True,
         "notes": "formerly part of SI55",
         "place_code": "TD02",
@@ -12310,7 +12310,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Tajikistan",
+        "country": "Tajikistan",
         "is_current": True,
         "notes": "formerly part of SI55",
         "place_code": "TD03",
@@ -12318,17 +12318,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Tajikistan",
+        "country": "Tajikistan",
         "is_current": True,
         "notes": "formerly part of SI55, Leninabad",
         "place_code": "TD04",
         "region": "Sogdi Oblast",
         "updated": "2008-06-16",
     },
-    {"code": "Tanzania", "is_current": True, "notes": "", "place_code": "HT00", "region": "", "updated": "2008-06-16"},
-    {"code": "Thailand", "is_current": True, "notes": "", "place_code": "FNTA", "region": "", "updated": "2008-06-16"},
+    {"country": "Tanzania", "is_current": True, "notes": "", "place_code": "HT00", "region": "", "updated": "2008-06-16"},
+    {"country": "Thailand", "is_current": True, "notes": "", "place_code": "FNTA", "region": "", "updated": "2008-06-16"},
     {
-        "code": "The Gambia",
+        "country": "The Gambia",
         "is_current": True,
         "notes": "",
         "place_code": "VM00",
@@ -12336,7 +12336,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL--",
@@ -12344,7 +12344,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL00",
@@ -12352,7 +12352,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL01",
@@ -12360,7 +12360,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL02",
@@ -12368,7 +12368,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL03",
@@ -12376,7 +12376,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL04",
@@ -12384,7 +12384,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL05",
@@ -12392,7 +12392,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL06",
@@ -12400,7 +12400,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL07",
@@ -12408,7 +12408,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL08",
@@ -12416,7 +12416,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL09",
@@ -12424,7 +12424,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL11",
@@ -12432,7 +12432,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL12",
@@ -12440,7 +12440,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL13",
@@ -12448,7 +12448,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL14",
@@ -12456,7 +12456,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL15",
@@ -12464,7 +12464,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL16",
@@ -12472,7 +12472,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "including Urk & Schokl.",
         "place_code": "NL17",
@@ -12480,7 +12480,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL18",
@@ -12488,19 +12488,19 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "The Netherlands",
+        "country": "The Netherlands",
         "is_current": True,
         "notes": "",
         "place_code": "NL19",
         "region": "Zuid-Holland",
         "updated": "2008-06-16",
     },
-    {"code": "Tibet", "is_current": True, "notes": "", "place_code": "HA00", "region": "", "updated": "2008-06-16"},
-    {"code": "Togo", "is_current": True, "notes": "", "place_code": "XH00", "region": "", "updated": "2008-06-16"},
-    {"code": "Tunisia", "is_current": True, "notes": "", "place_code": "TO00", "region": "", "updated": "2008-06-16"},
-    {"code": "Turkey", "is_current": True, "notes": "", "place_code": "TU00", "region": "", "updated": "2008-06-16"},
+    {"country": "Tibet", "is_current": True, "notes": "", "place_code": "HA00", "region": "", "updated": "2008-06-16"},
+    {"country": "Togo", "is_current": True, "notes": "", "place_code": "XH00", "region": "", "updated": "2008-06-16"},
+    {"country": "Tunisia", "is_current": True, "notes": "", "place_code": "TO00", "region": "", "updated": "2008-06-16"},
+    {"country": "Turkey", "is_current": True, "notes": "", "place_code": "TU00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Turkmenistan",
+        "country": "Turkmenistan",
         "is_current": True,
         "notes": "formerly SI50, SI51, SI54 & SI56",
         "place_code": "TM--",
@@ -12508,7 +12508,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Turkmenistan",
+        "country": "Turkmenistan",
         "is_current": True,
         "notes": "",
         "place_code": "TM01",
@@ -12516,7 +12516,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Turkmenistan",
+        "country": "Turkmenistan",
         "is_current": True,
         "notes": "formerly SI56",
         "place_code": "TM02",
@@ -12524,7 +12524,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Turkmenistan",
+        "country": "Turkmenistan",
         "is_current": True,
         "notes": "formerly SI50",
         "place_code": "TM03",
@@ -12532,7 +12532,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Turkmenistan",
+        "country": "Turkmenistan",
         "is_current": True,
         "notes": "",
         "place_code": "TM04",
@@ -12540,16 +12540,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Turkmenistan",
+        "country": "Turkmenistan",
         "is_current": True,
         "notes": "formerly SI54",
         "place_code": "TM05",
         "region": "Mary Velayat",
         "updated": "2008-06-16",
     },
-    {"code": "Uganda", "is_current": True, "notes": "", "place_code": "GG00", "region": "", "updated": "2008-06-16"},
+    {"country": "Uganda", "is_current": True, "notes": "", "place_code": "GG00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU5-",
         "place_code": "UK--",
@@ -12557,7 +12557,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU50",
         "place_code": "UK50",
@@ -12565,7 +12565,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU51",
         "place_code": "UK51",
@@ -12573,7 +12573,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU52",
         "place_code": "UK52",
@@ -12581,7 +12581,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU53",
         "place_code": "UK53",
@@ -12589,7 +12589,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU54",
         "place_code": "UK54",
@@ -12597,7 +12597,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU55",
         "place_code": "UK55",
@@ -12605,7 +12605,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU56",
         "place_code": "UK56",
@@ -12613,7 +12613,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU57",
         "place_code": "UK57",
@@ -12621,7 +12621,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU58",
         "place_code": "UK58",
@@ -12629,7 +12629,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU59",
         "place_code": "UK59",
@@ -12637,7 +12637,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU60",
         "place_code": "UK60",
@@ -12645,7 +12645,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU61",
         "place_code": "UK61",
@@ -12653,7 +12653,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU62",
         "place_code": "UK62",
@@ -12661,7 +12661,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU63",
         "place_code": "UK63",
@@ -12669,7 +12669,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU65",
         "place_code": "UK65",
@@ -12677,7 +12677,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU66",
         "place_code": "UK66",
@@ -12685,7 +12685,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU67",
         "place_code": "UK67",
@@ -12693,7 +12693,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU68",
         "place_code": "UK68",
@@ -12701,7 +12701,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU69",
         "place_code": "UK69",
@@ -12709,7 +12709,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU70",
         "place_code": "UK70",
@@ -12717,7 +12717,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU71",
         "place_code": "UK71",
@@ -12725,7 +12725,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU72",
         "place_code": "UK72",
@@ -12733,7 +12733,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU73",
         "place_code": "UK73",
@@ -12741,7 +12741,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU74",
         "place_code": "UK74",
@@ -12749,7 +12749,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Ukraine",
+        "country": "Ukraine",
         "is_current": True,
         "notes": "formerly SU75",
         "place_code": "UK75",
@@ -12757,7 +12757,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Arab Emirates",
+        "country": "United Arab Emirates",
         "is_current": True,
         "notes": "",
         "place_code": "JR00",
@@ -12765,7 +12765,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "",
         "place_code": "GB--",
@@ -12773,7 +12773,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBUD, GBUN & GBUR",
         "place_code": "GB00",
@@ -12781,7 +12781,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBUL, GBUT and parts of Irish Republic",
         "place_code": "GB01",
@@ -12789,7 +12789,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBUF and parts of Irish Republic",
         "place_code": "GB02",
@@ -12797,7 +12797,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBCO",
         "place_code": "GB10",
@@ -12805,7 +12805,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBDV",
         "place_code": "GB11",
@@ -12813,7 +12813,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBDO",
         "place_code": "GB12",
@@ -12821,7 +12821,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBGL",
         "place_code": "GB13",
@@ -12829,7 +12829,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBHA",
         "place_code": "GB14",
@@ -12837,7 +12837,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBGT",
         "place_code": "GB15",
@@ -12845,7 +12845,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBSI",
         "place_code": "GB16",
@@ -12853,7 +12853,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBSO and part of GBAV",
         "place_code": "GB17",
@@ -12861,7 +12861,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBIW",
         "place_code": "GB18",
@@ -12869,7 +12869,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBWT",
         "place_code": "GB19",
@@ -12877,7 +12877,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBBD",
         "place_code": "GB20",
@@ -12885,7 +12885,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBBK and part of GBOX",
         "place_code": "GB21",
@@ -12893,7 +12893,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now almost identical to GBBC",
         "place_code": "GB22",
@@ -12901,7 +12901,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBES",
         "place_code": "GB23",
@@ -12909,7 +12909,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBHT",
         "place_code": "GB24",
@@ -12917,7 +12917,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBKE",
         "place_code": "GB25",
@@ -12925,7 +12925,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBLO",
         "place_code": "GB26",
@@ -12933,7 +12933,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBOX",
         "place_code": "GB27",
@@ -12941,7 +12941,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBSR",
         "place_code": "GB28",
@@ -12949,7 +12949,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBSX",
         "place_code": "GB29",
@@ -12957,7 +12957,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBCA",
         "place_code": "GB30",
@@ -12965,7 +12965,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBCA",
         "place_code": "GB31",
@@ -12973,7 +12973,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes GBLI and part of GBHU",
         "place_code": "GB32",
@@ -12981,7 +12981,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now almost identical to GBNK",
         "place_code": "GB33",
@@ -12989,7 +12989,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBNH",
         "place_code": "GB34",
@@ -12997,7 +12997,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBLE",
         "place_code": "GB35",
@@ -13005,7 +13005,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now almost identical to GBSK",
         "place_code": "GB36",
@@ -13013,7 +13013,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now almost identical to GBDB",
         "place_code": "GB40",
@@ -13021,7 +13021,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBHF",
         "place_code": "GB41",
@@ -13029,7 +13029,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBLE",
         "place_code": "GB42",
@@ -13037,7 +13037,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBNT",
         "place_code": "GB43",
@@ -13045,7 +13045,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBSA, often called Salop",
         "place_code": "GB44",
@@ -13053,7 +13053,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBST and part of GBWM",
         "place_code": "GB45",
@@ -13061,7 +13061,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBWK and part of GBWM",
         "place_code": "GB46",
@@ -13069,7 +13069,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBHF and GBWM",
         "place_code": "GB47",
@@ -13077,7 +13077,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBCH, GBMA and GBME",
         "place_code": "GB50",
@@ -13085,7 +13085,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBCU",
         "place_code": "GB51",
@@ -13093,7 +13093,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBCV, GBDU and GBTY",
         "place_code": "GB52",
@@ -13101,7 +13101,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBIM",
         "place_code": "GB53",
@@ -13109,7 +13109,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBCU",
         "place_code": "GB54",
@@ -13117,7 +13117,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBCH, GBLA, GBMA, GBME",
         "place_code": "GB55",
@@ -13125,7 +13125,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now includes GBNL and part of GBTY",
         "place_code": "GB56",
@@ -13133,7 +13133,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBCU",
         "place_code": "GB57",
@@ -13141,7 +13141,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "parts now in GBCV, GBDU, GBHU, GBNY",
         "place_code": "GB58",
@@ -13149,7 +13149,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "parts now in GBCU, GBLA, GBNY, GBSY & GBWY",
         "place_code": "GB59",
@@ -13157,7 +13157,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBAN",
         "place_code": "GB60",
@@ -13165,7 +13165,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBPO",
         "place_code": "GB61",
@@ -13173,7 +13173,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBCW",
         "place_code": "GB62",
@@ -13181,7 +13181,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBDY",
         "place_code": "GB63",
@@ -13189,7 +13189,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBDY",
         "place_code": "GB64",
@@ -13197,7 +13197,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBCW & GBGD",
         "place_code": "GB65",
@@ -13205,7 +13205,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBGM",
         "place_code": "GB66",
@@ -13213,7 +13213,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBCW & GBGD",
         "place_code": "GB67",
@@ -13221,7 +13221,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBPO",
         "place_code": "GB68",
@@ -13229,7 +13229,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBDY",
         "place_code": "GB69",
@@ -13237,7 +13237,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBDG & GBSC",
         "place_code": "GB70",
@@ -13245,7 +13245,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBBR",
         "place_code": "GB71",
@@ -13253,7 +13253,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBDR",
         "place_code": "GB72",
@@ -13261,7 +13261,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBDR",
         "place_code": "GB73",
@@ -13269,7 +13269,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBSC",
         "place_code": "GB74",
@@ -13277,7 +13277,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBLR part of GBCR",
         "place_code": "GB75",
@@ -13285,7 +13285,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBBR",
         "place_code": "GB76",
@@ -13293,7 +13293,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBSC",
         "place_code": "GB77",
@@ -13301,7 +13301,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBBR",
         "place_code": "GB78",
@@ -13309,7 +13309,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBDR",
         "place_code": "GB79",
@@ -13317,7 +13317,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBGR",
         "place_code": "GB80",
@@ -13325,7 +13325,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBTR",
         "place_code": "GB81",
@@ -13333,7 +13333,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBGR & GBHR",
         "place_code": "GB82",
@@ -13341,7 +13341,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBCR & GBTR",
         "place_code": "GB83",
@@ -13349,7 +13349,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBSC",
         "place_code": "GB84",
@@ -13357,7 +13357,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBFR & GBTR",
         "place_code": "GB85",
@@ -13365,7 +13365,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBGR",
         "place_code": "GB86",
@@ -13373,7 +13373,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBGR & GBHR",
         "place_code": "GB87",
@@ -13381,7 +13381,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBCR & GBTR",
         "place_code": "GB88",
@@ -13389,7 +13389,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBCR & GBSC",
         "place_code": "GB89",
@@ -13397,7 +13397,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now parts of GBHR & GBSC",
         "place_code": "GB90",
@@ -13405,7 +13405,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBSC",
         "place_code": "GB91",
@@ -13413,7 +13413,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBHR",
         "place_code": "GB92",
@@ -13421,7 +13421,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBFI",
         "place_code": "GB93",
@@ -13429,7 +13429,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBHR",
         "place_code": "GB94",
@@ -13437,7 +13437,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBOR",
         "place_code": "GB95",
@@ -13445,7 +13445,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBWI",
         "place_code": "GB96",
@@ -13453,7 +13453,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBHR",
         "place_code": "GB97",
@@ -13461,7 +13461,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now GBSH",
         "place_code": "GB98",
@@ -13469,7 +13469,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "now part of GBHR",
         "place_code": "GB99",
@@ -13477,7 +13477,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGR",
         "place_code": "GBAB",
@@ -13485,7 +13485,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBTR",
         "place_code": "GBAG",
@@ -13493,7 +13493,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB60",
         "place_code": "GBAN",
@@ -13501,7 +13501,7 @@ TABLE = [
         "updated": "2014-12-08",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBAR",
@@ -13509,7 +13509,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGR",
         "place_code": "GBAS",
@@ -13517,7 +13517,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes parts of former counties GB17 & GB13",
         "place_code": "GBAV",
@@ -13525,7 +13525,7 @@ TABLE = [
         "updated": "2014-12-08",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBAY",
@@ -13533,7 +13533,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBAV",
         "place_code": "GBBA",
@@ -13541,7 +13541,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLA",
         "place_code": "GBBB",
@@ -13549,7 +13549,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB22",
         "place_code": "GBBC",
@@ -13557,7 +13557,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB20",
         "place_code": "GBBD",
@@ -13565,7 +13565,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBD",
         "place_code": "GBBE",
@@ -13573,7 +13573,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBK",
         "place_code": "GBBF",
@@ -13581,7 +13581,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGM",
         "place_code": "GBBG",
@@ -13589,7 +13589,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDO",
         "place_code": "GBBH",
@@ -13597,7 +13597,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly part of GB21",
         "place_code": "GBBK",
@@ -13605,7 +13605,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSX",
         "place_code": "GBBN",
@@ -13613,7 +13613,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLA",
         "place_code": "GBBP",
@@ -13621,7 +13621,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes former GB71, GB76 & GB78 and part of GB75",
         "place_code": "GBBR",
@@ -13629,7 +13629,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBAV",
         "place_code": "GBBS",
@@ -13637,7 +13637,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBC",
         "place_code": "GBBU",
@@ -13645,7 +13645,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGT",
         "place_code": "GBBW",
@@ -13653,7 +13653,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former counties GB30 & GB31",
         "place_code": "GBCA",
@@ -13661,7 +13661,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCA",
         "place_code": "GBCB",
@@ -13669,7 +13669,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDY",
         "place_code": "GBCE",
@@ -13677,7 +13677,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGM",
         "place_code": "GBCF",
@@ -13685,7 +13685,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly part of GB50",
         "place_code": "GBCH",
@@ -13693,7 +13693,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCR",
         "place_code": "GBCK",
@@ -13701,7 +13701,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDY",
         "place_code": "GBCM",
@@ -13709,7 +13709,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes parts of former GBGD and GBCW",
         "place_code": "GBCN",
@@ -13717,7 +13717,7 @@ TABLE = [
         "updated": "2015-01-13",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB10",
         "place_code": "GBCO",
@@ -13725,7 +13725,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGT and GBGM",
         "place_code": "GBCP",
@@ -13733,7 +13733,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes parts of former counties GB75, GB83, GB88 & GB89",
         "place_code": "GBCR",
@@ -13741,7 +13741,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCH",
         "place_code": "GBCS",
@@ -13749,7 +13749,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes parts of former counties GB51, GB54, GB57 & GB58",
         "place_code": "GBCU",
@@ -13757,7 +13757,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes parts of former counties GB52 & GB58",
         "place_code": "GBCV",
@@ -13765,7 +13765,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former county GB65 and part of GB67",
         "place_code": "GBCW",
@@ -13773,7 +13773,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB40",
         "place_code": "GBDB",
@@ -13781,7 +13781,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBTR",
         "place_code": "GBDD",
@@ -13789,7 +13789,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDB",
         "place_code": "GBDE",
@@ -13797,7 +13797,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDU",
         "place_code": "GBDH",
@@ -13805,7 +13805,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCW",
         "place_code": "GBDI",
@@ -13813,7 +13813,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDU",
         "place_code": "GBDL",
@@ -13821,7 +13821,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDV",
         "place_code": "GBDN",
@@ -13829,7 +13829,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB12",
         "place_code": "GBDO",
@@ -13837,7 +13837,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes former GB72, GB73 & GB79 and part of GB70",
         "place_code": "GBDR",
@@ -13845,7 +13845,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDB",
         "place_code": "GBDS",
@@ -13853,7 +13853,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDO",
         "place_code": "GBDT",
@@ -13861,7 +13861,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly parts of GB52 and GB58",
         "place_code": "GBDU",
@@ -13869,7 +13869,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB11",
         "place_code": "GBDV",
@@ -13877,7 +13877,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former counties GB63, GB64 & GB69",
         "place_code": "GBDY",
@@ -13885,7 +13885,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "",
         "place_code": "GBE-",
@@ -13893,7 +13893,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBEA",
@@ -13901,7 +13901,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBED",
@@ -13909,7 +13909,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLR",
         "place_code": "GBEH",
@@ -13917,7 +13917,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLR",
         "place_code": "GBEL",
@@ -13925,7 +13925,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBER",
@@ -13933,7 +13933,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB23",
         "place_code": "GBES",
@@ -13941,7 +13941,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBES",
         "place_code": "GBEX",
@@ -13949,7 +13949,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHU",
         "place_code": "GBEY",
@@ -13957,7 +13957,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB93 Now part of GBSH",
         "place_code": "GBFI",
@@ -13965,7 +13965,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCR",
         "place_code": "GBFK",
@@ -13973,7 +13973,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCW",
         "place_code": "GBFL",
@@ -13981,7 +13981,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB85",
         "place_code": "GBFR",
@@ -13989,7 +13989,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "Includes GB62, most of GB67 and part of GB65",
         "place_code": "GBGD",
@@ -13997,7 +13997,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBGG",
@@ -14005,7 +14005,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB13",
         "place_code": "GBGL",
@@ -14013,7 +14013,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB66",
         "place_code": "GBGM",
@@ -14021,7 +14021,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former counties GB80, GB86 and parts of GB82 & GB87",
         "place_code": "GBGR",
@@ -14029,7 +14029,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBAV",
         "place_code": "GBGS",
@@ -14037,7 +14037,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB15",
         "place_code": "GBGT",
@@ -14045,7 +14045,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGD",
         "place_code": "GBGW",
@@ -14053,7 +14053,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "excluding isle of Wight; formerly GB14",
         "place_code": "GBHA",
@@ -14061,7 +14061,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHF",
         "place_code": "GBHE",
@@ -14069,7 +14069,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former county GB41 & most of GB47",
         "place_code": "GBHF",
@@ -14077,7 +14077,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCH",
         "place_code": "GBHL",
@@ -14085,7 +14085,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHA",
         "place_code": "GBHM",
@@ -14093,7 +14093,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCV",
         "place_code": "GBHP",
@@ -14101,7 +14101,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes former GB92, GB94, GB97 & GB99 and parts of GB82, GB87, GB90",
         "place_code": "GBHR",
@@ -14109,7 +14109,7 @@ TABLE = [
         "updated": "2015-01-13",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB24",
         "place_code": "GBHT",
@@ -14117,7 +14117,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes parts of former counties GB58 & GB32",
         "place_code": "GBHU",
@@ -14125,7 +14125,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBIC",
@@ -14133,7 +14133,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB53",
         "place_code": "GBIM",
@@ -14141,7 +14141,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB18",
         "place_code": "GBIW",
@@ -14149,7 +14149,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB25",
         "place_code": "GBKE",
@@ -14157,7 +14157,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHU",
         "place_code": "GBKH",
@@ -14165,7 +14165,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBKE",
         "place_code": "GBKN",
@@ -14173,7 +14173,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes parts of former counties GB55 & GB58",
         "place_code": "GBLA",
@@ -14181,7 +14181,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLA",
         "place_code": "GBLC",
@@ -14189,7 +14189,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former counties GB35 & GB42",
         "place_code": "GBLE",
@@ -14197,7 +14197,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBLH",
@@ -14205,7 +14205,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB32",
         "place_code": "GBLI",
@@ -14213,7 +14213,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBLK",
@@ -14221,7 +14221,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHU",
         "place_code": "GBLN",
@@ -14229,7 +14229,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB26",
         "place_code": "GBLO",
@@ -14237,7 +14237,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly most of GB75",
         "place_code": "GBLR",
@@ -14245,7 +14245,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLE",
         "place_code": "GBLS",
@@ -14253,7 +14253,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLE",
         "place_code": "GBLT",
@@ -14261,7 +14261,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBD",
         "place_code": "GBLU",
@@ -14269,7 +14269,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes parts of former counties GB50, GB55 & GB59",
         "place_code": "GBMA",
@@ -14277,7 +14277,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCV",
         "place_code": "GBMB",
@@ -14285,7 +14285,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes parts of former counties GB50 & GB55",
         "place_code": "GBME",
@@ -14293,7 +14293,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBC",
         "place_code": "GBMK",
@@ -14301,7 +14301,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLR",
         "place_code": "GBML",
@@ -14309,7 +14309,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGT",
         "place_code": "GBMN",
@@ -14317,7 +14317,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGR",
         "place_code": "GBMO",
@@ -14325,7 +14325,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGM",
         "place_code": "GBMT",
@@ -14333,7 +14333,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBKE",
         "place_code": "GBMW",
@@ -14341,7 +14341,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBNA",
@@ -14349,7 +14349,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHU",
         "place_code": "GBNE",
@@ -14357,7 +14357,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBNT",
         "place_code": "GBNG",
@@ -14365,7 +14365,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB34",
         "place_code": "GBNH",
@@ -14373,7 +14373,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB33",
         "place_code": "GBNK",
@@ -14381,7 +14381,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly most of GB56",
         "place_code": "GBNL",
@@ -14389,7 +14389,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBNY",
         "place_code": "GBNO",
@@ -14397,7 +14397,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGT",
         "place_code": "GBNP",
@@ -14405,7 +14405,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBAV",
         "place_code": "GBNR",
@@ -14413,7 +14413,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBNT",
         "place_code": "GBNS",
@@ -14421,7 +14421,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB43",
         "place_code": "GBNT",
@@ -14429,7 +14429,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "parts of former counties GB58 & GB59",
         "place_code": "GBNY",
@@ -14437,7 +14437,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB95",
         "place_code": "GBOR",
@@ -14445,7 +14445,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB27 and part of GB21",
         "place_code": "GBOX",
@@ -14453,7 +14453,7 @@ TABLE = [
         "updated": "2015-01-13",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDY",
         "place_code": "GBPB",
@@ -14461,7 +14461,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCA",
         "place_code": "GBPE",
@@ -14469,7 +14469,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBTR",
         "place_code": "GBPH",
@@ -14477,7 +14477,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDV",
         "place_code": "GBPL",
@@ -14485,7 +14485,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHA",
         "place_code": "GBPM",
@@ -14493,7 +14493,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes formerGB68 and most of GB61",
         "place_code": "GBPO",
@@ -14501,7 +14501,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDO",
         "place_code": "GBPP",
@@ -14509,7 +14509,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGM",
         "place_code": "GBPT",
@@ -14517,7 +14517,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly major part of GBPO also includes part of GBCW",
         "place_code": "GBPW",
@@ -14525,7 +14525,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCV",
         "place_code": "GBRC",
@@ -14533,7 +14533,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSC",
         "place_code": "GBRE",
@@ -14541,7 +14541,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBK",
         "place_code": "GBRG",
@@ -14549,7 +14549,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGM",
         "place_code": "GBRH",
@@ -14557,7 +14557,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLE",
         "place_code": "GBRU",
@@ -14565,7 +14565,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "",
         "place_code": "GBS-",
@@ -14573,7 +14573,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB44",
         "place_code": "GBSA",
@@ -14581,7 +14581,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former GB74, GB77, GB84, GB90 and parts of GB70, GB89",
         "place_code": "GBSC",
@@ -14589,7 +14589,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBST",
         "place_code": "GBSE",
@@ -14597,7 +14597,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBST",
         "place_code": "GBSF",
@@ -14605,7 +14605,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCR",
         "place_code": "GBSG",
@@ -14613,7 +14613,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB98 includes former GBSH and GBFI",
         "place_code": "GBSH",
@@ -14621,7 +14621,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB16",
         "place_code": "GBSI",
@@ -14629,7 +14629,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB36",
         "place_code": "GBSK",
@@ -14637,7 +14637,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBK",
         "place_code": "GBSL",
@@ -14645,7 +14645,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBWT",
         "place_code": "GBSN",
@@ -14653,7 +14653,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB17",
         "place_code": "GBSO",
@@ -14661,7 +14661,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSA",
         "place_code": "GBSP",
@@ -14669,7 +14669,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB28",
         "place_code": "GBSR",
@@ -14677,7 +14677,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBES",
         "place_code": "GBSS",
@@ -14685,7 +14685,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly part of GB45",
         "place_code": "GBST",
@@ -14693,7 +14693,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHA",
         "place_code": "GBSU",
@@ -14701,7 +14701,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGM",
         "place_code": "GBSW",
@@ -14709,7 +14709,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "including west and east Sussex; formerly GB29",
         "place_code": "GBSX",
@@ -14717,7 +14717,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB59",
         "place_code": "GBSY",
@@ -14725,7 +14725,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSA",
         "place_code": "GBTF",
@@ -14733,7 +14733,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBES",
         "place_code": "GBTH",
@@ -14741,7 +14741,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGT",
         "place_code": "GBTN",
@@ -14749,7 +14749,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBDV",
         "place_code": "GBTQ",
@@ -14757,7 +14757,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "includes former GB81 and parts ofGB85 & GB88",
         "place_code": "GBTR",
@@ -14765,7 +14765,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCV",
         "place_code": "GBTS",
@@ -14773,7 +14773,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes parts of former counties GB52 & GB56",
         "place_code": "GBTY",
@@ -14781,7 +14781,7 @@ TABLE = [
         "updated": "2015-01-13",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "",
         "place_code": "GBU-",
@@ -14789,7 +14789,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBUN",
         "place_code": "GBUA",
@@ -14797,7 +14797,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly parts of GBUN & GBUD",
         "place_code": "GBUB",
@@ -14805,7 +14805,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly part of GB00",
         "place_code": "GBUD",
@@ -14813,7 +14813,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB02",
         "place_code": "GBUF",
@@ -14821,7 +14821,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB01",
         "place_code": "GBUL",
@@ -14829,7 +14829,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly part of GB00",
         "place_code": "GBUN",
@@ -14837,7 +14837,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB00",
         "place_code": "GBUR",
@@ -14845,7 +14845,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB01",
         "place_code": "GBUT",
@@ -14853,7 +14853,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBUD",
         "place_code": "GBUW",
@@ -14861,7 +14861,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBGM",
         "place_code": "GBVG",
@@ -14869,7 +14869,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "",
         "place_code": "GBW-",
@@ -14877,7 +14877,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCH",
         "place_code": "GBWA",
@@ -14885,7 +14885,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBK",
         "place_code": "GBWB",
@@ -14893,7 +14893,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCR",
         "place_code": "GBWD",
@@ -14901,7 +14901,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly GB96",
         "place_code": "GBWI",
@@ -14909,7 +14909,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB46",
         "place_code": "GBWK",
@@ -14917,7 +14917,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBLR",
         "place_code": "GBWL",
@@ -14925,7 +14925,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "includes parts of former counties GB45 & GB46",
         "place_code": "GBWM",
@@ -14933,7 +14933,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBK",
         "place_code": "GBWN",
@@ -14941,7 +14941,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBBK",
         "place_code": "GBWO",
@@ -14949,7 +14949,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBHF",
         "place_code": "GBWR",
@@ -14957,7 +14957,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBWT",
         "place_code": "GBWS",
@@ -14965,7 +14965,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": False,
         "notes": "formerly GB19",
         "place_code": "GBWT",
@@ -14973,7 +14973,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBCW",
         "place_code": "GBWX",
@@ -14981,7 +14981,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GB59",
         "place_code": "GBWY",
@@ -14989,7 +14989,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSX",
         "place_code": "GBXE",
@@ -14997,7 +14997,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBSX",
         "place_code": "GBXW",
@@ -15005,7 +15005,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United Kingdom",
+        "country": "United Kingdom",
         "is_current": True,
         "notes": "formerly part of GBNY",
         "place_code": "GBYO",
@@ -15013,7 +15013,7 @@ TABLE = [
         "updated": "2014-12-11",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NA--",
@@ -15021,7 +15021,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAAK",
@@ -15029,7 +15029,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAAL",
@@ -15037,7 +15037,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAAZ",
@@ -15045,7 +15045,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NACA",
@@ -15053,7 +15053,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NACL",
@@ -15061,7 +15061,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NACN",
@@ -15069,7 +15069,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NADC",
@@ -15077,7 +15077,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NADE",
@@ -15085,7 +15085,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAFL",
@@ -15093,7 +15093,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAGE",
@@ -15101,7 +15101,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAID",
@@ -15109,7 +15109,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAIL",
@@ -15117,7 +15117,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAIN",
@@ -15125,7 +15125,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAIO",
@@ -15133,7 +15133,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAKA",
@@ -15141,7 +15141,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAKE",
@@ -15149,7 +15149,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NALO",
@@ -15157,7 +15157,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMA",
@@ -15165,7 +15165,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMC",
@@ -15173,7 +15173,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMN",
@@ -15181,7 +15181,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMO",
@@ -15189,7 +15189,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMP",
@@ -15197,7 +15197,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMR",
@@ -15205,7 +15205,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMS",
@@ -15213,7 +15213,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAMY",
@@ -15221,7 +15221,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NANA",
@@ -15229,7 +15229,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NANC",
@@ -15237,7 +15237,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAND",
@@ -15245,7 +15245,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NANH",
@@ -15253,7 +15253,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NANJ",
@@ -15261,7 +15261,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NANV",
@@ -15269,7 +15269,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NANY",
@@ -15277,7 +15277,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAOH",
@@ -15285,7 +15285,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAOK",
@@ -15293,7 +15293,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAOR",
@@ -15301,7 +15301,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAPE",
@@ -15309,7 +15309,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NARI",
@@ -15317,7 +15317,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NASC",
@@ -15325,7 +15325,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NASD",
@@ -15333,7 +15333,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NATN",
@@ -15341,7 +15341,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NATX",
@@ -15349,7 +15349,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAUT",
@@ -15357,7 +15357,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAVE",
@@ -15365,7 +15365,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAVI",
@@ -15373,7 +15373,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAWA",
@@ -15381,7 +15381,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAWI",
@@ -15389,7 +15389,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAWV",
@@ -15397,7 +15397,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "NAWY",
@@ -15405,7 +15405,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "United States of America",
+        "country": "United States of America",
         "is_current": True,
         "notes": "",
         "place_code": "VA00",
@@ -15413,16 +15413,16 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Upper Volta",
+        "country": "Upper Volta",
         "is_current": False,
         "notes": "now called Burkina Faso",
         "place_code": "VU00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Uruguay", "is_current": True, "notes": "", "place_code": "SAUA", "region": "", "updated": "2008-06-16"},
+    {"country": "Uruguay", "is_current": True, "notes": "", "place_code": "SAUA", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "formerly SI57",
         "place_code": "UZ--",
@@ -15430,7 +15430,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ01",
@@ -15438,7 +15438,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ02",
@@ -15446,7 +15446,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ03",
@@ -15454,7 +15454,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ04",
@@ -15462,7 +15462,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "formerly SI52",
         "place_code": "UZ05",
@@ -15470,7 +15470,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "Karshi",
         "place_code": "UZ06",
@@ -15478,7 +15478,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "Urgench",
         "place_code": "UZ07",
@@ -15486,7 +15486,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ08",
@@ -15494,7 +15494,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ09",
@@ -15502,7 +15502,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ10",
@@ -15510,7 +15510,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "Termez",
         "place_code": "UZ11",
@@ -15518,7 +15518,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "Gulistan",
         "place_code": "UZ12",
@@ -15526,17 +15526,17 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Uzbekistan",
+        "country": "Uzbekistan",
         "is_current": True,
         "notes": "",
         "place_code": "UZ13",
         "region": "Tashkent O.",
         "updated": "2008-06-16",
     },
-    {"code": "Venezuela", "is_current": True, "notes": "", "place_code": "SJ00", "region": "", "updated": "2008-06-16"},
-    {"code": "Vietnam", "is_current": True, "notes": "", "place_code": "FNVA", "region": "", "updated": "2008-06-16"},
+    {"country": "Venezuela", "is_current": True, "notes": "", "place_code": "SJ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Vietnam", "is_current": True, "notes": "", "place_code": "FNVA", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Virgin Islands",
+        "country": "Virgin Islands",
         "is_current": True,
         "notes": "",
         "place_code": "VI00",
@@ -15544,7 +15544,7 @@ TABLE = [
         "updated": "2016-01-05",
     },
     {
-        "code": "Virgin Islands - American",
+        "country": "Virgin Islands - American",
         "is_current": True,
         "notes": "",
         "place_code": "VINA",
@@ -15552,7 +15552,7 @@ TABLE = [
         "updated": "2016-01-05",
     },
     {
-        "code": "Virgin Islands - British",
+        "country": "Virgin Islands - British",
         "is_current": True,
         "notes": "",
         "place_code": "VIGB",
@@ -15560,7 +15560,7 @@ TABLE = [
         "updated": "2016-01-05",
     },
     {
-        "code": "WestBank",
+        "country": "WestBank",
         "is_current": False,
         "notes": "Replaced by PSWB",
         "place_code": "WB00",
@@ -15568,16 +15568,16 @@ TABLE = [
         "updated": "2012-01-30",
     },
     {
-        "code": "Western Sahara",
+        "country": "Western Sahara",
         "is_current": True,
         "notes": "Spanish West Africa or Rio de Oro",
         "place_code": "ND00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Yemen", "is_current": True, "notes": "", "place_code": "JZ00", "region": "", "updated": "2008-06-16"},
+    {"country": "Yemen", "is_current": True, "notes": "", "place_code": "JZ00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Yugoslavia",
+        "country": "Yugoslavia",
         "is_current": False,
         "notes": "Now RS--",
         "place_code": "YU--",
@@ -15585,7 +15585,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Yugoslavia",
+        "country": "Yugoslavia",
         "is_current": False,
         "notes": "became RS72; now ME00 Montenegro",
         "place_code": "YU72",
@@ -15593,7 +15593,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Yugoslavia",
+        "country": "Yugoslavia",
         "is_current": False,
         "notes": "now RS74",
         "place_code": "YU74",
@@ -15601,7 +15601,7 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Yugoslavia",
+        "country": "Yugoslavia",
         "is_current": False,
         "notes": "now RS77; Srbija",
         "place_code": "YU77",
@@ -15609,21 +15609,21 @@ TABLE = [
         "updated": "2008-06-16",
     },
     {
-        "code": "Yugoslavia",
+        "country": "Yugoslavia",
         "is_current": False,
         "notes": "now RS78",
         "place_code": "YU78",
         "region": "Vojvodina",
         "updated": "2008-06-16",
     },
-    {"code": "Zambia", "is_current": True, "notes": "", "place_code": "ZM00", "region": "", "updated": "2008-06-16"},
+    {"country": "Zambia", "is_current": True, "notes": "", "place_code": "ZM00", "region": "", "updated": "2008-06-16"},
     {
-        "code": "Zanzibar & Pemba",
+        "country": "Zanzibar & Pemba",
         "is_current": True,
         "notes": "",
         "place_code": "QC00",
         "region": "",
         "updated": "2008-06-16",
     },
-    {"code": "Zimbabwe", "is_current": True, "notes": "", "place_code": "WS00", "region": "", "updated": "2008-06-16"},
+    {"country": "Zimbabwe", "is_current": True, "notes": "", "place_code": "WS00", "region": "", "updated": "2008-06-16"},
 ]
