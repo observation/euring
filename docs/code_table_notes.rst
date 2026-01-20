@@ -46,6 +46,8 @@ Source: https://www.euring.org/files/documents/ECPlacePipeDelimited_0.csv
   compatible decode to preserve characters as provided.
 - Place codes are normalized by trimming whitespace; leading-space codes present
   in the raw source are treated as data errors and corrected by the fixed file.
+- Manual fixes applied to the local source file to replace literal "?" glyphs
+  that appear as encoding artifacts in place names (for example, Kärnten).
 
 Species codes
 -------------
