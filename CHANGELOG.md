@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Update EURING Code Tables and document transcription to Python (#85, #86).
+- Data: Update EURING Code Tables and document transcription to Python (#85, #86).
 
 ## 26.3 (2026-01-19)
 
