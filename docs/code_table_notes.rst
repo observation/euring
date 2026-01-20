@@ -25,6 +25,14 @@ The sources are:
 - EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. On-line Code Tables. Thetford, U.K. URL https://www.euring.org/data-and-codes/euring-codes;
 - the specific file or resources as specified per table, if any.
 
+General notes
+-------------
+
+- Some manual descriptions include cue text such as "one hyphen" or "two
+  hyphens" to explain the literal symbol in the code field. We treat these as
+  reader hints and omit them from the stored descriptions; the code value itself
+  carries that meaning.
+
 Place codes
 -----------
 
@@ -92,6 +100,14 @@ Condition
 - Condition descriptions are shortened for brevity. The manual includes
   extra clauses about identifying rings/marks without capture and guidance
   about using Accuracy of Date for long-dead birds.
+
+Generated sequences
+-------------------
+
+- Brood Size codes are generated to cover the full implied ranges (00–50 for a
+  single female, 51–99 for more than one female) based on the manual examples.
+- Pullus Age codes are generated to cover the implied day range (00–98) in
+  addition to the explicit ``--`` and ``99`` codes.
 
 Measurement method tables
 -------------------------

@@ -5,9 +5,9 @@ TABLE = [
     {
         "code": "-",
         "description": (
-            "(one ‘hyphen’) not applicable, because there was no catching at all (for example ‘found’ or ‘found "
-            "dead’ or ‘shot’). Field sightings of colour-marked birds or metal rings should be coded with the "
-            "hyphen but given Circumstances code 28 or 80 – 89."
+            "Not applicable, because there was no catching at all (for example ‘found’ or ‘found dead’ or ‘shot’). "
+            "Field sightings of colour-marked birds or metal rings should be coded with this value but given "
+            "Circumstances code 28 or 80 – 89."
         ),
     },
     {"code": "A", "description": "Actively triggered trap (by ringer)."},

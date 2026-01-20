@@ -2,7 +2,7 @@ from __future__ import annotations
 
 # Manual EURING code table.
 TABLE = [
-    {"code": "--", "description": "Bird is not a pullus (two hyphens)."},
+    {"code": "--", "description": "Bird is not a pullus."},
     {"code": 99, "description": "Pullus age not recorded."},
     {"code": "00", "description": "Pullus age 0 days."},
     {"code": "01", "description": "Pullus age 1 day."},
