@@ -11,11 +11,6 @@ from .formats import (
 from .utils import euring_lat_to_dms, euring_lng_to_dms
 
 
-def convert_euring2000_record(value: str, target_format: str = FORMAT_EURING2020) -> str:
-    """Convert a fixed-width euring2000 record to euring2000plus or euring2020."""
-    return convert_euring_record(value, source_format=FORMAT_EURING2000, target_format=target_format)
-
-
 def convert_euring_record(
     value: str,
     source_format: str | None = None,
