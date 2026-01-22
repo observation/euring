@@ -5,7 +5,7 @@ from euring import (
     TYPE_ALPHABETIC,
     TYPE_INTEGER,
     EuringParseException,
-    euring_decode_record,
+    EuringRecord,
     euring_dms_to_float,
     euring_lat_to_dms,
     is_valid_type,
@@ -35,12 +35,12 @@ def main():
     # This is a simplified example - real EURING records are much longer
     try:
         # This will fail because it's incomplete, but shows the structure
-        record = euring_decode_record(
+        record = EuringRecord.decode(
             "GBB|A0|1234567890|0|1|ZZ|00001|00001|N|0|M|U|U|U|2|2|U|01012024|0|0000|----|+0000000+0000000|1|9|99|0|4"
         )
         print("Decoded successfully!")
-        print(f"Format: {record.get('format')}")
-        print(f"Animal: {record.get('animal')}")
+        print(f"Format: {record.display_format}")
+        print(f"Fields decoded: {len(record.fields)}")
     except EuringParseException as e:
         print(f"Parse error (expected for incomplete record): {e}")
 
