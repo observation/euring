@@ -12,7 +12,7 @@ Main features:
 """
 
 from .__about__ import __version__
-from .converters import convert_euring2000_record, convert_euring_record
+from .converters import convert_euring_record
 from .exceptions import EuringException, EuringParseException
 from .formats import (
     FORMAT_EURING2000,
@@ -37,7 +37,6 @@ from .types import (
     is_valid_type,
 )
 from .utils import (
-    euring_coord_to_dms,
     euring_dms_to_float,
     euring_float_to_dms,
     euring_identification_display_format,
@@ -51,7 +50,6 @@ from .utils import (
 __all__ = [
     "__version__",
     "EuringRecord",
-    "convert_euring2000_record",
     "convert_euring_record",
     "TYPE_ALPHABETIC",
     "TYPE_ALPHANUMERIC",
@@ -74,7 +72,6 @@ __all__ = [
     "FORMAT_JSON",
     "euring_dms_to_float",
     "euring_float_to_dms",
-    "euring_coord_to_dms",
     "euring_lat_to_dms",
     "euring_lng_to_dms",
     "euring_identification_display_format",

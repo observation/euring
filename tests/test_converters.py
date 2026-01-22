@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from euring.converters import _field_index, convert_euring2000_record, convert_euring_record
+from euring.converters import _field_index, convert_euring_record
 from euring.fields import EURING_FIELDS
 from euring.utils import euring_lat_to_dms, euring_lng_to_dms
 
@@ -64,9 +64,15 @@ def test_convert_fixed_width_extra_data():
         convert_euring_record("A" * 94 + "X", source_format="euring2000", target_format="euring2000plus")
 
 
-def test_convert_euring2000_record_helper():
+def test_convert_euring2000_to_euring2000plus():
     record = _load_fixture("euring2000_examples", "EURING2000_EXAMPLES")
-    converted = convert_euring2000_record(record)
+    converted = convert_euring_record(record, source_format="euring2000", target_format="euring2000plus")
+    assert "|" in converted
+
+
+def test_convert_euring2000_to_euring2020():
+    record = _load_fixture("euring2000_examples", "EURING2000_EXAMPLES")
+    converted = convert_euring_record(record, source_format="euring2000", target_format="euring2020")
     assert "|" in converted
 
 

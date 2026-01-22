@@ -24,6 +24,10 @@ RE_INTEGER = r"^[0-9]+$|^\-+$"
 # Allow anything that consists of digits
 # Allow one period somewhere in the string, but not at the beginning or at the end
 RE_NUMERIC = r"^[0-9]+(\.[0-9]+)?$"
+
+# As RE_NUMERIC, but allow an optional minus sign at the beginning
+# This is not a formal EURING type, but we need it for Latitude and Longitude
+# Issue: https://github.com/observation/euring/issues/35
 RE_NUMERIC_SIGNED = r"^(?!-0(?:$|\.))\-?[0-9]+(\.[0-9]+)?$"
 
 # RE_TEXT = r'^[a-zA-Z0-9\+\-\/\*]*$'
@@ -34,12 +38,12 @@ RE_NUMERIC_SIGNED = r"^(?!-0(?:$|\.))\-?[0-9]+(\.[0-9]+)?$"
 RE_TEXT = r"^[^\x00-\x1F\x7C\7F]*$"
 
 
-def _matches(value, regex):
+def _matches(value: str, regex: str) -> bool:
     """Return True when the value matches the given regex."""
     return re.match(regex, value) is not None
 
 
-def is_alphabetic(value):
+def is_alphabetic(value: str) -> bool:
     """
     Alphabetic.
 
@@ -51,7 +55,7 @@ def is_alphabetic(value):
     return _matches(value, RE_ALPHABETIC)
 
 
-def is_alphanumeric(value):
+def is_alphanumeric(value: str) -> bool:
     """
     Alphanumeric.
 
@@ -62,7 +66,7 @@ def is_alphanumeric(value):
     return _matches(value, RE_ALPHANUMERIC)
 
 
-def is_integer(value):
+def is_integer(value: str) -> bool:
     """
     Integer.
 
@@ -73,7 +77,7 @@ def is_integer(value):
     return _matches(value, RE_INTEGER)
 
 
-def is_numeric(value):
+def is_numeric(value: str) -> bool:
     """
     Numeric.
 
@@ -84,7 +88,7 @@ def is_numeric(value):
     return _matches(value, RE_NUMERIC)
 
 
-def is_numeric_signed(value):
+def is_numeric_signed(value: str) -> bool:
     """
     Numeric signed.
 
@@ -95,7 +99,7 @@ def is_numeric_signed(value):
     return _matches(value, RE_NUMERIC_SIGNED)
 
 
-def is_text(value):
+def is_text(value: str) -> bool:
     """
     Text.
 
@@ -106,7 +110,7 @@ def is_text(value):
     return _matches(value, RE_TEXT)
 
 
-def is_valid_type(value, type):
+def is_valid_type(value: str, type: str) -> bool:
     """Return True if a value matches the specified EURING field type."""
     if type == TYPE_ALPHABETIC:
         return is_alphabetic(value)
