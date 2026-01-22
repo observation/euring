@@ -1,9 +1,21 @@
 import re
+from typing import Any
 
 from .exceptions import EuringParseException
 
+__all__ = [
+    "euring_dms_to_float",
+    "euring_float_to_dms",
+    "euring_lat_to_dms",
+    "euring_lng_to_dms",
+    "euring_identification_display_format",
+    "euring_identification_export_format",
+    "euring_scheme_export_format",
+    "euring_species_export_format",
+]
 
-def euring_dms_to_float(value):
+
+def euring_dms_to_float(value: str) -> float:
     """Convert EURING DMS coordinate text into decimal degrees."""
     try:
         seconds = value[-2:]
@@ -19,7 +31,7 @@ def euring_dms_to_float(value):
     return result
 
 
-def euring_float_to_dms(value, round_seconds=False):
+def euring_float_to_dms(value: float, round_seconds: bool = False) -> dict[str, int | float | str]:
     """
     Convert a Decimal Degree Value into Degrees Minute Seconds Notation.
 
@@ -43,7 +55,7 @@ def euring_float_to_dms(value, round_seconds=False):
     return {"quadrant": quadrant, "degrees": degrees, "minutes": minutes, "seconds": seconds}
 
 
-def euring_coord_to_dms(value, degrees_pos):
+def _euring_coord_to_dms(value: float, degrees_pos: int) -> str:
     """Format a decimal coordinate into EURING DMS text with fixed degree width."""
     dms = euring_float_to_dms(value, round_seconds=True)
     return "{quadrant}{degrees}{minutes}{seconds}".format(
@@ -54,17 +66,17 @@ def euring_coord_to_dms(value, degrees_pos):
     )
 
 
-def euring_lat_to_dms(value):
+def euring_lat_to_dms(value: float) -> str:
     """Convert a latitude in decimal degrees into EURING DMS text."""
-    return euring_coord_to_dms(value, degrees_pos=2)
+    return _euring_coord_to_dms(value, degrees_pos=2)
 
 
-def euring_lng_to_dms(value):
+def euring_lng_to_dms(value: float) -> str:
     """Convert a longitude in decimal degrees into EURING DMS text."""
-    return euring_coord_to_dms(value, degrees_pos=3)
+    return _euring_coord_to_dms(value, degrees_pos=3)
 
 
-def euring_identification_display_format(euring_number):
+def euring_identification_display_format(euring_number: Any) -> str:
     """
     Return EURING number in upper case, with anything that is not a letter or digit removed.
 
@@ -77,7 +89,7 @@ def euring_identification_display_format(euring_number):
     return re.sub(r"[^A-Z0-9]", "", result)
 
 
-def euring_identification_export_format(euring_number):
+def euring_identification_export_format(euring_number: Any) -> str:
     """
     Return EURING code formatted for display and with added internal padding (dots) up to length 10.
 
@@ -116,7 +128,7 @@ def euring_identification_export_format(euring_number):
     return result
 
 
-def euring_scheme_export_format(scheme_code):
+def euring_scheme_export_format(scheme_code: Any) -> str:
     """
     Proper export format for a scheme code.
 
@@ -127,7 +139,7 @@ def euring_scheme_export_format(scheme_code):
     return result[0:3].rjust(3)
 
 
-def euring_species_export_format(species_code):
+def euring_species_export_format(species_code: str | int | None) -> str:
     """
     Proper export format for EURING species code.
 

@@ -37,7 +37,7 @@ def decode(
         "--format",
         help="Force EURING format: euring2000, euring2000plus, or euring2020.",
     ),
-):
+) -> None:
     """Decode EURING records (single record or --file)."""
     try:
         if pretty and not as_json:
@@ -129,7 +129,7 @@ def validate_record(
         "--format",
         help="Force EURING format: euring2000, euring2000plus, or euring2020",
     ),
-):
+) -> None:
     """Validate EURING records and return errors only."""
     try:
         if pretty and not as_json:
@@ -231,7 +231,7 @@ def convert(
         "--force",
         help="Allow lossy mappings (e.g., alphabetic accuracy when downgrading from EURING2020).",
     ),
-):
+) -> None:
     """Convert EURING2000, EURING2000+, and EURING2020 records."""
     try:
         if file and euring_string:
@@ -281,7 +281,7 @@ def lookup(
     short: bool = typer.Option(False, "--short", help="Show concise output"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
-):
+) -> None:
     """Look up EURING codes (ringing_scheme, species, place)."""
     try:
         if pretty and not as_json:
@@ -364,7 +364,7 @@ def dump(
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output"),
     force: bool = typer.Option(False, "--force", help="Overwrite existing files"),
     all: bool = typer.Option(False, "--all", help="Dump all code tables (requires --output-dir)"),
-):
+) -> None:
     """Dump code tables as JSON."""
     if all:
         if table:
@@ -420,7 +420,7 @@ if __name__ == "__main__":
     app()
 
 
-def main():
+def main() -> None:
     """Entry point for the CLI."""
     app()
 
@@ -465,7 +465,7 @@ def _format_error_lines(errors: dict[str, object], *, indent: str) -> list[str]:
     return lines
 
 
-def _emit_detail(label: str, value) -> None:
+def _emit_detail(label: str, value: Any) -> None:
     """Emit a labeled value when present."""
     if value is None:
         return
@@ -475,7 +475,7 @@ def _emit_detail(label: str, value) -> None:
     typer.echo(f"  {label}: {text}")
 
 
-def _emit_detail_bool(label: str, value) -> None:
+def _emit_detail_bool(label: str, value: Any) -> None:
     """Emit a labeled boolean value when present."""
     if value is None:
         return
@@ -504,7 +504,7 @@ def _with_meta(payload: dict[str, Any]) -> dict[str, Any]:
     return combined
 
 
-def _lines_from_file(file):
+def _lines_from_file(file: Path) -> list[str]:
     """Read a text file and return lines, exiting on missing files."""
     try:
         lines = file.read_text(encoding="utf-8").splitlines()

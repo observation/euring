@@ -1,11 +1,21 @@
+from collections.abc import Callable, Mapping
+from typing import Any
+
 from .codes import lookup_description
 from .exceptions import EuringParseException
 from .types import is_valid_type
 
 
 def euring_decode_value(
-    value, type, required=True, length=None, min_length=None, max_length=None, parser=None, lookup=None
-):
+    value: str,
+    type: str,
+    required: bool = True,
+    length: int | None = None,
+    min_length: int | None = None,
+    max_length: int | None = None,
+    parser: Callable[[str], Any] | None = None,
+    lookup: Mapping[str, str] | Callable[[str], str] | None = None,
+) -> dict[str, Any] | None:
     """Decode a single EURING field value with type checks, parsing, and lookup."""
     # A minimum length of 0 is the same as not required
     if min_length == 0:

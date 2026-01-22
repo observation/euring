@@ -37,7 +37,6 @@ from .types import (
     is_valid_type,
 )
 from .utils import (
-    euring_coord_to_dms,
     euring_dms_to_float,
     euring_float_to_dms,
     euring_identification_display_format,
@@ -73,7 +72,6 @@ __all__ = [
     "FORMAT_JSON",
     "euring_dms_to_float",
     "euring_float_to_dms",
-    "euring_coord_to_dms",
     "euring_lat_to_dms",
     "euring_lng_to_dms",
     "euring_identification_display_format",

@@ -1,4 +1,6 @@
+from collections.abc import Callable, Mapping
 from datetime import date
+from typing import Any
 
 from .data import (
     load_code_map,
@@ -62,7 +64,7 @@ _SCHEME_DETAILS = load_scheme_details()
 _PLACE_DETAILS = load_place_details()
 
 
-def lookup_description(value, lookup):
+def lookup_description(value: str, lookup: Mapping[str, str] | Callable[[str], str] | None) -> str | None:
     """Resolve a code value to its description using a mapping or callable."""
     if lookup is None:
         return None
@@ -74,14 +76,14 @@ def lookup_description(value, lookup):
         raise EuringParseException(f'Value "{value}"is not a valid code.')
 
 
-def lookup_ring_number(value):
+def lookup_ring_number(value: str) -> str:
     """Lookup a ring number Just strip the dots from the EURING codes."""
     if value and value.endswith("."):
         raise EuringParseException("Identification number (ring) cannot end with a dot.")
     return value.replace(".", "")
 
 
-def lookup_other_marks(value):
+def lookup_other_marks(value: str) -> str:
     """
     Lookup combined code for field "Other Marks Information" EURING2000+ Manual Page 8.
 
@@ -110,7 +112,7 @@ def lookup_other_marks(value):
     return "{pos1}, {pos2}.".format(pos1=pos1.strip("."), pos2=pos2.strip("."))
 
 
-def lookup_species(value):
+def lookup_species(value: str | int) -> str:
     """
     Species lookup - uses packaged reference data when available.
 
@@ -130,7 +132,7 @@ def lookup_species(value):
     raise EuringParseException(f'Value "{value}" is a valid EURING species code format but was not found.')
 
 
-def lookup_species_details(value):
+def lookup_species_details(value: str | int) -> dict[str, Any]:
     """Return the full species record for a EURING species code."""
     value_str = f"{value}"
     result = _SPECIES_DETAILS.get(value_str)
@@ -145,7 +147,7 @@ def lookup_species_details(value):
     raise EuringParseException(f'Value "{value}" is a valid EURING species code format but was not found.')
 
 
-def parse_geographical_coordinates(value):
+def parse_geographical_coordinates(value: str | None) -> dict[str, float] | None:
     """Parse EURING coordinate text into latitude/longitude decimal values."""
     # +420500-0044500
     if value is None:
@@ -163,24 +165,24 @@ def parse_geographical_coordinates(value):
     return result
 
 
-def lookup_geographical_coordinates(value):
+def lookup_geographical_coordinates(value: dict[str, float] | None) -> str | None:
     """Format parsed coordinates into a human-readable string."""
     if value is None:
         return None
     return "lat: {lat} lng: {lng}".format(**value)
 
 
-def parse_latitude(value):
+def parse_latitude(value: str) -> float:
     """Parse a decimal latitude with manual range/precision limits."""
     return _parse_decimal_coordinate(value, max_abs=90, max_decimals=4, field_name="Latitude")
 
 
-def parse_longitude(value):
+def parse_longitude(value: str) -> float:
     """Parse a decimal longitude with manual range/precision limits."""
     return _parse_decimal_coordinate(value, max_abs=180, max_decimals=4, field_name="Longitude")
 
 
-def _parse_decimal_coordinate(value, *, max_abs, max_decimals, field_name):
+def _parse_decimal_coordinate(value: str, *, max_abs: int, max_decimals: int, field_name: str) -> float:
     """Parse and validate a decimal latitude/longitude string."""
     try:
         parsed = float(value)
@@ -195,7 +197,7 @@ def _parse_decimal_coordinate(value, *, max_abs, max_decimals, field_name):
     return parsed
 
 
-def _validate_dms_component(value, *, degrees_digits, max_degrees):
+def _validate_dms_component(value: str | None, *, degrees_digits: int, max_degrees: int) -> None:
     """Validate a DMS coordinate component."""
     if value is None:
         raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
@@ -221,7 +223,7 @@ def parse_old_greater_coverts(value: str) -> str:
     return value
 
 
-def lookup_place_code(value):
+def lookup_place_code(value: str | int) -> str:
     """
     Place code lookup - uses packaged reference data when available.
 
@@ -235,7 +237,7 @@ def lookup_place_code(value):
     raise EuringParseException(f'Value "{value}" is not a valid EURING place code.')
 
 
-def lookup_place_details(value):
+def lookup_place_details(value: str | int) -> dict[str, Any]:
     """Return the full place record for a EURING place code."""
     value_str = f"{value}"
     result = _PLACE_DETAILS.get(value_str)
@@ -244,7 +246,7 @@ def lookup_place_details(value):
     raise EuringParseException(f'Value "{value}" is not a valid EURING place code.')
 
 
-def lookup_date(value):
+def lookup_date(value: str) -> date:
     """Parse a EURING date string into a datetime.date."""
     try:
         day = int(value[0:2])
@@ -255,7 +257,7 @@ def lookup_date(value):
         raise EuringParseException(f'Value "{value}" is not a valid EURING date.')
 
 
-def lookup_ringing_scheme(value):
+def lookup_ringing_scheme(value: str | int) -> str:
     """
     Ringing scheme lookup - uses packaged reference data when available.
 
@@ -269,7 +271,7 @@ def lookup_ringing_scheme(value):
     raise EuringParseException(f'Value "{value}" is not a valid EURING ringing scheme code.')
 
 
-def lookup_ringing_scheme_details(value):
+def lookup_ringing_scheme_details(value: str | int) -> dict[str, Any]:
     """Return the full scheme record for a EURING ringing scheme code."""
     value_str = f"{value}"
     result = _SCHEME_DETAILS.get(value_str)
@@ -278,19 +280,19 @@ def lookup_ringing_scheme_details(value):
     raise EuringParseException(f'Value "{value}" is not a valid EURING ringing scheme code.')
 
 
-def lookup_age(value):
+def lookup_age(value: str | int) -> str | None:
     """Look up the EURING age description for a code."""
     v = f"{value}"
     return lookup_description(v, LOOKUP_AGE)
 
 
-def lookup_brood_size(value):
+def lookup_brood_size(value: str | int) -> str | None:
     """Look up the EURING brood size description for a code."""
     v = f"{value}"
     return lookup_description(v, LOOKUP_BROOD_SIZE)
 
 
-def lookup_pullus_age(value):
+def lookup_pullus_age(value: str | int) -> str | None:
     """Look up the EURING pullus age description for a code."""
     v = f"{value}"
     return lookup_description(v, LOOKUP_PULLUS_AGE)
