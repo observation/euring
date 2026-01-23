@@ -10,10 +10,8 @@ from .types import is_valid_type
 
 __all__ = [
     "EuringField",
-    "TypeField",
-    "LookupField",
-    "ParsedField",
-    "ParsedTypeField",
+    "EuringLookupField",
+    "EuringFormattedField",
     "coerce_field",
 ]
 
@@ -24,6 +22,7 @@ class EuringField(Mapping[str, Any]):
 
     key: str
     name: str
+    type_name: str = ""
     required: bool = True
     length: int | None = None
     min_length: int | None = None
@@ -33,6 +32,7 @@ class EuringField(Mapping[str, Any]):
         mapping: dict[str, Any] = {
             "key": self.key,
             "name": self.name,
+            "type": self.type_name,
             "required": self.required,
         }
         if self.length is not None:
@@ -73,6 +73,8 @@ class EuringField(Mapping[str, Any]):
                 return None
             raise EuringParseException('Required field, empty value "" is not permitted.')
         self._validate_length(raw)
+        if self.type_name and not is_valid_type(raw, self.type_name):
+            raise EuringParseException(f'Value "{raw}" is not valid for type {self.type_name}.')
         return raw
 
     def encode(self, value: Any | None) -> str:
@@ -83,6 +85,8 @@ class EuringField(Mapping[str, Any]):
             return ""
         raw = str(value)
         self._validate_length(raw)
+        if self.type_name and not is_valid_type(raw, self.type_name):
+            raise EuringParseException(f'Value "{raw}" is not valid for type {self.type_name}.')
         return raw
 
     def describe(self, value: Any | None) -> Any | None:
@@ -91,33 +95,7 @@ class EuringField(Mapping[str, Any]):
 
 
 @dataclass(frozen=True)
-class TypeField(EuringField):
-    """Field that validates a EURING type name."""
-
-    type_name: str = ""
-
-    def _mapping(self) -> dict[str, Any]:
-        mapping = super()._mapping()
-        mapping["type"] = self.type_name
-        return mapping
-
-    def parse(self, raw: str) -> Any | None:
-        value = super().parse(raw)
-        if value is None:
-            return None
-        if not is_valid_type(value, self.type_name):
-            raise EuringParseException(f'Value "{value}" is not valid for type {self.type_name}.')
-        return value
-
-    def encode(self, value: Any | None) -> str:
-        raw = super().encode(value)
-        if raw and not is_valid_type(raw, self.type_name):
-            raise EuringParseException(f'Value "{raw}" is not valid for type {self.type_name}.')
-        return raw
-
-
-@dataclass(frozen=True)
-class LookupField(TypeField):
+class EuringLookupField(EuringField):
     """Field that describes values using a lookup map or callable."""
 
     lookup: Any | None = None
@@ -137,38 +115,7 @@ class LookupField(TypeField):
 
 
 @dataclass(frozen=True)
-class ParsedField(EuringField):
-    """Field that parses raw text into a Python value."""
-
-    parser: Any | None = None
-    lookup: Any | None = None
-
-    def _mapping(self) -> dict[str, Any]:
-        mapping = super()._mapping()
-        if self.parser is not None:
-            mapping["parser"] = self.parser
-        if self.lookup is not None:
-            mapping["lookup"] = self.lookup
-        return mapping
-
-    def parse(self, raw: str) -> Any | None:
-        value = super().parse(raw)
-        if value is None:
-            return None
-        if self.parser is None:
-            return value
-        return self.parser(value)
-
-    def describe(self, value: Any | None) -> Any | None:
-        if self.lookup is None or value is None:
-            return None
-        if callable(self.lookup):
-            return lookup_description(value, self.lookup)
-        return lookup_description(str(value), self.lookup)
-
-
-@dataclass(frozen=True)
-class ParsedTypeField(TypeField):
+class EuringFormattedField(EuringField):
     """Field that validates type, then parses raw text into a Python value."""
 
     parser: Any | None = None
@@ -212,7 +159,7 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
     parser = definition.get("parser")
     lookup = definition.get("lookup")
     if parser is not None:
-        return ParsedTypeField(
+        return EuringFormattedField(
             key=key,
             name=name,
             type_name=type_name,
@@ -224,7 +171,7 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             lookup=lookup,
         )
     if lookup is not None:
-        return LookupField(
+        return EuringLookupField(
             key=key,
             name=name,
             type_name=type_name,
@@ -234,7 +181,7 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             max_length=max_length,
             lookup=lookup,
         )
-    return TypeField(
+    return EuringField(
         key=key,
         name=name,
         type_name=type_name,

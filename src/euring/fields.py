@@ -42,7 +42,7 @@ from .codes import (
     parse_longitude,
     parse_old_greater_coverts,
 )
-from .field_model import LookupField, ParsedTypeField, TypeField
+from .field_model import EuringField, EuringFormattedField, EuringLookupField
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -55,115 +55,125 @@ from .types import (
 SPEC_MANUAL = "EURING Exchange Code 2020 v202 (13 Nov 2024)"
 
 EURING_FIELDS = [
-    LookupField(
+    EuringLookupField(
         name="Ringing Scheme",
         key="ringing_scheme",
         type_name=TYPE_ALPHABETIC,
         length=3,
         lookup=lookup_ringing_scheme,
     ),
-    LookupField(
+    EuringLookupField(
         name="Primary Identification Method",
         key="primary_identification_method",
         type_name=TYPE_ALPHANUMERIC,
         length=2,
         lookup=LOOKUP_PRIMARY_IDENTIFICATION_METHOD,
     ),
-    LookupField(
+    EuringLookupField(
         name="Identification Number (ring)",
         key="identification_number",
         type_name=TYPE_ALPHANUMERIC,
         length=10,
         lookup=lookup_ring_number,
     ),
-    LookupField(
+    EuringLookupField(
         name="Verification of the Metal Ring",
         key="verification_of_the_metal_ring",
         type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_VERIFICATION_OF_THE_METAL_RING,
     ),
-    LookupField(
+    EuringLookupField(
         name="Metal Ring Information",
         key="metal_ring_information",
         type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_METAL_RING_INFORMATION,
     ),
-    LookupField(
+    EuringLookupField(
         name="Other Marks Information",
         key="other_marks_information",
         type_name=TYPE_ALPHABETIC,
         length=2,
         lookup=lookup_other_marks,
     ),
-    LookupField(
+    EuringLookupField(
         name="Species Mentioned",
         key="species_mentioned",
         type_name=TYPE_INTEGER,
         length=5,
         lookup=lookup_species,
     ),
-    LookupField(
+    EuringLookupField(
         name="Species Concluded",
         key="species_concluded",
         type_name=TYPE_INTEGER,
         length=5,
         lookup=lookup_species,
     ),
-    LookupField(
+    EuringLookupField(
         name="Manipulated",
         key="manipulated",
         type_name=TYPE_ALPHABETIC,
         length=1,
         lookup=LOOKUP_MANIPULATED,
     ),
-    LookupField(
+    EuringLookupField(
         name="Moved Before Encounter",
         key="moved_before_recovery",
         type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_MOVED_BEFORE_ENCOUNTER,
     ),
-    LookupField(
+    EuringLookupField(
         name="Catching Method",
         key="catching_method",
         type_name=TYPE_ALPHABETIC,
         length=1,
         lookup=LOOKUP_CATCHING_METHOD,
     ),
-    LookupField(
+    EuringLookupField(
         name="Catching Lures",
         key="catching_lures",
         type_name=TYPE_ALPHABETIC,
         length=1,
         lookup=LOOKUP_CATCHING_LURES,
     ),
-    LookupField(name="Sex Mentioned", key="sex_mentioned", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX),
-    LookupField(name="Sex Concluded", key="sex_concluded", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX),
-    LookupField(name="Age Mentioned", key="age_mentioned", type_name=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age),
-    LookupField(name="Age Concluded", key="age_concluded", type_name=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age),
-    LookupField(name="Status", key="status", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_STATUS),
-    LookupField(name="Brood Size", key="brood_size", type_name=TYPE_INTEGER, length=2, lookup=lookup_brood_size),
-    LookupField(name="Pullus Age", key="pullus_age", type_name=TYPE_INTEGER, length=2, lookup=lookup_pullus_age),
-    LookupField(
+    EuringLookupField(
+        name="Sex Mentioned", key="sex_mentioned", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX
+    ),
+    EuringLookupField(
+        name="Sex Concluded", key="sex_concluded", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX
+    ),
+    EuringLookupField(
+        name="Age Mentioned", key="age_mentioned", type_name=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age
+    ),
+    EuringLookupField(
+        name="Age Concluded", key="age_concluded", type_name=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age
+    ),
+    EuringLookupField(name="Status", key="status", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_STATUS),
+    EuringLookupField(name="Brood Size", key="brood_size", type_name=TYPE_INTEGER, length=2, lookup=lookup_brood_size),
+    EuringLookupField(name="Pullus Age", key="pullus_age", type_name=TYPE_INTEGER, length=2, lookup=lookup_pullus_age),
+    EuringLookupField(
         name="Accuracy of Pullus Age",
         key="accuracy_of_pullus_age",
         type_name=TYPE_ALPHANUMERIC,
         length=1,
         lookup=LOOKUP_ACCURACY_PULLUS_AGE,
     ),
-    LookupField(name="Date", key="date", type_name=TYPE_INTEGER, length=8, lookup=lookup_date),
-    LookupField(
+    EuringLookupField(name="Date", key="date", type_name=TYPE_INTEGER, length=8, lookup=lookup_date),
+    EuringLookupField(
         name="Accuracy of Date",
         key="accuracy_of_date",
         type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_ACCURACY_OF_DATE,
     ),
-    TypeField(name="Time", key="time", type_name=TYPE_ALPHANUMERIC, length=4),
-    LookupField(name="Place Code", key="place_code", type_name=TYPE_ALPHANUMERIC, length=4, lookup=lookup_place_code),
-    ParsedTypeField(
+    EuringField(name="Time", key="time", type_name=TYPE_ALPHANUMERIC, length=4),
+    EuringLookupField(
+        name="Place Code", key="place_code", type_name=TYPE_ALPHANUMERIC, length=4, lookup=lookup_place_code
+    ),
+    EuringFormattedField(
         name="Geographical Co-ordinates",
         key="geographical_coordinates",
         type_name=TYPE_ALPHANUMERIC,
@@ -171,40 +181,40 @@ EURING_FIELDS = [
         parser=parse_geographical_coordinates,
         lookup=lookup_geographical_coordinates,
     ),
-    LookupField(
+    EuringLookupField(
         name="Accuracy of Co-ordinates",
         key="accuracy_of_coordinates",
         type_name=TYPE_ALPHANUMERIC,
         length=1,
         lookup=LOOKUP_ACCURACY_OF_COORDINATES,
     ),
-    LookupField(name="Condition", key="condition", type_name=TYPE_INTEGER, length=1, lookup=LOOKUP_CONDITION),
-    LookupField(
+    EuringLookupField(name="Condition", key="condition", type_name=TYPE_INTEGER, length=1, lookup=LOOKUP_CONDITION),
+    EuringLookupField(
         name="Circumstances", key="circumstances", type_name=TYPE_INTEGER, length=2, lookup=LOOKUP_CIRCUMSTANCES
     ),
-    LookupField(
+    EuringLookupField(
         name="Circumstances Presumed",
         key="circumstances_presumed",
         type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_CIRCUMSTANCES_PRESUMED,
     ),
-    LookupField(
+    EuringLookupField(
         name="EURING Code Identifier",
         key="euring_code_identifier",
         type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_EURING_CODE_IDENTIFIER,
     ),
-    TypeField(
+    EuringField(
         name="Derived Data - Distance",
         key="derived_data_distance",
         type_name=TYPE_INTEGER,
         min_length=0,
         max_length=5,
     ),
-    TypeField(name="Derived Data - Direction", key="derived_data_direction", type_name=TYPE_INTEGER, length=3),
-    TypeField(
+    EuringField(name="Derived Data - Direction", key="derived_data_direction", type_name=TYPE_INTEGER, length=3),
+    EuringField(
         name="Derived Data - Elapsed Time",
         key="derived_data_elapsed_time",
         type_name=TYPE_INTEGER,
@@ -212,9 +222,9 @@ EURING_FIELDS = [
         max_length=5,
     ),
     # Starting with Wing Length, fields are no longer required. Source: EURING Exchange Code 2020 v202 (13 Nov 2024).
-    TypeField(name="Wing Length", key="wing_length", type_name=TYPE_NUMERIC, required=False),
-    TypeField(name="Third Primary", key="third_primary", type_name=TYPE_NUMERIC, required=False),
-    LookupField(
+    EuringField(name="Wing Length", key="wing_length", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Third Primary", key="third_primary", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="State of Wing Point",
         key="state_of_wing_point",
         type_name=TYPE_ALPHABETIC,
@@ -222,8 +232,8 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_STATE_OF_WING_POINT,
     ),
-    TypeField(name="Mass", key="mass", type_name=TYPE_NUMERIC, required=False),
-    LookupField(
+    EuringField(name="Mass", key="mass", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="Moult",
         key="moult",
         type_name=TYPE_ALPHABETIC,
@@ -231,7 +241,7 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_MOULT,
     ),
-    LookupField(
+    EuringLookupField(
         name="Plumage Code",
         key="plumage_code",
         type_name=TYPE_ALPHANUMERIC,
@@ -239,9 +249,9 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_PLUMAGE_CODE,
     ),
-    TypeField(name="Hind Claw", key="hind_claw", type_name=TYPE_NUMERIC, required=False),
-    TypeField(name="Bill Length", key="bill_length", type_name=TYPE_NUMERIC, required=False),
-    LookupField(
+    EuringField(name="Hind Claw", key="hind_claw", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Bill Length", key="bill_length", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="Bill Method",
         key="bill_method",
         type_name=TYPE_ALPHABETIC,
@@ -249,9 +259,9 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_BILL_METHOD,
     ),
-    TypeField(name="Total Head Length", key="total_head_length", type_name=TYPE_NUMERIC, required=False),
-    TypeField(name="Tarsus", key="tarsus", type_name=TYPE_NUMERIC, required=False),
-    LookupField(
+    EuringField(name="Total Head Length", key="total_head_length", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Tarsus", key="tarsus", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="Tarsus Method",
         key="tarsus_method",
         type_name=TYPE_ALPHABETIC,
@@ -259,10 +269,10 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_TARSUS_METHOD,
     ),
-    TypeField(name="Tail Length", key="tail_length", type_name=TYPE_NUMERIC, required=False),
-    TypeField(name="Tail Difference", key="tail_difference", type_name=TYPE_NUMERIC, required=False),
-    TypeField(name="Fat Score", key="fat_score", type_name=TYPE_INTEGER, length=1, required=False),
-    LookupField(
+    EuringField(name="Tail Length", key="tail_length", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Tail Difference", key="tail_difference", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Fat Score", key="fat_score", type_name=TYPE_INTEGER, length=1, required=False),
+    EuringLookupField(
         name="Fat Score Method",
         key="fat_score_method",
         type_name=TYPE_ALPHABETIC,
@@ -270,7 +280,7 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_FAT_SCORE_METHOD,
     ),
-    LookupField(
+    EuringLookupField(
         name="Pectoral Muscle Score",
         key="pectoral_muscle",
         type_name=TYPE_INTEGER,
@@ -278,7 +288,7 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_PECTORAL_MUSCLE_SCORE,
     ),
-    LookupField(
+    EuringLookupField(
         name="Brood Patch",
         key="brood_patch",
         type_name=TYPE_ALPHANUMERIC,
@@ -286,9 +296,9 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_BROOD_PATCH,
     ),
-    TypeField(name="Primary Score", key="primary_score", type_name=TYPE_INTEGER, max_length=2, required=False),
-    TypeField(name="Primary Moult", key="primary_moult", type_name=TYPE_ALPHANUMERIC, length=10, required=False),
-    ParsedTypeField(
+    EuringField(name="Primary Score", key="primary_score", type_name=TYPE_INTEGER, max_length=2, required=False),
+    EuringField(name="Primary Moult", key="primary_moult", type_name=TYPE_ALPHANUMERIC, length=10, required=False),
+    EuringFormattedField(
         name="Old Greater Coverts",
         key="old_greater_coverts",
         type_name=TYPE_ALPHANUMERIC,
@@ -296,8 +306,8 @@ EURING_FIELDS = [
         required=False,
         parser=parse_old_greater_coverts,
     ),
-    TypeField(name="Alula", key="alula", type_name=TYPE_INTEGER, length=1, required=False),
-    LookupField(
+    EuringField(name="Alula", key="alula", type_name=TYPE_INTEGER, length=1, required=False),
+    EuringLookupField(
         name="Carpal Covert",
         key="carpal_covert",
         type_name=TYPE_INTEGER,
@@ -305,7 +315,7 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_CARPAL_COVERT,
     ),
-    LookupField(
+    EuringLookupField(
         name="Sexing Method",
         key="sexing_method",
         type_name=TYPE_ALPHABETIC,
@@ -313,20 +323,20 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_SEXING_METHOD,
     ),
-    TypeField(name="Place Name", key="place_name", type_name=TYPE_TEXT, required=False),
-    TypeField(name="Remarks", key="remarks", type_name=TYPE_TEXT, required=False),
-    TypeField(name="Reference", key="reference", type_name=TYPE_TEXT, required=False),
-    ParsedTypeField(
+    EuringField(name="Place Name", key="place_name", type_name=TYPE_TEXT, required=False),
+    EuringField(name="Remarks", key="remarks", type_name=TYPE_TEXT, required=False),
+    EuringField(name="Reference", key="reference", type_name=TYPE_TEXT, required=False),
+    EuringFormattedField(
         name="Latitude", key="latitude", type_name=TYPE_NUMERIC_SIGNED, required=False, parser=parse_latitude
     ),
-    ParsedTypeField(
+    EuringFormattedField(
         name="Longitude",
         key="longitude",
         type_name=TYPE_NUMERIC_SIGNED,
         required=False,
         parser=parse_longitude,
     ),
-    LookupField(
+    EuringLookupField(
         name="Current Place Code",
         key="current_place_code",
         type_name=TYPE_ALPHANUMERIC,
@@ -334,5 +344,5 @@ EURING_FIELDS = [
         required=False,
         lookup=lookup_place_code,
     ),
-    TypeField(name="More Other Marks", key="more_other_marks", type_name=TYPE_ALPHABETIC, required=False),
+    EuringField(name="More Other Marks", key="more_other_marks", type_name=TYPE_ALPHABETIC, required=False),
 ]
