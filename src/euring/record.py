@@ -5,6 +5,7 @@ import warnings
 
 from .converters import convert_euring_record
 from .exceptions import EuringParseException
+from .field_model import coerce_field
 from .fields import EURING_FIELDS
 from .formats import (
     FORMAT_EURING2000,
@@ -15,7 +16,6 @@ from .formats import (
     normalize_format,
     unknown_format_error,
 )
-from .parsing import euring_decode_value
 from .rules import record_rule_errors, requires_euring2020
 
 
@@ -132,16 +132,14 @@ class EuringRecord:
             value = self._fields.get(key, {}).get("value", "")
             value = "" if value is None else value
             try:
-                euring_decode_value(
-                    value,
-                    field["type"],
-                    required=field.get("required", True),
-                    length=field.get("length"),
-                    min_length=field.get("min_length"),
-                    max_length=field.get("max_length"),
-                    parser=field.get("parser"),
-                    lookup=field.get("lookup"),
-                )
+                field_obj = coerce_field(field)
+                parsed_value = field_obj.parse(value)
+                description = field_obj.describe(parsed_value)
+                if key in self._fields:
+                    if field_obj.get("parser") is not None and parsed_value is not None:
+                        self._fields[key]["parsed_value"] = parsed_value
+                    if description is not None:
+                        self._fields[key]["description"] = description
             except EuringParseException as exc:
                 payload = {
                     "field": field["name"],
