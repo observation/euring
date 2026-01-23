@@ -42,6 +42,7 @@ from .codes import (
     parse_longitude,
     parse_old_greater_coverts,
 )
+from .field_model import EuringField, EuringFormattedField, EuringLookupField
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -54,232 +55,294 @@ from .types import (
 SPEC_MANUAL = "EURING Exchange Code 2020 v202 (13 Nov 2024)"
 
 EURING_FIELDS = [
-    dict(name="Ringing Scheme", key="ringing_scheme", type=TYPE_ALPHABETIC, length=3, lookup=lookup_ringing_scheme),
-    dict(
+    EuringLookupField(
+        name="Ringing Scheme",
+        key="ringing_scheme",
+        type_name=TYPE_ALPHABETIC,
+        length=3,
+        lookup=lookup_ringing_scheme,
+    ),
+    EuringLookupField(
         name="Primary Identification Method",
         key="primary_identification_method",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=2,
         lookup=LOOKUP_PRIMARY_IDENTIFICATION_METHOD,
     ),
-    dict(
+    EuringLookupField(
         name="Identification Number (ring)",
         key="identification_number",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=10,
         lookup=lookup_ring_number,
     ),
-    dict(
+    EuringLookupField(
         name="Verification of the Metal Ring",
         key="verification_of_the_metal_ring",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_VERIFICATION_OF_THE_METAL_RING,
     ),
-    dict(
+    EuringLookupField(
         name="Metal Ring Information",
         key="metal_ring_information",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_METAL_RING_INFORMATION,
     ),
-    dict(
+    EuringLookupField(
         name="Other Marks Information",
         key="other_marks_information",
-        type=TYPE_ALPHABETIC,
+        type_name=TYPE_ALPHABETIC,
         length=2,
         lookup=lookup_other_marks,
     ),
-    dict(name="Species Mentioned", key="species_mentioned", type=TYPE_INTEGER, length=5, lookup=lookup_species),
-    dict(name="Species Concluded", key="species_concluded", type=TYPE_INTEGER, length=5, lookup=lookup_species),
-    dict(name="Manipulated", key="manipulated", type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_MANIPULATED),
-    dict(
+    EuringLookupField(
+        name="Species Mentioned",
+        key="species_mentioned",
+        type_name=TYPE_INTEGER,
+        length=5,
+        lookup=lookup_species,
+    ),
+    EuringLookupField(
+        name="Species Concluded",
+        key="species_concluded",
+        type_name=TYPE_INTEGER,
+        length=5,
+        lookup=lookup_species,
+    ),
+    EuringLookupField(
+        name="Manipulated",
+        key="manipulated",
+        type_name=TYPE_ALPHABETIC,
+        length=1,
+        lookup=LOOKUP_MANIPULATED,
+    ),
+    EuringLookupField(
         name="Moved Before Encounter",
         key="moved_before_recovery",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_MOVED_BEFORE_ENCOUNTER,
     ),
-    dict(name="Catching Method", key="catching_method", type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_CATCHING_METHOD),
-    dict(name="Catching Lures", key="catching_lures", type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_CATCHING_LURES),
-    dict(name="Sex Mentioned", key="sex_mentioned", type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX),
-    dict(name="Sex Concluded", key="sex_concluded", type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX),
-    dict(name="Age Mentioned", key="age_mentioned", type=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age),
-    dict(name="Age Concluded", key="age_concluded", type=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age),
-    dict(name="Status", key="status", type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_STATUS),
-    dict(name="Brood Size", key="brood_size", type=TYPE_INTEGER, length=2, lookup=lookup_brood_size),
-    dict(name="Pullus Age", key="pullus_age", type=TYPE_INTEGER, length=2, lookup=lookup_pullus_age),
-    dict(
+    EuringLookupField(
+        name="Catching Method",
+        key="catching_method",
+        type_name=TYPE_ALPHABETIC,
+        length=1,
+        lookup=LOOKUP_CATCHING_METHOD,
+    ),
+    EuringLookupField(
+        name="Catching Lures",
+        key="catching_lures",
+        type_name=TYPE_ALPHABETIC,
+        length=1,
+        lookup=LOOKUP_CATCHING_LURES,
+    ),
+    EuringLookupField(
+        name="Sex Mentioned", key="sex_mentioned", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX
+    ),
+    EuringLookupField(
+        name="Sex Concluded", key="sex_concluded", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX
+    ),
+    EuringLookupField(
+        name="Age Mentioned", key="age_mentioned", type_name=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age
+    ),
+    EuringLookupField(
+        name="Age Concluded", key="age_concluded", type_name=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age
+    ),
+    EuringLookupField(name="Status", key="status", type_name=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_STATUS),
+    EuringLookupField(name="Brood Size", key="brood_size", type_name=TYPE_INTEGER, length=2, lookup=lookup_brood_size),
+    EuringLookupField(name="Pullus Age", key="pullus_age", type_name=TYPE_INTEGER, length=2, lookup=lookup_pullus_age),
+    EuringLookupField(
         name="Accuracy of Pullus Age",
         key="accuracy_of_pullus_age",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=1,
         lookup=LOOKUP_ACCURACY_PULLUS_AGE,
     ),
-    dict(name="Date", key="date", type=TYPE_INTEGER, length=8, lookup=lookup_date),
-    dict(
+    EuringLookupField(name="Date", key="date", type_name=TYPE_INTEGER, length=8, lookup=lookup_date),
+    EuringLookupField(
         name="Accuracy of Date",
         key="accuracy_of_date",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_ACCURACY_OF_DATE,
     ),
-    dict(name="Time", key="time", type=TYPE_ALPHANUMERIC, length=4),
-    dict(name="Place Code", key="place_code", type=TYPE_ALPHANUMERIC, length=4, lookup=lookup_place_code),
-    dict(
+    EuringField(name="Time", key="time", type_name=TYPE_ALPHANUMERIC, length=4),
+    EuringLookupField(
+        name="Place Code", key="place_code", type_name=TYPE_ALPHANUMERIC, length=4, lookup=lookup_place_code
+    ),
+    EuringFormattedField(
         name="Geographical Co-ordinates",
         key="geographical_coordinates",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=15,
         parser=parse_geographical_coordinates,
         lookup=lookup_geographical_coordinates,
     ),
-    dict(
+    EuringLookupField(
         name="Accuracy of Co-ordinates",
         key="accuracy_of_coordinates",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=1,
         lookup=LOOKUP_ACCURACY_OF_COORDINATES,
     ),
-    dict(name="Condition", key="condition", type=TYPE_INTEGER, length=1, lookup=LOOKUP_CONDITION),
-    dict(name="Circumstances", key="circumstances", type=TYPE_INTEGER, length=2, lookup=LOOKUP_CIRCUMSTANCES),
-    dict(
+    EuringLookupField(name="Condition", key="condition", type_name=TYPE_INTEGER, length=1, lookup=LOOKUP_CONDITION),
+    EuringLookupField(
+        name="Circumstances", key="circumstances", type_name=TYPE_INTEGER, length=2, lookup=LOOKUP_CIRCUMSTANCES
+    ),
+    EuringLookupField(
         name="Circumstances Presumed",
         key="circumstances_presumed",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_CIRCUMSTANCES_PRESUMED,
     ),
-    dict(
+    EuringLookupField(
         name="EURING Code Identifier",
         key="euring_code_identifier",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         lookup=LOOKUP_EURING_CODE_IDENTIFIER,
     ),
-    dict(name="Derived Data - Distance", key="derived_data_distance", type=TYPE_INTEGER, min_length=0, max_length=5),
-    dict(name="Derived Data - Direction", key="derived_data_direction", type=TYPE_INTEGER, length=3),
-    dict(
+    EuringField(
+        name="Derived Data - Distance",
+        key="derived_data_distance",
+        type_name=TYPE_INTEGER,
+        min_length=0,
+        max_length=5,
+    ),
+    EuringField(name="Derived Data - Direction", key="derived_data_direction", type_name=TYPE_INTEGER, length=3),
+    EuringField(
         name="Derived Data - Elapsed Time",
         key="derived_data_elapsed_time",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         min_length=0,
         max_length=5,
     ),
     # Starting with Wing Length, fields are no longer required. Source: EURING Exchange Code 2020 v202 (13 Nov 2024).
-    dict(name="Wing Length", key="wing_length", type=TYPE_NUMERIC, required=False),
-    dict(name="Third Primary", key="third_primary", type=TYPE_NUMERIC, required=False),
-    dict(
+    EuringField(name="Wing Length", key="wing_length", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Third Primary", key="third_primary", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="State of Wing Point",
         key="state_of_wing_point",
-        type=TYPE_ALPHABETIC,
+        type_name=TYPE_ALPHABETIC,
         length=1,
         required=False,
         lookup=LOOKUP_STATE_OF_WING_POINT,
     ),
-    dict(name="Mass", key="mass", type=TYPE_NUMERIC, required=False),
-    dict(
+    EuringField(name="Mass", key="mass", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="Moult",
         key="moult",
-        type=TYPE_ALPHABETIC,
+        type_name=TYPE_ALPHABETIC,
         length=1,
         required=False,
         lookup=LOOKUP_MOULT,
     ),
-    dict(
+    EuringLookupField(
         name="Plumage Code",
         key="plumage_code",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=1,
         required=False,
         lookup=LOOKUP_PLUMAGE_CODE,
     ),
-    dict(name="Hind Claw", key="hind_claw", type=TYPE_NUMERIC, required=False),
-    dict(name="Bill Length", key="bill_length", type=TYPE_NUMERIC, required=False),
-    dict(
+    EuringField(name="Hind Claw", key="hind_claw", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Bill Length", key="bill_length", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="Bill Method",
         key="bill_method",
-        type=TYPE_ALPHABETIC,
+        type_name=TYPE_ALPHABETIC,
         length=1,
         required=False,
         lookup=LOOKUP_BILL_METHOD,
     ),
-    dict(name="Total Head Length", key="total_head_length", type=TYPE_NUMERIC, required=False),
-    dict(name="Tarsus", key="tarsus", type=TYPE_NUMERIC, required=False),
-    dict(
+    EuringField(name="Total Head Length", key="total_head_length", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Tarsus", key="tarsus", type_name=TYPE_NUMERIC, required=False),
+    EuringLookupField(
         name="Tarsus Method",
         key="tarsus_method",
-        type=TYPE_ALPHABETIC,
+        type_name=TYPE_ALPHABETIC,
         length=1,
         required=False,
         lookup=LOOKUP_TARSUS_METHOD,
     ),
-    dict(name="Tail Length", key="tail_length", type=TYPE_NUMERIC, required=False),
-    dict(name="Tail Difference", key="tail_difference", type=TYPE_NUMERIC, required=False),
-    dict(name="Fat Score", key="fat_score", type=TYPE_INTEGER, length=1, required=False),
-    dict(
+    EuringField(name="Tail Length", key="tail_length", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Tail Difference", key="tail_difference", type_name=TYPE_NUMERIC, required=False),
+    EuringField(name="Fat Score", key="fat_score", type_name=TYPE_INTEGER, length=1, required=False),
+    EuringLookupField(
         name="Fat Score Method",
         key="fat_score_method",
-        type=TYPE_ALPHABETIC,
+        type_name=TYPE_ALPHABETIC,
         length=1,
         required=False,
         lookup=LOOKUP_FAT_SCORE_METHOD,
     ),
-    dict(
+    EuringLookupField(
         name="Pectoral Muscle Score",
         key="pectoral_muscle",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         required=False,
         lookup=LOOKUP_PECTORAL_MUSCLE_SCORE,
     ),
-    dict(
+    EuringLookupField(
         name="Brood Patch",
         key="brood_patch",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=1,
         required=False,
         lookup=LOOKUP_BROOD_PATCH,
     ),
-    dict(name="Primary Score", key="primary_score", type=TYPE_INTEGER, max_length=2, required=False),
-    dict(name="Primary Moult", key="primary_moult", type=TYPE_ALPHANUMERIC, length=10, required=False),
-    dict(
+    EuringField(name="Primary Score", key="primary_score", type_name=TYPE_INTEGER, max_length=2, required=False),
+    EuringField(name="Primary Moult", key="primary_moult", type_name=TYPE_ALPHANUMERIC, length=10, required=False),
+    EuringFormattedField(
         name="Old Greater Coverts",
         key="old_greater_coverts",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=1,
         required=False,
         parser=parse_old_greater_coverts,
     ),
-    dict(name="Alula", key="alula", type=TYPE_INTEGER, length=1, required=False),
-    dict(
+    EuringField(name="Alula", key="alula", type_name=TYPE_INTEGER, length=1, required=False),
+    EuringLookupField(
         name="Carpal Covert",
         key="carpal_covert",
-        type=TYPE_INTEGER,
+        type_name=TYPE_INTEGER,
         length=1,
         required=False,
         lookup=LOOKUP_CARPAL_COVERT,
     ),
-    dict(
+    EuringLookupField(
         name="Sexing Method",
         key="sexing_method",
-        type=TYPE_ALPHABETIC,
+        type_name=TYPE_ALPHABETIC,
         length=1,
         required=False,
         lookup=LOOKUP_SEXING_METHOD,
     ),
-    dict(name="Place Name", key="place_name", type=TYPE_TEXT, required=False),
-    dict(name="Remarks", key="remarks", type=TYPE_TEXT, required=False),
-    dict(name="Reference", key="reference", type=TYPE_TEXT, required=False),
-    dict(name="Latitude", key="latitude", type=TYPE_NUMERIC_SIGNED, required=False, parser=parse_latitude),
-    dict(name="Longitude", key="longitude", type=TYPE_NUMERIC_SIGNED, required=False, parser=parse_longitude),
-    dict(
+    EuringField(name="Place Name", key="place_name", type_name=TYPE_TEXT, required=False),
+    EuringField(name="Remarks", key="remarks", type_name=TYPE_TEXT, required=False),
+    EuringField(name="Reference", key="reference", type_name=TYPE_TEXT, required=False),
+    EuringFormattedField(
+        name="Latitude", key="latitude", type_name=TYPE_NUMERIC_SIGNED, required=False, parser=parse_latitude
+    ),
+    EuringFormattedField(
+        name="Longitude",
+        key="longitude",
+        type_name=TYPE_NUMERIC_SIGNED,
+        required=False,
+        parser=parse_longitude,
+    ),
+    EuringLookupField(
         name="Current Place Code",
         key="current_place_code",
-        type=TYPE_ALPHANUMERIC,
+        type_name=TYPE_ALPHANUMERIC,
         length=4,
         required=False,
         lookup=lookup_place_code,
     ),
-    dict(name="More Other Marks", key="more_other_marks", type=TYPE_ALPHABETIC, required=False),
+    EuringField(name="More Other Marks", key="more_other_marks", type_name=TYPE_ALPHABETIC, required=False),
 ]

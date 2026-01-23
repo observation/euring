@@ -1,9 +1,7 @@
 from collections.abc import Callable, Mapping
 from typing import Any
 
-from .codes import lookup_description
-from .exceptions import EuringParseException
-from .types import is_valid_type
+from .field_model import coerce_field
 
 
 def euring_decode_value(
@@ -17,40 +15,23 @@ def euring_decode_value(
     lookup: Mapping[str, str] | Callable[[str], str] | None = None,
 ) -> dict[str, Any] | None:
     """Decode a single EURING field value with type checks, parsing, and lookup."""
-    # A minimum length of 0 is the same as not required
-    if min_length == 0:
-        required = False
-    # What to do with an empty value
-    if value == "":
-        if required is False:
-            # If not required, an empty value will result in None, regardless of the type check
-            return None
-        else:
-            raise EuringParseException('Required field, empty value "" is not permitted.')
-    # Check the type
-    if not is_valid_type(value, type):
-        raise EuringParseException(f'Value "{value}" is not valid for type {type}.')
-    # Length checks
-    value_length = len(value)
-    # Check length
-    if length is not None:
-        if value_length != length:
-            raise EuringParseException(f'Value "{value}" is length {value_length} instead of {length}.')
-    # Check min_length
-    if min_length is not None:
-        if value_length < min_length:
-            raise EuringParseException(f'Value "{value}" is length {value_length}, should be at least {min_length}.')
-    # Check max_length
-    if max_length is not None:
-        if value_length > max_length:
-            raise EuringParseException(f'Value "{value}" is length {value_length}, should be at most {max_length}.')
-    # Results
-    results = {"value": value}
-    # Extra parser if needed
+    definition = {
+        "name": "Value",
+        "key": "value",
+        "type": type,
+        "required": required,
+        "length": length,
+        "min_length": min_length,
+        "max_length": max_length,
+        "parser": parser,
+        "lookup": lookup,
+    }
+    field = coerce_field(definition)
+    parsed = field.parse(value)
+    if parsed is None:
+        return None
+    results: dict[str, Any] = {"value": value}
     if parser:
-        value = parser(value)
-        results["parsed_value"] = value
-    # Look up description
-    results["description"] = lookup_description(value, lookup)
-    # Return results
+        results["parsed_value"] = parsed
+    results["description"] = field.describe(parsed)
     return results
