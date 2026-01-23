@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from euring.converters import _field_index, convert_euring_record
+from euring.converters import convert_euring_record
 from euring.fields import EURING_FIELDS
 from euring.utils import euring_lat_to_dms, euring_lng_to_dms
 
@@ -143,8 +143,3 @@ def test_convert_source_format_plus_name():
     record = _load_fixture("euring2000plus_examples", "EURING2000PLUS_EXAMPLES")
     converted = convert_euring_record(record, source_format="euring2000plus", target_format="euring2020")
     assert converted.count("|") >= record.count("|")
-
-
-def test_field_index_unknown_key():
-    with pytest.raises(ValueError):
-        _field_index("unknown_key")
