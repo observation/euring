@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Feature: Refactor record conversion (#93).
 - Feature: Refactor EURING field definitions to EuringField (#92).
 - Fix: Update example (#90).
 - Maintenance: Add types and remove redundant code (#89).
