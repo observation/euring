@@ -67,7 +67,7 @@ class EuringRecord:
             return
         self._fields[key] = {
             "name": field["name"],
-            "source_raw_value": "" if value is None else f"{value}",
+            "raw_value": "" if value is None else f"{value}",
             "value": "" if value is None else f"{value}",
             "order": field["order"],
         }
@@ -203,7 +203,7 @@ class EuringRecord:
         for field in _fields_for_format(self.format):
             key = field["key"]
             field_state = self._fields.get(key, {})
-            source_raw = field_state.get("source_raw_value")
+            source_raw = field_state.get("raw_value")
             if source_raw is not None:
                 values_by_key[key] = source_raw
                 continue

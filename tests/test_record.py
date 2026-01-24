@@ -16,7 +16,7 @@ def _values_from_record(record: str) -> dict[str, str]:
     decoded = EuringRecord.decode(record)
     values: dict[str, str] = {}
     for key, field in decoded.fields.items():
-        raw_value = field.get("source_raw_value")
+        raw_value = field.get("raw_value")
         if raw_value is None:
             continue
         values[key] = raw_value
