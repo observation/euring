@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add constraints and tests for Direction (#97).
 - Improve support for Distance, Direction and Elapsed Time (#96).
 - Refactor exceptions (#94).
 - Refactor record conversion (#93).
