@@ -42,6 +42,7 @@ from .codes import (
     parse_latitude,
     parse_longitude,
     parse_old_greater_coverts,
+    parse_place_code,
 )
 from .field_schema import EuringField, EuringFormattedField, EuringLookupField
 from .types import (
@@ -173,8 +174,13 @@ EURING_FIELDS = [
         lookup=LOOKUP_ACCURACY_OF_DATE,
     ),
     EuringField(name="Time", key="time", type_name=TYPE_ALPHANUMERIC, length=4),
-    EuringLookupField(
-        name="Place Code", key="place_code", type_name=TYPE_ALPHANUMERIC, length=4, lookup=lookup_place_code
+    EuringFormattedField(
+        name="Place Code",
+        key="place_code",
+        type_name=TYPE_ALPHANUMERIC,
+        length=4,
+        parser=parse_place_code,
+        lookup=lookup_place_code,
     ),
     EuringFormattedField(
         name="Geographical Co-ordinates",
@@ -337,12 +343,13 @@ EURING_FIELDS = [
         required=False,
         parser=parse_longitude,
     ),
-    EuringLookupField(
+    EuringFormattedField(
         name="Current Place Code",
         key="current_place_code",
         type_name=TYPE_ALPHANUMERIC,
         length=4,
         required=False,
+        parser=parse_place_code,
         lookup=lookup_place_code,
     ),
     EuringField(name="More Other Marks", key="more_other_marks", type_name=TYPE_ALPHABETIC, required=False),

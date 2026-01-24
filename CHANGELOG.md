@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add stricter Place Code validation (#99).
 - Parse raw values to values for all fields (#98).
 - Add constraints and tests for Direction (#97).
 - Improve support for Distance, Direction and Elapsed Time (#96).

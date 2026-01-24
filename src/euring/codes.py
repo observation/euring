@@ -1,3 +1,4 @@
+import re
 from collections.abc import Callable, Mapping
 from datetime import date
 from typing import Any
@@ -198,6 +199,17 @@ def parse_direction(value: str) -> int | None:
     if parsed < 0 or parsed > 359:
         raise EuringConstraintException("Direction must be between 0 and 359 degrees.")
     return parsed
+
+
+_PLACE_CODE_RE = re.compile(r"^[A-Z]{2}([A-Z]{2}|[0-9]{2}|--)$")
+
+
+def parse_place_code(value: str) -> str:
+    """Validate the place code pattern (AA##, AAAA, or AA--)."""
+    value_str = f"{value}"
+    if not _PLACE_CODE_RE.match(value_str):
+        raise EuringConstraintException(f'Value "{value}" is not a valid place code format.')
+    return value_str
 
 
 def _parse_decimal_coordinate(value: str, *, max_abs: int, max_decimals: int, field_name: str) -> float:
