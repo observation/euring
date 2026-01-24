@@ -6,6 +6,7 @@ from euring import EuringRecord
 from euring.codes import (
     lookup_date,
     lookup_geographical_coordinates,
+    parse_direction,
     parse_geographical_coordinates,
     parse_old_greater_coverts,
 )
@@ -169,6 +170,22 @@ class TestDecoding:
     def test_parse_old_greater_coverts_invalid(self):
         with pytest.raises(EuringConstraintException):
             parse_old_greater_coverts("B")
+
+    def test_parse_direction_allows_degrees(self):
+        assert parse_direction("0") == "0"
+        assert parse_direction("359") == "359"
+
+    def test_parse_direction_allows_hyphens(self):
+        assert parse_direction("---") == "---"
+        assert parse_direction("-") == "-"
+
+    def test_parse_direction_rejects_out_of_range(self):
+        with pytest.raises(EuringConstraintException):
+            parse_direction("360")
+
+    def test_parse_direction_rejects_negative(self):
+        with pytest.raises(EuringConstraintException):
+            parse_direction("-1")
 
     def test_decode_fields_handles_non_string(self):
         record = EuringRecord.decode(None)
