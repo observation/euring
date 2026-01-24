@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import warnings
 
-from .exceptions import EuringConstraintException, EuringException, EuringTypeException
+from .exceptions import EuringConstraintException, EuringException
 from .field_schema import coerce_field
 from .fields import EURING_FIELDS
 from .formats import (
@@ -242,7 +242,7 @@ class EuringRecord:
         for field in fields:
             key = field["key"]
             value = self._fields.get(key, {}).get("value")
-            if key == "geographical_coordinates" and value in (None, "") and geo_placeholder:
+            if key == "geographical_coordinates" and _is_empty(value) and geo_placeholder:
                 values_by_key[key] = geo_placeholder
                 continue
             values_by_key[key] = _serialize_field_value(field, value, self.format)
@@ -308,6 +308,19 @@ def _serialize_field_value(field: dict[str, object], value: object, format: str)
     key = field["key"]
     length = field.get("length")
     length = 0 if length is None else int(length)
+    type_name = field.get("type_name") or ""
+    pad_integer = (
+        type_name == TYPE_INTEGER
+        and length
+        and (format == FORMAT_EURING2000 or not field.get("variable_length", False))
+    )
+    pad_numeric = type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED} and length and format == FORMAT_EURING2000
+    field_def = field
+    if format == FORMAT_EURING2000 and field.get("variable_length"):
+        field_def = {**field, "variable_length": False}
+    if pad_integer or pad_numeric:
+        field_def = {**field_def, "variable_length": True}
+    field_obj = coerce_field(field_def)
 
     # Empty fields
     if _is_empty(value):
@@ -328,23 +341,20 @@ def _serialize_field_value(field: dict[str, object], value: object, format: str)
         return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
 
     # Non-empty fields
-    value_str = f"{value}"
-    type_name = field.get("type_name") or ""
+    if type_name == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
+        return _serialize_field_value(field, None, format)
+    value_str = field_obj.encode(value)
     if type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
         # Remove zeroes on the right, remove decimal separator if no decimals
         if "." in value_str:
             value_str = value_str.rstrip("0").rstrip(".")
-    if type_name == TYPE_INTEGER:
-        if isinstance(value, str) and value and set(value) == {"-"}:
-            return _serialize_field_value(field, None, format)
-        if not value_str.isdigit():
-            raise EuringTypeException(f'Value "{value}" is not valid for type {TYPE_INTEGER}.')
-        if length and (format == FORMAT_EURING2000 or not field.get("variable_length", False)):
+        if pad_numeric:
             value_str = value_str.zfill(length)
         return value_str
-    if type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
-        if format == FORMAT_EURING2000 or (length and not field.get("variable_length", False)):
+    if type_name == TYPE_INTEGER:
+        if pad_integer:
             value_str = value_str.zfill(length)
+        return value_str
     return value_str
 
 
