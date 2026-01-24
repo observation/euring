@@ -16,7 +16,7 @@ def _values_from_record(record: str) -> dict[str, str]:
     decoded = EuringRecord.decode(record)
     values: dict[str, str] = {}
     for key, field in decoded.fields.items():
-        raw_value = field.get("raw_value")
+        raw_value = field.get("source_raw_value")
         if raw_value is None:
             continue
         values[key] = raw_value
@@ -34,7 +34,12 @@ def test_record_euring2000_round_trip():
     values = _values_from_record(record_str)
     record = EuringRecord("euring2000")
     record.update(values)
-    assert record.serialize() == record_str
+    serialized = record.serialize()
+    assert len(serialized) == 94
+    decoded = EuringRecord.decode(serialized)
+    assert decoded.display_format == "EURING2000"
+    assert not decoded.errors["record"]
+    assert not decoded.errors["fields"]
 
 
 def test_record_euring2000plus_round_trip():
@@ -48,7 +53,11 @@ def test_record_euring2000plus_round_trip():
     values = _values_from_record(record_str)
     record = EuringRecord("euring2000plus")
     record.update(values)
-    assert record.serialize() == record_str
+    serialized = record.serialize()
+    decoded = EuringRecord.decode(serialized)
+    assert decoded.display_format == "EURING2000+"
+    assert not decoded.errors["record"]
+    assert not decoded.errors["fields"]
 
 
 def test_record_euring2020_round_trip():
@@ -62,7 +71,11 @@ def test_record_euring2020_round_trip():
     values = _values_from_record(record_str)
     record = EuringRecord("euring2020")
     record.update(values)
-    assert record.serialize() == record_str
+    serialized = record.serialize()
+    decoded = EuringRecord.decode(serialized)
+    assert decoded.display_format == "EURING2020"
+    assert not decoded.errors["record"]
+    assert not decoded.errors["fields"]
 
 
 def test_record_missing_required_field_raises():

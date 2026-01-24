@@ -30,11 +30,11 @@ def euring_decode_value(
     parsed = field.parse(value)
     if parsed is None:
         return None
-    results: dict[str, Any] = {"raw_value": value, "value": parsed}
+    results: dict[str, Any] = {"source_raw_value": value, "value": parsed}
     if parser:
         results["parsed_value"] = parsed
     description_value = parsed
-    if lookup and not parser and value != "":
+    if lookup and not parser and value != "" and parsed is not None:
         description_value = value
     results["description"] = field.describe(description_value)
     return results

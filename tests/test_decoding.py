@@ -107,7 +107,7 @@ class TestDecoding:
 
     def test_decode_value_with_lookup(self):
         result = euring_decode_value("01012024", TYPE_INTEGER, length=8, lookup=lookup_date)
-        assert result["raw_value"] == "01012024"
+        assert result["source_raw_value"] == "01012024"
         assert result["value"] == 1012024
         assert result["description"].isoformat() == "2024-01-01"
 
