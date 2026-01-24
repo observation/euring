@@ -4,7 +4,7 @@
 from euring import (
     TYPE_ALPHABETIC,
     TYPE_INTEGER,
-    EuringParseException,
+    EuringException,
     EuringRecord,
     euring_dms_to_float,
     euring_lat_to_dms,
@@ -41,7 +41,7 @@ def main():
         print("Decoded successfully!")
         print(f"Format: {record.display_format}")
         print(f"Fields decoded: {len(record.fields)}")
-    except EuringParseException as e:
+    except EuringException as e:
         print(f"Parse error (expected for incomplete record): {e}")
 
     print("\nDemo completed!")

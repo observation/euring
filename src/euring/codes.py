@@ -12,7 +12,7 @@ from .data import (
     load_species_details,
     load_species_map,
 )
-from .exceptions import EuringParseException
+from .exceptions import EuringConstraintException, EuringLookupException
 from .utils import euring_dms_to_float
 
 LOOKUP_EURING_CODE_IDENTIFIER = load_code_map("euring_code_identifier")
@@ -73,13 +73,13 @@ def lookup_description(value: str, lookup: Mapping[str, str] | Callable[[str], s
     try:
         return lookup[value]
     except KeyError:
-        raise EuringParseException(f'Value "{value}"is not a valid code.')
+        raise EuringLookupException(f'Value "{value}"is not a valid code.')
 
 
 def lookup_ring_number(value: str) -> str:
     """Lookup a ring number Just strip the dots from the EURING codes."""
     if value and value.endswith("."):
-        raise EuringParseException("Identification number (ring) cannot end with a dot.")
+        raise EuringConstraintException("Identification number (ring) cannot end with a dot.")
     return value.replace(".", "")
 
 
@@ -91,7 +91,7 @@ def lookup_other_marks(value: str) -> str:
     :return: Description found
     """
     if not LOOKUP_OTHER_MARKS_INFORMATION_POSITION_1 or not LOOKUP_OTHER_MARKS_INFORMATION_POSITION_2:
-        raise EuringParseException("Other marks reference data is not available.")
+        raise EuringLookupException("Other marks reference data is not available.")
     # First see if it's a special case
     try:
         return LOOKUP_OTHER_MARKS_INFORMATION_SPECIAL_CASES[value]
@@ -107,7 +107,7 @@ def lookup_other_marks(value: str) -> str:
         else:
             pos2 = LOOKUP_OTHER_MARKS_INFORMATION_POSITION_2[char2]
     except KeyError:
-        raise EuringParseException(f'Value "{value}"is not a valid code combination.')
+        raise EuringLookupException(f'Value "{value}"is not a valid code combination.')
     # Make the combined description a little prettier
     return "{pos1}, {pos2}.".format(pos1=pos1.strip("."), pos2=pos2.strip("."))
 
@@ -126,10 +126,10 @@ def lookup_species(value: str | int) -> str:
     try:
         int(value_str)
     except ValueError:
-        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid EURING species code format.')
     if len(value_str) != 5:
-        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
-    raise EuringParseException(f'Value "{value}" is a valid EURING species code format but was not found.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid EURING species code format.')
+    raise EuringLookupException(f'Value "{value}" is a valid EURING species code format but was not found.')
 
 
 def lookup_species_details(value: str | int) -> dict[str, Any]:
@@ -141,17 +141,17 @@ def lookup_species_details(value: str | int) -> dict[str, Any]:
     try:
         int(value_str)
     except ValueError:
-        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid EURING species code format.')
     if len(value_str) != 5:
-        raise EuringParseException(f'Value "{value}" is not a valid EURING species code format.')
-    raise EuringParseException(f'Value "{value}" is a valid EURING species code format but was not found.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid EURING species code format.')
+    raise EuringLookupException(f'Value "{value}" is a valid EURING species code format but was not found.')
 
 
 def parse_geographical_coordinates(value: str | None) -> dict[str, float] | None:
     """Parse EURING coordinate text into latitude/longitude decimal values."""
     # +420500-0044500
     if value is None:
-        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
     if value == "." * 15:
         return None
     _validate_dms_component(value[:7], degrees_digits=2, max_degrees=90)
@@ -160,7 +160,7 @@ def parse_geographical_coordinates(value: str | None) -> dict[str, float] | None
         lat = value[:7]
         lng = value[7:]
     except (TypeError, IndexError):
-        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
     result = dict(lat=euring_dms_to_float(lat), lng=euring_dms_to_float(lng))
     return result
 
@@ -187,39 +187,39 @@ def _parse_decimal_coordinate(value: str, *, max_abs: int, max_decimals: int, fi
     try:
         parsed = float(value)
     except (TypeError, ValueError):
-        raise EuringParseException(f'Value "{value}" is not a valid {field_name}.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid {field_name}.')
     if abs(parsed) > max_abs:
-        raise EuringParseException(f"{field_name} must be between -{max_abs} and {max_abs}.")
+        raise EuringConstraintException(f"{field_name} must be between -{max_abs} and {max_abs}.")
     if "." in value:
         decimal_part = value.split(".", 1)[1]
         if len(decimal_part) > max_decimals:
-            raise EuringParseException(f"{field_name} must have at most {max_decimals} decimal places.")
+            raise EuringConstraintException(f"{field_name} must have at most {max_decimals} decimal places.")
     return parsed
 
 
 def _validate_dms_component(value: str | None, *, degrees_digits: int, max_degrees: int) -> None:
     """Validate a DMS coordinate component."""
     if value is None:
-        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
     expected_length = 1 + degrees_digits + 2 + 2
     if len(value) != expected_length:
-        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
     sign = value[0]
     if sign not in {"+", "-"}:
-        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
     degrees = value[1 : 1 + degrees_digits]
     minutes = value[1 + degrees_digits : 1 + degrees_digits + 2]
     seconds = value[1 + degrees_digits + 2 :]
     if not (degrees.isdigit() and minutes.isdigit() and seconds.isdigit()):
-        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
     if int(degrees) > max_degrees or int(minutes) > 59 or int(seconds) > 59:
-        raise EuringParseException(f'Value "{value}" is not a valid set of coordinates.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
 
 
 def parse_old_greater_coverts(value: str) -> str:
     """Validate Old Greater Coverts codes (0-9 or A)."""
     if value not in {str(num) for num in range(10)} | {"A"}:
-        raise EuringParseException(f'Value "{value}" is not a valid Old Greater Coverts code.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid Old Greater Coverts code.')
     return value
 
 
@@ -234,7 +234,7 @@ def lookup_place_code(value: str | int) -> str:
     result = _PLACE_LOOKUP.get(value_str)
     if result:
         return result
-    raise EuringParseException(f'Value "{value}" is not a valid EURING place code.')
+    raise EuringLookupException(f'Value "{value}" is not a valid EURING place code.')
 
 
 def lookup_place_details(value: str | int) -> dict[str, Any]:
@@ -243,7 +243,7 @@ def lookup_place_details(value: str | int) -> dict[str, Any]:
     result = _PLACE_DETAILS.get(value_str)
     if result:
         return result
-    raise EuringParseException(f'Value "{value}" is not a valid EURING place code.')
+    raise EuringLookupException(f'Value "{value}" is not a valid EURING place code.')
 
 
 def lookup_date(value: str) -> date:
@@ -254,7 +254,7 @@ def lookup_date(value: str) -> date:
         year = int(value[4:8])
         return date(year, month, day)
     except (IndexError, ValueError):
-        raise EuringParseException(f'Value "{value}" is not a valid EURING date.')
+        raise EuringConstraintException(f'Value "{value}" is not a valid EURING date.')
 
 
 def lookup_ringing_scheme(value: str | int) -> str:
@@ -268,7 +268,7 @@ def lookup_ringing_scheme(value: str | int) -> str:
     result = _SCHEME_LOOKUP.get(value_str)
     if result:
         return result
-    raise EuringParseException(f'Value "{value}" is not a valid EURING ringing scheme code.')
+    raise EuringLookupException(f'Value "{value}" is not a valid EURING ringing scheme code.')
 
 
 def lookup_ringing_scheme_details(value: str | int) -> dict[str, Any]:
@@ -277,7 +277,7 @@ def lookup_ringing_scheme_details(value: str | int) -> dict[str, Any]:
     result = _SCHEME_DETAILS.get(value_str)
     if result:
         return result
-    raise EuringParseException(f'Value "{value}" is not a valid EURING ringing scheme code.')
+    raise EuringLookupException(f'Value "{value}" is not a valid EURING ringing scheme code.')
 
 
 def lookup_age(value: str | int) -> str | None:

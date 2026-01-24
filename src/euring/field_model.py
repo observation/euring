@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from .codes import lookup_description
-from .exceptions import EuringParseException
+from .exceptions import EuringConstraintException, EuringTypeException
 from .types import is_valid_type
 
 __all__ = [
@@ -60,33 +60,37 @@ class EuringField(Mapping[str, Any]):
     def _validate_length(self, raw: str) -> None:
         value_length = len(raw)
         if self.length is not None and value_length != self.length:
-            raise EuringParseException(f'Value "{raw}" is length {value_length} instead of {self.length}.')
+            raise EuringConstraintException(f'Value "{raw}" is length {value_length} instead of {self.length}.')
         if self.min_length is not None and value_length < self.min_length:
-            raise EuringParseException(f'Value "{raw}" is length {value_length}, should be at least {self.min_length}.')
+            raise EuringConstraintException(
+                f'Value "{raw}" is length {value_length}, should be at least {self.min_length}.'
+            )
         if self.max_length is not None and value_length > self.max_length:
-            raise EuringParseException(f'Value "{raw}" is length {value_length}, should be at most {self.max_length}.')
+            raise EuringConstraintException(
+                f'Value "{raw}" is length {value_length}, should be at most {self.max_length}.'
+            )
 
     def parse(self, raw: str) -> Any | None:
         """Parse raw text into a Python value."""
         if raw == "":
             if not self._is_required():
                 return None
-            raise EuringParseException('Required field, empty value "" is not permitted.')
+            raise EuringConstraintException('Required field, empty value "" is not permitted.')
         self._validate_length(raw)
         if self.type_name and not is_valid_type(raw, self.type_name):
-            raise EuringParseException(f'Value "{raw}" is not valid for type {self.type_name}.')
+            raise EuringTypeException(f'Value "{raw}" is not valid for type {self.type_name}.')
         return raw
 
     def encode(self, value: Any | None) -> str:
         """Encode a Python value to raw text."""
         if value is None or value == "":
             if self._is_required():
-                raise EuringParseException('Required field, empty value "" is not permitted.')
+                raise EuringConstraintException('Required field, empty value "" is not permitted.')
             return ""
         raw = str(value)
         self._validate_length(raw)
         if self.type_name and not is_valid_type(raw, self.type_name):
-            raise EuringParseException(f'Value "{raw}" is not valid for type {self.type_name}.')
+            raise EuringTypeException(f'Value "{raw}" is not valid for type {self.type_name}.')
         return raw
 
     def describe(self, value: Any | None) -> Any | None:

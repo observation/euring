@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import warnings
 
-from .exceptions import EuringParseException
+from .exceptions import EuringConstraintException, EuringException
 from .field_model import coerce_field
 from .fields import EURING_FIELDS
 from .formats import (
@@ -145,7 +145,7 @@ class EuringRecord:
                         self._fields[key]["parsed_value"] = parsed_value
                     if description is not None:
                         self._fields[key]["description"] = description
-            except EuringParseException as exc:
+            except EuringException as exc:
                 payload = {
                     "field": field["name"],
                     "message": f"{exc}",
@@ -438,7 +438,7 @@ def _normalize_decode_format(format: str | None) -> str | None:
     try:
         return normalize_format(format)
     except ValueError:
-        raise EuringParseException(unknown_format_error(format))
+        raise EuringConstraintException(unknown_format_error(format))
 
 
 def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str, str], list[dict[str, str]]]:

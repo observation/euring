@@ -374,7 +374,7 @@ def test_decode_cli_non_euring_string():
 
 def test_decode_cli_parse_exception(monkeypatch):
     def _raise_parse(_cls, _value, **_kwargs):
-        raise euring_exceptions.EuringParseException("bad")
+        raise euring_exceptions.EuringException("bad")
 
     monkeypatch.setattr(main_module.EuringRecord, "decode", classmethod(_raise_parse))
     runner = CliRunner()

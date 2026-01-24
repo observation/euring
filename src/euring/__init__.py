@@ -13,7 +13,12 @@ Main features:
 
 from .__about__ import __version__
 from .converters import convert_euring_record
-from .exceptions import EuringException, EuringParseException
+from .exceptions import (
+    EuringConstraintException,
+    EuringException,
+    EuringLookupException,
+    EuringTypeException,
+)
 from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
@@ -65,7 +70,9 @@ __all__ = [
     "is_text",
     "is_valid_type",
     "EuringException",
-    "EuringParseException",
+    "EuringConstraintException",
+    "EuringTypeException",
+    "EuringLookupException",
     "FORMAT_EURING2000",
     "FORMAT_EURING2000PLUS",
     "FORMAT_EURING2020",

@@ -1,10 +1,14 @@
 class EuringException(Exception):
     """Base exception for EURING errors."""
 
-    pass
+
+class EuringTypeException(EuringException):
+    """Raised when a value does not satisfy its declared EURING type."""
 
 
-class EuringParseException(EuringException):
-    """Raised when EURING parsing or validation fails."""
+class EuringConstraintException(EuringException):
+    """Raised when a value violates field constraints beyond type."""
 
-    pass
+
+class EuringLookupException(EuringException):
+    """Raised when a lookup value cannot be resolved."""

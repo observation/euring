@@ -18,7 +18,7 @@ from .codes import (
 from .converters import convert_euring_record
 from .data.code_tables import EURING_CODE_TABLES
 from .data.loader import load_data
-from .exceptions import EuringParseException
+from .exceptions import EuringException
 from .formats import FORMAT_EURING2020
 from .record import EuringRecord
 
@@ -107,7 +107,7 @@ def decode(
             for line in _format_error_lines(errors, indent="  "):
                 typer.echo(line, err=True)
             raise typer.Exit(1)
-    except EuringParseException as e:
+    except EuringException as e:
         typer.echo(f"Parse error: {e}", err=True)
         raise typer.Exit(1)
     except typer.Exit:
@@ -205,7 +205,7 @@ def validate_record(
             typer.echo(text)
     except typer.Exit:
         raise
-    except EuringParseException as e:
+    except EuringException as e:
         typer.echo(f"Validation error: {e}", err=True)
         raise typer.Exit(1)
     except Exception as e:

@@ -7,7 +7,7 @@ import pytest
 
 from euring import EuringRecord
 from euring.converters import convert_euring_record
-from euring.exceptions import EuringParseException
+from euring.exceptions import EuringConstraintException
 from euring.formats import format_hint
 
 
@@ -30,28 +30,28 @@ def test_decode_format_accepts_lowercase():
 def test_decode_format_rejects_uppercase_formal():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    with pytest.raises(EuringParseException, match="Unknown format"):
+    with pytest.raises(EuringConstraintException, match="Unknown format"):
         EuringRecord.decode(record, format="EURING2000PLUS")
 
 
 def test_decode_format_rejects_plus_alias():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    with pytest.raises(EuringParseException, match="Unknown format"):
+    with pytest.raises(EuringConstraintException, match="Unknown format"):
         EuringRecord.decode(record, format="euring2000+")
 
 
 def test_decode_format_rejects_short_alias():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    with pytest.raises(EuringParseException, match="Unknown format"):
+    with pytest.raises(EuringConstraintException, match="Unknown format"):
         EuringRecord.decode(record, format="euring2000p")
 
 
 def test_decode_format_rejects_missing_prefix():
     records = _load_fixture("euring2000plus_examples", "euring2000plus_examples.py")
     record = records[0]
-    with pytest.raises(EuringParseException, match="Unknown format"):
+    with pytest.raises(EuringConstraintException, match="Unknown format"):
         EuringRecord.decode(record, format="2000plus")
 
 

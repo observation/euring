@@ -3,7 +3,7 @@
 import pytest
 
 from euring import (
-    EuringParseException,
+    EuringConstraintException,
     euring_dms_to_float,
     euring_float_to_dms,
     euring_identification_display_format,
@@ -33,7 +33,7 @@ class TestUtils:
         assert dms["seconds"] == 0.0
 
     def test_dms_conversion_invalid(self):
-        with pytest.raises(EuringParseException):
+        with pytest.raises(EuringConstraintException):
             euring_dms_to_float("bogus")
 
     def test_identification_format(self):
