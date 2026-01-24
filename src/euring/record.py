@@ -52,9 +52,11 @@ class EuringRecord:
         field = _FIELD_MAP.get(key)
         if field is None:
             raise ValueError(f'Unknown field key "{key}".')
+        raw_value = "" if value is None else str(value)
         self._fields[key] = {
             "name": field["name"],
-            "value": "" if value is None else str(value),
+            "raw_value": raw_value,
+            "value": value,
             "order": field["order"],
         }
         return self
@@ -64,9 +66,11 @@ class EuringRecord:
         field = _FIELD_MAP.get(key)
         if field is None:
             return
+        raw_value = "" if value is None else f"{value}"
         self._fields[key] = {
             "name": field["name"],
-            "value": "" if value is None else value,
+            "raw_value": raw_value,
+            "value": raw_value,
             "order": field["order"],
         }
 
@@ -135,18 +139,23 @@ class EuringRecord:
         variable_length_keys = {"distance", "direction", "elapsed_time"}
         for index, field in enumerate(fields):
             key = field["key"]
-            value = self._fields.get(key, {}).get("value", "")
-            value = "" if value is None else value
+            field_state = self._fields.get(key, {})
+            raw_value = field_state.get("raw_value", field_state.get("value", ""))
+            raw_value = "" if raw_value is None else raw_value
             try:
                 field_def = field
                 if self.format != FORMAT_EURING2000 and key in variable_length_keys and field.get("length"):
                     field_def = {**field, "max_length": field["length"]}
                     field_def.pop("length", None)
                 field_obj = coerce_field(field_def)
-                parsed_value = field_obj.parse(value)
-                description = field_obj.describe(parsed_value)
+                parsed_value = field_obj.parse(raw_value)
+                description_value = parsed_value
+                if field_obj.get("lookup") is not None and field_obj.get("parser") is None and raw_value != "":
+                    description_value = raw_value
+                description = field_obj.describe(description_value)
                 if key in self._fields:
-                    if field_obj.get("parser") is not None and parsed_value is not None:
+                    self._fields[key]["value"] = parsed_value
+                    if field_obj.get("parser") is not None:
                         self._fields[key]["parsed_value"] = parsed_value
                     if description is not None:
                         self._fields[key]["description"] = description
@@ -154,7 +163,7 @@ class EuringRecord:
                 payload = {
                     "field": field["name"],
                     "message": f"{exc}",
-                    "value": "" if value is None else f"{value}",
+                    "value": "" if raw_value is None else f"{raw_value}",
                     "key": key,
                     "index": index,
                 }
@@ -177,7 +186,7 @@ class EuringRecord:
 
     def _validate_record_rules(self) -> list[dict[str, object]]:
         """Validate multi-field and record-level rules."""
-        values_by_key = {key: field.get("value", "") for key, field in self._fields.items()}
+        values_by_key = {key: field.get("raw_value", field.get("value", "")) for key, field in self._fields.items()}
         errors: list[dict[str, object]] = []
         for error in record_rule_errors(self.format, values_by_key):
             errors.append(_record_error_for_key(error["key"], error["message"], value=error["value"]))
@@ -196,10 +205,22 @@ class EuringRecord:
         """Serialize current field values without strict completeness checks."""
         fields = _fields_for_format(self.format)
         values_by_key: dict[str, str] = {}
+        hyphen_required_keys = {"distance", "direction", "elapsed_time"}
         for field in fields:
             key = field["key"]
-            value = self._fields.get(key, {}).get("value", "")
-            values_by_key[key] = "" if value is None else value
+            raw_value = self._fields.get(key, {}).get("raw_value")
+            value = self._fields.get(key, {}).get("value")
+            if raw_value is None:
+                raw_value = self._fields.get(key, {}).get("value", "")
+            raw_value = "" if raw_value is None else f"{raw_value}"
+            if self.format == FORMAT_EURING2000 and (value is None or value == ""):
+                raw_value = ""
+            if self.format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020} and key in hyphen_required_keys:
+                if value is None or value == "":
+                    length = field.get("length") or field.get("max_length")
+                    if length:
+                        raw_value = "-" * int(length)
+            values_by_key[key] = raw_value
         if self.format == FORMAT_EURING2000:
             return _format_fixed_width(values_by_key, _fixed_width_fields())
         return "|".join(values_by_key.get(field["key"], "") for field in fields)
