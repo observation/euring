@@ -9,6 +9,7 @@ from euring.codes import (
     parse_direction,
     parse_geographical_coordinates,
     parse_old_greater_coverts,
+    parse_place_code,
 )
 from euring.exceptions import EuringConstraintException, EuringTypeException
 from euring.fields import EURING_FIELDS
@@ -179,6 +180,16 @@ class TestDecoding:
     def test_parse_direction_allows_hyphens(self):
         assert parse_direction("---") is None
         assert parse_direction("-") is None
+
+    def test_parse_place_code_allows_country_unknown_subdivision(self):
+        assert parse_place_code("NL--") == "NL--"
+
+    def test_parse_place_code_allows_numeric_subdivision(self):
+        assert parse_place_code("ES00") == "ES00"
+
+    def test_parse_place_code_rejects_invalid_pattern(self):
+        with pytest.raises(EuringConstraintException):
+            parse_place_code("N1--")
 
     def test_parse_direction_rejects_out_of_range(self):
         with pytest.raises(EuringConstraintException):
