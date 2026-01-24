@@ -3,19 +3,19 @@
 ## Unreleased
 
 - Refactor exceptions (#94).
-- Feature: Refactor record conversion (#93).
-- Feature: Refactor EURING field definitions to EuringField (#92).
-- Fix: Update example (#90).
-- Maintenance: Add types and remove redundant code (#89).
+- Refactor record conversion (#93).
+- Refactor EURING field definitions to EuringField (#92).
+- Update example (#90).
+- Add types and remove redundant code (#89).
 
 ## 26.4 (2026-01-20)
 
-- Data: Update EURING Code Tables and document transcription to Python (#85, #86).
+- Update EURING Code Tables and document transcription to Python (#85, #86).
 
 ## 26.3 (2026-01-19)
 
-- Breaking: Remove `euring_decode_record` and fold decoding into EuringRecord (#76, #81).
-- CLI: Add error on file not found (#82).
+- Remove `euring_decode_record` and fold decoding into EuringRecord (#76, #81).
+- Add CLI error on file not found (#82).
 
 ## 26.2 (2026-01-12)
 
