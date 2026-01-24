@@ -32,6 +32,9 @@ General notes
   hyphens" to explain the literal symbol in the code field. We treat these as
   reader hints and omit them from the stored descriptions; the code value itself
   carries that meaning.
+- The manual refers to the derived-data fields both with and without the
+  "Derived Data -" prefix. We use the shorter labels ("Distance", "Direction",
+  "Elapsed Time") and matching keys for clarity.
 
 Place codes
 -----------

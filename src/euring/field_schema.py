@@ -18,7 +18,7 @@ __all__ = [
 
 @dataclass(frozen=True)
 class EuringField(Mapping[str, Any]):
-    """Base field definition with parse/encode/validate hooks."""
+    """Schema definition for a EURING field (no per-record values)."""
 
     key: str
     name: str

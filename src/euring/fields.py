@@ -42,7 +42,7 @@ from .codes import (
     parse_longitude,
     parse_old_greater_coverts,
 )
-from .field_model import EuringField, EuringFormattedField, EuringLookupField
+from .field_schema import EuringField, EuringFormattedField, EuringLookupField
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -53,6 +53,8 @@ from .types import (
 )
 
 SPEC_MANUAL = "EURING Exchange Code 2020 v202 (13 Nov 2024)"
+
+# Schema list (definitions), not per-record data.
 
 EURING_FIELDS = [
     EuringLookupField(
@@ -207,19 +209,17 @@ EURING_FIELDS = [
         lookup=LOOKUP_EURING_CODE_IDENTIFIER,
     ),
     EuringField(
-        name="Derived Data - Distance",
-        key="derived_data_distance",
+        name="Distance",
+        key="distance",
         type_name=TYPE_INTEGER,
-        min_length=0,
-        max_length=5,
+        length=5,
     ),
-    EuringField(name="Derived Data - Direction", key="derived_data_direction", type_name=TYPE_INTEGER, length=3),
+    EuringField(name="Direction", key="direction", type_name=TYPE_INTEGER, length=3),
     EuringField(
-        name="Derived Data - Elapsed Time",
-        key="derived_data_elapsed_time",
+        name="Elapsed Time",
+        key="elapsed_time",
         type_name=TYPE_INTEGER,
-        min_length=0,
-        max_length=5,
+        length=5,
     ),
     # Starting with Wing Length, fields are no longer required. Source: EURING Exchange Code 2020 v202 (13 Nov 2024).
     EuringField(name="Wing Length", key="wing_length", type_name=TYPE_NUMERIC, required=False),

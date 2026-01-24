@@ -4,7 +4,7 @@ import json
 import warnings
 
 from .exceptions import EuringConstraintException, EuringException
-from .field_model import coerce_field
+from .field_schema import coerce_field
 from .fields import EURING_FIELDS
 from .formats import (
     FORMAT_EURING2000,
@@ -132,12 +132,17 @@ class EuringRecord:
         errors: list[dict[str, object]] = []
         fields = _fields_for_format(self.format)
         positions = _field_positions(fields) if self.format == FORMAT_EURING2000 else {}
+        variable_length_keys = {"distance", "direction", "elapsed_time"}
         for index, field in enumerate(fields):
             key = field["key"]
             value = self._fields.get(key, {}).get("value", "")
             value = "" if value is None else value
             try:
-                field_obj = coerce_field(field)
+                field_def = field
+                if self.format != FORMAT_EURING2000 and key in variable_length_keys and field.get("length"):
+                    field_def = {**field, "max_length": field["length"]}
+                    field_def.pop("length", None)
+                field_obj = coerce_field(field_def)
                 parsed_value = field_obj.parse(value)
                 description = field_obj.describe(parsed_value)
                 if key in self._fields:
