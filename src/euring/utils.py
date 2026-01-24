@@ -52,6 +52,12 @@ def euring_float_to_dms(value: float, round_seconds: bool = False) -> dict[str, 
         quadrant = "+"  # includes 0
     if round_seconds:
         seconds = int(round(seconds))
+        if seconds == 60:
+            seconds = 0
+            minutes += 1
+        if minutes == 60:
+            minutes = 0
+            degrees = degrees + 1 if degrees >= 0 else degrees - 1
     return {"quadrant": quadrant, "degrees": degrees, "minutes": minutes, "seconds": seconds}
 
 

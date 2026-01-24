@@ -220,13 +220,24 @@ EURING_FIELDS = [
         key="distance",
         type_name=TYPE_INTEGER,
         length=5,
+        variable_length=True,
+        empty_value="-----",
     ),
-    EuringFormattedField(name="Direction", key="direction", type_name=TYPE_INTEGER, length=3, parser=parse_direction),
+    EuringFormattedField(
+        name="Direction",
+        key="direction",
+        type_name=TYPE_INTEGER,
+        length=3,
+        empty_value="---",
+        parser=parse_direction,
+    ),
     EuringField(
         name="Elapsed Time",
         key="elapsed_time",
         type_name=TYPE_INTEGER,
         length=5,
+        variable_length=True,
+        empty_value="-----",
     ),
     # Starting with Wing Length, fields are no longer required. Source: EURING Exchange Code 2020 v202 (13 Nov 2024).
     EuringField(name="Wing Length", key="wing_length", type_name=TYPE_NUMERIC, required=False),
@@ -303,7 +314,14 @@ EURING_FIELDS = [
         required=False,
         lookup=LOOKUP_BROOD_PATCH,
     ),
-    EuringField(name="Primary Score", key="primary_score", type_name=TYPE_INTEGER, max_length=2, required=False),
+    EuringField(
+        name="Primary Score",
+        key="primary_score",
+        type_name=TYPE_INTEGER,
+        length=2,
+        variable_length=True,
+        required=False,
+    ),
     EuringField(name="Primary Moult", key="primary_moult", type_name=TYPE_ALPHANUMERIC, length=10, required=False),
     EuringFormattedField(
         name="Old Greater Coverts",
@@ -354,3 +372,8 @@ EURING_FIELDS = [
     ),
     EuringField(name="More Other Marks", key="more_other_marks", type_name=TYPE_ALPHABETIC, required=False),
 ]
+
+# These are the field definitions per format as per the EURING Code Manual
+EURING2020_FIELDS = EURING_FIELDS  # 64 fields
+EURING2000PLUS_FIELDS = EURING_FIELDS[:60]
+EURING2000_FIELDS = EURING_FIELDS[:33]

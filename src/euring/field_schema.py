@@ -4,8 +4,11 @@ from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
 from typing import Any
 
+from euring.utils import euring_lat_to_dms, euring_lng_to_dms
+
 from .codes import lookup_description
 from .exceptions import EuringConstraintException, EuringTypeException
+from .formats import FORMAT_EURING2000
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -33,22 +36,22 @@ class EuringField(Mapping[str, Any]):
     type_name: str = ""
     required: bool = True
     length: int | None = None
-    min_length: int | None = None
-    max_length: int | None = None
+    variable_length: bool = False
+    empty_value: str | None = None
 
     def _mapping(self) -> dict[str, Any]:
         mapping: dict[str, Any] = {
             "key": self.key,
             "name": self.name,
-            "type": self.type_name,
+            "type_name": self.type_name,
             "required": self.required,
         }
         if self.length is not None:
             mapping["length"] = self.length
-        if self.min_length is not None:
-            mapping["min_length"] = self.min_length
-        if self.max_length is not None:
-            mapping["max_length"] = self.max_length
+        if self.variable_length:
+            mapping["variable_length"] = True
+        if self.empty_value is not None:
+            mapping["empty_value"] = self.empty_value
         return mapping
 
     def __getitem__(self, key: str) -> Any:
@@ -61,22 +64,18 @@ class EuringField(Mapping[str, Any]):
         return len(self._mapping())
 
     def _is_required(self) -> bool:
-        if self.min_length == 0:
-            return False
         return self.required
 
-    def _validate_length(self, raw: str) -> None:
-        value_length = len(raw)
-        if self.length is not None and value_length != self.length:
-            raise EuringConstraintException(f'Value "{raw}" is length {value_length} instead of {self.length}.')
-        if self.min_length is not None and value_length < self.min_length:
-            raise EuringConstraintException(
-                f'Value "{raw}" is length {value_length}, should be at least {self.min_length}.'
-            )
-        if self.max_length is not None and value_length > self.max_length:
-            raise EuringConstraintException(
-                f'Value "{raw}" is length {value_length}, should be at most {self.max_length}.'
-            )
+    def _validate_length(self, raw: str, ignore_variable_length: bool = False) -> None:
+        if self.length is not None:
+            value_length = len(raw)
+            if self.variable_length and not ignore_variable_length:
+                if value_length > self.length:
+                    raise EuringConstraintException(
+                        f'Value "{raw}" is length {value_length}, should be at most {self.length}.'
+                    )
+            elif value_length != self.length:
+                raise EuringConstraintException(f'Value "{raw}" is length {value_length} instead of {self.length}.')
 
     def _validate_raw(self, raw: str) -> str | None:
         if raw == "":
@@ -110,15 +109,65 @@ class EuringField(Mapping[str, Any]):
 
     def encode(self, value: Any | None) -> str:
         """Encode a Python value to raw text."""
-        if value is None or value == "":
+        if value in (None, ""):
             if self._is_required():
                 raise EuringConstraintException('Required field, empty value "" is not permitted.')
             return ""
-        raw = str(value)
-        self._validate_length(raw)
-        if self.type_name and not is_valid_type(raw, self.type_name):
-            raise EuringTypeException(f'Value "{raw}" is not valid for type {self.type_name}.')
-        return raw
+
+        if self.key == "geographical_coordinates" and isinstance(value, dict):
+            if "lat" not in value or "lng" not in value:
+                raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
+            return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
+
+        str_value = f"{value}"
+        if self.type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
+            str_value = str_value.rstrip("0").rstrip(".")
+        if (
+            self.type_name in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}
+            and self.length
+            and not self.variable_length
+        ):
+            str_value = str_value.zfill(self.length)
+        self._validate_length(str_value)
+        if self.type_name and not is_valid_type(str_value, self.type_name):
+            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.type_name}.')
+        return str_value
+
+    def encode_for_format(self, value: Any | None, *, format: str) -> str:
+        """Encode a Python value to raw text for a specific EURING format."""
+        if value in (None, ""):
+            if self.empty_value:
+                return self.empty_value
+            if self.length and format == FORMAT_EURING2000:
+                return "-" * self.length
+            if self.length and self.required and self.type_name == TYPE_INTEGER:
+                return "-" * self.length
+            return ""
+
+        if self.key == "geographical_coordinates" and isinstance(value, dict):
+            if "lat" not in value or "lng" not in value:
+                raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
+            return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
+
+        if self.type_name == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
+            return self.encode_for_format(None, format=format)
+
+        str_value = f"{value}"
+        if self.type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
+            str_value = str_value.rstrip("0").rstrip(".")
+
+        ignore_variable_length = format == FORMAT_EURING2000
+
+        if self.type_name in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED} and self.length:
+            str_value = str_value.zfill(self.length)
+
+        if self.variable_length and not ignore_variable_length:
+            str_value = str_value.lstrip("0") or "0"
+
+        self._validate_length(str_value, ignore_variable_length=ignore_variable_length)
+        if self.type_name and not is_valid_type(str_value, self.type_name):
+            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.type_name}.')
+        return str_value
 
     def describe(self, value: Any | None) -> Any | None:
         """Return a display description for a parsed value."""
@@ -182,11 +231,13 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         return definition
     key = definition.get("key", "")
     name = definition.get("name", key)
-    type_name = definition.get("type") or definition.get("type_name") or ""
+    if "type" in definition and "type_name" not in definition:
+        raise ValueError('Field definitions must use "type_name" instead of legacy "type".')
+    type_name = definition.get("type_name") or ""
     required = definition.get("required", True)
     length = definition.get("length")
-    min_length = definition.get("min_length")
-    max_length = definition.get("max_length")
+    variable_length = bool(definition.get("variable_length", False))
+    empty_value = definition.get("empty_value")
     parser = definition.get("parser")
     lookup = definition.get("lookup")
     if parser is not None:
@@ -196,8 +247,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             type_name=type_name,
             required=required,
             length=length,
-            min_length=min_length,
-            max_length=max_length,
+            variable_length=variable_length,
+            empty_value=empty_value,
             parser=parser,
             lookup=lookup,
         )
@@ -208,8 +259,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             type_name=type_name,
             required=required,
             length=length,
-            min_length=min_length,
-            max_length=max_length,
+            variable_length=variable_length,
+            empty_value=empty_value,
             lookup=lookup,
         )
     return EuringField(
@@ -218,6 +269,6 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         type_name=type_name,
         required=required,
         length=length,
-        min_length=min_length,
-        max_length=max_length,
+        variable_length=variable_length,
+        empty_value=empty_value,
     )

@@ -2,32 +2,15 @@
 
 from __future__ import annotations
 
-from .fields import EURING_FIELDS
+from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS, EURING_FIELDS
 from .formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, FORMAT_EURING2020
 
 _FIELD_NAME_BY_KEY = {field["key"]: field["name"] for field in EURING_FIELDS}
 
-_fixed_width_keys: list[str] = []
-_start = 0
-for _field in EURING_FIELDS:
-    if _start >= 94:
-        break
-    _length = _field.get("length", _field.get("max_length"))
-    if not _length:
-        break
-    _fixed_width_keys.append(_field["key"])
-    _start += _length
-
-_plus_keys: list[str] = []
-for _field in EURING_FIELDS:
-    _plus_keys.append(_field["key"])
-    if _field.get("key") == "reference":
-        break
-
-EURING2000_KEYS = tuple(_fixed_width_keys)
-EURING2000PLUS_KEYS = tuple(_plus_keys)
-EURING2020_KEYS = tuple(field["key"] for field in EURING_FIELDS)
-EURING2020_ONLY_KEYS = ("latitude", "longitude", "current_place_code", "more_other_marks")
+EURING2000_KEYS = tuple(field["key"] for field in EURING2000_FIELDS)
+EURING2000PLUS_KEYS = tuple(field["key"] for field in EURING2000PLUS_FIELDS)
+EURING2020_KEYS = tuple(field["key"] for field in EURING2020_FIELDS)
+EURING2020_ONLY_KEYS = tuple(set(EURING2020_KEYS).difference(EURING2000PLUS_KEYS))
 NON_EURING2000_KEYS = tuple(set(EURING2000PLUS_KEYS + EURING2020_ONLY_KEYS).difference(EURING2000_KEYS))
 
 

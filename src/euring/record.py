@@ -5,7 +5,7 @@ import warnings
 
 from .exceptions import EuringConstraintException, EuringException
 from .field_schema import coerce_field
-from .fields import EURING_FIELDS
+from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS
 from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
@@ -52,10 +52,8 @@ class EuringRecord:
         field = _FIELD_MAP.get(key)
         if field is None:
             raise ValueError(f'Unknown field key "{key}".')
-        raw_value = "" if value is None else str(value)
         self._fields[key] = {
             "name": field["name"],
-            "raw_value": raw_value,
             "value": value,
             "order": field["order"],
         }
@@ -66,11 +64,10 @@ class EuringRecord:
         field = _FIELD_MAP.get(key)
         if field is None:
             return
-        raw_value = "" if value is None else f"{value}"
         self._fields[key] = {
             "name": field["name"],
-            "raw_value": raw_value,
-            "value": raw_value,
+            "raw_value": "" if value is None else f"{value}",
+            "value": "" if value is None else f"{value}",
             "order": field["order"],
         }
 
@@ -136,21 +133,34 @@ class EuringRecord:
         errors: list[dict[str, object]] = []
         fields = _fields_for_format(self.format)
         positions = _field_positions(fields) if self.format == FORMAT_EURING2000 else {}
-        variable_length_keys = {"distance", "direction", "elapsed_time"}
+        needs_geo_dots = False
+        if self.format == FORMAT_EURING2020:
+            lat_value = self._fields.get("latitude", {}).get("value")
+            lng_value = self._fields.get("longitude", {}).get("value")
+            needs_geo_dots = lat_value not in (None, "") or lng_value not in (None, "")
         for index, field in enumerate(fields):
             key = field["key"]
             field_state = self._fields.get(key, {})
-            raw_value = field_state.get("raw_value", field_state.get("value", ""))
-            raw_value = "" if raw_value is None else raw_value
+            value = field_state.get("value", "")
+            had_empty_value = value in (None, "")
             try:
                 field_def = field
-                if self.format != FORMAT_EURING2000 and key in variable_length_keys and field.get("length"):
-                    field_def = {**field, "max_length": field["length"]}
-                    field_def.pop("length", None)
+                if self.format == FORMAT_EURING2000 and field.get("variable_length"):
+                    field_def = {**field, "variable_length": False}
                 field_obj = coerce_field(field_def)
+                raw_value = _serialize_field_value(field, value, self.format)
+                if key == "geographical_coordinates" and had_empty_value and needs_geo_dots:
+                    raw_value = "." * 15
                 parsed_value = field_obj.parse(raw_value)
+                if had_empty_value and raw_value:
+                    parsed_value = None
                 description_value = parsed_value
-                if field_obj.get("lookup") is not None and field_obj.get("parser") is None and raw_value != "":
+                if (
+                    field_obj.get("lookup") is not None
+                    and field_obj.get("parser") is None
+                    and raw_value != ""
+                    and parsed_value is not None
+                ):
                     description_value = raw_value
                 description = field_obj.describe(description_value)
                 if key in self._fields:
@@ -163,7 +173,7 @@ class EuringRecord:
                 payload = {
                     "field": field["name"],
                     "message": f"{exc}",
-                    "value": "" if raw_value is None else f"{raw_value}",
+                    "value": "" if value is None else f"{value}",
                     "key": key,
                     "index": index,
                 }
@@ -186,7 +196,24 @@ class EuringRecord:
 
     def _validate_record_rules(self) -> list[dict[str, object]]:
         """Validate multi-field and record-level rules."""
-        values_by_key = {key: field.get("raw_value", field.get("value", "")) for key, field in self._fields.items()}
+        values_by_key: dict[str, str] = {}
+        for field in _fields_for_format(self.format):
+            key = field["key"]
+            field_state = self._fields.get(key, {})
+            source_raw = field_state.get("raw_value")
+            if source_raw is not None:
+                values_by_key[key] = source_raw
+                continue
+            value = field_state.get("value", "")
+            try:
+                values_by_key[key] = _serialize_field_value(field, value, self.format)
+            except EuringException:
+                values_by_key[key] = ""
+        if self.format == FORMAT_EURING2020:
+            lat_value = values_by_key.get("latitude", "")
+            lng_value = values_by_key.get("longitude", "")
+            if (lat_value or lng_value) and not values_by_key.get("geographical_coordinates"):
+                values_by_key["geographical_coordinates"] = "." * 15
         errors: list[dict[str, object]] = []
         for error in record_rule_errors(self.format, values_by_key):
             errors.append(_record_error_for_key(error["key"], error["message"], value=error["value"]))
@@ -205,51 +232,34 @@ class EuringRecord:
         """Serialize current field values without strict completeness checks."""
         fields = _fields_for_format(self.format)
         values_by_key: dict[str, str] = {}
-        hyphen_required_keys = {"distance", "direction", "elapsed_time"}
+        geo_placeholder = None
+        if self.format == FORMAT_EURING2020:
+            lat_value = self._fields.get("latitude", {}).get("value")
+            lng_value = self._fields.get("longitude", {}).get("value")
+            if lat_value not in (None, "") or lng_value not in (None, ""):
+                geo_placeholder = "." * 15
         for field in fields:
             key = field["key"]
-            raw_value = self._fields.get(key, {}).get("raw_value")
             value = self._fields.get(key, {}).get("value")
-            if raw_value is None:
-                raw_value = self._fields.get(key, {}).get("value", "")
-            raw_value = "" if raw_value is None else f"{raw_value}"
-            if self.format == FORMAT_EURING2000 and (value is None or value == ""):
-                raw_value = ""
-            if self.format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020} and key in hyphen_required_keys:
-                if value is None or value == "":
-                    length = field.get("length") or field.get("max_length")
-                    if length:
-                        raw_value = "-" * int(length)
-            values_by_key[key] = raw_value
+            if key == "geographical_coordinates":
+                if value in (None, "") and geo_placeholder:
+                    values_by_key[key] = geo_placeholder
+                    continue
+            values_by_key[key] = _serialize_field_value(field, value, self.format)
         if self.format == FORMAT_EURING2000:
-            return _format_fixed_width(values_by_key, _fixed_width_fields())
+            return _format_fixed_width(values_by_key, EURING2000_FIELDS)
         return "|".join(values_by_key.get(field["key"], "") for field in fields)
 
 
 def _fields_for_format(format: str) -> list[dict[str, object]]:
     """Return the field list for the target format."""
     if format == FORMAT_EURING2000:
-        return _fixed_width_fields()
+        return EURING2000_FIELDS
     if format == FORMAT_EURING2000PLUS:
-        for index, field in enumerate(EURING_FIELDS):
-            if field.get("key") == "reference":
-                return EURING_FIELDS[: index + 1]
-    return EURING_FIELDS
-
-
-def _fixed_width_fields() -> list[dict[str, object]]:
-    """Return field definitions for the EURING2000 fixed-width layout."""
-    fields: list[dict[str, object]] = []
-    start = 0
-    for field in EURING_FIELDS:
-        if start >= 94:
-            break
-        length = field.get("length", field.get("max_length"))
-        if not length:
-            break
-        fields.append({**field, "length": length})
-        start += length
-    return fields
+        return EURING2000PLUS_FIELDS
+    if format == FORMAT_EURING2020:
+        return EURING2020_FIELDS
+    raise EuringException(f"Unknown EuringRecord format: {format}.")
 
 
 def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, object]]) -> str:
@@ -266,6 +276,12 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
             value = value.ljust(length, "-")
         parts.append(value[:length])
     return "".join(parts)
+
+
+def _serialize_field_value(field: dict[str, object], value: object, format: str) -> str:
+    """Encode a typed field value into a EURING raw string."""
+    field_obj = coerce_field(field)
+    return field_obj.encode_for_format(value, format=format)
 
 
 def _convert_record_string(
@@ -298,7 +314,7 @@ def _convert_record_data(
 
     if normalized_source == FORMAT_EURING2000:
         fields = _split_fixed_width(value)
-        source_fields = _fixed_width_fields()
+        source_fields = EURING2000_FIELDS
     else:
         fields = _split_pipe_delimited(value)
         source_fields = _fields_for_format(normalized_source)
@@ -327,7 +343,7 @@ def _split_fixed_width(value: str) -> list[str]:
         raise ValueError(f"{FORMAT_EURING2000} record contains extra data beyond position 94.")
     fields: list[str] = []
     start = 0
-    for field in _fixed_width_fields():
+    for field in EURING2000_FIELDS:
         length = field["length"]
         end = start + length
         chunk = value[start:end]
@@ -363,7 +379,7 @@ def _require_force_on_loss(values_by_key: dict[str, str], source_format: str, ta
         if accuracy.isalpha():
             reasons.append("alphabetic coordinate accuracy")
     if target_format == FORMAT_EURING2000:
-        fixed_keys = {field["key"] for field in _fixed_width_fields()}
+        fixed_keys = {field["key"] for field in EURING2000_FIELDS}
         for key, value in values_by_key.items():
             if key not in fixed_keys and value:
                 reasons.append(f"drop {key}")
@@ -451,7 +467,7 @@ def _normalize_source_format(source_format: str | None, value: str) -> str:
 
 def _field_index(key: str) -> int:
     """Return the field index for a given key."""
-    for index, field in enumerate(EURING_FIELDS):
+    for index, field in enumerate(EURING2020_FIELDS):
         if field.get("key") == key:
             return index
     raise ValueError(f'Unknown field key "{key}".')
@@ -483,7 +499,7 @@ def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str
                 {"message": f'Format "{format_display_name(normalized)}" conflicts with fixed-width EURING2000 data.'}
             )
         start = 0
-        for field in _fixed_width_fields():
+        for field in EURING2000_FIELDS:
             length = field["length"]
             end = start + length
             values_by_key[field["key"]] = value[start:end]
@@ -499,16 +515,16 @@ def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str
             )
         current_format = normalized or FORMAT_EURING2000PLUS
         for index, raw_value in enumerate(fields):
-            if index >= len(EURING_FIELDS):
+            if index >= len(EURING2020_FIELDS):
                 break
-            values_by_key[EURING_FIELDS[index]["key"]] = raw_value
+            values_by_key[EURING2020_FIELDS[index]["key"]] = raw_value
         if normalized is None and current_format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020}:
             if requires_euring2020(values_by_key):
                 current_format = FORMAT_EURING2020
     return current_format, values_by_key, record_errors
 
 
-_FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING_FIELDS)}
+_FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING2020_FIELDS)}
 
 
 def _field_positions(fields: list[dict[str, object]]) -> dict[str, dict[str, int]]:

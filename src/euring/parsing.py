@@ -9,8 +9,7 @@ def euring_decode_value(
     type: str,
     required: bool = True,
     length: int | None = None,
-    min_length: int | None = None,
-    max_length: int | None = None,
+    variable_length: bool = False,
     parser: Callable[[str], Any] | None = None,
     lookup: Mapping[str, str] | Callable[[str], str] | None = None,
 ) -> dict[str, Any] | None:
@@ -18,11 +17,10 @@ def euring_decode_value(
     definition = {
         "name": "Value",
         "key": "value",
-        "type": type,
+        "type_name": type,
         "required": required,
         "length": length,
-        "min_length": min_length,
-        "max_length": max_length,
+        "variable_length": variable_length,
         "parser": parser,
         "lookup": lookup,
     }
@@ -34,7 +32,7 @@ def euring_decode_value(
     if parser:
         results["parsed_value"] = parsed
     description_value = parsed
-    if lookup and not parser and value != "":
+    if lookup and not parser and value != "" and parsed is not None:
         description_value = value
     results["description"] = field.describe(description_value)
     return results
