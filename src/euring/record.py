@@ -266,7 +266,9 @@ def _fields_for_format(format: str) -> list[dict[str, object]]:
         return EURING2000_FIELDS
     if format == FORMAT_EURING2000PLUS:
         return EURING2000PLUS_FIELDS
-    return EURING2020_FIELDS
+    if format == FORMAT_EURING2020:
+        return EURING2020_FIELDS
+    raise EuringException(f"Unknown EuringRecord format: {format}.")
 
 
 def _fixed_width_fields() -> list[dict[str, object]]:

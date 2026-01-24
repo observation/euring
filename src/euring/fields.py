@@ -373,6 +373,7 @@ EURING_FIELDS = [
     EuringField(name="More Other Marks", key="more_other_marks", type_name=TYPE_ALPHABETIC, required=False),
 ]
 
-EURING2020_FIELDS = EURING_FIELDS
+# These are the field definitions per format as per the EURING Code Manual
+EURING2020_FIELDS = EURING_FIELDS  # 64 fields
 EURING2000PLUS_FIELDS = EURING_FIELDS[:60]
 EURING2000_FIELDS = EURING_FIELDS[:33]
