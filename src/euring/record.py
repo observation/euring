@@ -16,8 +16,8 @@ from .formats import (
     unknown_format_error,
 )
 from .rules import record_rule_errors, requires_euring2020
-from .utils import euring_lat_to_dms, euring_lng_to_dms
 from .types import TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED
+from .utils import euring_lat_to_dms, euring_lng_to_dms
 
 
 class EuringRecord:
