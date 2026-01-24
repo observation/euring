@@ -123,10 +123,6 @@ class TestDecoding:
         with pytest.raises(EuringConstraintException):
             euring_decode_value("123", TYPE_INTEGER, length=2)
 
-    def test_decode_value_min_length_error(self):
-        with pytest.raises(EuringConstraintException):
-            euring_decode_value("1", TYPE_INTEGER, variable_length=True)
-
     def test_decode_value_max_length_error(self):
         with pytest.raises(EuringConstraintException):
             euring_decode_value("123", TYPE_INTEGER, length=2, variable_length=True)

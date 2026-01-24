@@ -16,7 +16,6 @@ from .formats import (
     unknown_format_error,
 )
 from .rules import record_rule_errors, requires_euring2020
-from .types import TYPE_INTEGER
 from .utils import euring_lat_to_dms, euring_lng_to_dms
 
 
@@ -243,12 +242,12 @@ class EuringRecord:
             key = field["key"]
             value = self._fields.get(key, {}).get("value")
             if key == "geographical_coordinates":
-                if _is_empty(value) and geo_placeholder:
+                if value in (None, "") and geo_placeholder:
                     values_by_key[key] = geo_placeholder
                     continue
             values_by_key[key] = _serialize_field_value(field, value, self.format)
         if self.format == FORMAT_EURING2000:
-            return _format_fixed_width(values_by_key, _fixed_width_fields())
+            return _format_fixed_width(values_by_key, EURING2000_FIELDS)
         return "|".join(values_by_key.get(field["key"], "") for field in fields)
 
 
@@ -261,21 +260,6 @@ def _fields_for_format(format: str) -> list[dict[str, object]]:
     if format == FORMAT_EURING2020:
         return EURING2020_FIELDS
     raise EuringException(f"Unknown EuringRecord format: {format}.")
-
-
-def _fixed_width_fields() -> list[dict[str, object]]:
-    """Return field definitions for the EURING2000 fixed-width layout."""
-    fields: list[dict[str, object]] = []
-    start = 0
-    for field in EURING2000_FIELDS:
-        if start >= 94:
-            break
-        length = field.get("length")
-        if not length:
-            break
-        fields.append(field)
-        start += length
-    return fields
 
 
 def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, object]]) -> str:
@@ -294,42 +278,10 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
     return "".join(parts)
 
 
-def _is_empty(value: object) -> bool:
-    """Return whether a value should be treated as empty."""
-    return value in (None, "")
-
-
-def _hyphens(length: int) -> str:
-    """Return a hyphen placeholder string of the given length."""
-    return "-" * length
-
-
 def _serialize_field_value(field: dict[str, object], value: object, format: str) -> str:
     """Encode a typed field value into a EURING raw string."""
-    length = field.get("length")
-    length = 0 if length is None else int(length)
-    field_def = field
-    if format == FORMAT_EURING2000 and field.get("variable_length"):
-        field_def = {**field, "variable_length": False}
-    field_obj = coerce_field(field_def)
-
-    # Empty fields
-    if _is_empty(value):
-        empty_value = field.get("empty_value")
-        if empty_value:
-            return f"{empty_value}"
-        if length:
-            if format == FORMAT_EURING2000:
-                return _hyphens(length)
-            if field.get("required", True) and field.get("type_name") == TYPE_INTEGER:
-                return _hyphens(length)
-        return ""
-
-    # Non-empty fields
-    type_name = field.get("type_name") or ""
-    if type_name == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
-        return _serialize_field_value(field, None, format)
-    return field_obj.encode(value)
+    field_obj = coerce_field(field)
+    return field_obj.encode_for_format(value, format=format)
 
 
 def _convert_record_string(
@@ -362,7 +314,7 @@ def _convert_record_data(
 
     if normalized_source == FORMAT_EURING2000:
         fields = _split_fixed_width(value)
-        source_fields = _fixed_width_fields()
+        source_fields = EURING2000_FIELDS
     else:
         fields = _split_pipe_delimited(value)
         source_fields = _fields_for_format(normalized_source)
@@ -391,7 +343,7 @@ def _split_fixed_width(value: str) -> list[str]:
         raise ValueError(f"{FORMAT_EURING2000} record contains extra data beyond position 94.")
     fields: list[str] = []
     start = 0
-    for field in _fixed_width_fields():
+    for field in EURING2000_FIELDS:
         length = field["length"]
         end = start + length
         chunk = value[start:end]
@@ -427,7 +379,7 @@ def _require_force_on_loss(values_by_key: dict[str, str], source_format: str, ta
         if accuracy.isalpha():
             reasons.append("alphabetic coordinate accuracy")
     if target_format == FORMAT_EURING2000:
-        fixed_keys = {field["key"] for field in _fixed_width_fields()}
+        fixed_keys = {field["key"] for field in EURING2000_FIELDS}
         for key, value in values_by_key.items():
             if key not in fixed_keys and value:
                 reasons.append(f"drop {key}")
@@ -547,7 +499,7 @@ def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str
                 {"message": f'Format "{format_display_name(normalized)}" conflicts with fixed-width EURING2000 data.'}
             )
         start = 0
-        for field in _fixed_width_fields():
+        for field in EURING2000_FIELDS:
             length = field["length"]
             end = start + length
             values_by_key[field["key"]] = value[start:end]

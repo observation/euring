@@ -8,6 +8,7 @@ from euring.utils import euring_lat_to_dms, euring_lng_to_dms
 
 from .codes import lookup_description
 from .exceptions import EuringConstraintException, EuringTypeException
+from .formats import FORMAT_EURING2000
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -65,18 +66,16 @@ class EuringField(Mapping[str, Any]):
     def _is_required(self) -> bool:
         return self.required
 
-    def _validate_length(self, raw: str) -> None:
-        value_length = len(raw)
+    def _validate_length(self, raw: str, ignore_variable_length: bool = False) -> None:
         if self.length is not None:
-            if self.variable_length:
+            value_length = len(raw)
+            if self.variable_length and not ignore_variable_length:
                 if value_length > self.length:
                     raise EuringConstraintException(
                         f'Value "{raw}" is length {value_length}, should be at most {self.length}.'
                     )
             elif value_length != self.length:
                 raise EuringConstraintException(f'Value "{raw}" is length {value_length} instead of {self.length}.')
-        if self.length is None and self.variable_length:
-            raise EuringConstraintException("Variable-length fields require a length limit.")
 
     def _validate_raw(self, raw: str) -> str | None:
         if raw == "":
@@ -130,6 +129,42 @@ class EuringField(Mapping[str, Any]):
         ):
             str_value = str_value.zfill(self.length)
         self._validate_length(str_value)
+        if self.type_name and not is_valid_type(str_value, self.type_name):
+            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.type_name}.')
+        return str_value
+
+    def encode_for_format(self, value: Any | None, *, format: str) -> str:
+        """Encode a Python value to raw text for a specific EURING format."""
+        if value in (None, ""):
+            if self.empty_value:
+                return self.empty_value
+            if self.length and format == FORMAT_EURING2000:
+                return "-" * self.length
+            if self.length and self.required and self.type_name == TYPE_INTEGER:
+                return "-" * self.length
+            return ""
+
+        if self.key == "geographical_coordinates" and isinstance(value, dict):
+            if "lat" not in value or "lng" not in value:
+                raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
+            return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
+
+        if self.type_name == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
+            return self.encode_for_format(None, format=format)
+
+        str_value = f"{value}"
+        if self.type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
+            str_value = str_value.rstrip("0").rstrip(".")
+
+        ignore_variable_length = format == FORMAT_EURING2000
+
+        if self.type_name in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED} and self.length:
+            str_value = str_value.zfill(self.length)
+
+        if self.variable_length and not ignore_variable_length:
+            str_value = str_value.lstrip("0") or "0"
+
+        self._validate_length(str_value, ignore_variable_length=ignore_variable_length)
         if self.type_name and not is_valid_type(str_value, self.type_name):
             raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.type_name}.')
         return str_value
