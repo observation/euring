@@ -138,6 +138,29 @@ class TestDecoding:
         )
         assert "parsed_value" in result
 
+    def test_decode_euring2000plus_allows_short_elapsed_time(self):
+        record = _make_euring2000_plus_record(accuracy="1").split("|")
+        for index, field in enumerate(EURING_FIELDS):
+            if field["key"] == "elapsed_time":
+                record[index] = "1"
+                break
+        encoded = "|".join(record)
+        decoded = EuringRecord.decode(encoded, format="euring2000plus")
+        assert decoded.errors["record"] == []
+        assert decoded.fields["elapsed_time"]["value"] == "1"
+
+    def test_decode_euring2020_allows_short_distance(self):
+        record = _make_euring2000_plus_record(accuracy="A").split("|")
+        record += [""] * (len(EURING_FIELDS) - len(record))
+        for index, field in enumerate(EURING_FIELDS):
+            if field["key"] == "distance":
+                record[index] = "18"
+                break
+        encoded = "|".join(record)
+        decoded = EuringRecord.decode(encoded, format="euring2020")
+        assert decoded.errors["record"] == []
+        assert decoded.fields["distance"]["value"] == "18"
+
     def test_parse_old_greater_coverts_valid(self):
         assert parse_old_greater_coverts("0") == "0"
         assert parse_old_greater_coverts("9") == "9"

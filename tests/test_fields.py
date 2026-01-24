@@ -46,3 +46,16 @@ def test_field_shape_and_types():
                 assert field[bound] >= 0
         if "required" in field:
             assert isinstance(field["required"], bool)
+
+
+def test_field_length_exclusivity():
+    for field in EURING_FIELDS:
+        if "length" in field:
+            assert "min_length" not in field
+            assert "max_length" not in field
+
+
+def test_field_min_length_zero_not_required():
+    for field in EURING_FIELDS:
+        if field.get("min_length") == 0:
+            assert field.get("required", True) is False
