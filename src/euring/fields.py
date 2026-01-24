@@ -372,3 +372,25 @@ EURING_FIELDS = [
     ),
     EuringField(name="More Other Marks", key="more_other_marks", type_name=TYPE_ALPHABETIC, required=False),
 ]
+
+EURING2020_FIELDS = EURING_FIELDS
+
+_reference_index = None
+for _index, _field in enumerate(EURING_FIELDS):
+    if _field.get("key") == "reference":
+        _reference_index = _index
+        break
+EURING2000PLUS_FIELDS = EURING_FIELDS if _reference_index is None else EURING_FIELDS[: _reference_index + 1]
+
+EURING2000_FIELDS = []
+_start = 0
+for _field in EURING_FIELDS:
+    if _start >= 94:
+        break
+    _length = _field.get("length")
+    if not _length:
+        break
+    EURING2000_FIELDS.append(_field)
+    _start += _length
+
+del _field, _index, _length, _reference_index, _start

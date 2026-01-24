@@ -4,6 +4,8 @@ from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
 from typing import Any
 
+from euring.utils import euring_lat_to_dms, euring_lng_to_dms
+
 from .codes import lookup_description
 from .exceptions import EuringConstraintException, EuringTypeException
 from .types import (
@@ -108,15 +110,24 @@ class EuringField(Mapping[str, Any]):
 
     def encode(self, value: Any | None) -> str:
         """Encode a Python value to raw text."""
-        if value is None or value == "":
-            if self._is_required():
-                raise EuringConstraintException('Required field, empty value "" is not permitted.')
+        if value in (None, ""):
             return ""
-        raw = str(value)
-        self._validate_length(raw)
-        if self.type_name and not is_valid_type(raw, self.type_name):
-            raise EuringTypeException(f'Value "{raw}" is not valid for type {self.type_name}.')
-        return raw
+
+        if self.key == "geographical_coordinates" and isinstance(value, dict):
+            if "lat" not in value or "lng" not in value:
+                raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
+            return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
+
+        str_value = f"{value}"
+        if self.type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
+            str_value = str_value.rstrip("0").rstrip(".")
+        if (
+            self.type_name in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}
+            and self.length
+            and not self.variable_length
+        ):
+            str_value = str_value.zfill(self.length)
+        return str_value
 
     def describe(self, value: Any | None) -> Any | None:
         """Return a display description for a parsed value."""

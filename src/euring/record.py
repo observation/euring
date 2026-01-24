@@ -5,7 +5,7 @@ import warnings
 
 from .exceptions import EuringConstraintException, EuringException
 from .field_schema import coerce_field
-from .fields import EURING_FIELDS
+from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS
 from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
@@ -242,10 +242,19 @@ class EuringRecord:
         for field in fields:
             key = field["key"]
             value = self._fields.get(key, {}).get("value")
-            if key == "geographical_coordinates" and _is_empty(value) and geo_placeholder:
-                values_by_key[key] = geo_placeholder
+            if key == "geographical_coordinates":
+                if _is_empty(value) and geo_placeholder:
+                    values_by_key[key] = geo_placeholder
+                    continue
+            raw_value = _serialize_field_value(field, value, self.format)
+            if raw_value == "":
+                values_by_key[key] = raw_value
                 continue
-            values_by_key[key] = _serialize_field_value(field, value, self.format)
+            field_def = field
+            if self.format == FORMAT_EURING2000 and field.get("variable_length"):
+                field_def = {**field, "variable_length": False}
+            field_obj = coerce_field(field_def)
+            values_by_key[key] = field_obj.encode(raw_value)
         if self.format == FORMAT_EURING2000:
             return _format_fixed_width(values_by_key, _fixed_width_fields())
         return "|".join(values_by_key.get(field["key"], "") for field in fields)
@@ -254,25 +263,23 @@ class EuringRecord:
 def _fields_for_format(format: str) -> list[dict[str, object]]:
     """Return the field list for the target format."""
     if format == FORMAT_EURING2000:
-        return _fixed_width_fields()
+        return EURING2000_FIELDS
     if format == FORMAT_EURING2000PLUS:
-        for index, field in enumerate(EURING_FIELDS):
-            if field.get("key") == "reference":
-                return EURING_FIELDS[: index + 1]
-    return EURING_FIELDS
+        return EURING2000PLUS_FIELDS
+    return EURING2020_FIELDS
 
 
 def _fixed_width_fields() -> list[dict[str, object]]:
     """Return field definitions for the EURING2000 fixed-width layout."""
     fields: list[dict[str, object]] = []
     start = 0
-    for field in EURING_FIELDS:
+    for field in EURING2000_FIELDS:
         if start >= 94:
             break
         length = field.get("length")
         if not length:
             break
-        fields.append({**field, "length": length})
+        fields.append(field)
         start += length
     return fields
 
@@ -541,7 +548,7 @@ def _normalize_source_format(source_format: str | None, value: str) -> str:
 
 def _field_index(key: str) -> int:
     """Return the field index for a given key."""
-    for index, field in enumerate(EURING_FIELDS):
+    for index, field in enumerate(EURING2020_FIELDS):
         if field.get("key") == key:
             return index
     raise ValueError(f'Unknown field key "{key}".')
@@ -589,16 +596,16 @@ def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str
             )
         current_format = normalized or FORMAT_EURING2000PLUS
         for index, raw_value in enumerate(fields):
-            if index >= len(EURING_FIELDS):
+            if index >= len(EURING2020_FIELDS):
                 break
-            values_by_key[EURING_FIELDS[index]["key"]] = raw_value
+            values_by_key[EURING2020_FIELDS[index]["key"]] = raw_value
         if normalized is None and current_format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020}:
             if requires_euring2020(values_by_key):
                 current_format = FORMAT_EURING2020
     return current_format, values_by_key, record_errors
 
 
-_FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING_FIELDS)}
+_FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING2020_FIELDS)}
 
 
 def _field_positions(fields: list[dict[str, object]]) -> dict[str, dict[str, int]]:
