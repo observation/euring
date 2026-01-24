@@ -382,15 +382,11 @@ for _index, _field in enumerate(EURING_FIELDS):
         break
 EURING2000PLUS_FIELDS = EURING_FIELDS if _reference_index is None else EURING_FIELDS[: _reference_index + 1]
 
-EURING2000_FIELDS = []
-_start = 0
-for _field in EURING_FIELDS:
-    if _start >= 94:
+_elapsed_time_index = None
+for _index, _field in enumerate(EURING_FIELDS):
+    if _field.get("key") == "elapsed_time":
+        _elapsed_time_index = _index
         break
-    _length = _field.get("length")
-    if not _length:
-        break
-    EURING2000_FIELDS.append(_field)
-    _start += _length
+EURING2000_FIELDS = EURING_FIELDS if _elapsed_time_index is None else EURING_FIELDS[: _elapsed_time_index + 1]
 
-del _field, _index, _length, _reference_index, _start
+del _field, _index, _elapsed_time_index, _reference_index
