@@ -49,17 +49,17 @@ def test_convert_unknown_source_format():
         convert_euring_record("value", source_format="bad", target_format="euring2000plus")
 
 
-def test_convert_fixed_width_rejects_pipe():
+def test_convert_euring2000_rejects_pipe():
     with pytest.raises(ValueError):
         convert_euring_record("A|B", source_format="euring2000", target_format="euring2000plus")
 
 
-def test_convert_fixed_width_too_short():
+def test_convert_euring2000_too_short():
     with pytest.raises(ValueError):
         convert_euring_record("A" * 10, source_format="euring2000", target_format="euring2000plus")
 
 
-def test_convert_fixed_width_extra_data():
+def test_convert_euring2000_extra_data():
     with pytest.raises(ValueError):
         convert_euring_record("A" * 94 + "X", source_format="euring2000", target_format="euring2000plus")
 

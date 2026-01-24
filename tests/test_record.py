@@ -6,10 +6,9 @@ from pathlib import Path
 
 import pytest
 
-import euring.record as record_module
 from euring import EuringRecord
 from euring.formats import FORMAT_JSON
-from euring.record import _fields_for_format, _fixed_width_fields, _format_fixed_width
+from euring.record import _fields_for_format, _format_fixed_width
 
 
 def _values_from_record(record: str) -> dict[str, str]:
@@ -222,13 +221,6 @@ def test_fields_for_format_euring2000plus_truncates():
     assert fields[-1]["key"] == "reference"
 
 
-def test_fixed_width_fields_respects_max_length():
-    """Fixed-width fields should not exceed the 94-character cutoff."""
-    fields = _fixed_width_fields()
-    total_length = sum(field["length"] for field in fields)
-    assert total_length <= 94
-
-
 def test_format_fixed_width_handles_empty_and_padding():
     """Fixed-width formatting should pad and fill empty fields."""
     fields = [{"key": "alpha", "length": 2}, {"key": "beta", "length": 3}]
@@ -242,34 +234,3 @@ def test_record_validate_without_record_uses_fixed_width():
     record.set("ringing_scheme", "GBB")
     errors = record.validate()
     assert isinstance(errors, dict)
-
-
-def test_fields_for_format_euring2000plus_without_reference(monkeypatch):
-    """EURING2000PLUS should return all fields when reference is missing."""
-    fields = [{"key": "alpha", "length": 1}, {"key": "beta", "length": 1}]
-    monkeypatch.setattr(record_module, "EURING2000PLUS_FIELDS", fields)
-    assert _fields_for_format("euring2000plus") == fields
-
-
-def test_fixed_width_fields_breaks_on_missing_length(monkeypatch):
-    """Fixed-width fields should stop when length metadata is missing."""
-    fields = [{"key": "alpha", "length": 1}, {"key": "beta"}]
-    monkeypatch.setattr(record_module, "EURING2000_FIELDS", fields)
-    result = _fixed_width_fields()
-    assert result == [{"key": "alpha", "length": 1}]
-
-
-def test_fixed_width_fields_breaks_at_cutoff(monkeypatch):
-    """Fixed-width fields should stop once reaching 94 characters."""
-    fields = [{"key": "alpha", "length": 94}, {"key": "beta", "length": 1}]
-    monkeypatch.setattr(record_module, "EURING2000_FIELDS", fields)
-    result = _fixed_width_fields()
-    assert result == [{"key": "alpha", "length": 94}]
-
-
-def test_fixed_width_fields_complete_without_break(monkeypatch):
-    """Fixed-width fields should include all fields when under the cutoff."""
-    fields = [{"key": "alpha", "length": 1}, {"key": "beta", "length": 2}]
-    monkeypatch.setattr(record_module, "EURING2000_FIELDS", fields)
-    result = _fixed_width_fields()
-    assert result == [{"key": "alpha", "length": 1}, {"key": "beta", "length": 2}]

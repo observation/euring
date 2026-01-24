@@ -111,6 +111,8 @@ class EuringField(Mapping[str, Any]):
     def encode(self, value: Any | None) -> str:
         """Encode a Python value to raw text."""
         if value in (None, ""):
+            if self._is_required():
+                raise EuringConstraintException('Required field, empty value "" is not permitted.')
             return ""
 
         if self.key == "geographical_coordinates" and isinstance(value, dict):
@@ -127,6 +129,9 @@ class EuringField(Mapping[str, Any]):
             and not self.variable_length
         ):
             str_value = str_value.zfill(self.length)
+        self._validate_length(str_value)
+        if self.type_name and not is_valid_type(str_value, self.type_name):
+            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.type_name}.')
         return str_value
 
     def describe(self, value: Any | None) -> Any | None:

@@ -16,7 +16,7 @@ from .formats import (
     unknown_format_error,
 )
 from .rules import record_rule_errors, requires_euring2020
-from .types import TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED
+from .types import TYPE_INTEGER
 from .utils import euring_lat_to_dms, euring_lng_to_dms
 
 
@@ -246,15 +246,7 @@ class EuringRecord:
                 if _is_empty(value) and geo_placeholder:
                     values_by_key[key] = geo_placeholder
                     continue
-            raw_value = _serialize_field_value(field, value, self.format)
-            if raw_value == "":
-                values_by_key[key] = raw_value
-                continue
-            field_def = field
-            if self.format == FORMAT_EURING2000 and field.get("variable_length"):
-                field_def = {**field, "variable_length": False}
-            field_obj = coerce_field(field_def)
-            values_by_key[key] = field_obj.encode(raw_value)
+            values_by_key[key] = _serialize_field_value(field, value, self.format)
         if self.format == FORMAT_EURING2000:
             return _format_fixed_width(values_by_key, _fixed_width_fields())
         return "|".join(values_by_key.get(field["key"], "") for field in fields)
@@ -314,21 +306,11 @@ def _hyphens(length: int) -> str:
 
 def _serialize_field_value(field: dict[str, object], value: object, format: str) -> str:
     """Encode a typed field value into a EURING raw string."""
-    key = field["key"]
     length = field.get("length")
     length = 0 if length is None else int(length)
-    type_name = field.get("type_name") or ""
-    pad_integer = (
-        type_name == TYPE_INTEGER
-        and length
-        and (format == FORMAT_EURING2000 or not field.get("variable_length", False))
-    )
-    pad_numeric = type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED} and length and format == FORMAT_EURING2000
     field_def = field
     if format == FORMAT_EURING2000 and field.get("variable_length"):
         field_def = {**field, "variable_length": False}
-    if pad_integer or pad_numeric:
-        field_def = {**field_def, "variable_length": True}
     field_obj = coerce_field(field_def)
 
     # Empty fields
@@ -343,28 +325,11 @@ def _serialize_field_value(field: dict[str, object], value: object, format: str)
                 return _hyphens(length)
         return ""
 
-    # Special case: geographical_coordinates
-    if key == "geographical_coordinates" and isinstance(value, dict):
-        if "lat" not in value or "lng" not in value:
-            raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
-        return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
-
     # Non-empty fields
+    type_name = field.get("type_name") or ""
     if type_name == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
         return _serialize_field_value(field, None, format)
-    value_str = field_obj.encode(value)
-    if type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
-        # Remove zeroes on the right, remove decimal separator if no decimals
-        if "." in value_str:
-            value_str = value_str.rstrip("0").rstrip(".")
-        if pad_numeric:
-            value_str = value_str.zfill(length)
-        return value_str
-    if type_name == TYPE_INTEGER:
-        if pad_integer:
-            value_str = value_str.zfill(length)
-        return value_str
-    return value_str
+    return field_obj.encode(value)
 
 
 def _convert_record_string(
