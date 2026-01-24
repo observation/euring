@@ -6,7 +6,15 @@ from typing import Any
 
 from .codes import lookup_description
 from .exceptions import EuringConstraintException, EuringTypeException
-from .types import is_valid_type
+from .types import (
+    TYPE_ALPHABETIC,
+    TYPE_ALPHANUMERIC,
+    TYPE_INTEGER,
+    TYPE_NUMERIC,
+    TYPE_NUMERIC_SIGNED,
+    TYPE_TEXT,
+    is_valid_type,
+)
 
 __all__ = [
     "EuringField",
@@ -70,8 +78,7 @@ class EuringField(Mapping[str, Any]):
                 f'Value "{raw}" is length {value_length}, should be at most {self.max_length}.'
             )
 
-    def parse(self, raw: str) -> Any | None:
-        """Parse raw text into a Python value."""
+    def _validate_raw(self, raw: str) -> str | None:
         if raw == "":
             if not self._is_required():
                 return None
@@ -80,6 +87,26 @@ class EuringField(Mapping[str, Any]):
         if self.type_name and not is_valid_type(raw, self.type_name):
             raise EuringTypeException(f'Value "{raw}" is not valid for type {self.type_name}.')
         return raw
+
+    def _coerce_type(self, raw: str) -> Any:
+        if self.type_name == TYPE_INTEGER:
+            if set(raw) == {"-"}:
+                return None
+            return int(raw)
+        if self.type_name == TYPE_NUMERIC:
+            return float(raw)
+        if self.type_name == TYPE_NUMERIC_SIGNED:
+            return float(raw)
+        if self.type_name in {TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_TEXT}:
+            return raw
+        return raw
+
+    def parse(self, raw: str) -> Any | None:
+        """Parse raw text into a Python value."""
+        validated = self._validate_raw(raw)
+        if validated is None:
+            return None
+        return self._coerce_type(validated)
 
     def encode(self, value: Any | None) -> str:
         """Encode a Python value to raw text."""
@@ -134,12 +161,12 @@ class EuringFormattedField(EuringField):
         return mapping
 
     def parse(self, raw: str) -> Any | None:
-        value = super().parse(raw)
-        if value is None:
+        validated = self._validate_raw(raw)
+        if validated is None:
             return None
         if self.parser is None:
-            return value
-        return self.parser(value)
+            return self._coerce_type(validated)
+        return self.parser(validated)
 
     def describe(self, value: Any | None) -> Any | None:
         if self.lookup is None or value is None:

@@ -182,21 +182,22 @@ def parse_longitude(value: str) -> float:
     return _parse_decimal_coordinate(value, max_abs=180, max_decimals=4, field_name="Longitude")
 
 
-def parse_direction(value: str) -> str:
+def parse_direction(value: str) -> int | None:
     """Parse and validate a direction in degrees (000-359) or hyphen placeholder."""
     if value is None:
         raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
-    if value and set(value) == {"-"}:
-        return value
-    if value.startswith("-"):
+    value_str = f"{value}"
+    if value_str and set(value_str) == {"-"}:
+        return None
+    if value_str.startswith("-"):
         raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
     try:
-        parsed = int(value)
+        parsed = int(value_str)
     except (TypeError, ValueError):
         raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
     if parsed < 0 or parsed > 359:
         raise EuringConstraintException("Direction must be between 0 and 359 degrees.")
-    return value
+    return parsed
 
 
 def _parse_decimal_coordinate(value: str, *, max_abs: int, max_decimals: int, field_name: str) -> float:
@@ -263,12 +264,15 @@ def lookup_place_details(value: str | int) -> dict[str, Any]:
     raise EuringLookupException(f'Value "{value}" is not a valid EURING place code.')
 
 
-def lookup_date(value: str) -> date:
+def lookup_date(value: str | int) -> date:
     """Parse a EURING date string into a datetime.date."""
+    value_str = f"{value}"
+    if value_str.isdigit() and len(value_str) < 8:
+        value_str = value_str.zfill(8)
     try:
-        day = int(value[0:2])
-        month = int(value[2:4])
-        year = int(value[4:8])
+        day = int(value_str[0:2])
+        month = int(value_str[2:4])
+        year = int(value_str[4:8])
         return date(year, month, day)
     except (IndexError, ValueError):
         raise EuringConstraintException(f'Value "{value}" is not a valid EURING date.')

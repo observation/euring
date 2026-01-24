@@ -106,7 +106,8 @@ class TestDecoding:
 
     def test_decode_value_with_lookup(self):
         result = euring_decode_value("01012024", TYPE_INTEGER, length=8, lookup=lookup_date)
-        assert result["value"] == "01012024"
+        assert result["raw_value"] == "01012024"
+        assert result["value"] == 1012024
         assert result["description"].isoformat() == "2024-01-01"
 
     def test_decode_value_invalid_type(self):
@@ -148,7 +149,7 @@ class TestDecoding:
         encoded = "|".join(record)
         decoded = EuringRecord.decode(encoded, format="euring2000plus")
         assert decoded.errors["record"] == []
-        assert decoded.fields["elapsed_time"]["value"] == "1"
+        assert decoded.fields["elapsed_time"]["value"] == 1
 
     def test_decode_euring2020_allows_short_distance(self):
         record = _make_euring2000_plus_record(accuracy="A").split("|")
@@ -160,7 +161,7 @@ class TestDecoding:
         encoded = "|".join(record)
         decoded = EuringRecord.decode(encoded, format="euring2020")
         assert decoded.errors["record"] == []
-        assert decoded.fields["distance"]["value"] == "18"
+        assert decoded.fields["distance"]["value"] == 18
 
     def test_parse_old_greater_coverts_valid(self):
         assert parse_old_greater_coverts("0") == "0"
@@ -172,12 +173,12 @@ class TestDecoding:
             parse_old_greater_coverts("B")
 
     def test_parse_direction_allows_degrees(self):
-        assert parse_direction("0") == "0"
-        assert parse_direction("359") == "359"
+        assert parse_direction("0") == 0
+        assert parse_direction("359") == 359
 
     def test_parse_direction_allows_hyphens(self):
-        assert parse_direction("---") == "---"
-        assert parse_direction("-") == "-"
+        assert parse_direction("---") is None
+        assert parse_direction("-") is None
 
     def test_parse_direction_rejects_out_of_range(self):
         with pytest.raises(EuringConstraintException):
