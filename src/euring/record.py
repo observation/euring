@@ -4,7 +4,7 @@ import json
 import warnings
 
 from .exceptions import EuringConstraintException, EuringException
-from .field_model import coerce_field
+from .field_schema import coerce_field
 from .fields import EURING_FIELDS
 from .formats import (
     FORMAT_EURING2000,

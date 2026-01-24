@@ -1,7 +1,7 @@
 from collections.abc import Callable, Mapping
 from typing import Any
 
-from .field_model import coerce_field
+from .field_schema import coerce_field
 
 
 def euring_decode_value(

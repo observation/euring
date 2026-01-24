@@ -42,7 +42,7 @@ from .codes import (
     parse_longitude,
     parse_old_greater_coverts,
 )
-from .field_model import EuringField, EuringFormattedField, EuringLookupField
+from .field_schema import EuringField, EuringFormattedField, EuringLookupField
 from .types import (
     TYPE_ALPHABETIC,
     TYPE_ALPHANUMERIC,
@@ -53,6 +53,8 @@ from .types import (
 )
 
 SPEC_MANUAL = "EURING Exchange Code 2020 v202 (13 Nov 2024)"
+
+# Schema list (definitions), not per-record data.
 
 EURING_FIELDS = [
     EuringLookupField(
