@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Improve support for derived fields (#96).
 - Refactor exceptions (#94).
 - Refactor record conversion (#93).
 - Refactor EURING field definitions to EuringField (#92).
