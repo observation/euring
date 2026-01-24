@@ -374,19 +374,5 @@ EURING_FIELDS = [
 ]
 
 EURING2020_FIELDS = EURING_FIELDS
-
-_reference_index = None
-for _index, _field in enumerate(EURING_FIELDS):
-    if _field.get("key") == "reference":
-        _reference_index = _index
-        break
-EURING2000PLUS_FIELDS = EURING_FIELDS if _reference_index is None else EURING_FIELDS[: _reference_index + 1]
-
-_elapsed_time_index = None
-for _index, _field in enumerate(EURING_FIELDS):
-    if _field.get("key") == "elapsed_time":
-        _elapsed_time_index = _index
-        break
-EURING2000_FIELDS = EURING_FIELDS if _elapsed_time_index is None else EURING_FIELDS[: _elapsed_time_index + 1]
-
-del _field, _index, _elapsed_time_index, _reference_index
+EURING2000PLUS_FIELDS = EURING_FIELDS[:60]
+EURING2000_FIELDS = EURING_FIELDS[:33]

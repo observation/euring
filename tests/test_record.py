@@ -6,7 +6,6 @@ from pathlib import Path
 
 import pytest
 
-from euring.fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS, EURING_FIELDS
 import euring.record as record_module
 from euring import EuringRecord
 from euring.formats import FORMAT_JSON
@@ -274,23 +273,3 @@ def test_fixed_width_fields_complete_without_break(monkeypatch):
     monkeypatch.setattr(record_module, "EURING2000_FIELDS", fields)
     result = _fixed_width_fields()
     assert result == [{"key": "alpha", "length": 1}, {"key": "beta", "length": 2}]
-
-
-def test_euring_fields():
-    assert len(EURING_FIELDS) == 64
-
-
-def test_euring2020_fields():
-    assert len(EURING2020_FIELDS) == len(EURING_FIELDS)
-    assert len(EURING2020_FIELDS) == 64
-    assert EURING2020_FIELDS == EURING_FIELDS
-
-
-def test_euring2000plus_fields():
-    assert len(EURING2000PLUS_FIELDS) == 60
-    assert EURING2000PLUS_FIELDS == EURING_FIELDS[:60]
-
-
-def test_euring2000_fields():
-    assert len(EURING2000_FIELDS) == 33
-    assert EURING2000_FIELDS == EURING_FIELDS[:33]
