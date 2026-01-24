@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Refactor exceptions (#94).
 - Feature: Refactor record conversion (#93).
 - Feature: Refactor EURING field definitions to EuringField (#92).
 - Fix: Update example (#90).
