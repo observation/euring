@@ -186,9 +186,7 @@ class EuringRecord:
 
     def _validate_record_rules(self) -> list[dict[str, object]]:
         """Validate multi-field and record-level rules."""
-        values_by_key = {
-            key: field.get("raw_value", field.get("value", "")) for key, field in self._fields.items()
-        }
+        values_by_key = {key: field.get("raw_value", field.get("value", "")) for key, field in self._fields.items()}
         errors: list[dict[str, object]] = []
         for error in record_rule_errors(self.format, values_by_key):
             errors.append(_record_error_for_key(error["key"], error["message"], value=error["value"]))
