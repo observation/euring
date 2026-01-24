@@ -9,7 +9,7 @@ from euring.codes import (
     parse_geographical_coordinates,
     parse_old_greater_coverts,
 )
-from euring.exceptions import EuringParseException
+from euring.exceptions import EuringConstraintException, EuringTypeException
 from euring.fields import EURING_FIELDS
 from euring.parsing import euring_decode_value
 from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
@@ -109,7 +109,7 @@ class TestDecoding:
         assert result["description"].isoformat() == "2024-01-01"
 
     def test_decode_value_invalid_type(self):
-        with pytest.raises(EuringParseException):
+        with pytest.raises(EuringTypeException):
             euring_decode_value("ABC", TYPE_INTEGER, length=3)
 
     def test_decode_value_optional_empty(self):
@@ -117,15 +117,15 @@ class TestDecoding:
         assert result is None
 
     def test_decode_value_length_mismatch(self):
-        with pytest.raises(EuringParseException):
+        with pytest.raises(EuringConstraintException):
             euring_decode_value("123", TYPE_INTEGER, length=2)
 
     def test_decode_value_min_length_error(self):
-        with pytest.raises(EuringParseException):
+        with pytest.raises(EuringConstraintException):
             euring_decode_value("1", TYPE_INTEGER, min_length=2)
 
     def test_decode_value_max_length_error(self):
-        with pytest.raises(EuringParseException):
+        with pytest.raises(EuringConstraintException):
             euring_decode_value("123", TYPE_INTEGER, max_length=2)
 
     def test_decode_value_with_parser(self):
@@ -144,7 +144,7 @@ class TestDecoding:
         assert parse_old_greater_coverts("A") == "A"
 
     def test_parse_old_greater_coverts_invalid(self):
-        with pytest.raises(EuringParseException):
+        with pytest.raises(EuringConstraintException):
             parse_old_greater_coverts("B")
 
     def test_decode_fields_handles_non_string(self):
@@ -182,7 +182,7 @@ class TestDecoding:
         assert any(error["field"] == "Geographical Co-ordinates" for error in record.errors["fields"])
 
     def test_decode_format_unknown(self):
-        with pytest.raises(EuringParseException, match="Unknown format"):
+        with pytest.raises(EuringConstraintException, match="Unknown format"):
             EuringRecord.decode("GBB", format="2000")
 
     def test_decode_format_conflict_pipe(self):

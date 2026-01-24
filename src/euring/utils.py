@@ -1,7 +1,7 @@
 import re
 from typing import Any
 
-from .exceptions import EuringParseException
+from .exceptions import EuringConstraintException
 
 __all__ = [
     "euring_dms_to_float",
@@ -27,7 +27,7 @@ def euring_dms_to_float(value: str) -> float:
         if negative:
             result = -result
     except (IndexError, ValueError):
-        raise EuringParseException('Could not parse coordinate "{value}" to decimal.')
+        raise EuringConstraintException('Could not parse coordinate "{value}" to decimal.')
     return result
 
 

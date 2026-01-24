@@ -18,7 +18,7 @@ from euring.codes import (
     parse_latitude,
     parse_longitude,
 )
-from euring.exceptions import EuringParseException
+from euring.exceptions import EuringConstraintException, EuringLookupException
 
 
 def test_lookup_species_uses_packaged_data():
@@ -40,7 +40,7 @@ def test_lookup_place_details_uses_packaged_data():
 
 
 def test_lookup_place_details_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringLookupException):
         lookup_place_details("XXXX")
 
 
@@ -60,47 +60,47 @@ def test_lookup_description_callable():
 
 
 def test_lookup_description_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringLookupException):
         lookup_description("bad", {"good": "value"})
 
 
 def test_lookup_place_code_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringLookupException):
         lookup_place_code("ZZZZ")
 
 
 def test_lookup_ringing_scheme_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringLookupException):
         lookup_ringing_scheme("ZZZ")
 
 
 def test_lookup_species_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         lookup_species("not-a-code")
 
 
 def test_lookup_species_invalid_length():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         lookup_species("1234")
 
 
 def test_lookup_species_not_found():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringLookupException):
         lookup_species("12345")
 
 
 def test_lookup_species_details_invalid_format():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         lookup_species_details("not-a-code")
 
 
 def test_lookup_date_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         lookup_date("32132024")
 
 
 def test_lookup_other_marks_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringLookupException):
         lookup_other_marks("$$")
 
 
@@ -109,7 +109,7 @@ def test_lookup_other_marks_missing_reference_data(monkeypatch):
 
     monkeypatch.setattr(codes, "LOOKUP_OTHER_MARKS_INFORMATION_POSITION_1", {})
     monkeypatch.setattr(codes, "LOOKUP_OTHER_MARKS_INFORMATION_POSITION_2", {})
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringLookupException):
         codes.lookup_other_marks("BB")
 
 
@@ -127,7 +127,7 @@ def test_lookup_ring_number_strips_dots():
 
 
 def test_lookup_ring_number_rejects_trailing_dot():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         lookup_ring_number("AB1234567.")
 
 
@@ -137,25 +137,25 @@ def test_lookup_geographical_coordinates_round_trip():
 
 
 def test_parse_geographical_coordinates_invalid():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         parse_geographical_coordinates(None)
 
 
 def test_parse_geographical_coordinates_invalid_range():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         parse_geographical_coordinates("+420560-0044500")
 
 
 def test_parse_latitude_invalid_value():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         parse_latitude("bad")
 
 
 def test_parse_latitude_too_many_decimals():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         parse_latitude("1.00000")
 
 
 def test_parse_longitude_out_of_range():
-    with pytest.raises(EuringParseException):
+    with pytest.raises(EuringConstraintException):
         parse_longitude("181")
