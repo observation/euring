@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Improve support for derived fields (#96).
+- Improve support for Distance, Direction and Elapsed Time (#96).
 - Refactor exceptions (#94).
 - Refactor record conversion (#93).
 - Refactor EURING field definitions to EuringField (#92).
