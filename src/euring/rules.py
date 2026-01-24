@@ -12,7 +12,7 @@ _start = 0
 for _field in EURING_FIELDS:
     if _start >= 94:
         break
-    _length = _field.get("length", _field.get("max_length"))
+    _length = _field.get("length")
     if not _length:
         break
     _fixed_width_keys.append(_field["key"])

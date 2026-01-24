@@ -29,7 +29,8 @@ Serialization always re-encodes from the current typed values. For EURING2000,
 fixed-width output uses hyphens for empty values and zero-pads integers to the
 declared length. For EURING2000+/EURING2020, empty values remain empty strings
 except for fields that explicitly use hyphen placeholders (for example Elapsed
-Time, Distance, and Direction).
+Time, Distance, and Direction); these placeholders are defined per-field via
+the ``empty_value`` schema attribute.
 
 Exporting records
 -----------------

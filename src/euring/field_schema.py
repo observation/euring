@@ -33,22 +33,22 @@ class EuringField(Mapping[str, Any]):
     type_name: str = ""
     required: bool = True
     length: int | None = None
-    min_length: int | None = None
-    max_length: int | None = None
+    variable_length: bool = False
+    empty_value: str | None = None
 
     def _mapping(self) -> dict[str, Any]:
         mapping: dict[str, Any] = {
             "key": self.key,
             "name": self.name,
-            "type": self.type_name,
+            "type_name": self.type_name,
             "required": self.required,
         }
         if self.length is not None:
             mapping["length"] = self.length
-        if self.min_length is not None:
-            mapping["min_length"] = self.min_length
-        if self.max_length is not None:
-            mapping["max_length"] = self.max_length
+        if self.variable_length:
+            mapping["variable_length"] = True
+        if self.empty_value is not None:
+            mapping["empty_value"] = self.empty_value
         return mapping
 
     def __getitem__(self, key: str) -> Any:
@@ -61,22 +61,20 @@ class EuringField(Mapping[str, Any]):
         return len(self._mapping())
 
     def _is_required(self) -> bool:
-        if self.min_length == 0:
-            return False
         return self.required
 
     def _validate_length(self, raw: str) -> None:
         value_length = len(raw)
-        if self.length is not None and value_length != self.length:
-            raise EuringConstraintException(f'Value "{raw}" is length {value_length} instead of {self.length}.')
-        if self.min_length is not None and value_length < self.min_length:
-            raise EuringConstraintException(
-                f'Value "{raw}" is length {value_length}, should be at least {self.min_length}.'
-            )
-        if self.max_length is not None and value_length > self.max_length:
-            raise EuringConstraintException(
-                f'Value "{raw}" is length {value_length}, should be at most {self.max_length}.'
-            )
+        if self.length is not None:
+            if self.variable_length:
+                if value_length > self.length:
+                    raise EuringConstraintException(
+                        f'Value "{raw}" is length {value_length}, should be at most {self.length}.'
+                    )
+            elif value_length != self.length:
+                raise EuringConstraintException(f'Value "{raw}" is length {value_length} instead of {self.length}.')
+        if self.length is None and self.variable_length:
+            raise EuringConstraintException("Variable-length fields require a length limit.")
 
     def _validate_raw(self, raw: str) -> str | None:
         if raw == "":
@@ -182,11 +180,13 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         return definition
     key = definition.get("key", "")
     name = definition.get("name", key)
-    type_name = definition.get("type") or definition.get("type_name") or ""
+    if "type" in definition and "type_name" not in definition:
+        raise ValueError('Field definitions must use "type_name" instead of legacy "type".')
+    type_name = definition.get("type_name") or ""
     required = definition.get("required", True)
     length = definition.get("length")
-    min_length = definition.get("min_length")
-    max_length = definition.get("max_length")
+    variable_length = bool(definition.get("variable_length", False))
+    empty_value = definition.get("empty_value")
     parser = definition.get("parser")
     lookup = definition.get("lookup")
     if parser is not None:
@@ -196,8 +196,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             type_name=type_name,
             required=required,
             length=length,
-            min_length=min_length,
-            max_length=max_length,
+            variable_length=variable_length,
+            empty_value=empty_value,
             parser=parser,
             lookup=lookup,
         )
@@ -208,8 +208,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             type_name=type_name,
             required=required,
             length=length,
-            min_length=min_length,
-            max_length=max_length,
+            variable_length=variable_length,
+            empty_value=empty_value,
             lookup=lookup,
         )
     return EuringField(
@@ -218,6 +218,6 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         type_name=type_name,
         required=required,
         length=length,
-        min_length=min_length,
-        max_length=max_length,
+        variable_length=variable_length,
+        empty_value=empty_value,
     )

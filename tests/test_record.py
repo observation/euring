@@ -35,6 +35,7 @@ def test_record_euring2000_round_trip():
     record = EuringRecord("euring2000")
     record.update(values)
     serialized = record.serialize()
+
     assert len(serialized) == 94
     decoded = EuringRecord.decode(serialized)
     assert decoded.display_format == "EURING2000"

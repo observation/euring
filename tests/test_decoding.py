@@ -116,7 +116,7 @@ class TestDecoding:
             euring_decode_value("ABC", TYPE_INTEGER, length=3)
 
     def test_decode_value_optional_empty(self):
-        result = euring_decode_value("", TYPE_INTEGER, min_length=0)
+        result = euring_decode_value("", TYPE_INTEGER, required=False)
         assert result is None
 
     def test_decode_value_length_mismatch(self):
@@ -125,11 +125,11 @@ class TestDecoding:
 
     def test_decode_value_min_length_error(self):
         with pytest.raises(EuringConstraintException):
-            euring_decode_value("1", TYPE_INTEGER, min_length=2)
+            euring_decode_value("1", TYPE_INTEGER, variable_length=True)
 
     def test_decode_value_max_length_error(self):
         with pytest.raises(EuringConstraintException):
-            euring_decode_value("123", TYPE_INTEGER, max_length=2)
+            euring_decode_value("123", TYPE_INTEGER, length=2, variable_length=True)
 
     def test_decode_value_with_parser(self):
         result = euring_decode_value(

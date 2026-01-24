@@ -139,7 +139,6 @@ class EuringRecord:
             lat_value = self._fields.get("latitude", {}).get("value")
             lng_value = self._fields.get("longitude", {}).get("value")
             needs_geo_dots = lat_value not in (None, "") or lng_value not in (None, "")
-        variable_length_keys = {"distance", "direction", "elapsed_time"}
         for index, field in enumerate(fields):
             key = field["key"]
             field_state = self._fields.get(key, {})
@@ -147,9 +146,8 @@ class EuringRecord:
             had_empty_value = value in (None, "")
             try:
                 field_def = field
-                if self.format != FORMAT_EURING2000 and key in variable_length_keys and field.get("length"):
-                    field_def = {**field, "max_length": field["length"]}
-                    field_def.pop("length", None)
+                if self.format == FORMAT_EURING2000 and field.get("variable_length"):
+                    field_def = {**field, "variable_length": False}
                 field_obj = coerce_field(field_def)
                 raw_value = _serialize_field_value(field, value, self.format)
                 if key == "geographical_coordinates" and had_empty_value and needs_geo_dots:
@@ -271,7 +269,7 @@ def _fixed_width_fields() -> list[dict[str, object]]:
     for field in EURING_FIELDS:
         if start >= 94:
             break
-        length = field.get("length", field.get("max_length"))
+        length = field.get("length")
         if not length:
             break
         fields.append({**field, "length": length})
@@ -295,37 +293,58 @@ def _format_fixed_width(values_by_key: dict[str, str], fields: list[dict[str, ob
     return "".join(parts)
 
 
+def _is_empty(value: object) -> bool:
+    """Return whether a value should be treated as empty."""
+    return value in (None, "")
+
+
+def _hyphens(length: int) -> str:
+    """Return a hyphen placeholder string of the given length."""
+    return "-" * length
+
+
 def _serialize_field_value(field: dict[str, object], value: object, format: str) -> str:
     """Encode a typed field value into a EURING raw string."""
     key = field["key"]
-    length = field.get("length") or field.get("max_length")
-    variable_length_keys = {"distance", "direction", "elapsed_time"}
-    if value in (None, ""):
-        type_name = field.get("type") or field.get("type_name") or ""
-        if type_name == TYPE_INTEGER and length:
-            return "-" * int(length)
-        if format == FORMAT_EURING2000 and length:
-            return "-" * int(length)
-        if format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020} and key in variable_length_keys and length:
-            return "-" * int(length)
+    length = field.get("length")
+    length = 0 if length is None else int(length)
+
+    # Empty fields
+    if _is_empty(value):
+        empty_value = field.get("empty_value")
+        if empty_value:
+            return f"{empty_value}"
+        if length:
+            if format == FORMAT_EURING2000:
+                return _hyphens(length)
+            if field.get("required", True) and field.get("type_name") == TYPE_INTEGER:
+                return _hyphens(length)
         return ""
+
+    # Special case: geographical_coordinates
     if key == "geographical_coordinates" and isinstance(value, dict):
         if "lat" not in value or "lng" not in value:
             raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
         return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
+
+    # Non-empty fields
     value_str = f"{value}"
-    type_name = field.get("type") or field.get("type_name") or ""
+    type_name = field.get("type_name") or ""
+    if type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
+        # Remove zeroes on the right, remove decimal separator if no decimals
+        if "." in value_str:
+            value_str = value_str.rstrip("0").rstrip(".")
     if type_name == TYPE_INTEGER:
         if isinstance(value, str) and value and set(value) == {"-"}:
             return _serialize_field_value(field, None, format)
         if not value_str.isdigit():
             raise EuringTypeException(f'Value "{value}" is not valid for type {TYPE_INTEGER}.')
-        is_variable = format != FORMAT_EURING2000 and key in variable_length_keys
-        if length and not is_variable:
-            value_str = value_str.zfill(int(length))
+        if length and (format == FORMAT_EURING2000 or not field.get("variable_length", False)):
+            value_str = value_str.zfill(length)
         return value_str
     if type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
-        return value_str
+        if format == FORMAT_EURING2000 or (length and not field.get("variable_length", False)):
+            value_str = value_str.zfill(length)
     return value_str
 
 
