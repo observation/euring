@@ -182,6 +182,23 @@ def parse_longitude(value: str) -> float:
     return _parse_decimal_coordinate(value, max_abs=180, max_decimals=4, field_name="Longitude")
 
 
+def parse_direction(value: str) -> str:
+    """Parse and validate a direction in degrees (000-359) or hyphen placeholder."""
+    if value is None:
+        raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
+    if value and set(value) == {"-"}:
+        return value
+    if value.startswith("-"):
+        raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
+    if parsed < 0 or parsed > 359:
+        raise EuringConstraintException("Direction must be between 0 and 359 degrees.")
+    return value
+
+
 def _parse_decimal_coordinate(value: str, *, max_abs: int, max_decimals: int, field_name: str) -> float:
     """Parse and validate a decimal latitude/longitude string."""
     try:

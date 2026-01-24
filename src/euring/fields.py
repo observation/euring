@@ -37,6 +37,7 @@ from .codes import (
     lookup_ring_number,
     lookup_ringing_scheme,
     lookup_species,
+    parse_direction,
     parse_geographical_coordinates,
     parse_latitude,
     parse_longitude,
@@ -214,7 +215,7 @@ EURING_FIELDS = [
         type_name=TYPE_INTEGER,
         length=5,
     ),
-    EuringField(name="Direction", key="direction", type_name=TYPE_INTEGER, length=3),
+    EuringFormattedField(name="Direction", key="direction", type_name=TYPE_INTEGER, length=3, parser=parse_direction),
     EuringField(
         name="Elapsed Time",
         key="elapsed_time",
