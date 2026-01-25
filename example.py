@@ -8,7 +8,7 @@ from euring import (
     EuringRecord,
     euring_dms_to_float,
     euring_lat_to_dms,
-    is_valid_type,
+    is_valid_euring_type,
 )
 
 
@@ -18,10 +18,10 @@ def main():
 
     # Test type validation
     print("\n1. Type Validation:")
-    print(f"is_alphabetic('ABC'): {is_valid_type('ABC', TYPE_ALPHABETIC)}")
-    print(f"is_alphabetic('abc'): {is_valid_type('abc', TYPE_ALPHABETIC)}")
-    print(f"is_integer('123'): {is_valid_type('123', TYPE_INTEGER)}")
-    print(f"is_integer('12.3'): {is_valid_type('12.3', TYPE_INTEGER)}")
+    print(f"is_alphabetic('ABC'): {is_valid_euring_type('ABC', TYPE_ALPHABETIC)}")
+    print(f"is_alphabetic('abc'): {is_valid_euring_type('abc', TYPE_ALPHABETIC)}")
+    print(f"is_integer('123'): {is_valid_euring_type('123', TYPE_INTEGER)}")
+    print(f"is_integer('12.3'): {is_valid_euring_type('12.3', TYPE_INTEGER)}")
 
     # Test coordinate conversion
     print("\n2. Coordinate Conversion:")

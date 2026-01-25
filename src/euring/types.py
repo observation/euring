@@ -110,18 +110,18 @@ def is_text(value: str) -> bool:
     return _matches(value, RE_TEXT)
 
 
-def is_valid_type(value: str, type: str) -> bool:
-    """Return True if a value matches the specified EURING field type."""
-    if type == TYPE_ALPHABETIC:
+def is_valid_euring_type(value: str, euring_type: str) -> bool:
+    """Return True if a value matches the specified EURING encoding type."""
+    if euring_type == TYPE_ALPHABETIC:
         return is_alphabetic(value)
-    if type == TYPE_ALPHANUMERIC:
+    if euring_type == TYPE_ALPHANUMERIC:
         return is_alphanumeric(value)
-    if type == TYPE_INTEGER:
+    if euring_type == TYPE_INTEGER:
         return is_integer(value)
-    if type == TYPE_NUMERIC:
+    if euring_type == TYPE_NUMERIC:
         return is_numeric(value)
-    if type == TYPE_NUMERIC_SIGNED:
+    if euring_type == TYPE_NUMERIC_SIGNED:
         return is_numeric_signed(value)
-    if type == TYPE_TEXT:
+    if euring_type == TYPE_TEXT:
         return is_text(value)
     return False
