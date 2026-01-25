@@ -39,7 +39,7 @@ from .types import (
     is_numeric,
     is_numeric_signed,
     is_text,
-    is_valid_type,
+    is_valid_euring_type,
 )
 from .utils import (
     euring_dms_to_float,
@@ -68,7 +68,7 @@ __all__ = [
     "is_numeric",
     "is_numeric_signed",
     "is_text",
-    "is_valid_type",
+    "is_valid_euring_type",
     "EuringException",
     "EuringConstraintException",
     "EuringTypeException",

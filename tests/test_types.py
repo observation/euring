@@ -10,7 +10,7 @@ from euring import (
     is_numeric,
     is_numeric_signed,
     is_text,
-    is_valid_type,
+    is_valid_euring_type,
 )
 
 
@@ -59,10 +59,10 @@ class TestTypes:
         assert not is_text("Hello\x00World")
         assert not is_text("Hello|World")
 
-    def test_is_valid_type(self):
-        assert is_valid_type("ABC", TYPE_ALPHABETIC)
-        assert is_valid_type("123", TYPE_INTEGER)
-        assert is_valid_type("-12.3", TYPE_NUMERIC_SIGNED)
-        assert not is_valid_type("-0", TYPE_NUMERIC_SIGNED)
-        assert not is_valid_type("abc", TYPE_ALPHABETIC)
-        assert is_valid_type("ABC", "Unknown") is False
+    def test_is_valid_euring_type(self):
+        assert is_valid_euring_type("ABC", TYPE_ALPHABETIC)
+        assert is_valid_euring_type("123", TYPE_INTEGER)
+        assert is_valid_euring_type("-12.3", TYPE_NUMERIC_SIGNED)
+        assert not is_valid_euring_type("-0", TYPE_NUMERIC_SIGNED)
+        assert not is_valid_euring_type("abc", TYPE_ALPHABETIC)
+        assert is_valid_euring_type("ABC", "Unknown") is False

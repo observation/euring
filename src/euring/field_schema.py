@@ -17,7 +17,7 @@ from .types import (
     TYPE_NUMERIC,
     TYPE_NUMERIC_SIGNED,
     TYPE_TEXT,
-    is_valid_type,
+    is_valid_euring_type,
 )
 
 __all__ = [
@@ -87,7 +87,7 @@ class EuringField(Mapping[str, Any]):
                 return None
             raise EuringConstraintException('Required field, empty value "" is not permitted.')
         self._validate_length(raw)
-        if self.euring_type and not is_valid_type(raw, self.euring_type):
+        if self.euring_type and not is_valid_euring_type(raw, self.euring_type):
             raise EuringTypeException(f'Value "{raw}" is not valid for type {self.euring_type}.')
         return raw
 
@@ -160,7 +160,7 @@ class EuringField(Mapping[str, Any]):
         ):
             str_value = str_value.zfill(self.length)
         self._validate_length(str_value)
-        if self.euring_type and not is_valid_type(str_value, self.euring_type):
+        if self.euring_type and not is_valid_euring_type(str_value, self.euring_type):
             raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.euring_type}.')
         return str_value
 
@@ -183,7 +183,7 @@ class EuringField(Mapping[str, Any]):
         if self.key == "date" and isinstance(value, dt_date):
             str_value = value.strftime("%d%m%Y")
             self._validate_length(str_value)
-            if self.euring_type and not is_valid_type(str_value, self.euring_type):
+            if self.euring_type and not is_valid_euring_type(str_value, self.euring_type):
                 raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.euring_type}.')
             return str_value
 
@@ -203,7 +203,7 @@ class EuringField(Mapping[str, Any]):
             str_value = str_value.lstrip("0") or "0"
 
         self._validate_length(str_value, ignore_variable_length=ignore_variable_length)
-        if self.euring_type and not is_valid_type(str_value, self.euring_type):
+        if self.euring_type and not is_valid_euring_type(str_value, self.euring_type):
             raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.euring_type}.')
         return str_value
 
