@@ -7,7 +7,8 @@ Commands:
 
 - ``decode``     Decode a EURING record string.
 - ``validate``   Validate a EURING record and return errors only.
-- ``lookup``     Look up EURING codes (ringing_scheme, species, place).
+- ``lookup``     Look up EURING codes by field key.
+- ``fields``     List EURING fields (key, name, and format membership).
 - ``dump``       Dump one or more code tables as JSON.
 - ``convert``    Convert EURING2000, EURING2000+, and EURING2020 records.
 
@@ -27,14 +28,18 @@ Examples:
    # Validate a file of EURING records
    euring validate --file euring_records.psv
 
-   # Look up codes (verbose by default)
-   euring lookup place GR83
+   # Look up codes by field key (verbose by default)
+   euring lookup place_code GR83
 
    # Short lookup output
-   euring lookup place GR83 --short
+   euring lookup place_code GR83 --short
 
    # Lookup output as JSON (includes a _meta.generator block)
-   euring lookup --json --pretty place GR83
+   euring lookup --json --pretty place_code GR83
+
+   # List fields and their format membership
+   euring fields
+   euring fields --format euring2000
 
    # Dump code tables as JSON (includes a _meta.generator block)
    euring dump --pretty age
@@ -67,9 +72,15 @@ Options:
   ``--output``  Write output to a file.
 
 ``lookup``
+  ``FIELD_KEY``  Field key to look up (for example ``species_mentioned`` or ``place_code``).
   ``--short``  Show concise output.
   ``--json``  Output JSON instead of text.
   ``--pretty``  Pretty-print JSON output (use with ``--json``).
+
+``fields``
+  ``--json``  Output JSON instead of text.
+  ``--pretty``  Pretty-print JSON output (use with ``--json``).
+  ``--format``  Limit to a EURING format: ``euring2000``, ``euring2000plus``, or ``euring2020``.
 
 ``convert``
   ``--from``  Source format (optional): ``euring2000``, ``euring2000plus``, or ``euring2020``.

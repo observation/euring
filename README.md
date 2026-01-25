@@ -48,12 +48,18 @@ euring validate "ESA|A0|Z.....6408|1|4|ZZ|12430|12430|N|0|Z|U|U|U|0|0|U|--|--|-|
 euring validate --file euring_records.psv
 euring validate --file euring_records.psv --json --output validation.json
 
-# Look up codes
+# Look up codes by field key
 euring lookup ringing_scheme GBB
+
+# Shared tables can be looked up via their common aliases
 euring lookup species 00010
+euring lookup place NL02
 
 # Look up a code and ouput result as JSON (includes a _meta.generator block)
 euring lookup --json --pretty ringing_scheme GBB
+
+# List EURING fields (key, name, and format membership)
+euring fields
 
 # Dump code tables as JSON (includes a _meta.generator block)
 euring dump --pretty age
@@ -122,7 +128,9 @@ is_valid = is_valid_euring_type("ABC", TYPE_ALPHABETIC)
 
 Decoded records expose a single `fields` mapping keyed by the stable ASCII
 snake_case field `key`. Each field entry includes the official `name`, the raw
-`value`, and an `order` index for stable sorting.
+`value`, and an `order` index for stable sorting. When a record originates from
+EURING text, fields may also include `raw_value`. After validation, fields also
+include `encoded_value`, which is how the current `value` would be serialized.
 
 ### Field keys
 
