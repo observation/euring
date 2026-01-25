@@ -19,7 +19,6 @@ Issues can be reported at <https://github.com/observation/euring/issues>.
 ## Requirements
 
 - A [supported Python version](https://devguide.python.org/versions/)
-- [Typer](https://typer.tiangolo.com/) for CLI functionality
 
 ## Installation
 
@@ -158,8 +157,6 @@ EURING vocabulary (as per the manuals):
 EURING uses a record-based format: each record contains a fixed sequence of fields.
 The manuals define official field names (with spaces/hyphens), which we preserve for display.
 
-
-
 ### Encoding vs data from an IT perspective
 
 A EURING record is UTF-8 text that follows an ASCII-era encoding structure
@@ -219,7 +216,7 @@ This package introduces a signed numeric type (`NumericSigned`) for the EURING20
 ## References
 
 - EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. Helsinki, Finland ISBN 978-952-94-4399-4
-- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. On-line Code Tables. Thetford, U.K. URL https://www.euring.org/data-and-codes/euring-codes
+- EURING – The European Union for Bird Ringing (2020). The EURING Exchange Code 2020. On-line Code Tables. Thetford, U.K. URL <https://www.euring.org/data-and-codes/euring-codes>
 
 ## Acknowledgements
 
