@@ -79,9 +79,31 @@ def lookup_description(value: str, lookup: Mapping[str, str] | Callable[[str], s
 
 
 def lookup_ring_number(value: str) -> str:
-    """Lookup a ring number Just strip the dots from the EURING codes."""
-    if value and value.endswith("."):
-        raise EuringConstraintException("Identification number (ring) cannot end with a dot.")
+    """Validate padding dots and return the unpadded identification number."""
+    if not value:
+        return value
+    # Per the manual, dots are always inserted immediately to the left of the
+    # rightmost contiguous run of digits.
+    if "." not in value:
+        return value
+
+    matches = list(re.finditer(r"\d+", value))
+    if matches:
+        rightmost_digits = matches[-1]
+        prefix = value[: rightmost_digits.start()]
+        # Dots may appear in the prefix, but only as a single trailing block.
+        if "." in prefix.rstrip("."):
+            raise EuringConstraintException(
+                "Identification number (ring) padding dots must be immediately before the rightmost digits."
+            )
+    else:
+        # No digits: fall back to allowing only leading padding dots.
+        trimmed = value.lstrip(".")
+        if "." in trimmed:
+            raise EuringConstraintException(
+                "Identification number (ring) padding dots must be leading when no digits are present."
+            )
+
     return value.replace(".", "")
 
 

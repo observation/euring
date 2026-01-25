@@ -123,12 +123,12 @@ def test_lookup_other_marks_hyphen_second_char():
 
 
 def test_lookup_ring_number_strips_dots():
-    assert lookup_ring_number("AB.12.3") == "AB123"
+    assert lookup_ring_number("CD...52065") == "CD52065"
 
 
-def test_lookup_ring_number_rejects_trailing_dot():
+def test_lookup_ring_number_rejects_non_left_padding_dots():
     with pytest.raises(EuringConstraintException):
-        lookup_ring_number("AB1234567.")
+        lookup_ring_number("AB.12.3")
 
 
 def test_lookup_geographical_coordinates_round_trip():
