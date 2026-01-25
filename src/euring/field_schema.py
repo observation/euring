@@ -274,10 +274,6 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         return definition
     key = definition.get("key", "")
     name = definition.get("name", key)
-    if "type" in definition and "euring_type" not in definition:
-        raise ValueError('Field definitions must use "euring_type" instead of legacy "type".')
-    if "type_name" in definition:
-        raise ValueError('Field definitions must use "euring_type" instead of legacy "type_name".')
     euring_type = definition.get("euring_type") or ""
     value_type = definition.get("value_type")
     required = definition.get("required", True)
