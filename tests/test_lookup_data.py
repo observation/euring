@@ -14,6 +14,7 @@ from euring.codes import (
     lookup_ringing_scheme_details,
     lookup_species,
     lookup_species_details,
+    parse_date,
     parse_geographical_coordinates,
     parse_latitude,
     parse_longitude,
@@ -97,6 +98,11 @@ def test_lookup_species_details_invalid_format():
 def test_lookup_date_invalid():
     with pytest.raises(EuringConstraintException):
         lookup_date("32132024")
+
+
+def test_parse_date_rejects_all_dashes():
+    with pytest.raises(EuringConstraintException):
+        parse_date("--------")
 
 
 def test_lookup_other_marks_invalid():

@@ -1,6 +1,7 @@
 """Tests for building EURING records."""
 
 import json
+from datetime import date
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 
@@ -132,6 +133,32 @@ def test_record_export_same_format():
     record = EuringRecord("euring2000plus", strict=False)
     record.set("ringing_scheme", "GBB")
     assert record.export("euring2000plus") == record.serialize()
+
+
+def test_record_set_date_accepts_python_date():
+    record = EuringRecord("euring2000plus", strict=False)
+    record.set("ringing_scheme", "GBB")
+    record.set("date", date(2024, 1, 1))
+    serialized = record.serialize()
+    fields = _fields_for_format("euring2000plus")
+    date_index = next(index for index, field in enumerate(fields) if field["key"] == "date")
+    assert serialized.split("|")[date_index] == "01012024"
+    assert record.fields["date"]["value"] == date(2024, 1, 1)
+    assert "raw_value" not in record.fields["date"]
+
+
+def test_record_set_clears_raw_value_from_decoded_input():
+    fixture_path = Path(__file__).parent / "fixtures" / "euring2000plus_examples.py"
+    spec = spec_from_file_location("euring2000plus_examples", fixture_path)
+    assert spec and spec.loader
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+    record = EuringRecord.decode(module.EURING2000PLUS_EXAMPLES[0])
+    assert record.fields["date"]["raw_value"] == "11082006"
+    record.set("date", date(2024, 1, 2))
+    record.validate()
+    assert "raw_value" not in record.fields["date"]
+    assert record.fields["date"]["encoded_value"] == "02012024"
 
 
 def test_record_export_requires_force_for_loss():

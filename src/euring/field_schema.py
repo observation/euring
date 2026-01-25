@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
+from datetime import date as dt_date
 from typing import Any
 
 from euring.utils import euring_lat_to_dms, euring_lng_to_dms
@@ -33,7 +34,8 @@ class EuringField(Mapping[str, Any]):
 
     key: str
     name: str
-    type_name: str = ""
+    euring_type: str = ""
+    value_type: str | None = None
     required: bool = True
     length: int | None = None
     variable_length: bool = False
@@ -43,9 +45,11 @@ class EuringField(Mapping[str, Any]):
         mapping: dict[str, Any] = {
             "key": self.key,
             "name": self.name,
-            "type_name": self.type_name,
+            "euring_type": self.euring_type,
             "required": self.required,
         }
+        if self.value_type is not None:
+            mapping["value_type"] = self.value_type
         if self.length is not None:
             mapping["length"] = self.length
         if self.variable_length:
@@ -83,29 +87,53 @@ class EuringField(Mapping[str, Any]):
                 return None
             raise EuringConstraintException('Required field, empty value "" is not permitted.')
         self._validate_length(raw)
-        if self.type_name and not is_valid_type(raw, self.type_name):
-            raise EuringTypeException(f'Value "{raw}" is not valid for type {self.type_name}.')
+        if self.euring_type and not is_valid_type(raw, self.euring_type):
+            raise EuringTypeException(f'Value "{raw}" is not valid for type {self.euring_type}.')
         return raw
 
     def _coerce_type(self, raw: str) -> Any:
-        if self.type_name == TYPE_INTEGER:
+        if self.euring_type == TYPE_INTEGER:
             if set(raw) == {"-"}:
                 return None
             return int(raw)
-        if self.type_name == TYPE_NUMERIC:
+        if self.euring_type == TYPE_NUMERIC:
             return float(raw)
-        if self.type_name == TYPE_NUMERIC_SIGNED:
+        if self.euring_type == TYPE_NUMERIC_SIGNED:
             return float(raw)
-        if self.type_name in {TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_TEXT}:
+        if self.euring_type in {TYPE_ALPHABETIC, TYPE_ALPHANUMERIC, TYPE_TEXT}:
             return raw
         return raw
+
+    def _coerce_value_type(self, raw: str) -> Any:
+        """Coerce a validated raw value to the configured value type."""
+        if self.value_type in {None, ""}:
+            return self._coerce_type(raw)
+        if self.value_type == "code_str":
+            return raw
+        if self.value_type == "int":
+            if set(raw) == {"-"}:
+                return None
+            return int(raw)
+        if self.value_type == "float":
+            return float(raw)
+        if self.value_type == "date":
+            if len(raw) != 8 or not raw.isdigit():
+                raise EuringConstraintException(f'Value "{raw}" is not a valid ddmmyyyy date.')
+            day = int(raw[0:2])
+            month = int(raw[2:4])
+            year = int(raw[4:8])
+            try:
+                return dt_date(year, month, day)
+            except ValueError:
+                raise EuringConstraintException(f'Value "{raw}" is not a valid ddmmyyyy date.')
+        raise ValueError(f'Unsupported value_type "{self.value_type}" for field "{self.key}".')
 
     def parse(self, raw: str) -> Any | None:
         """Parse raw text into a Python value."""
         validated = self._validate_raw(raw)
         if validated is None:
             return None
-        return self._coerce_type(validated)
+        return self._coerce_value_type(validated)
 
     def encode(self, value: Any | None) -> str:
         """Encode a Python value to raw text."""
@@ -119,18 +147,21 @@ class EuringField(Mapping[str, Any]):
                 raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
             return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
 
+        if self.key == "date" and isinstance(value, dt_date):
+            return value.strftime("%d%m%Y")
+
         str_value = f"{value}"
-        if self.type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
+        if self.euring_type in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
             str_value = str_value.rstrip("0").rstrip(".")
         if (
-            self.type_name in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}
+            self.euring_type in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}
             and self.length
             and not self.variable_length
         ):
             str_value = str_value.zfill(self.length)
         self._validate_length(str_value)
-        if self.type_name and not is_valid_type(str_value, self.type_name):
-            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.type_name}.')
+        if self.euring_type and not is_valid_type(str_value, self.euring_type):
+            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.euring_type}.')
         return str_value
 
     def encode_for_format(self, value: Any | None, *, format: str) -> str:
@@ -140,7 +171,7 @@ class EuringField(Mapping[str, Any]):
                 return self.empty_value
             if self.length and format == FORMAT_EURING2000:
                 return "-" * self.length
-            if self.length and self.required and self.type_name == TYPE_INTEGER:
+            if self.length and self.required and self.euring_type == TYPE_INTEGER:
                 return "-" * self.length
             return ""
 
@@ -149,24 +180,31 @@ class EuringField(Mapping[str, Any]):
                 raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
             return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
 
-        if self.type_name == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
+        if self.key == "date" and isinstance(value, dt_date):
+            str_value = value.strftime("%d%m%Y")
+            self._validate_length(str_value)
+            if self.euring_type and not is_valid_type(str_value, self.euring_type):
+                raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.euring_type}.')
+            return str_value
+
+        if self.euring_type == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
             return self.encode_for_format(None, format=format)
 
         str_value = f"{value}"
-        if self.type_name in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
+        if self.euring_type in {TYPE_NUMERIC, TYPE_NUMERIC_SIGNED}:
             str_value = str_value.rstrip("0").rstrip(".")
 
         ignore_variable_length = format == FORMAT_EURING2000
 
-        if self.type_name in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED} and self.length:
+        if self.euring_type in {TYPE_INTEGER, TYPE_NUMERIC, TYPE_NUMERIC_SIGNED} and self.length:
             str_value = str_value.zfill(self.length)
 
         if self.variable_length and not ignore_variable_length:
             str_value = str_value.lstrip("0") or "0"
 
         self._validate_length(str_value, ignore_variable_length=ignore_variable_length)
-        if self.type_name and not is_valid_type(str_value, self.type_name):
-            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.type_name}.')
+        if self.euring_type and not is_valid_type(str_value, self.euring_type):
+            raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.euring_type}.')
         return str_value
 
     def describe(self, value: Any | None) -> Any | None:
@@ -214,8 +252,13 @@ class EuringFormattedField(EuringField):
         if validated is None:
             return None
         if self.parser is None:
-            return self._coerce_type(validated)
-        return self.parser(validated)
+            return self._coerce_value_type(validated)
+        parsed = self.parser(validated)
+        # Allow a parser to validate and pass through a raw string, while still
+        # applying the configured value_type coercion.
+        if isinstance(parsed, str) and self.value_type not in {None, ""}:
+            return self._coerce_value_type(parsed)
+        return parsed
 
     def describe(self, value: Any | None) -> Any | None:
         if self.lookup is None or value is None:
@@ -231,9 +274,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         return definition
     key = definition.get("key", "")
     name = definition.get("name", key)
-    if "type" in definition and "type_name" not in definition:
-        raise ValueError('Field definitions must use "type_name" instead of legacy "type".')
-    type_name = definition.get("type_name") or ""
+    euring_type = definition.get("euring_type") or ""
+    value_type = definition.get("value_type")
     required = definition.get("required", True)
     length = definition.get("length")
     variable_length = bool(definition.get("variable_length", False))
@@ -244,7 +286,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         return EuringFormattedField(
             key=key,
             name=name,
-            type_name=type_name,
+            euring_type=euring_type,
+            value_type=value_type,
             required=required,
             length=length,
             variable_length=variable_length,
@@ -256,7 +299,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         return EuringLookupField(
             key=key,
             name=name,
-            type_name=type_name,
+            euring_type=euring_type,
+            value_type=value_type,
             required=required,
             length=length,
             variable_length=variable_length,
@@ -266,7 +310,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
     return EuringField(
         key=key,
         name=name,
-        type_name=type_name,
+        euring_type=euring_type,
+        value_type=value_type,
         required=required,
         length=length,
         variable_length=variable_length,

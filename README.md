@@ -140,6 +140,52 @@ EURING vocabulary (as per the manuals):
 EURING uses a record-based format: each record contains a fixed sequence of fields.
 The manuals define official field names (with spaces/hyphens), which we preserve for display.
 
+### Encoding vs data from an IT perspective
+
+A EURING record is UTF-8 text that follows an ASCII-era encoding structure
+with punch-card origins.
+
+Many fields are described as "Integer" in the manual, but this often means
+"digits-only in the encoding" rather than an actual numeric field.
+
+Two principles guide the model used here:
+
+1. Separate encoding type from data type.
+The EURING encoding type (`euring_type`) expresses what can appear in the record
+encoding. For example, `euring_type=Integer` means "digits-only in the encoding".
+It does not automatically imply `value: int`.
+
+2. Make `value_type` explicit per field.
+Each field can declare a `value_type` that reflects how the value should behave
+in code. Typical values include `code_str`, `int`, `float`, and `date`.
+Code-like fields can also add a field-specific parser or regex constraint when
+needed.
+
+Default policy:
+
+- Code/lookup fields use `value_type=code_str` (always a string).
+Examples include `accuracy_of_date`, `species`, `place_code`,
+`ringing_scheme`, and `primary_identification_method`.
+- Measurements and durations use typed numbers.
+Examples include distances and other numeric measurements.
+- True dates use typed dates.
+The `date` field is treated as a date even though it is encoded as `ddmmyyyy`.
+
+Why this helps:
+
+- It preserves leading zeros (for example, `"00010"` stays `"00010"`).
+- It removes ambiguity around `"1"` vs `1`.
+- It makes lookups deterministic and consistent.
+
+Record field state:
+
+- `raw_value`: the exact string as received from a EURING record.
+When you call `set(...)`, any prior `raw_value` is cleared.
+- `value`: the decoded value after validation and parsing.
+- `encoded_value`: how this library would encode the current `value` back into
+the EURING format.
+- Serialization always re-encodes from `value`.
+
 This package introduces a signed numeric type (`NumericSigned`) for the EURING2020 fields Latitude and Longitude. `NumericSigned` behaves like `Numeric`, but allows a leading minus sign and explicitly disallows -0. `NumericSigned` is a small, intentional clarification of the generic numeric types. The manuals clearly permit negative Latitude and Longitude in EURING2020, but the generic `Numeric` definition does not describe signed numbers. Making this explicit in the code helps prevent invalid values while staying faithful to the manuals and real-world usage. If a future revision of the specification formally defines signed numeric fields, this implementation can align with it without breaking compatibility.
 
 ### Field keys
