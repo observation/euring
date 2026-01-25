@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Improve and describe conceptual model (#103).
+- Update ring number format (#102).
+- Allow any ringing scheme that meets EURING definition (#101).
 - Improve and document serialization (#100).
 - Add stricter Place Code validation (#99).
 - Parse raw values to values for all fields (#98).
