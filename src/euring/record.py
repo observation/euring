@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import json
 import warnings
+from dataclasses import replace
 
 from .exceptions import EuringConstraintException, EuringException
-from .field_schema import coerce_field
+from .field_schema import EuringField, coerce_field
 from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS
 from .formats import (
     FORMAT_EURING2000,
@@ -16,7 +17,7 @@ from .formats import (
     unknown_format_error,
 )
 from .rules import record_rule_errors, requires_euring2020
-from .utils import euring_lat_to_dms, euring_lng_to_dms
+from .utils import euring_lat_to_dms, euring_lng_to_dms, is_empty
 
 
 class EuringRecord:
@@ -134,17 +135,17 @@ class EuringRecord:
         if self.format == FORMAT_EURING2020:
             lat_value = self._fields.get("latitude", {}).get("value")
             lng_value = self._fields.get("longitude", {}).get("value")
-            needs_geo_dots = lat_value not in (None, "") or lng_value not in (None, "")
+            needs_geo_dots = not is_empty(lat_value) or not is_empty(lng_value)
         for index, field in enumerate(fields):
             key = field["key"]
             field_state = self._fields.get(key, {})
             value = field_state.get("value", "")
-            had_empty_value = value in (None, "")
+            had_empty_value = is_empty(value)
             try:
-                field_def = field
-                if self.format == FORMAT_EURING2000 and field.get("variable_length"):
-                    field_def = {**field, "variable_length": False}
-                field_obj = coerce_field(field_def)
+                field_obj = field if isinstance(field, EuringField) else coerce_field(field)
+                if self.format == FORMAT_EURING2000 and field_obj.get("variable_length"):
+                    # EURING2000 does not support variable-length encoding.
+                    field_obj = replace(field_obj, variable_length=False)
                 encoded_value = _serialize_field_value(field, value, self.format)
                 raw_value = encoded_value
                 if key == "date" and had_empty_value and raw_value and set(raw_value) == {"-"}:
@@ -239,13 +240,13 @@ class EuringRecord:
         if self.format == FORMAT_EURING2020:
             lat_value = self._fields.get("latitude", {}).get("value")
             lng_value = self._fields.get("longitude", {}).get("value")
-            if lat_value not in (None, "") or lng_value not in (None, ""):
+            if not is_empty(lat_value) or not is_empty(lng_value):
                 geo_placeholder = "." * 15
         for field in fields:
             key = field["key"]
             value = self._fields.get(key, {}).get("value")
             if key == "geographical_coordinates":
-                if value in (None, "") and geo_placeholder:
+                if is_empty(value) and geo_placeholder:
                     values_by_key[key] = geo_placeholder
                     continue
             values_by_key[key] = _serialize_field_value(field, value, self.format)
