@@ -94,6 +94,15 @@ class TestDecoding:
         assert record.fields["ringing_scheme"]["value"] == "GBB"
         assert record.fields
 
+    def test_decode_unknown_but_valid_ringing_scheme(self):
+        values = _make_euring2000_plus_record(accuracy="1").split("|")
+        values[0] = "ZZZ"
+        record = EuringRecord.decode("|".join(values))
+        scheme_errors = [e for e in record.errors["fields"] if e.get("key") == "ringing_scheme"]
+        assert scheme_errors == []
+        assert record.fields["ringing_scheme"]["value"] == "ZZZ"
+        assert record.fields["ringing_scheme"]["description"].startswith("Unknown ringing scheme")
+
     def test_decode_euring2020_format(self):
         record = EuringRecord.decode(_make_euring2000_plus_record(accuracy="A"))
         assert record.display_format == "EURING2020"
