@@ -17,12 +17,40 @@ from .codes import (
 )
 from .converters import convert_euring_record
 from .data.code_tables import EURING_CODE_TABLES
-from .data.loader import load_data
+from .data.loader import load_data, normalize_code
 from .exceptions import EuringException
-from .formats import FORMAT_EURING2020
+from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS, EURING_FIELDS
+from .formats import (
+    FORMAT_EURING2000,
+    FORMAT_EURING2000PLUS,
+    FORMAT_EURING2020,
+    normalize_format,
+    unknown_format_error,
+)
 from .record import EuringRecord
 
 app = typer.Typer(help="EURING data processing CLI")
+
+_FIELD_ALIASES = {
+    # Common shorthand aliases
+    "scheme": "ringing_scheme",
+    "place": "place_code",
+    # Table-name aliases to representative fields
+    "age": "age_mentioned",
+    "moved_before_the_encounter": "moved_before_recovery",
+    "sex": "sex_mentioned",
+    "species": "species_mentioned",
+}
+
+_FIELD_TABLE_OVERRIDES = {
+    # Field key -> code table module name
+    "age_mentioned": "age",
+    "age_concluded": "age",
+    "current_place_code": "place_code",
+    "moved_before_recovery": "moved_before_the_encounter",
+    "species_mentioned": "species",
+    "species_concluded": "species",
+}
 
 
 @app.command()
@@ -276,29 +304,56 @@ def convert(
 
 @app.command()
 def lookup(
-    code_type: str = typer.Argument(..., help="Type of code to look up (ringing_scheme, species, place)"),
+    code_type: str = typer.Argument(
+        ..., help="Field key to look up (for example: species_mentioned, place_code, age_mentioned)"
+    ),
     code: str = typer.Argument(..., help="Code value to look up"),
     short: bool = typer.Option(False, "--short", help="Show concise output"),
     as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
     pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
 ) -> None:
-    """Look up EURING codes (ringing_scheme, species, place)."""
+    """Look up EURING codes and code tables."""
     try:
         if pretty and not as_json:
             typer.echo("Use --pretty with --json.", err=True)
             raise typer.Exit(1)
-        if code_type.lower() in {"ringing_scheme", "scheme"}:
+        field_key = code_type.lower()
+        field_key = _FIELD_ALIASES.get(field_key, field_key)
+        field = _FIELD_BY_KEY.get(field_key)
+        if field is None:
+            typer.echo(f"Unknown lookup type: {code_type}", err=True)
+            available = ", ".join(sorted(_FIELD_BY_KEY.keys()))
+            typer.echo(f"Available fields: {available}", err=True)
+            raise typer.Exit(1)
+        table_name = _table_name_for_field(field_key)
+        if table_name is None:
+            typer.echo(f'Field "{field_key}" does not have a code table lookup.', err=True)
+            lookupable = ", ".join(sorted(_LOOKUPABLE_FIELD_KEYS))
+            typer.echo(f"Fields with code tables: {lookupable}", err=True)
+            raise typer.Exit(1)
+        display_type = _display_type_for_table(table_name)
+        if table_name == "ringing_scheme":
             if short:
                 result = lookup_ringing_scheme(code)
                 if as_json:
-                    payload = _with_meta({"type": "ringing_scheme", "code": code, "description": result})
+                    payload = _with_meta(
+                        {
+                            "type": display_type,
+                            "field": field_key,
+                            "table": table_name,
+                            "code": code,
+                            "description": result,
+                        }
+                    )
                     typer.echo(json.dumps(payload, indent=2 if pretty else None))
                     return
                 typer.echo(f"Ringing Scheme {code}: {result}")
             else:
                 details = lookup_ringing_scheme_details(code)
                 if as_json:
-                    payload = _with_meta({"type": "ringing_scheme", "code": code, **details})
+                    payload = _with_meta(
+                        {"type": display_type, "field": field_key, "table": table_name, "code": code, **details}
+                    )
                     typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
                     return
                 typer.echo(f"Ringing Scheme {code}")
@@ -308,36 +363,44 @@ def lookup(
                 _emit_detail_bool("EURING", details.get("is_euring"))
                 _emit_detail("Updated", details.get("updated"))
                 _emit_detail("Notes", details.get("notes"))
-        elif code_type.lower() == "species":
+        elif table_name == "species":
             if short:
                 result = lookup_species(code)
                 if as_json:
-                    payload = _with_meta({"type": "species", "code": code, "name": result})
+                    payload = _with_meta(
+                        {"type": display_type, "field": field_key, "table": table_name, "code": code, "name": result}
+                    )
                     typer.echo(json.dumps(payload, indent=2 if pretty else None))
                     return
                 typer.echo(f"Species {code}: {result}")
             else:
                 details = lookup_species_details(code)
                 if as_json:
-                    payload = _with_meta({"type": "species", "code": code, **details})
+                    payload = _with_meta(
+                        {"type": display_type, "field": field_key, "table": table_name, "code": code, **details}
+                    )
                     typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
                     return
                 typer.echo(f"Species {code}")
                 _emit_detail("Name", details.get("name"))
                 _emit_detail("Updated", details.get("updated"))
                 _emit_detail("Notes", details.get("notes"))
-        elif code_type.lower() == "place":
+        elif table_name == "place_code":
             if short:
                 result = lookup_place_code(code)
                 if as_json:
-                    payload = _with_meta({"type": "place", "code": code, "name": result})
+                    payload = _with_meta(
+                        {"type": display_type, "field": field_key, "table": table_name, "code": code, "name": result}
+                    )
                     typer.echo(json.dumps(payload, indent=2 if pretty else None))
                     return
                 typer.echo(f"Place {code}: {result}")
             else:
                 details = lookup_place_details(code)
                 if as_json:
-                    payload = _with_meta({"type": "place", "place_code": code, **details})
+                    payload = _with_meta(
+                        {"type": display_type, "field": field_key, "table": table_name, "place_code": code, **details}
+                    )
                     typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
                     return
                 typer.echo(f"Place {code}")
@@ -347,9 +410,39 @@ def lookup(
                 _emit_detail("Updated", details.get("updated"))
                 _emit_detail("Notes", details.get("notes"))
         else:
-            typer.echo(f"Unknown lookup type: {code_type}", err=True)
-            typer.echo("Available types: ringing_scheme, species, place", err=True)
-            raise typer.Exit(1)
+            table = load_data(table_name)
+            if table is None:
+                raise ValueError(f'Lookup table "{table_name}" is not available.')
+            match = _lookup_table_entry(table, code)
+            if match is None:
+                raise ValueError(f'Code "{code}" not found in table "{table_name}".')
+            if short:
+                description = match.get("description") or match.get("name") or ""
+                if as_json:
+                    payload = _with_meta(
+                        {
+                            "type": display_type,
+                            "field": field_key,
+                            "table": table_name,
+                            "code": code,
+                            "description": description,
+                        }
+                    )
+                    typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+                    return
+                typer.echo(f"{field_key} {code}: {description}")
+                return
+            if as_json:
+                payload = _with_meta(
+                    {"type": display_type, "field": field_key, "table": table_name, "code": code, **match}
+                )
+                typer.echo(json.dumps(payload, default=str, indent=2 if pretty else None))
+                return
+            typer.echo(f"{field_key} {code}")
+            for key, value in match.items():
+                if key == "code":
+                    continue
+                _emit_detail(key.replace("_", " ").capitalize(), value)
     except Exception as e:
         typer.echo(f"Lookup error: {e}", err=True)
         _emit_glob_hint(code)
@@ -416,8 +509,86 @@ def dump(
         typer.echo(text)
 
 
-if __name__ == "__main__":
-    app()
+@app.command()
+def fields(
+    as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
+    format: str | None = typer.Option(
+        None,
+        "--format",
+        help="Limit to a EURING format: euring2000, euring2000plus, or euring2020.",
+    ),
+) -> None:
+    """List EURING fields, their stable keys, and format membership."""
+    if pretty and not as_json:
+        typer.echo("Use --pretty with --json.", err=True)
+        raise typer.Exit(1)
+    keys_2000 = {field["key"] for field in EURING2000_FIELDS}
+    keys_2000plus = {field["key"] for field in EURING2000PLUS_FIELDS}
+    keys_2020 = {field["key"] for field in EURING2020_FIELDS}
+    normalized_format: str | None = None
+    if format:
+        try:
+            normalized_format = normalize_format(format)
+        except ValueError:
+            typer.echo(unknown_format_error(format, name="format"), err=True)
+            raise typer.Exit(1)
+    if normalized_format == FORMAT_EURING2000:
+        allowed_keys = keys_2000
+    elif normalized_format == FORMAT_EURING2000PLUS:
+        allowed_keys = keys_2000plus
+    elif normalized_format == FORMAT_EURING2020:
+        allowed_keys = keys_2020
+    else:
+        allowed_keys = None
+    entries: list[dict[str, Any]] = []
+    for field in EURING_FIELDS:
+        key = field["key"]
+        if allowed_keys is not None and key not in allowed_keys:
+            continue
+        entry = {
+            "key": key,
+            "name": field["name"],
+            "in_euring2000": key in keys_2000,
+            "in_euring2000plus": key in keys_2000plus,
+            "in_euring2020": key in keys_2020,
+        }
+        entries.append(entry)
+    if as_json:
+        payload = _with_meta({"keys": entries})
+        typer.echo(json.dumps(payload, indent=2 if pretty else None))
+        return
+    for entry in entries:
+        formats: list[str] = []
+        if entry["in_euring2000"]:
+            formats.append("2000")
+        if entry["in_euring2000plus"]:
+            formats.append("2000+")
+        if entry["in_euring2020"]:
+            formats.append("2020")
+        formats_text = ",".join(formats)
+        typer.echo(f"{entry['key']}\t{entry['name']}\t{formats_text}")
+
+
+_FIELD_BY_KEY = {field["key"]: field for field in EURING_FIELDS}
+
+
+def _table_name_for_field(field_key: str) -> str | None:
+    """Return the code table name for a field key, when available."""
+    table_name = _FIELD_TABLE_OVERRIDES.get(field_key, field_key)
+    if table_name in EURING_CODE_TABLES:
+        return table_name
+    return None
+
+
+_LOOKUPABLE_FIELD_KEYS = {key for key in _FIELD_BY_KEY if _table_name_for_field(key)}
+
+
+def _display_type_for_table(table_name: str) -> str:
+    """Return the display type label for a table name."""
+    if table_name == "place_code":
+        return "place"
+    return table_name
 
 
 def main() -> None:
@@ -504,6 +675,38 @@ def _with_meta(payload: dict[str, Any]) -> dict[str, Any]:
     return combined
 
 
+def _lookup_table_entry(table: Any, code: str) -> dict[str, Any] | None:
+    """Return the first entry in a table that matches the given code."""
+    target_raw = str(code).strip()
+    target_normalized = normalize_code(target_raw)
+
+    def _matches(value: Any) -> bool:
+        raw = str(value).strip()
+        if raw == target_raw:
+            return True
+        normalized = normalize_code(value)
+        return bool(target_normalized) and normalized == target_normalized
+
+    if isinstance(table, list):
+        for item in table:
+            if not isinstance(item, dict) or "code" not in item:
+                continue
+            if _matches(item.get("code")):
+                return item
+        return None
+    if isinstance(table, dict):
+        for value in table.values():
+            if not isinstance(value, list):
+                continue
+            for item in value:
+                if not isinstance(item, dict) or "code" not in item:
+                    continue
+                if _matches(item.get("code")):
+                    return item
+        return None
+    return None
+
+
 def _lines_from_file(file: Path) -> list[str]:
     """Read a text file and return lines, exiting on missing files."""
     try:
@@ -512,3 +715,7 @@ def _lines_from_file(file: Path) -> list[str]:
         typer.echo(f"File not found: {file}", err=True)
         raise typer.Exit(1)
     return lines
+
+
+if __name__ == "__main__":
+    main()
