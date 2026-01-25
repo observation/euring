@@ -19,7 +19,14 @@ from .converters import convert_euring_record
 from .data.code_tables import EURING_CODE_TABLES
 from .data.loader import load_data
 from .exceptions import EuringException
-from .formats import FORMAT_EURING2020
+from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS, EURING_FIELDS
+from .formats import (
+    FORMAT_EURING2000,
+    FORMAT_EURING2000PLUS,
+    FORMAT_EURING2020,
+    normalize_format,
+    unknown_format_error,
+)
 from .record import EuringRecord
 
 app = typer.Typer(help="EURING data processing CLI")
@@ -414,6 +421,67 @@ def dump(
         output.write_text(text, encoding="utf-8")
     else:
         typer.echo(text)
+
+
+@app.command()
+def fields(
+    as_json: bool = typer.Option(False, "--json", help="Output JSON instead of text"),
+    pretty: bool = typer.Option(False, "--pretty", help="Pretty-print JSON output (requires --json)"),
+    format: str | None = typer.Option(
+        None,
+        "--format",
+        help="Limit to a EURING format: euring2000, euring2000plus, or euring2020.",
+    ),
+) -> None:
+    """List EURING fields, their stable keys, and format membership."""
+    if pretty and not as_json:
+        typer.echo("Use --pretty with --json.", err=True)
+        raise typer.Exit(1)
+    keys_2000 = {field["key"] for field in EURING2000_FIELDS}
+    keys_2000plus = {field["key"] for field in EURING2000PLUS_FIELDS}
+    keys_2020 = {field["key"] for field in EURING2020_FIELDS}
+    normalized_format: str | None = None
+    if format:
+        try:
+            normalized_format = normalize_format(format)
+        except ValueError:
+            typer.echo(unknown_format_error(format, name="format"), err=True)
+            raise typer.Exit(1)
+    if normalized_format == FORMAT_EURING2000:
+        allowed_keys = keys_2000
+    elif normalized_format == FORMAT_EURING2000PLUS:
+        allowed_keys = keys_2000plus
+    elif normalized_format == FORMAT_EURING2020:
+        allowed_keys = keys_2020
+    else:
+        allowed_keys = None
+    entries: list[dict[str, Any]] = []
+    for field in EURING_FIELDS:
+        key = field["key"]
+        if allowed_keys is not None and key not in allowed_keys:
+            continue
+        entry = {
+            "key": key,
+            "name": field["name"],
+            "in_euring2000": key in keys_2000,
+            "in_euring2000plus": key in keys_2000plus,
+            "in_euring2020": key in keys_2020,
+        }
+        entries.append(entry)
+    if as_json:
+        payload = _with_meta({"keys": entries})
+        typer.echo(json.dumps(payload, indent=2 if pretty else None))
+        return
+    for entry in entries:
+        formats: list[str] = []
+        if entry["in_euring2000"]:
+            formats.append("2000")
+        if entry["in_euring2000plus"]:
+            formats.append("2000+")
+        if entry["in_euring2020"]:
+            formats.append("2020")
+        formats_text = ",".join(formats)
+        typer.echo(f"{entry['key']}\t{entry['name']}\t{formats_text}")
 
 
 if __name__ == "__main__":

@@ -415,6 +415,24 @@ def test_lookup_cli_species_short():
     assert result.output.strip() == "Species 00010: Struthio camelus"
 
 
+def test_fields_cli_lists_known_fields():
+    runner = CliRunner()
+    result = runner.invoke(app, ["fields"])
+    assert result.exit_code == 0
+    output = result.output
+    assert "ringing_scheme\tRinging Scheme\t2000,2000+,2020" in output
+    assert "\tDate\t" in output
+
+
+def test_fields_cli_format_filter_limits_output():
+    runner = CliRunner()
+    result = runner.invoke(app, ["fields", "--format", "euring2000"])
+    assert result.exit_code == 0
+    output = result.output
+    assert "latitude" not in output
+    assert "ringing_scheme" in output
+
+
 def test_dump_cli_single_table(monkeypatch):
     def _fake_load_data(name):
         if name == "age":
