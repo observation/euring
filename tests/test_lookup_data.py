@@ -71,7 +71,7 @@ def test_lookup_place_code_invalid():
 
 def test_lookup_ringing_scheme_invalid():
     with pytest.raises(EuringLookupException):
-        lookup_ringing_scheme("ZZZ")
+        lookup_ringing_scheme("ZZ1")
 
 
 def test_lookup_species_invalid():

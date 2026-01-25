@@ -63,6 +63,7 @@ _PLACE_LOOKUP = load_place_map()
 _SPECIES_DETAILS = load_species_details()
 _SCHEME_DETAILS = load_scheme_details()
 _PLACE_DETAILS = load_place_details()
+_RINGING_SCHEME_PATTERN = re.compile(r"^[A-Z]{3}$")
 
 
 def lookup_description(value: str, lookup: Mapping[str, str] | Callable[[str], str] | None) -> str | None:
@@ -294,13 +295,19 @@ def lookup_ringing_scheme(value: str | int) -> str:
     """
     Ringing scheme lookup - uses packaged reference data when available.
 
+    Per the EURING manual, ringing schemes are alphabetic, three-character codes.
+    The packaged table may not include every valid scheme, so we accept unknown
+    codes that match the documented pattern instead of raising a hard error.
+
     :param value:
     :return:
     """
-    value_str = f"{value}"
+    value_str = f"{value}".upper()
     result = _SCHEME_LOOKUP.get(value_str)
     if result:
         return result
+    if _RINGING_SCHEME_PATTERN.match(value_str):
+        return f"Unknown ringing scheme ({value_str})."
     raise EuringLookupException(f'Value "{value}" is not a valid EURING ringing scheme code.')
 
 
