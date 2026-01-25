@@ -313,6 +313,13 @@ def lookup_date(value: str | int) -> date:
         raise EuringConstraintException(f'Value "{value}" is not a valid EURING date.')
 
 
+def parse_date(value: str) -> str:
+    """Validate that date placeholders are not used, then return the raw value."""
+    if value and set(value) == {"-"}:
+        raise EuringConstraintException("Date cannot be all dashes; provide an estimated real date instead.")
+    return value
+
+
 def lookup_ringing_scheme(value: str | int) -> str:
     """
     Ringing scheme lookup - uses packaged reference data when available.

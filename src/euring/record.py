@@ -52,11 +52,8 @@ class EuringRecord:
         field = _FIELD_MAP.get(key)
         if field is None:
             raise ValueError(f'Unknown field key "{key}".')
-        self._fields[key] = {
-            "name": field["name"],
-            "value": value,
-            "order": field["order"],
-        }
+        # Setting a typed value should clear any previously captured raw EURING text.
+        self._fields[key] = {"name": field["name"], "value": value, "order": field["order"]}
         return self
 
     def _set_raw_value(self, key: str, value: object) -> None:
@@ -148,23 +145,29 @@ class EuringRecord:
                 if self.format == FORMAT_EURING2000 and field.get("variable_length"):
                     field_def = {**field, "variable_length": False}
                 field_obj = coerce_field(field_def)
-                raw_value = _serialize_field_value(field, value, self.format)
+                encoded_value = _serialize_field_value(field, value, self.format)
+                raw_value = encoded_value
+                if key == "date" and had_empty_value and raw_value and set(raw_value) == {"-"}:
+                    # Treat placeholder dashes for missing required dates as empty so
+                    # non-strict mode only reports a missing-required-field error.
+                    raw_value = ""
                 if key == "geographical_coordinates" and had_empty_value and needs_geo_dots:
                     raw_value = "." * 15
+                    encoded_value = raw_value
                 parsed_value = field_obj.parse(raw_value)
                 if had_empty_value and raw_value:
                     parsed_value = None
                 description_value = parsed_value
-                if (
-                    field_obj.get("lookup") is not None
-                    and field_obj.get("parser") is None
-                    and raw_value != ""
-                    and parsed_value is not None
-                ):
-                    description_value = raw_value
+                if field_obj.get("lookup") is not None and raw_value != "" and parsed_value is not None:
+                    if field_obj.get("parser") is None:
+                        description_value = raw_value
+                    elif field_obj.get("value_type") == "date":
+                        # Date lookups operate on the encoded ddmmyyyy string.
+                        description_value = raw_value
                 description = field_obj.describe(description_value)
                 if key in self._fields:
                     self._fields[key]["value"] = parsed_value
+                    self._fields[key]["encoded_value"] = encoded_value
                     if field_obj.get("parser") is not None:
                         self._fields[key]["parsed_value"] = parsed_value
                     if description is not None:

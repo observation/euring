@@ -10,6 +10,7 @@ def euring_decode_value(
     required: bool = True,
     length: int | None = None,
     variable_length: bool = False,
+    value_type: str | None = None,
     parser: Callable[[str], Any] | None = None,
     lookup: Mapping[str, str] | Callable[[str], str] | None = None,
 ) -> dict[str, Any] | None:
@@ -17,7 +18,8 @@ def euring_decode_value(
     definition = {
         "name": "Value",
         "key": "value",
-        "type_name": type,
+        "euring_type": type,
+        "value_type": value_type,
         "required": required,
         "length": length,
         "variable_length": variable_length,

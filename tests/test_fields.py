@@ -55,7 +55,7 @@ def test_field_shape_and_types():
     for field in EURING_FIELDS:
         assert field["name"]
         assert field["key"]
-        assert field["type_name"] in allowed_types
+        assert field["euring_type"] in allowed_types
         assert re.match(r"^[a-z0-9_]+$", field["key"]) is not None
         if "length" in field:
             assert isinstance(field["length"], int)
