@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from datetime import date as dt_date
 from typing import Any
 
-from euring.utils import euring_lat_to_dms, euring_lng_to_dms
+from euring.utils import euring_lat_to_dms, euring_lng_to_dms, is_empty
 
 from .codes import lookup_description
 from .exceptions import EuringConstraintException, EuringTypeException
@@ -137,7 +137,7 @@ class EuringField(Mapping[str, Any]):
 
     def encode(self, value: Any | None) -> str:
         """Encode a Python value to raw text."""
-        if value in (None, ""):
+        if is_empty(value):
             if self._is_required():
                 raise EuringConstraintException('Required field, empty value "" is not permitted.')
             return ""
@@ -166,7 +166,7 @@ class EuringField(Mapping[str, Any]):
 
     def encode_for_format(self, value: Any | None, *, format: str) -> str:
         """Encode a Python value to raw text for a specific EURING format."""
-        if value in (None, ""):
+        if is_empty(value):
             if self.empty_value:
                 return self.empty_value
             if self.length and format == FORMAT_EURING2000:

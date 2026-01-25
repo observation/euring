@@ -12,7 +12,13 @@ __all__ = [
     "euring_identification_export_format",
     "euring_scheme_export_format",
     "euring_species_export_format",
+    "is_empty",
 ]
+
+
+def is_empty(value: Any) -> bool:
+    """Return True when a field value should be treated as empty."""
+    return value in (None, "")
 
 
 def euring_dms_to_float(value: str) -> float:
