@@ -415,6 +415,13 @@ def test_lookup_cli_species_short():
     assert result.output.strip() == "Species 00010: Struthio camelus"
 
 
+def test_lookup_cli_generic_table_short():
+    runner = CliRunner()
+    result = runner.invoke(app, ["lookup", "age", "1", "--short"])
+    assert result.exit_code == 0
+    assert "age_mentioned 1: Pullus" in result.output
+
+
 def test_fields_cli_lists_known_fields():
     runner = CliRunner()
     result = runner.invoke(app, ["fields"])
