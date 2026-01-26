@@ -21,6 +21,11 @@ def is_empty(value: Any) -> bool:
     return value in (None, "")
 
 
+def is_all_hyphens(value: str) -> bool:
+    """Return True when a non-empty string consists of only hyphens."""
+    return bool(value) and set(value) == {"-"}
+
+
 def euring_dms_to_float(value: str) -> float:
     """Convert EURING DMS coordinate text into decimal degrees."""
     try:

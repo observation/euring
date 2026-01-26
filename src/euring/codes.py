@@ -14,7 +14,7 @@ from .data import (
     load_species_map,
 )
 from .exceptions import EuringConstraintException, EuringLookupException
-from .utils import euring_dms_to_float
+from .utils import euring_dms_to_float, is_all_hyphens
 
 LOOKUP_EURING_CODE_IDENTIFIER = load_code_map("euring_code_identifier")
 LOOKUP_CONDITION = load_code_map("condition")
@@ -211,7 +211,7 @@ def parse_direction(value: str) -> int | None:
     if value is None:
         raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
     value_str = f"{value}"
-    if value_str and set(value_str) == {"-"}:
+    if is_all_hyphens(value_str):
         return None
     if value_str.startswith("-"):
         raise EuringConstraintException(f'Value "{value}" is not a valid direction.')
@@ -315,7 +315,7 @@ def lookup_date(value: str | int) -> date:
 
 def parse_date(value: str) -> str:
     """Validate that date placeholders are not used, then return the raw value."""
-    if value and set(value) == {"-"}:
+    if is_all_hyphens(value):
         raise EuringConstraintException("Date cannot be all dashes; provide an estimated real date instead.")
     return value
 
