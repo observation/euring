@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from datetime import date as dt_date
 from typing import Any
 
-from euring.utils import euring_lat_to_dms, euring_lng_to_dms, is_empty
+from euring.utils import euring_lat_to_dms, euring_lng_to_dms, is_all_hyphens, is_empty
 
 from .codes import lookup_description
 from .exceptions import EuringConstraintException, EuringTypeException
@@ -93,7 +93,7 @@ class EuringField(Mapping[str, Any]):
 
     def _coerce_type(self, raw: str) -> Any:
         if self.euring_type == TYPE_INTEGER:
-            if set(raw) == {"-"}:
+            if is_all_hyphens(raw):
                 return None
             return int(raw)
         if self.euring_type == TYPE_NUMERIC:
@@ -111,7 +111,7 @@ class EuringField(Mapping[str, Any]):
         if self.value_type == "code_str":
             return raw
         if self.value_type == "int":
-            if set(raw) == {"-"}:
+            if is_all_hyphens(raw):
                 return None
             return int(raw)
         if self.value_type == "float":
@@ -187,7 +187,7 @@ class EuringField(Mapping[str, Any]):
                 raise EuringTypeException(f'Value "{str_value}" is not valid for type {self.euring_type}.')
             return str_value
 
-        if self.euring_type == TYPE_INTEGER and isinstance(value, str) and value and set(value) == {"-"}:
+        if self.euring_type == TYPE_INTEGER and isinstance(value, str) and is_all_hyphens(value):
             return self.encode_for_format(None, format=format)
 
         str_value = f"{value}"

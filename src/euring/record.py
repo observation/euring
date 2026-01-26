@@ -17,7 +17,7 @@ from .formats import (
     unknown_format_error,
 )
 from .rules import record_rule_errors, requires_euring2020
-from .utils import euring_lat_to_dms, euring_lng_to_dms, is_empty
+from .utils import euring_lat_to_dms, euring_lng_to_dms, is_all_hyphens, is_empty
 
 
 class EuringRecord:
@@ -148,7 +148,7 @@ class EuringRecord:
                     field_obj = replace(field_obj, variable_length=False)
                 encoded_value = _serialize_field_value(field, value, self.format)
                 raw_value = encoded_value
-                if key == "date" and had_empty_value and raw_value and set(raw_value) == {"-"}:
+                if key == "date" and had_empty_value and is_all_hyphens(raw_value):
                     # Treat placeholder dashes for missing required dates as empty so
                     # non-strict mode only reports a missing-required-field error.
                     raw_value = ""
