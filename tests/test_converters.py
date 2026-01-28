@@ -6,8 +6,8 @@ from pathlib import Path
 import pytest
 
 from euring.converters import convert_euring_record
+from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
-from euring.utils import euring_lat_to_dms, euring_lng_to_dms
 
 
 def _load_fixture(module_name: str, attr: str) -> str:
@@ -118,8 +118,8 @@ def test_convert_alpha_accuracy_invalid():
 
 def test_convert_coordinate_downgrade_fills():
     record = _make_euring2020_record_with_coords()
-    lat = euring_lat_to_dms(52.3760)
-    lng = euring_lng_to_dms(4.9000)
+    lat = _lat_to_euring_coordinate(52.3760)
+    lng = _lng_to_euring_coordinate(4.9000)
     converted = convert_euring_record(record, target_format="euring2000plus", force=True)
     fields = converted.split("|")
     geo_index = next(i for i, f in enumerate(EURING_FIELDS) if f["key"] == "geographical_coordinates")

@@ -3,39 +3,12 @@
 import pytest
 
 from euring import (
-    EuringConstraintException,
-    euring_dms_to_float,
-    euring_float_to_dms,
     euring_identification_display_format,
     euring_identification_export_format,
-    euring_lat_to_dms,
-    euring_lng_to_dms,
     euring_scheme_export_format,
     euring_species_export_format,
 )
 from euring.utils import is_all_hyphens, is_empty
-
-
-def test_dms_conversion():
-    # Test DMS to float
-    lat_decimal = euring_dms_to_float("+420500")
-    lng_decimal = euring_dms_to_float("-0100203")
-    assert abs(lat_decimal - 42.083333) < 1e-5
-    assert abs(lng_decimal - (-10.034167)) < 1e-5
-
-    # Test float to DMS (round trip)
-    assert euring_lat_to_dms(lat_decimal) == "+420500"
-    assert euring_lng_to_dms(lng_decimal) == "-0100203"
-    dms = euring_float_to_dms(12.25)
-    assert dms["quadrant"] == "+"
-    assert dms["degrees"] == 12
-    assert dms["minutes"] == 15
-    assert dms["seconds"] == 0.0
-
-
-def test_dms_conversion_invalid():
-    with pytest.raises(EuringConstraintException):
-        euring_dms_to_float("bogus")
 
 
 def test_identification_format():

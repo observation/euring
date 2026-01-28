@@ -5,7 +5,8 @@ from dataclasses import dataclass
 from datetime import date as dt_date
 from typing import Any
 
-from euring.utils import euring_lat_to_dms, euring_lng_to_dms, is_all_hyphens, is_empty
+from euring.coordinates import lat_lng_to_euring_coordinates
+from euring.utils import is_all_hyphens, is_empty
 
 from .codes import lookup_description
 from .exceptions import EuringConstraintException, EuringTypeException
@@ -142,10 +143,16 @@ class EuringField(Mapping[str, Any]):
                 raise EuringConstraintException('Required field, empty value "" is not permitted.')
             return ""
 
-        if self.key == "geographical_coordinates" and isinstance(value, dict):
-            if "lat" not in value or "lng" not in value:
-                raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
-            return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
+        if self.key == "geographical_coordinates":
+            coords: dict[str, object] | None = None
+            if isinstance(value, dict):
+                coords = value
+            elif isinstance(value, (tuple, list)) and len(value) == 2:
+                coords = {"lat": value[0], "lng": value[1]}
+            if coords is not None:
+                if "lat" not in coords or "lng" not in coords:
+                    raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
+                return lat_lng_to_euring_coordinates(float(coords["lat"]), float(coords["lng"]))
 
         if self.key == "date" and isinstance(value, dt_date):
             return value.strftime("%d%m%Y")
@@ -175,10 +182,16 @@ class EuringField(Mapping[str, Any]):
                 return "-" * self.length
             return ""
 
-        if self.key == "geographical_coordinates" and isinstance(value, dict):
-            if "lat" not in value or "lng" not in value:
-                raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
-            return f"{euring_lat_to_dms(float(value['lat']))}{euring_lng_to_dms(float(value['lng']))}"
+        if self.key == "geographical_coordinates":
+            coords: dict[str, object] | None = None
+            if isinstance(value, dict):
+                coords = value
+            elif isinstance(value, (tuple, list)) and len(value) == 2:
+                coords = {"lat": value[0], "lng": value[1]}
+            if coords is not None:
+                if "lat" not in coords or "lng" not in coords:
+                    raise EuringConstraintException("Geographical coordinates require both lat and lng values.")
+                return lat_lng_to_euring_coordinates(float(coords["lat"]), float(coords["lng"]))
 
         if self.key == "date" and isinstance(value, dt_date):
             str_value = value.strftime("%d%m%Y")

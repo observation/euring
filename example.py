@@ -6,10 +6,9 @@ from euring import (
     TYPE_INTEGER,
     EuringException,
     EuringRecord,
-    euring_dms_to_float,
-    euring_lat_to_dms,
     is_valid_euring_type,
 )
+from euring.coordinates import euring_coordinates_to_lat_lng, lat_lng_to_euring_coordinates
 
 
 def main():
@@ -25,10 +24,16 @@ def main():
 
     # Test coordinate conversion
     print("\n2. Coordinate Conversion:")
-    dms = "+420500"
-    decimal = euring_dms_to_float(dms)
-    back_to_dms = euring_lat_to_dms(decimal)
-    print(f"DMS: {dms} -> Decimal: {decimal} -> Back to DMS: {back_to_dms}")
+    euring_geographical_coordinates = "+420500+0000000"
+    wgs84 = euring_coordinates_to_lat_lng(euring_geographical_coordinates)
+    lat = wgs84["lat"]
+    lng = wgs84["lng"]
+    encoded_lat_lng = lat_lng_to_euring_coordinates(lat, lng)
+    print(
+        f"Encoded coordinates: {euring_geographical_coordinates}"
+        f" -> Lat: {lat}, Lng: {lng}"
+        f" -> Back to encoded coordinates: {encoded_lat_lng}"
+    )
 
     # Test decoding (using a minimal example)
     print("\n3. Record Decoding:")

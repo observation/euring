@@ -4,6 +4,7 @@ import json
 import warnings
 from dataclasses import replace
 
+from .coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from .exceptions import EuringConstraintException, EuringException
 from .field_schema import EuringField, coerce_field
 from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS
@@ -17,7 +18,7 @@ from .formats import (
     unknown_format_error,
 )
 from .rules import record_rule_errors, requires_euring2020
-from .utils import euring_lat_to_dms, euring_lng_to_dms, is_all_hyphens, is_empty
+from .utils import is_all_hyphens, is_empty
 
 
 class EuringRecord:
@@ -415,8 +416,8 @@ def _apply_coordinate_downgrade(
     longitude = values_by_key.get("longitude", "")
     if not latitude or not longitude:
         return
-    lat = euring_lat_to_dms(float(latitude))
-    lng = euring_lng_to_dms(float(longitude))
+    lat = _lat_to_euring_coordinate(float(latitude))
+    lng = _lng_to_euring_coordinate(float(longitude))
     values_by_key["geographical_coordinates"] = f"{lat}{lng}"
 
 
