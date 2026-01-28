@@ -13,6 +13,7 @@ Main features:
 
 from .__about__ import __version__
 from .converters import convert_euring_record
+from .coordinates import euring_coordinates_to_lat_lng, lat_lng_to_euring_coordinates
 from .exceptions import (
     EuringConstraintException,
     EuringException,
@@ -42,12 +43,8 @@ from .types import (
     is_valid_euring_type,
 )
 from .utils import (
-    euring_dms_to_float,
-    euring_float_to_dms,
     euring_identification_display_format,
     euring_identification_export_format,
-    euring_lat_to_dms,
-    euring_lng_to_dms,
     euring_scheme_export_format,
     euring_species_export_format,
 )
@@ -77,10 +74,8 @@ __all__ = [
     "FORMAT_EURING2000PLUS",
     "FORMAT_EURING2020",
     "FORMAT_JSON",
-    "euring_dms_to_float",
-    "euring_float_to_dms",
-    "euring_lat_to_dms",
-    "euring_lng_to_dms",
+    "euring_coordinates_to_lat_lng",
+    "lat_lng_to_euring_coordinates",
     "euring_identification_display_format",
     "euring_identification_export_format",
     "euring_scheme_export_format",

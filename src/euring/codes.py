@@ -3,6 +3,7 @@ from collections.abc import Callable, Mapping
 from datetime import date
 from typing import Any
 
+from .coordinates import _validate_euring_coordinates, euring_coordinates_to_lat_lng
 from .data import (
     load_code_map,
     load_other_marks_data,
@@ -14,7 +15,7 @@ from .data import (
     load_species_map,
 )
 from .exceptions import EuringConstraintException, EuringLookupException
-from .utils import euring_dms_to_float, is_all_hyphens
+from .utils import is_all_hyphens
 
 LOOKUP_EURING_CODE_IDENTIFIER = load_code_map("euring_code_identifier")
 LOOKUP_CONDITION = load_code_map("condition")
@@ -64,6 +65,7 @@ _SPECIES_DETAILS = load_species_details()
 _SCHEME_DETAILS = load_scheme_details()
 _PLACE_DETAILS = load_place_details()
 _RINGING_SCHEME_PATTERN = re.compile(r"^[A-Z]{3}$")
+_PLACE_CODE_PATTERN = re.compile(r"^[A-Z]{2}([A-Z]{2}|[0-9]{2}|--)$")
 
 
 def lookup_description(value: str, lookup: Mapping[str, str] | Callable[[str], str] | None) -> str | None:
@@ -178,15 +180,11 @@ def parse_geographical_coordinates(value: str | None) -> dict[str, float] | None
         raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
     if value == "." * 15:
         return None
-    _validate_dms_component(value[:7], degrees_digits=2, max_degrees=90)
-    _validate_dms_component(value[7:], degrees_digits=3, max_degrees=180)
+    _validate_euring_coordinates(value)
     try:
-        lat = value[:7]
-        lng = value[7:]
+        return euring_coordinates_to_lat_lng(value)
     except (TypeError, IndexError):
         raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
-    result = dict(lat=euring_dms_to_float(lat), lng=euring_dms_to_float(lng))
-    return result
 
 
 def lookup_geographical_coordinates(value: dict[str, float] | None) -> str | None:
@@ -224,13 +222,10 @@ def parse_direction(value: str) -> int | None:
     return parsed
 
 
-_PLACE_CODE_RE = re.compile(r"^[A-Z]{2}([A-Z]{2}|[0-9]{2}|--)$")
-
-
 def parse_place_code(value: str) -> str:
     """Validate the place code pattern (AA##, AAAA, or AA--)."""
     value_str = f"{value}"
-    if not _PLACE_CODE_RE.match(value_str):
+    if not _PLACE_CODE_PATTERN.match(value_str):
         raise EuringConstraintException(f'Value "{value}" is not a valid place code format.')
     return value_str
 
@@ -248,25 +243,6 @@ def _parse_decimal_coordinate(value: str, *, max_abs: int, max_decimals: int, fi
         if len(decimal_part) > max_decimals:
             raise EuringConstraintException(f"{field_name} must have at most {max_decimals} decimal places.")
     return parsed
-
-
-def _validate_dms_component(value: str | None, *, degrees_digits: int, max_degrees: int) -> None:
-    """Validate a DMS coordinate component."""
-    if value is None:
-        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
-    expected_length = 1 + degrees_digits + 2 + 2
-    if len(value) != expected_length:
-        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
-    sign = value[0]
-    if sign not in {"+", "-"}:
-        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
-    degrees = value[1 : 1 + degrees_digits]
-    minutes = value[1 + degrees_digits : 1 + degrees_digits + 2]
-    seconds = value[1 + degrees_digits + 2 :]
-    if not (degrees.isdigit() and minutes.isdigit() and seconds.isdigit()):
-        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
-    if int(degrees) > max_degrees or int(minutes) > 59 or int(seconds) > 59:
-        raise EuringConstraintException(f'Value "{value}" is not a valid set of coordinates.')
 
 
 def parse_old_greater_coverts(value: str) -> str:

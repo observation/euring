@@ -1,18 +1,11 @@
 import re
 from typing import Any
 
-from .exceptions import EuringConstraintException
-
 __all__ = [
-    "euring_dms_to_float",
-    "euring_float_to_dms",
-    "euring_lat_to_dms",
-    "euring_lng_to_dms",
     "euring_identification_display_format",
     "euring_identification_export_format",
     "euring_scheme_export_format",
     "euring_species_export_format",
-    "is_empty",
 ]
 
 
@@ -24,73 +17,6 @@ def is_empty(value: Any) -> bool:
 def is_all_hyphens(value: str) -> bool:
     """Return True when a non-empty string consists of only hyphens."""
     return bool(value) and set(value) == {"-"}
-
-
-def euring_dms_to_float(value: str) -> float:
-    """Convert EURING DMS coordinate text into decimal degrees."""
-    try:
-        seconds = value[-2:]
-        minutes = value[-4:-2]
-        degrees = value[:-4]
-        result = float(degrees)
-        negative = result < 0
-        result = abs(result) + (float(minutes) / 60) + (float(seconds) / 3600)
-        if negative:
-            result = -result
-    except (IndexError, ValueError):
-        raise EuringConstraintException('Could not parse coordinate "{value}" to decimal.')
-    return result
-
-
-def euring_float_to_dms(value: float, round_seconds: bool = False) -> dict[str, int | float | str]:
-    """
-    Convert a Decimal Degree Value into Degrees Minute Seconds Notation.
-
-    Pass value as double
-    type = {Latitude or Longitude} as string
-
-    returns a dict with quadrant, degreees, minutes, seconds
-    created by: anothergisblog.blogspot.com
-    modified by: Dylan Verheul
-    """
-    degrees = int(value)
-    submin = abs((value - int(value)) * 60)
-    minutes = int(submin)
-    seconds = abs((submin - int(submin)) * 60)
-    if degrees < 0:
-        quadrant = "-"
-    else:
-        quadrant = "+"  # includes 0
-    if round_seconds:
-        seconds = int(round(seconds))
-        if seconds == 60:
-            seconds = 0
-            minutes += 1
-        if minutes == 60:
-            minutes = 0
-            degrees = degrees + 1 if degrees >= 0 else degrees - 1
-    return {"quadrant": quadrant, "degrees": degrees, "minutes": minutes, "seconds": seconds}
-
-
-def _euring_coord_to_dms(value: float, degrees_pos: int) -> str:
-    """Format a decimal coordinate into EURING DMS text with fixed degree width."""
-    dms = euring_float_to_dms(value, round_seconds=True)
-    return "{quadrant}{degrees}{minutes}{seconds}".format(
-        quadrant=dms["quadrant"],
-        degrees="{}".format(abs(dms["degrees"])).zfill(degrees_pos),
-        minutes="{}".format(dms["minutes"]).zfill(2),
-        seconds="{}".format(dms["seconds"]).zfill(2),
-    )
-
-
-def euring_lat_to_dms(value: float) -> str:
-    """Convert a latitude in decimal degrees into EURING DMS text."""
-    return _euring_coord_to_dms(value, degrees_pos=2)
-
-
-def euring_lng_to_dms(value: float) -> str:
-    """Convert a longitude in decimal degrees into EURING DMS text."""
-    return _euring_coord_to_dms(value, degrees_pos=3)
 
 
 def euring_identification_display_format(euring_number: Any) -> str:

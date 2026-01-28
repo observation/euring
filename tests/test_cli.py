@@ -4,9 +4,9 @@ from typer.testing import CliRunner
 
 import euring.main as main_module
 from euring import exceptions as euring_exceptions
+from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
 from euring.main import app
-from euring.utils import euring_lat_to_dms, euring_lng_to_dms
 
 
 def _make_euring2020_record_with_coords() -> str:
@@ -549,8 +549,8 @@ def test_convert_cli_invalid_format():
 
 def test_convert_cli_downgrade_with_coords():
     runner = CliRunner()
-    lat = euring_lat_to_dms(52.3760)
-    lng = euring_lng_to_dms(4.9000)
+    lat = _lat_to_euring_coordinate(52.3760)
+    lng = _lng_to_euring_coordinate(4.9000)
     result = runner.invoke(
         app,
         [
