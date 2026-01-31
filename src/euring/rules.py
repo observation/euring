@@ -18,7 +18,7 @@ def accuracy_of_coordinates_is_alpha(values_by_key: dict[str, str]) -> bool:
 
 
 def matches_euring2000(values_by_key: dict[str, str]) -> bool:
-    """Return True when values_by_key contain only EURING2000 keys."""
+    """Return True when values are present only for fields in EURING2000 format."""
     for key in NON_EURING2000_KEYS:
         if values_by_key.get(key):
             return False
@@ -26,7 +26,7 @@ def matches_euring2000(values_by_key: dict[str, str]) -> bool:
 
 
 def requires_euring2000plus(values_by_key: dict[str, str]) -> bool:
-    """Return True when values require EURING2000+."""
+    """Return True when values are present for fields that are not in EURING2000 format."""
     return not matches_euring2000(values_by_key)
 
 
@@ -52,22 +52,22 @@ def record_rule_errors(format: str, values_by_key: dict[str, str]) -> list[dict[
         }
 
     if format == FORMAT_EURING2020:
-        geo_value = values_by_key.get("geographical_coordinates", "") or ""
-        lat_value = values_by_key.get("latitude", "") or ""
-        lng_value = values_by_key.get("longitude", "") or ""
-        if lat_value or lng_value:
-            if geo_value and geo_value != "." * 15:
+        geographical_coordinates = values_by_key.get("geographical_coordinates", "") or ""
+        latitude = values_by_key.get("latitude", "") or ""
+        longitude = values_by_key.get("longitude", "") or ""
+        if latitude or longitude:
+            if geographical_coordinates and geographical_coordinates != "." * 15:
                 errors.append(
                     _error(
                         key="geographical_coordinates",
                         message="When Latitude/Longitude are provided, Geographical Co-ordinates must be 15 dots.",
                     )
                 )
-        if lat_value and not lng_value:
+        if latitude and not longitude:
             errors.append(
                 _error(key="longitude", message="Longitude is required when Latitude is provided."),
             )
-        if lng_value and not lat_value:
+        if longitude and not latitude:
             errors.append(
                 _error(
                     key="latitude",
