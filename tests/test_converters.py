@@ -8,7 +8,7 @@ import pytest
 from euring.converters import convert_euring_record
 from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
-from tests.fixtures import _make_euring2020_record_with_coords
+from tests.fixtures import _make_euring2020_record
 
 
 def _load_fixture(module_name: str, attr: str) -> str:
@@ -98,7 +98,12 @@ def test_convert_alpha_accuracy_invalid():
 
 
 def test_convert_coordinate_downgrade_fills():
-    record = _make_euring2020_record_with_coords()
+    record = _make_euring2020_record(
+        geographical_coordinates="." * 15,
+        accuracy_of_coordinates="A",
+        latitude="52.3760",
+        longitude="4.9000",
+    )
     lat = _lat_to_euring_coordinate(52.3760)
     lng = _lng_to_euring_coordinate(4.9000)
     converted = convert_euring_record(record, target_format="euring2000plus", force=True)

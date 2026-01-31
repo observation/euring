@@ -5,9 +5,12 @@ from typer.testing import CliRunner
 import euring.main as main_module
 from euring import exceptions as euring_exceptions
 from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
-from euring.fields import EURING_FIELDS
+from euring.fields import EURING_KEY_INDEX
 from euring.main import app
-from tests.fixtures import _make_euring2000plus_record_with_invalid_species, _make_euring2020_record_with_coords
+from tests.fixtures import (
+    _make_euring2000plus_record_with_invalid_species,
+    _make_euring2020_record,
+)
 
 
 def test_lookup_place_verbose_includes_details():
@@ -59,7 +62,7 @@ def test_decode_cli_success():
 
 def test_decode_cli_format_mismatch_fails():
     runner = CliRunner()
-    record = _make_euring2020_record_with_coords()
+    record = _make_euring2020_record()
     result = runner.invoke(app, ["decode", "--format", "euring2000", record])
     assert result.exit_code == 1
     assert 'Format "EURING2000" conflicts with pipe-delimited data.' in result.output
@@ -157,7 +160,7 @@ def test_validate_cli_invalid_format_hint():
 def test_validate_cli_forced_euring2000_rejects_pipe_record():
     import json
 
-    record = _make_euring2020_record_with_coords()
+    record = _make_euring2020_record()
     runner = CliRunner()
     result = runner.invoke(app, ["validate", "--json", "--format", "euring2000", record])
     assert result.exit_code == 1
@@ -493,6 +496,12 @@ def test_convert_cli_downgrade_with_coords():
     runner = CliRunner()
     lat = _lat_to_euring_coordinate(52.3760)
     lng = _lng_to_euring_coordinate(4.9000)
+    euring2020_record_with_coordinates = _make_euring2020_record(
+        geographical_coordinates="." * 15,
+        accuracy_of_coordinates="A",
+        latitude="52.3760",
+        longitude="4.9000",
+    )
     result = runner.invoke(
         app,
         [
@@ -502,10 +511,12 @@ def test_convert_cli_downgrade_with_coords():
             "--to",
             "euring2000plus",
             "--force",
-            _make_euring2020_record_with_coords(),
+            euring2020_record_with_coordinates,
         ],
     )
     assert result.exit_code == 0
     fields = result.output.strip().split("|")
-    geo_index = next(i for i, f in enumerate(EURING_FIELDS) if f["key"] == "geographical_coordinates")
-    assert fields[geo_index] == f"{lat}{lng}"
+    accuracy_of_coordinates = fields[EURING_KEY_INDEX["accuracy_of_coordinates"]]
+    assert accuracy_of_coordinates == "0"  # Changed from 'A' to '0'
+    geographical_coordinates = fields[EURING_KEY_INDEX["geographical_coordinates"]]
+    assert geographical_coordinates == f"{lat}{lng}"  # Generated from latitude and longitude
