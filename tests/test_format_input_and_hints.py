@@ -133,7 +133,7 @@ def test_format_hint_for_2000plus():
     assert format_hint("2000plus") == "euring2000plus"
 
 
-def test_format_hint_for_2000_plus_symbol():
+def test_format_hint_for_2000plus_symbol():
     assert format_hint("2000+") == "euring2000plus"
 
 

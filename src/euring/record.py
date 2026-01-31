@@ -410,7 +410,7 @@ def _apply_coordinate_downgrade(
             raise ValueError(f'Unsupported alphabetic accuracy code "{accuracy}".')
         values_by_key["accuracy_of_coordinates"] = mapped
     coords = values_by_key.get("geographical_coordinates", "")
-    if coords.strip():
+    if coords.strip() and set(coords) != {"."}:
         return
     latitude = values_by_key.get("latitude", "")
     longitude = values_by_key.get("longitude", "")

@@ -7,7 +7,7 @@ from euring import exceptions as euring_exceptions
 from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
 from euring.main import app
-from tests.fixtures import _make_euring2000_plus_record_with_invalid_species, _make_euring2020_record_with_coords
+from tests.fixtures import _make_euring2000plus_record_with_invalid_species, _make_euring2020_record_with_coords
 
 
 def test_lookup_place_verbose_includes_details():
@@ -248,7 +248,7 @@ def test_decode_cli_invalid_species_format_reports_errors():
     import json
 
     runner = CliRunner()
-    result = runner.invoke(app, ["decode", "--json", _make_euring2000_plus_record_with_invalid_species()])
+    result = runner.invoke(app, ["decode", "--json", _make_euring2000plus_record_with_invalid_species()])
     assert result.exit_code == 1
     payload = json.loads(result.output)
     assert "errors" in payload

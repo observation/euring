@@ -418,7 +418,18 @@ EURING_FIELDS = [
     EuringField(name="More Other Marks", key="more_other_marks", euring_type=TYPE_ALPHABETIC, required=False),
 ]
 
-# These are the field definitions per format as per the EURING Code Manual
+# All keys
+EURING_KEYS = [field.key for field in EURING_FIELDS]
+
+# Map keys to index
+EURING_KEY_INDEX = {key: index for index, key in enumerate(EURING_KEYS)}
+
+# Fields per format (as per the EURING Code Manual)
 EURING2020_FIELDS = EURING_FIELDS  # 64 fields
 EURING2000PLUS_FIELDS = EURING_FIELDS[:60]
 EURING2000_FIELDS = EURING_FIELDS[:33]
+
+# Keys per format
+EURING2020_KEYS = [field.key for field in EURING2020_FIELDS]
+EURING2000PLUS_KEYS = [field.key for field in EURING2000PLUS_FIELDS]
+EURING2000_KEYS = [field.key for field in EURING2000_FIELDS]
