@@ -18,7 +18,7 @@ from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
 from tests.fixtures import (
     _make_euring2000plus_record,
     _make_euring2000plus_record_with_invalid_species,
-    _make_euring2020_record_for_coords,
+    _make_euring2020_record,
 )
 
 
@@ -203,7 +203,7 @@ class TestDecoding:
 
     def test_decode_euring2020_rejects_geo_with_lat_long(self):
         record = EuringRecord.decode(
-            _make_euring2020_record_for_coords(
+            _make_euring2020_record(
                 geographical_coordinates="+0000000+0000000",
                 latitude="1.0000",
                 longitude="2.0000",
@@ -213,7 +213,7 @@ class TestDecoding:
 
     def test_decode_euring2020_requires_longitude_with_latitude(self):
         record = EuringRecord.decode(
-            _make_euring2020_record_for_coords(
+            _make_euring2020_record(
                 geographical_coordinates="...............",
                 latitude="1.0000",
                 longitude="",
@@ -223,7 +223,7 @@ class TestDecoding:
 
     def test_decode_euring2020_requires_latitude_with_longitude(self):
         record = EuringRecord.decode(
-            _make_euring2020_record_for_coords(
+            _make_euring2020_record(
                 geographical_coordinates="...............",
                 latitude="",
                 longitude="2.0000",
@@ -233,7 +233,7 @@ class TestDecoding:
 
     def test_decode_euring2020_latitude_out_of_range(self):
         record = EuringRecord.decode(
-            _make_euring2020_record_for_coords(
+            _make_euring2020_record(
                 geographical_coordinates="...............",
                 latitude="90.0001",
                 longitude="2.0000",
@@ -243,7 +243,7 @@ class TestDecoding:
 
     def test_decode_euring2020_longitude_out_of_range(self):
         record = EuringRecord.decode(
-            _make_euring2020_record_for_coords(
+            _make_euring2020_record(
                 geographical_coordinates="...............",
                 latitude="10.0000",
                 longitude="180.0001",
@@ -253,7 +253,7 @@ class TestDecoding:
 
     def test_decode_euring2020_latitude_too_many_decimals(self):
         record = EuringRecord.decode(
-            _make_euring2020_record_for_coords(
+            _make_euring2020_record(
                 geographical_coordinates="...............",
                 latitude="10.00001",
                 longitude="2.0000",

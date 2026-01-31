@@ -122,16 +122,3 @@ def _make_euring2000plus_record_with_invalid_species(*, accuracy_of_coordinates:
         species_mentioned="12ABC",
         species_concluded="12ABC",
     )
-
-
-def _make_euring2020_record_for_coords(**kwargs) -> str:
-    return _make_euring2020_record(**kwargs)
-
-
-def _make_euring2020_record_with_coords() -> str:
-    return _make_euring2020_record(
-        geographical_coordinates="." * 15,
-        accuracy_of_coordinates="A",
-        latitude="52.3760",
-        longitude="4.9000",
-    )
