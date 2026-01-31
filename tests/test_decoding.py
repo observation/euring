@@ -15,75 +15,11 @@ from euring.exceptions import EuringConstraintException, EuringTypeException
 from euring.fields import EURING_FIELDS
 from euring.parsing import euring_decode_value
 from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
-
-
-def _make_euring2000_plus_record(*, accuracy: str) -> str:
-    values = [
-        "GBB",
-        "A0",
-        "1234567890",
-        "0",
-        "1",
-        "ZZ",
-        "00010",
-        "00010",
-        "N",
-        "0",
-        "M",
-        "U",
-        "U",
-        "U",
-        "2",
-        "2",
-        "U",
-        "99",
-        "99",
-        "0",
-        "01012024",
-        "0",
-        "0000",
-        "AB00",
-        "+0000000+0000000",
-        accuracy,
-        "9",
-        "99",
-        "0",
-        "4",
-        "00000",
-        "000",
-        "00000",
-    ]
-    return "|".join(values)
-
-
-def _make_euring2000_plus_record_with_invalid_species(*, accuracy: str) -> str:
-    values = _make_euring2000_plus_record(accuracy=accuracy).split("|")
-    values[6] = "12ABC"
-    values[7] = "12ABC"
-    return "|".join(values)
-
-
-def _make_euring2020_record_for_coords(
-    *,
-    geo_value: str,
-    lat_value: str,
-    lng_value: str,
-    accuracy: str = "1",
-) -> str:
-    base = _make_euring2000_plus_record(accuracy=accuracy).split("|")
-    values = base + [""] * (len(EURING_FIELDS) - len(base))
-
-    def set_value(key: str, value: str) -> None:
-        for index, field in enumerate(EURING_FIELDS):
-            if field["key"] == key:
-                values[index] = value
-                return
-        raise ValueError(f"Unknown key: {key}")
-
-    set_value("geographical_coordinates", geo_value)
-    set_value("latitude", lat_value)
-    set_value("longitude", lng_value)
-    return "|".join(values)
+from fixtures import (
+    _make_euring2000_plus_record,
+    _make_euring2000_plus_record_with_invalid_species,
+    _make_euring2020_record_for_coords,
+)
 
 
 class TestDecoding:

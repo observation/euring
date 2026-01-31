@@ -15,7 +15,7 @@ from .formats import (
     FORMAT_JSON,
     format_display_name,
     normalize_format,
-    unknown_format_error,
+    unknown_format_error_message,
 )
 from .rules import record_rule_errors, requires_euring2020
 from .utils import is_all_hyphens, is_empty
@@ -447,7 +447,7 @@ def _normalize_target_format(target_format: str) -> str:
     try:
         return normalize_format(target_format)
     except ValueError:
-        raise ValueError(unknown_format_error(target_format, "target format"))
+        raise ValueError(unknown_format_error_message(target_format, "target format"))
 
 
 def _normalize_source_format(source_format: str | None, value: str) -> str:
@@ -467,7 +467,7 @@ def _normalize_source_format(source_format: str | None, value: str) -> str:
     try:
         return normalize_format(source_format)
     except ValueError:
-        raise ValueError(unknown_format_error(source_format, "source format"))
+        raise ValueError(unknown_format_error_message(source_format, "source format"))
 
 
 def _field_index(key: str) -> int:
@@ -485,7 +485,7 @@ def _normalize_decode_format(format: str | None) -> str | None:
     try:
         return normalize_format(format)
     except ValueError:
-        raise EuringConstraintException(unknown_format_error(format))
+        raise EuringConstraintException(unknown_format_error_message(format))
 
 
 def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str, str], list[dict[str, str]]]:
