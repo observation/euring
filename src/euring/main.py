@@ -25,7 +25,7 @@ from .formats import (
     FORMAT_EURING2000PLUS,
     FORMAT_EURING2020,
     normalize_format,
-    unknown_format_error,
+    unknown_format_error_message,
 )
 from .record import EuringRecord
 
@@ -531,7 +531,7 @@ def fields(
         try:
             normalized_format = normalize_format(format)
         except ValueError:
-            typer.echo(unknown_format_error(format, name="format"), err=True)
+            typer.echo(unknown_format_error_message(format, name="format"), err=True)
             raise typer.Exit(1)
     if normalized_format == FORMAT_EURING2000:
         allowed_keys = keys_2000

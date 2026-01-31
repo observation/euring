@@ -36,20 +36,19 @@ def format_display_name(format: str) -> str:
 
 def format_hint(format: str) -> str | None:
     """Suggest the closest machine-friendly format name."""
-    raw = format.strip()
-    lower = raw.lower()
-    if lower in FORMAT_VALUES:
-        return lower
-    if "2020" in lower:
+    value = format.strip().lower()
+    if value in FORMAT_VALUES:
+        return value
+    if "2020" in value:
         return FORMAT_EURING2020
-    if "2000" in lower:
-        if "plus" in lower or "+" in lower:
+    if "2000" in value:
+        if "plus" in value or "+" in value:
             return FORMAT_EURING2000PLUS
         return FORMAT_EURING2000
     return None
 
 
-def unknown_format_error(format: str, name: str = "format") -> str:
+def unknown_format_error_message(format: str, name: str = "format") -> str:
     """Return an error message for an unknown EURING format."""
     hint = format_hint(format)
     message = f'Unknown {name} "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}."'

@@ -8,6 +8,7 @@ import pytest
 from euring.converters import convert_euring_record
 from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
+from tests.fixtures import _make_euring2020_record_with_coords
 
 
 def _load_fixture(module_name: str, attr: str) -> str:
@@ -17,26 +18,6 @@ def _load_fixture(module_name: str, attr: str) -> str:
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
     return getattr(module, attr)[0]
-
-
-def _make_euring2020_record_with_coords() -> str:
-    values = [""] * len(EURING_FIELDS)
-    for index, field in enumerate(EURING_FIELDS):
-        if field["key"] == "ringing_scheme":
-            values[index] = "GBB"
-        if field["key"] == "primary_identification_method":
-            values[index] = "A0"
-        if field["key"] == "identification_number":
-            values[index] = "1234567890"
-        if field["key"] == "place_code":
-            values[index] = "AB00"
-        if field["key"] == "accuracy_of_coordinates":
-            values[index] = "A"
-        if field["key"] == "latitude":
-            values[index] = "52.3760"
-        if field["key"] == "longitude":
-            values[index] = "4.9000"
-    return "|".join(values)
 
 
 def test_convert_unknown_target_format():

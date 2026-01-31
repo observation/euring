@@ -15,87 +15,23 @@ from euring.exceptions import EuringConstraintException, EuringTypeException
 from euring.fields import EURING_FIELDS
 from euring.parsing import euring_decode_value
 from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
-
-
-def _make_euring2000_plus_record(*, accuracy: str) -> str:
-    values = [
-        "GBB",
-        "A0",
-        "1234567890",
-        "0",
-        "1",
-        "ZZ",
-        "00010",
-        "00010",
-        "N",
-        "0",
-        "M",
-        "U",
-        "U",
-        "U",
-        "2",
-        "2",
-        "U",
-        "99",
-        "99",
-        "0",
-        "01012024",
-        "0",
-        "0000",
-        "AB00",
-        "+0000000+0000000",
-        accuracy,
-        "9",
-        "99",
-        "0",
-        "4",
-        "00000",
-        "000",
-        "00000",
-    ]
-    return "|".join(values)
-
-
-def _make_euring2000_plus_record_with_invalid_species(*, accuracy: str) -> str:
-    values = _make_euring2000_plus_record(accuracy=accuracy).split("|")
-    values[6] = "12ABC"
-    values[7] = "12ABC"
-    return "|".join(values)
-
-
-def _make_euring2020_record_for_coords(
-    *,
-    geo_value: str,
-    lat_value: str,
-    lng_value: str,
-    accuracy: str = "1",
-) -> str:
-    base = _make_euring2000_plus_record(accuracy=accuracy).split("|")
-    values = base + [""] * (len(EURING_FIELDS) - len(base))
-
-    def set_value(key: str, value: str) -> None:
-        for index, field in enumerate(EURING_FIELDS):
-            if field["key"] == key:
-                values[index] = value
-                return
-        raise ValueError(f"Unknown key: {key}")
-
-    set_value("geographical_coordinates", geo_value)
-    set_value("latitude", lat_value)
-    set_value("longitude", lng_value)
-    return "|".join(values)
+from tests.fixtures import (
+    _make_euring2000plus_record,
+    _make_euring2000plus_record_with_invalid_species,
+    _make_euring2020_record_for_coords,
+)
 
 
 class TestDecoding:
     def test_decode_minimal_record(self):
         # Very minimal EURING record for testing
-        record = EuringRecord.decode(_make_euring2000_plus_record(accuracy="1"))
+        record = EuringRecord.decode(_make_euring2000plus_record(accuracy_of_coordinates="1"))
         assert record.display_format == "EURING2000+"
         assert record.fields["ringing_scheme"]["value"] == "GBB"
         assert record.fields
 
     def test_decode_unknown_but_valid_ringing_scheme(self):
-        values = _make_euring2000_plus_record(accuracy="1").split("|")
+        values = _make_euring2000plus_record(accuracy_of_coordinates="1").split("|")
         values[0] = "ZZZ"
         record = EuringRecord.decode("|".join(values))
         scheme_errors = [e for e in record.errors["fields"] if e.get("key") == "ringing_scheme"]
@@ -104,12 +40,12 @@ class TestDecoding:
         assert record.fields["ringing_scheme"]["description"].startswith("Unknown ringing scheme")
 
     def test_decode_euring2020_format(self):
-        record = EuringRecord.decode(_make_euring2000_plus_record(accuracy="A"))
+        record = EuringRecord.decode(_make_euring2000plus_record(accuracy_of_coordinates="A"))
         assert record.display_format == "EURING2020"
 
-    def test_decode_euring2020_format_rejects_2000_plus(self):
+    def test_decode_euring2020_format_rejects_2000plus(self):
         record = EuringRecord.decode(
-            _make_euring2000_plus_record(accuracy="A"),
+            _make_euring2000plus_record(accuracy_of_coordinates="A"),
             format="euring2000plus",
         )
         assert record.errors["record"] or record.errors["fields"]
@@ -147,7 +83,7 @@ class TestDecoding:
         assert "parsed_value" in result
 
     def test_decode_euring2000plus_allows_short_elapsed_time(self):
-        record = _make_euring2000_plus_record(accuracy="1").split("|")
+        record = _make_euring2000plus_record(accuracy_of_coordinates="1").split("|")
         for index, field in enumerate(EURING_FIELDS):
             if field["key"] == "elapsed_time":
                 record[index] = "1"
@@ -158,7 +94,7 @@ class TestDecoding:
         assert decoded.fields["elapsed_time"]["value"] == 1
 
     def test_decode_euring2020_allows_short_distance(self):
-        record = _make_euring2000_plus_record(accuracy="A").split("|")
+        record = _make_euring2000plus_record(accuracy_of_coordinates="A").split("|")
         record += [""] * (len(EURING_FIELDS) - len(record))
         for index, field in enumerate(EURING_FIELDS):
             if field["key"] == "distance":
@@ -243,7 +179,7 @@ class TestDecoding:
             EuringRecord.decode("GBB", format="2000")
 
     def test_decode_format_conflict_pipe(self):
-        record = EuringRecord.decode(_make_euring2000_plus_record(accuracy="1"), format="euring2000")
+        record = EuringRecord.decode(_make_euring2000plus_record(accuracy_of_coordinates="1"), format="euring2000")
         assert record.errors["record"] or record.errors["fields"]
 
     def test_decode_format_conflict_fixed_width(self):
@@ -260,7 +196,7 @@ class TestDecoding:
         assert record.errors["record"] or record.errors["fields"]
 
     def test_decode_invalid_species_format(self):
-        record = EuringRecord.decode(_make_euring2000_plus_record_with_invalid_species(accuracy="1"))
+        record = EuringRecord.decode(_make_euring2000plus_record_with_invalid_species(accuracy_of_coordinates="1"))
         fields = [error["field"] for error in record.errors["fields"]]
         assert "Species Mentioned" in fields
         assert "Species Concluded" in fields
@@ -268,9 +204,9 @@ class TestDecoding:
     def test_decode_euring2020_rejects_geo_with_lat_long(self):
         record = EuringRecord.decode(
             _make_euring2020_record_for_coords(
-                geo_value="+0000000+0000000",
-                lat_value="1.0000",
-                lng_value="2.0000",
+                geographical_coordinates="+0000000+0000000",
+                latitude="1.0000",
+                longitude="2.0000",
             )
         )
         assert any(error["field"] == "Geographical Co-ordinates" for error in record.errors["fields"])
@@ -278,9 +214,9 @@ class TestDecoding:
     def test_decode_euring2020_requires_longitude_with_latitude(self):
         record = EuringRecord.decode(
             _make_euring2020_record_for_coords(
-                geo_value="...............",
-                lat_value="1.0000",
-                lng_value="",
+                geographical_coordinates="...............",
+                latitude="1.0000",
+                longitude="",
             )
         )
         assert any(error["field"] == "Longitude" for error in record.errors["fields"])
@@ -288,9 +224,9 @@ class TestDecoding:
     def test_decode_euring2020_requires_latitude_with_longitude(self):
         record = EuringRecord.decode(
             _make_euring2020_record_for_coords(
-                geo_value="...............",
-                lat_value="",
-                lng_value="2.0000",
+                geographical_coordinates="...............",
+                latitude="",
+                longitude="2.0000",
             )
         )
         assert any(error["field"] == "Latitude" for error in record.errors["fields"])
@@ -298,9 +234,9 @@ class TestDecoding:
     def test_decode_euring2020_latitude_out_of_range(self):
         record = EuringRecord.decode(
             _make_euring2020_record_for_coords(
-                geo_value="...............",
-                lat_value="90.0001",
-                lng_value="2.0000",
+                geographical_coordinates="...............",
+                latitude="90.0001",
+                longitude="2.0000",
             )
         )
         assert any(error["field"] == "Latitude" for error in record.errors["fields"])
@@ -308,9 +244,9 @@ class TestDecoding:
     def test_decode_euring2020_longitude_out_of_range(self):
         record = EuringRecord.decode(
             _make_euring2020_record_for_coords(
-                geo_value="...............",
-                lat_value="10.0000",
-                lng_value="180.0001",
+                geographical_coordinates="...............",
+                latitude="10.0000",
+                longitude="180.0001",
             )
         )
         assert any(error["field"] == "Longitude" for error in record.errors["fields"])
@@ -318,15 +254,15 @@ class TestDecoding:
     def test_decode_euring2020_latitude_too_many_decimals(self):
         record = EuringRecord.decode(
             _make_euring2020_record_for_coords(
-                geo_value="...............",
-                lat_value="10.00001",
-                lng_value="2.0000",
+                geographical_coordinates="...............",
+                latitude="10.00001",
+                longitude="2.0000",
             )
         )
         assert any(error["field"] == "Latitude" for error in record.errors["fields"])
 
     def test_decode_fields_returns_format(self):
-        record = EuringRecord.decode(_make_euring2000_plus_record(accuracy="1"))
+        record = EuringRecord.decode(_make_euring2000plus_record(accuracy_of_coordinates="1"))
         assert record.format == "euring2000plus"
 
     def test_decode_euring2000_fixture_records(self):

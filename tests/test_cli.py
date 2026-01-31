@@ -7,65 +7,7 @@ from euring import exceptions as euring_exceptions
 from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
 from euring.main import app
-
-
-def _make_euring2020_record_with_coords() -> str:
-    values = [""] * len(EURING_FIELDS)
-
-    def set_value(key: str, value: str) -> None:
-        for index, field in enumerate(EURING_FIELDS):
-            if field["key"] == key:
-                values[index] = value
-                return
-        raise ValueError(f"Unknown key: {key}")
-
-    set_value("ringing_scheme", "GBB")
-    set_value("primary_identification_method", "A0")
-    set_value("identification_number", "1234567890")
-    set_value("place_code", "AB00")
-    set_value("accuracy_of_coordinates", "A")
-    set_value("latitude", "52.3760")
-    set_value("longitude", "4.9000")
-    return "|".join(values)
-
-
-def _make_euring2000_plus_record_with_invalid_species() -> str:
-    values = [
-        "GBB",
-        "A0",
-        "1234567890",
-        "0",
-        "1",
-        "ZZ",
-        "12ABC",
-        "12ABC",
-        "N",
-        "0",
-        "M",
-        "U",
-        "U",
-        "U",
-        "2",
-        "2",
-        "U",
-        "99",
-        "99",
-        "0",
-        "01012024",
-        "0",
-        "0000",
-        "AB00",
-        "+0000000+0000000",
-        "1",
-        "9",
-        "99",
-        "0",
-        "4",
-        "00000",
-        "000",
-        "00000",
-    ]
-    return "|".join(values)
+from tests.fixtures import _make_euring2000plus_record_with_invalid_species, _make_euring2020_record_with_coords
 
 
 def test_lookup_place_verbose_includes_details():
@@ -306,7 +248,7 @@ def test_decode_cli_invalid_species_format_reports_errors():
     import json
 
     runner = CliRunner()
-    result = runner.invoke(app, ["decode", "--json", _make_euring2000_plus_record_with_invalid_species()])
+    result = runner.invoke(app, ["decode", "--json", _make_euring2000plus_record_with_invalid_species()])
     assert result.exit_code == 1
     payload = json.loads(result.output)
     assert "errors" in payload
