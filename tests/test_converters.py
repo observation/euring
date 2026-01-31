@@ -8,7 +8,7 @@ import pytest
 from euring.converters import convert_euring_record
 from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
-from fixtures import _make_euring2020_record_with_coords
+from tests.fixtures import _make_euring2020_record_with_coords
 
 
 def _load_fixture(module_name: str, attr: str) -> str:

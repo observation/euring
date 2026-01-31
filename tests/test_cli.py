@@ -7,7 +7,7 @@ from euring import exceptions as euring_exceptions
 from euring.coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from euring.fields import EURING_FIELDS
 from euring.main import app
-from fixtures import _make_euring2000_plus_record_with_invalid_species, _make_euring2020_record_with_coords
+from tests.fixtures import _make_euring2000_plus_record_with_invalid_species, _make_euring2020_record_with_coords
 
 
 def test_lookup_place_verbose_includes_details():

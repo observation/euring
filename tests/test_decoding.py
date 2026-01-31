@@ -15,7 +15,7 @@ from euring.exceptions import EuringConstraintException, EuringTypeException
 from euring.fields import EURING_FIELDS
 from euring.parsing import euring_decode_value
 from euring.types import TYPE_ALPHANUMERIC, TYPE_INTEGER
-from fixtures import (
+from tests.fixtures import (
     _make_euring2000_plus_record,
     _make_euring2000_plus_record_with_invalid_species,
     _make_euring2020_record_for_coords,

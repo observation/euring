@@ -1,1 +1,1 @@
-# Tests for the EURING library
+# Package marker for shared test helpers.
