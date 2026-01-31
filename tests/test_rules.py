@@ -1,11 +1,13 @@
 """Tests for record_rules helpers."""
 
-from euring.rules import (
+from euring.fields import (
     EURING2000_KEYS,
     EURING2000PLUS_KEYS,
     EURING2020_KEYS,
     EURING2020_ONLY_KEYS,
     NON_EURING2000_KEYS,
+)
+from euring.rules import (
     matches_euring2000,
     record_rule_errors,
     requires_euring2000plus,
