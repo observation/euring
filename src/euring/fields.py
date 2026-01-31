@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from types import MappingProxyType
+
 from .codes import (
     LOOKUP_ACCURACY_OF_COORDINATES,
     LOOKUP_ACCURACY_OF_DATE,
@@ -59,7 +61,7 @@ SPEC_MANUAL = "EURING Exchange Code 2020 v202 (13 Nov 2024)"
 
 # Schema list (definitions), not per-record data.
 
-EURING_FIELDS = [
+EURING_FIELDS = (
     EuringLookupField(
         name="Ringing Scheme",
         key="ringing_scheme",
@@ -416,20 +418,24 @@ EURING_FIELDS = [
         lookup=lookup_place_code,
     ),
     EuringField(name="More Other Marks", key="more_other_marks", euring_type=TYPE_ALPHABETIC, required=False),
-]
+)
 
-# All keys
-EURING_KEYS = [field.key for field in EURING_FIELDS]
-
-# Map keys to index
-EURING_KEY_INDEX = {key: index for index, key in enumerate(EURING_KEYS)}
-
-# Fields per format (as per the EURING Code Manual)
+# These are the field definitions per format as per the EURING Code Manual
 EURING2020_FIELDS = EURING_FIELDS  # 64 fields
 EURING2000PLUS_FIELDS = EURING_FIELDS[:60]
 EURING2000_FIELDS = EURING_FIELDS[:33]
 
-# Keys per format
-EURING2020_KEYS = [field.key for field in EURING2020_FIELDS]
-EURING2000PLUS_KEYS = [field.key for field in EURING2000PLUS_FIELDS]
-EURING2000_KEYS = [field.key for field in EURING2000_FIELDS]
+# All keys and keys per format
+EURING_KEYS = tuple(field.key for field in EURING_FIELDS)
+EURING2020_KEYS = tuple(field.key for field in EURING2020_FIELDS)
+EURING2000PLUS_KEYS = tuple(field.key for field in EURING2000PLUS_FIELDS)
+EURING2000_KEYS = tuple(field.key for field in EURING2000_FIELDS)
+
+# Mapping keys to indexes and names
+EURING_KEY_INDEX = MappingProxyType({key: index for index, key in enumerate(EURING_KEYS)})
+EURING_KEY_NAME = MappingProxyType({field.key: field.name for field in EURING_FIELDS})
+
+# Helpers
+EURING2020_ONLY_KEYS = tuple(set(EURING2020_KEYS).difference(EURING2000PLUS_KEYS))
+NON_EURING2000_KEYS = tuple(set(EURING2000PLUS_KEYS + EURING2020_ONLY_KEYS).difference(EURING2000_KEYS))
+NON_EURING2000PLUS_KEYS = tuple(key for key in EURING_KEYS if key not in EURING2000PLUS_KEYS)

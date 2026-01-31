@@ -2,16 +2,14 @@
 
 from __future__ import annotations
 
-from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS, EURING_FIELDS
+from .fields import (
+    EURING2020_ONLY_KEYS,
+    EURING_FIELDS,
+    NON_EURING2000_KEYS,
+)
 from .formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, FORMAT_EURING2020
 
 _FIELD_NAME_BY_KEY = {field["key"]: field["name"] for field in EURING_FIELDS}
-
-EURING2000_KEYS = tuple(field["key"] for field in EURING2000_FIELDS)
-EURING2000PLUS_KEYS = tuple(field["key"] for field in EURING2000PLUS_FIELDS)
-EURING2020_KEYS = tuple(field["key"] for field in EURING2020_FIELDS)
-EURING2020_ONLY_KEYS = tuple(set(EURING2020_KEYS).difference(EURING2000PLUS_KEYS))
-NON_EURING2000_KEYS = tuple(set(EURING2000PLUS_KEYS + EURING2020_ONLY_KEYS).difference(EURING2000_KEYS))
 
 
 def field_name_for_key(key: str) -> str:

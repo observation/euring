@@ -7,7 +7,7 @@ from euring.fields import (
 )
 from euring.formats import FORMAT_EURING2000, FORMAT_EURING2000PLUS, FORMAT_EURING2020
 
-DEFAULT_TEST_VALUES = {
+EURING_TEST_DATA = {
     # Default test data for a EURING record in key-value format
     "ringing_scheme": "GBB",
     "primary_identification_method": "A0",
@@ -33,7 +33,7 @@ DEFAULT_TEST_VALUES = {
     "accuracy_of_date": "0",
     "time": "0000",
     "place_code": "AB00",
-    "geographical_coordinates": "+0000000+0000000",
+    "geographical_coordinates": "+000000+0000000",
     "accuracy_of_coordinates": "1",
     "condition": "9",
     "circumstances": "99",
@@ -77,24 +77,31 @@ DEFAULT_TEST_VALUES = {
     "more_other_marks": "",
 }
 
+EURING2000_TEST_DATA = {key: value for key, value in EURING_TEST_DATA.items() if key in EURING2000_KEYS}
+EURING2000PLUS_TEST_DATA = {key: value for key, value in EURING_TEST_DATA.items() if key in EURING2000PLUS_KEYS}
+EURING2020_TEST_DATA = {key: value for key, value in EURING_TEST_DATA.items() if key in EURING2020_KEYS}
+
 
 def _make_euring_record(data: dict, format: str) -> str:
+    record = dict()
     if format == FORMAT_EURING2000:
         keys = EURING2000_KEYS
+        record.update(EURING2000_TEST_DATA)
         separator = ""
     elif format == FORMAT_EURING2000PLUS:
         keys = EURING2000PLUS_KEYS
+        record.update(EURING2000PLUS_TEST_DATA)
         separator = "|"
     elif format == FORMAT_EURING2020:
         keys = EURING2020_KEYS
+        record.update(EURING2020_TEST_DATA)
         separator = "|"
     else:
         raise ValueError(f"Unknown format: {format}")
-    record_dict = {key: value for key, value in DEFAULT_TEST_VALUES.items() if key in keys}
     for key, value in data.items():
         assert key in keys, f"Invalid key: {key}"
-        record_dict[key] = value
-    return separator.join(record_dict.values())
+        record[key] = value
+    return separator.join(record.get(key, "") for key in keys)
 
 
 def _make_euring2000_record(**kwargs) -> str:
