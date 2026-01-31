@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from types import MappingProxyType
 
+from euring.exceptions import EuringException
+
 from .codes import (
     LOOKUP_ACCURACY_OF_COORDINATES,
     LOOKUP_ACCURACY_OF_DATE,
@@ -419,6 +421,30 @@ EURING_FIELDS = (
     ),
     EuringField(name="More Other Marks", key="more_other_marks", euring_type=TYPE_ALPHABETIC, required=False),
 )
+
+
+def euring_index(key: str):
+    """Get EURING index for given key or raise."""
+    try:
+        return EURING_KEY_INDEX[key]
+    except IndexError as exc:
+        raise EuringException(f'Unknown key: "{key}".') from exc
+
+
+def euring_value_from_list(euring_list: list, key):
+    """Return value from EURING list for given key."""
+    index = euring_index(key)
+    try:
+        return euring_list[index]
+    except IndexError:
+        return None
+
+
+def euring_value_from_dict(euring_dict: list, key):
+    """Return value from EURING dict for given key."""
+    euring_index(key)  # Validate key
+    return euring_dict.get(key, None)
+
 
 # These are the field definitions per format as per the EURING Code Manual
 EURING2020_FIELDS = EURING_FIELDS  # 64 fields

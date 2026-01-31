@@ -10,13 +10,18 @@ __all__ = [
 
 
 def is_empty(value: Any) -> bool:
-    """Return True when a field value should be treated as empty."""
+    """Return True when value should be treated as empty."""
     return value in (None, "")
 
 
 def is_all_hyphens(value: str) -> bool:
-    """Return True when a non-empty string consists of only hyphens."""
-    return bool(value) and set(value) == {"-"}
+    """Return True when value is not empty and consists of only hyphens."""
+    return not is_empty(value) and set(value) == {"-"}
+
+
+def is_alpha(value: str) -> bool:
+    """Return True when value is not empty and is alphabetic."""
+    return not is_empty(value) and value.isalpha()
 
 
 def euring_identification_display_format(euring_number: Any) -> str:
