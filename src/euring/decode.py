@@ -23,7 +23,7 @@ def euring_detect_format(record: str) -> str:
     return FORMAT_EURING2000
 
 
-def euring_record_to_dict(record: str, format: str) -> list:
+def euring_record_to_dict(record: str, format: str) -> dict[str, str]:
     """Convert EURING record to a key based dictionary."""
     values = euring_record_to_values(record, format)
     fields = {}
@@ -32,7 +32,7 @@ def euring_record_to_dict(record: str, format: str) -> list:
     return fields
 
 
-def euring_record_to_values(record: str, format: str) -> list:
+def euring_record_to_values(record: str, format: str) -> list[str]:
     """Convert EURING record to a list of values."""
     if format in (FORMAT_EURING2000PLUS, FORMAT_EURING2020):
         return record.split("|")
@@ -41,7 +41,7 @@ def euring_record_to_values(record: str, format: str) -> list:
     raise EuringException(unknown_format_error_message(format=format))
 
 
-def _euring2000_record_to_values(record: str) -> list:
+def _euring2000_record_to_values(record: str) -> list[str]:
     """Convert fixed length EURING record to a list of values."""
     values = []
     start = 0
