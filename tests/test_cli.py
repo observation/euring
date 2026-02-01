@@ -65,7 +65,10 @@ def test_decode_cli_format_mismatch_fails():
     record = _make_euring2020_record()
     result = runner.invoke(app, ["decode", "--format", "euring2000", record])
     assert result.exit_code == 1
-    assert 'Format "EURING2000" conflicts with pipe-delimited data.' in result.output
+    combined_output = result.output + getattr(result, "stderr", "")
+    expected_length_message = f'Format "euring2000" should be exactly 94 characters, found {len(record)}.'
+    assert 'Format "euring2000" should not contain pipe characters ("|").' in combined_output
+    assert expected_length_message in combined_output
 
 
 def test_decode_cli_invalid_format():
@@ -166,7 +169,9 @@ def test_validate_cli_forced_euring2000_rejects_pipe_record():
     assert result.exit_code == 1
     payload = json.loads(result.output)
     messages = [error["message"] for error in payload["errors"]["record"]]
-    assert 'Format "EURING2000" conflicts with pipe-delimited data.' in messages
+    expected_length_message = f'Format "euring2000" should be exactly 94 characters, found {len(record)}.'
+    assert 'Format "euring2000" should not contain pipe characters ("|").' in messages
+    assert expected_length_message in messages
 
 
 def test_validate_cli_json_output_file(tmp_path):

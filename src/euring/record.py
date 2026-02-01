@@ -4,10 +4,12 @@ import json
 import warnings
 from dataclasses import replace
 
+from euring.decode import euring_detect_format, euring_record_to_dict
+
 from .coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
 from .exceptions import EuringConstraintException, EuringException
 from .field_schema import EuringField, coerce_field
-from .fields import EURING2000_FIELDS, EURING2000PLUS_FIELDS, EURING2020_FIELDS
+from .fields import EURING2000_FIELDS, EURING2000_RECORD_LENGTH, EURING2000PLUS_FIELDS, EURING2020_FIELDS
 from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
@@ -17,7 +19,7 @@ from .formats import (
     normalize_format,
     unknown_format_error_message,
 )
-from .rules import record_rule_errors, requires_euring2020
+from .rules import record_rule_errors
 from .utils import is_all_hyphens, is_empty
 
 
@@ -488,45 +490,56 @@ def _normalize_decode_format(format: str | None) -> str | None:
         raise EuringConstraintException(unknown_format_error_message(format))
 
 
-def _decode_raw_record(value: object, format: str | None) -> tuple[str, dict[str, str], list[dict[str, str]]]:
+def _decode_raw_record(record: object, format: str | None) -> tuple[str, dict[str, str], list[dict[str, str]]]:
     """Decode raw field values from an encoded EURING record string."""
-    normalized = _normalize_decode_format(format)
+    decode_format = ""
     record_errors: list[dict[str, str]] = []
     values_by_key: dict[str, str] = {}
-    if not isinstance(value, str):
-        record_errors.append({"message": f'Value "{value}" cannot be split with pipe character.'})
-        return normalized or FORMAT_EURING2000PLUS, values_by_key, record_errors
 
-    fields = value.split("|")
-    if len(fields) <= 1:
-        if normalized and normalized != FORMAT_EURING2000:
+    if not isinstance(record, str):
+        record_errors.append({"message": f'Record "{record}" is not a string but {type(record)}.'})
+    elif record == "":
+        record_errors.append({"message": "Record is an empty string."})
+    elif not format:
+        decode_format = euring_detect_format(record)
+        if not decode_format:
+            record_errors.append({"message": f'Format could not be detected from record "{record}".'})
+
+    if format:
+        decode_format = _normalize_decode_format(format)
+        if not decode_format:
+            record_errors.append({"message": unknown_format_error_message(format=format)})
+
+    if not decode_format:
+        decode_format = FORMAT_EURING2020
+        record_errors.append({"message": f'Switching to default format "{decode_format}".'})
+
+    # Any record error before this point is a fatal error, we will not decode
+    if bool(record_errors):
+        return decode_format, values_by_key, record_errors
+
+    pipe_character_in_record = "|" in record
+    if decode_format == FORMAT_EURING2000:
+        if pipe_character_in_record:
+            record_errors.append({"message": f'Format "{decode_format}" should not contain pipe characters ("|").'})
+        record_length = len(record)
+        if record_length != EURING2000_RECORD_LENGTH:
             record_errors.append(
-                {"message": f'Format "{format_display_name(normalized)}" conflicts with fixed-width EURING2000 data.'}
+                {
+                    "message": (
+                        f'Format "{decode_format}" '
+                        f"should be exactly {EURING2000_RECORD_LENGTH} characters, found {record_length}."
+                    )
+                }
             )
-        start = 0
-        for field in EURING2000_FIELDS:
-            length = field["length"]
-            end = start + length
-            values_by_key[field["key"]] = value[start:end]
-            start = end
-        remainder = value[start:]
-        if remainder.strip():
-            record_errors.append({"message": f'Value "{value}" invalid EURING2000 code beyond position {start}.'})
-        current_format = FORMAT_EURING2000
     else:
-        if normalized == FORMAT_EURING2000:
+        if not pipe_character_in_record:
             record_errors.append(
-                {"message": f'Format "{format_display_name(normalized)}" conflicts with pipe-delimited data.'}
+                {"message": (f'Format "{decode_format}" should contain values separated by pipe characters ("|").')}
             )
-        current_format = normalized or FORMAT_EURING2000PLUS
-        for index, raw_value in enumerate(fields):
-            if index >= len(EURING2020_FIELDS):
-                break
-            values_by_key[EURING2020_FIELDS[index]["key"]] = raw_value
-        if normalized is None and current_format in {FORMAT_EURING2000PLUS, FORMAT_EURING2020}:
-            if requires_euring2020(values_by_key):
-                current_format = FORMAT_EURING2020
-    return current_format, values_by_key, record_errors
+
+    raw_values_by_key = euring_record_to_dict(record, format=decode_format)
+    return decode_format, raw_values_by_key, record_errors
 
 
 _FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING2020_FIELDS)}

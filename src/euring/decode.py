@@ -26,6 +26,11 @@ def euring_detect_format(record: str) -> str:
 def euring_record_to_dict(record: str, format: str) -> dict[str, str]:
     """Convert EURING record to a key based dictionary."""
     values = euring_record_to_values(record, format)
+    return euring_values_to_dict(values)
+
+
+def euring_values_to_dict(values: list[str]) -> dict[str, str]:
+    """Convert EURING list of values to a key based dictionary."""
     fields = {}
     for index, value in enumerate(values):
         fields[EURING2020_FIELDS[index].key] = value

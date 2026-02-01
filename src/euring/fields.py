@@ -450,6 +450,7 @@ def euring_value_from_dict(euring_dict: list, key):
 EURING2020_FIELDS = EURING_FIELDS  # 64 fields
 EURING2000PLUS_FIELDS = EURING_FIELDS[:60]
 EURING2000_FIELDS = EURING_FIELDS[:33]
+EURING2000_RECORD_LENGTH = 94
 
 # All keys and keys per format
 EURING_KEYS = tuple(field.key for field in EURING_FIELDS)
