@@ -39,6 +39,8 @@ class EuringField(Mapping[str, Any]):
     value_type: str | None = None
     required: bool = True
     length: int | None = None
+    start: int | None = None
+    end: int | None = None
     variable_length: bool = False
     empty_value: str | None = None
 
@@ -53,6 +55,10 @@ class EuringField(Mapping[str, Any]):
             mapping["value_type"] = self.value_type
         if self.length is not None:
             mapping["length"] = self.length
+        if self.start is not None:
+            mapping["start"] = self.start
+        if self.end is not None:
+            mapping["end"] = self.end
         if self.variable_length:
             mapping["variable_length"] = True
         if self.empty_value is not None:
@@ -291,6 +297,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
     value_type = definition.get("value_type")
     required = definition.get("required", True)
     length = definition.get("length")
+    start = definition.get("start")
+    end = definition.get("end")
     variable_length = bool(definition.get("variable_length", False))
     empty_value = definition.get("empty_value")
     parser = definition.get("parser")
@@ -303,6 +311,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             value_type=value_type,
             required=required,
             length=length,
+            start=start,
+            end=end,
             variable_length=variable_length,
             empty_value=empty_value,
             parser=parser,
@@ -316,6 +326,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
             value_type=value_type,
             required=required,
             length=length,
+            start=start,
+            end=end,
             variable_length=variable_length,
             empty_value=empty_value,
             lookup=lookup,
@@ -327,6 +339,8 @@ def coerce_field(definition: Mapping[str, Any]) -> EuringField:
         value_type=value_type,
         required=required,
         length=length,
+        start=start,
+        end=end,
         variable_length=variable_length,
         empty_value=empty_value,
     )

@@ -21,9 +21,7 @@ def normalize_format(format: str) -> str:
     raw = format.strip()
     if raw in FORMAT_VALUES:
         return raw
-    raise ValueError(
-        f'Unknown format "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}.'
-    )
+    raise ValueError(unknown_format_error_message(format, add_hint=False))
 
 
 def format_display_name(format: str) -> str:
@@ -31,10 +29,23 @@ def format_display_name(format: str) -> str:
     try:
         return FORMAT_NAMES[format]
     except KeyError as exc:
-        raise ValueError(f'Unknown format "{format}".') from exc
+        raise ValueError(unknown_format_error_message(format, add_hint=False)) from exc
 
 
-def format_hint(format: str) -> str | None:
+def unknown_format_error_message(format: str, name: str = "format", add_hint: bool = True) -> str:
+    """Return an error message for an unknown EURING format."""
+    message = (
+        f'Unknown {name} "{format}". Use "{FORMAT_EURING2000}", '
+        f'"{FORMAT_EURING2000PLUS}", or "{FORMAT_EURING2020}".'
+    )
+    if add_hint:
+        hint = _format_hint(format)
+        if hint:
+            message = f'{message}\nDid you mean "{hint}"?'
+    return message
+
+
+def _format_hint(format: str) -> str | None:
     """Suggest the closest machine-friendly format name."""
     value = format.strip().lower()
     if value in FORMAT_VALUES:
@@ -46,12 +57,3 @@ def format_hint(format: str) -> str | None:
             return FORMAT_EURING2000PLUS
         return FORMAT_EURING2000
     return None
-
-
-def unknown_format_error_message(format: str, name: str = "format") -> str:
-    """Return an error message for an unknown EURING format."""
-    hint = format_hint(format)
-    message = f'Unknown {name} "{format}". Use {FORMAT_EURING2000}, {FORMAT_EURING2000PLUS}, or {FORMAT_EURING2020}."'
-    if hint:
-        message = f"{message}\nDid you mean {hint}?"
-    return message

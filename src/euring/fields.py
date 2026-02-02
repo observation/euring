@@ -69,6 +69,8 @@ EURING_FIELDS = (
         key="ringing_scheme",
         euring_type=TYPE_ALPHABETIC,
         length=3,
+        start=1,
+        end=3,
         lookup=lookup_ringing_scheme,
     ),
     EuringLookupField(
@@ -76,6 +78,8 @@ EURING_FIELDS = (
         key="primary_identification_method",
         euring_type=TYPE_ALPHANUMERIC,
         length=2,
+        start=4,
+        end=5,
         lookup=LOOKUP_PRIMARY_IDENTIFICATION_METHOD,
     ),
     EuringLookupField(
@@ -83,6 +87,8 @@ EURING_FIELDS = (
         key="identification_number",
         euring_type=TYPE_ALPHANUMERIC,
         length=10,
+        start=6,
+        end=15,
         lookup=lookup_ring_number,
     ),
     EuringLookupField(
@@ -91,6 +97,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=1,
+        start=16,
+        end=16,
         lookup=LOOKUP_VERIFICATION_OF_THE_METAL_RING,
     ),
     EuringLookupField(
@@ -99,6 +107,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=1,
+        start=17,
+        end=17,
         lookup=LOOKUP_METAL_RING_INFORMATION,
     ),
     EuringLookupField(
@@ -106,6 +116,8 @@ EURING_FIELDS = (
         key="other_marks_information",
         euring_type=TYPE_ALPHABETIC,
         length=2,
+        start=18,
+        end=19,
         lookup=lookup_other_marks,
     ),
     EuringLookupField(
@@ -114,6 +126,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=5,
+        start=20,
+        end=24,
         lookup=lookup_species,
     ),
     EuringLookupField(
@@ -122,6 +136,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=5,
+        start=25,
+        end=29,
         lookup=lookup_species,
     ),
     EuringLookupField(
@@ -129,6 +145,8 @@ EURING_FIELDS = (
         key="manipulated",
         euring_type=TYPE_ALPHABETIC,
         length=1,
+        start=30,
+        end=30,
         lookup=LOOKUP_MANIPULATED,
     ),
     EuringLookupField(
@@ -137,6 +155,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=1,
+        start=31,
+        end=31,
         lookup=LOOKUP_MOVED_BEFORE_ENCOUNTER,
     ),
     EuringLookupField(
@@ -144,6 +164,8 @@ EURING_FIELDS = (
         key="catching_method",
         euring_type=TYPE_ALPHABETIC,
         length=1,
+        start=32,
+        end=32,
         lookup=LOOKUP_CATCHING_METHOD,
     ),
     EuringLookupField(
@@ -151,27 +173,57 @@ EURING_FIELDS = (
         key="catching_lures",
         euring_type=TYPE_ALPHABETIC,
         length=1,
+        start=33,
+        end=33,
         lookup=LOOKUP_CATCHING_LURES,
     ),
     EuringLookupField(
-        name="Sex Mentioned", key="sex_mentioned", euring_type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX
+        name="Sex Mentioned",
+        key="sex_mentioned",
+        euring_type=TYPE_ALPHABETIC,
+        length=1,
+        start=34,
+        end=34,
+        lookup=LOOKUP_SEX,
     ),
     EuringLookupField(
-        name="Sex Concluded", key="sex_concluded", euring_type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_SEX
+        name="Sex Concluded",
+        key="sex_concluded",
+        euring_type=TYPE_ALPHABETIC,
+        length=1,
+        start=35,
+        end=35,
+        lookup=LOOKUP_SEX,
     ),
     EuringLookupField(
-        name="Age Mentioned", key="age_mentioned", euring_type=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age
+        name="Age Mentioned",
+        key="age_mentioned",
+        euring_type=TYPE_ALPHANUMERIC,
+        length=1,
+        start=36,
+        end=36,
+        lookup=lookup_age,
     ),
     EuringLookupField(
-        name="Age Concluded", key="age_concluded", euring_type=TYPE_ALPHANUMERIC, length=1, lookup=lookup_age
+        name="Age Concluded",
+        key="age_concluded",
+        euring_type=TYPE_ALPHANUMERIC,
+        length=1,
+        start=37,
+        end=37,
+        lookup=lookup_age,
     ),
-    EuringLookupField(name="Status", key="status", euring_type=TYPE_ALPHABETIC, length=1, lookup=LOOKUP_STATUS),
+    EuringLookupField(
+        name="Status", key="status", euring_type=TYPE_ALPHABETIC, length=1, start=38, end=38, lookup=LOOKUP_STATUS
+    ),
     EuringLookupField(
         name="Brood Size",
         key="brood_size",
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=2,
+        start=39,
+        end=40,
         lookup=lookup_brood_size,
     ),
     EuringLookupField(
@@ -180,6 +232,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=2,
+        start=41,
+        end=42,
         lookup=lookup_pullus_age,
     ),
     EuringLookupField(
@@ -188,6 +242,8 @@ EURING_FIELDS = (
         euring_type=TYPE_ALPHANUMERIC,
         value_type="code_str",
         length=1,
+        start=43,
+        end=43,
         lookup=LOOKUP_ACCURACY_PULLUS_AGE,
     ),
     EuringFormattedField(
@@ -196,6 +252,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="date",
         length=8,
+        start=44,
+        end=51,
         parser=parse_date,
         lookup=lookup_date,
     ),
@@ -205,14 +263,18 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=1,
+        start=52,
+        end=52,
         lookup=LOOKUP_ACCURACY_OF_DATE,
     ),
-    EuringField(name="Time", key="time", euring_type=TYPE_ALPHANUMERIC, length=4),
+    EuringField(name="Time", key="time", euring_type=TYPE_ALPHANUMERIC, length=4, start=53, end=56),
     EuringFormattedField(
         name="Place Code",
         key="place_code",
         euring_type=TYPE_ALPHANUMERIC,
         length=4,
+        start=57,
+        end=60,
         parser=parse_place_code,
         lookup=lookup_place_code,
     ),
@@ -221,6 +283,8 @@ EURING_FIELDS = (
         key="geographical_coordinates",
         euring_type=TYPE_ALPHANUMERIC,
         length=15,
+        start=61,
+        end=75,
         parser=parse_geographical_coordinates,
         lookup=lookup_geographical_coordinates,
     ),
@@ -230,6 +294,8 @@ EURING_FIELDS = (
         euring_type=TYPE_ALPHANUMERIC,
         value_type="code_str",
         length=1,
+        start=76,
+        end=76,
         lookup=LOOKUP_ACCURACY_OF_COORDINATES,
     ),
     EuringLookupField(
@@ -238,6 +304,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=1,
+        start=77,
+        end=77,
         lookup=LOOKUP_CONDITION,
     ),
     EuringLookupField(
@@ -246,6 +314,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=2,
+        start=78,
+        end=79,
         lookup=LOOKUP_CIRCUMSTANCES,
     ),
     EuringLookupField(
@@ -254,6 +324,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=1,
+        start=80,
+        end=80,
         lookup=LOOKUP_CIRCUMSTANCES_PRESUMED,
     ),
     EuringLookupField(
@@ -262,6 +334,8 @@ EURING_FIELDS = (
         euring_type=TYPE_INTEGER,
         value_type="code_str",
         length=1,
+        start=81,
+        end=81,
         lookup=LOOKUP_EURING_CODE_IDENTIFIER,
     ),
     EuringField(
@@ -269,6 +343,8 @@ EURING_FIELDS = (
         key="distance",
         euring_type=TYPE_INTEGER,
         length=5,
+        start=82,
+        end=86,
         variable_length=True,
         empty_value="-----",
     ),
@@ -277,6 +353,8 @@ EURING_FIELDS = (
         key="direction",
         euring_type=TYPE_INTEGER,
         length=3,
+        start=87,
+        end=89,
         empty_value="---",
         parser=parse_direction,
     ),
@@ -285,6 +363,8 @@ EURING_FIELDS = (
         key="elapsed_time",
         euring_type=TYPE_INTEGER,
         length=5,
+        start=90,
+        end=94,
         variable_length=True,
         empty_value="-----",
     ),
@@ -466,3 +546,6 @@ EURING_KEY_NAME = MappingProxyType({field.key: field.name for field in EURING_FI
 EURING2020_ONLY_KEYS = tuple(set(EURING2020_KEYS).difference(EURING2000PLUS_KEYS))
 NON_EURING2000_KEYS = tuple(set(EURING2000PLUS_KEYS + EURING2020_ONLY_KEYS).difference(EURING2000_KEYS))
 NON_EURING2000PLUS_KEYS = tuple(key for key in EURING_KEYS if key not in EURING2000PLUS_KEYS)
+EURING_FIELD_MAP = MappingProxyType(
+    {field["key"]: {**field, "order": index} for index, field in enumerate(EURING2020_FIELDS)}
+)

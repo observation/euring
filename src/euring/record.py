@@ -4,12 +4,17 @@ import json
 import warnings
 from dataclasses import replace
 
-from euring.decode import euring_detect_format, euring_record_to_dict
+from euring.decode import _decode_raw_record
 
 from .coordinates import _lat_to_euring_coordinate, _lng_to_euring_coordinate
-from .exceptions import EuringConstraintException, EuringException
+from .exceptions import EuringException
 from .field_schema import EuringField, coerce_field
-from .fields import EURING2000_FIELDS, EURING2000_RECORD_LENGTH, EURING2000PLUS_FIELDS, EURING2020_FIELDS
+from .fields import (
+    EURING2000_FIELDS,
+    EURING2000PLUS_FIELDS,
+    EURING2020_FIELDS,
+    EURING_FIELD_MAP,
+)
 from .formats import (
     FORMAT_EURING2000,
     FORMAT_EURING2000PLUS,
@@ -30,20 +35,29 @@ class EuringRecord:
         """Initialize a record with the given EURING format."""
         self.format = normalize_format(format)
         self.strict = strict
+        self.clear_errors()
         self._fields: dict[str, dict[str, object]] = {}
-        self.errors: dict[str, list] = {"record": [], "fields": []}
+        for key, field in EURING_FIELD_MAP.items():
+            self._fields[key] = {
+                "name": field["name"],
+                "raw_value": None,
+                "value": None,
+                "order": field["order"],
+            }
+        self.clear_errors()
+
+    def clear_errors(self):
+        """Clear all errors and reinitialize."""
+        self.errors: dict[str, object] = {"record": [], "fields": dict[str, list[str]]}
 
     @classmethod
     def decode(cls, value: str, format: str | None = None) -> EuringRecord:
         """Decode a EURING record string into an EuringRecord."""
-        record_format, values_by_key, record_errors = _decode_raw_record(value, format)
+        record_format, raw_values_by_key, record_errors = _decode_raw_record(value, format)
         record = cls(record_format, strict=False)
-        for key, raw_value in values_by_key.items():
+        for key, raw_value in raw_values_by_key.items():
             record._set_raw_value(key, raw_value)
-        errors = record.validate()
-        if record_errors:
-            errors["record"] = record_errors + errors.get("record", [])
-            record.errors = errors
+        record._validate(record_errors=record_errors)
         return record
 
     @property
@@ -53,7 +67,7 @@ class EuringRecord:
 
     def set(self, key: str, value: object) -> EuringRecord:
         """Set a field value by key."""
-        field = _FIELD_MAP.get(key)
+        field = EURING_FIELD_MAP.get(key)
         if field is None:
             raise ValueError(f'Unknown field key "{key}".')
         # Setting a typed value should clear any previously captured raw EURING text.
@@ -62,7 +76,7 @@ class EuringRecord:
 
     def _set_raw_value(self, key: str, value: object) -> None:
         """Set a field from decoded input without normalization."""
-        field = _FIELD_MAP.get(key)
+        field = EURING_FIELD_MAP.get(key)
         if field is None:
             return
         self._fields[key] = {
@@ -120,14 +134,37 @@ class EuringRecord:
         field_errors = errors.get("fields", [])
         return bool(record_errors) or bool(field_errors)
 
-    def validate(self, record: str | None = None) -> dict[str, list]:
+    def validate(self) -> dict[str, list]:
         """Validate all fields, then apply multi-field and record-level checks."""
-        errors = {"record": [], "fields": []}
-        field_errors = self._validate_fields()
-        errors["fields"].extend(field_errors)
-        errors["fields"].extend(self._validate_record_rules())
-        self.errors = errors
+        return self._validate()
+
+    def _validate(
+        self,
+        record_errors: list[dict[str, object]] | None = None,
+        field_errors: list[dict[str, object]] | None = None,
+    ) -> dict[str, list]:
+        """Validate all fields, then apply multi-field and record-level checks."""
+        self.errors = {"record": record_errors or [], "fields": field_errors or []}
+        self.errors["fields"].extend(self._validate_fields())
+        self.errors["fields"].extend(self._validate_record_rules())
         return self.errors
+
+
+    def record_errors(self) -> list[dict[str, object]]:
+        """Return all record errors."""
+        return self.errors.get("record", [])
+
+    def field_errors(self, key: str) -> list[dict[str, object]]:
+        """Return all field errors for a given field key."""
+        return [error for error in self.errors.get("fields", []) if error.get("key") == key]
+
+    def _add_record_error(self, error_message: str):
+        """Add a record level error."""
+        self.errors["record"].append({"message": error_message})
+
+    def _add_field_error(self, key: str, error_message: str):
+        """Add a field level error."""
+        self.errors["fields"].append({"key": key, "message": error_message})
 
     def _validate_fields(self) -> list[dict[str, object]]:
         """Validate each field value against its definition."""
@@ -480,71 +517,6 @@ def _field_index(key: str) -> int:
     raise ValueError(f'Unknown field key "{key}".')
 
 
-def _normalize_decode_format(format: str | None) -> str | None:
-    """Normalize a user-provided format string or raise."""
-    if not format:
-        return None
-    try:
-        return normalize_format(format)
-    except ValueError:
-        raise EuringConstraintException(unknown_format_error_message(format))
-
-
-def _decode_raw_record(record: object, format: str | None) -> tuple[str, dict[str, str], list[dict[str, str]]]:
-    """Decode raw field values from an encoded EURING record string."""
-    decode_format = ""
-    record_errors: list[dict[str, str]] = []
-    values_by_key: dict[str, str] = {}
-
-    if not isinstance(record, str):
-        record_errors.append({"message": f'Record "{record}" is not a string but {type(record)}.'})
-    elif record == "":
-        record_errors.append({"message": "Record is an empty string."})
-    elif not format:
-        decode_format = euring_detect_format(record)
-        if not decode_format:
-            record_errors.append({"message": f'Format could not be detected from record "{record}".'})
-
-    if format:
-        decode_format = _normalize_decode_format(format)
-        if not decode_format:
-            record_errors.append({"message": unknown_format_error_message(format=format)})
-
-    if not decode_format:
-        decode_format = FORMAT_EURING2020
-        record_errors.append({"message": f'Switching to default format "{decode_format}".'})
-
-    # Any record error before this point is a fatal error, we will not decode
-    if bool(record_errors):
-        return decode_format, values_by_key, record_errors
-
-    pipe_character_in_record = "|" in record
-    if decode_format == FORMAT_EURING2000:
-        if pipe_character_in_record:
-            record_errors.append({"message": f'Format "{decode_format}" should not contain pipe characters ("|").'})
-        record_length = len(record)
-        if record_length != EURING2000_RECORD_LENGTH:
-            record_errors.append(
-                {
-                    "message": (
-                        f'Format "{decode_format}" '
-                        f"should be exactly {EURING2000_RECORD_LENGTH} characters, found {record_length}."
-                    )
-                }
-            )
-    else:
-        if not pipe_character_in_record:
-            record_errors.append(
-                {"message": (f'Format "{decode_format}" should contain values separated by pipe characters ("|").')}
-            )
-
-    raw_values_by_key = euring_record_to_dict(record, format=decode_format)
-    return decode_format, raw_values_by_key, record_errors
-
-
-_FIELD_MAP = {field["key"]: {**field, "order": index} for index, field in enumerate(EURING2020_FIELDS)}
-
-
 def _field_positions(fields: list[dict[str, object]]) -> dict[str, dict[str, int]]:
     """Return position metadata for fixed-width fields."""
     positions: dict[str, dict[str, int]] = {}
@@ -560,7 +532,7 @@ def _field_positions(fields: list[dict[str, object]]) -> dict[str, dict[str, int
 
 def _record_error_for_key(key: str, message: str, *, value: str) -> dict[str, object]:
     """Build a field error payload for a record-level rule."""
-    field = _FIELD_MAP.get(key, {})
+    field = EURING_FIELD_MAP.get(key, {})
     return {
         "field": field.get("name", key),
         "message": message,

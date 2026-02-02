@@ -82,7 +82,7 @@ def test_decode_cli_invalid_format_hint():
     runner = CliRunner()
     result = runner.invoke(app, ["decode", "--format", "2000", "GBB"])
     assert result.exit_code == 1
-    assert "Did you mean euring2000?" in result.output
+    assert 'Did you mean "euring2000"?' in result.output
 
 
 def test_decode_cli_json_output():
@@ -157,7 +157,7 @@ def test_validate_cli_invalid_format_hint():
     runner = CliRunner()
     result = runner.invoke(app, ["validate", "--format", "2020", "GBB"])
     assert result.exit_code == 1
-    assert "Did you mean euring2020?" in result.output
+    assert 'Did you mean "euring2020"?' in result.output
 
 
 def test_validate_cli_forced_euring2000_rejects_pipe_record():

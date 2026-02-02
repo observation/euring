@@ -8,7 +8,7 @@ import pytest
 from euring import EuringRecord
 from euring.converters import convert_euring_record
 from euring.exceptions import EuringConstraintException
-from euring.formats import format_hint
+from euring.formats import _format_hint
 
 
 def _load_fixture(module_name: str, filename: str) -> list[str]:
@@ -126,20 +126,20 @@ def test_convert_source_format_rejects_missing_prefix():
 
 
 def test_format_hint_for_2020():
-    assert format_hint("2020") == "euring2020"
+    assert _format_hint("2020") == "euring2020"
 
 
 def test_format_hint_for_2000plus():
-    assert format_hint("2000plus") == "euring2000plus"
+    assert _format_hint("2000plus") == "euring2000plus"
 
 
 def test_format_hint_for_2000plus_symbol():
-    assert format_hint("2000+") == "euring2000plus"
+    assert _format_hint("2000+") == "euring2000plus"
 
 
 def test_format_hint_for_2000():
-    assert format_hint("2000") == "euring2000"
+    assert _format_hint("2000") == "euring2000"
 
 
 def test_format_hint_unknown_returns_none():
-    assert format_hint("unknown") is None
+    assert _format_hint("unknown") is None
